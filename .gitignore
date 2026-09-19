@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.svelte-kit/
+.wrangler/
+
+# Environment (commit only .env.example)
+.env
+.env.*
+!.env.example
+.dev.vars*
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Local tooling
+.claude/
+.codegraph/
+.superpowers/

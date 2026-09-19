@@ -1,0 +1,12 @@
+{
+  "title": "Jany-Latyn: A Latin Orthography and Comparative Testbed for the Kyrgyz Language",
+  "upload_type": "software",
+  "description": "A Latin orthography for Kyrgyz designed to be derivable from Cyrillic, with a deterministic conversion engine and a testbed in which each contested orthographic choice is a selectable option.",
+  "creators": [
+    { "name": "Madraimov, Emil" }
+  ],
+  "version": "2026.1",
+  "license": "cc-by-4.0",
+  "keywords": ["Kyrgyz", "orthography", "romanization", "Turkic languages", "transliteration"],
+  "notes": "This repository is licensed in three parts: the conversion engine (packages/engine/) under MIT, the testbed web application (apps/web/) under PolyForm Noncommercial 1.0.0, and the whitepaper and specification (docs/) under CC BY 4.0. See LICENSING.md. The record lists CC BY 4.0 because the archive is chiefly cited for the whitepaper and specification."
+}

@@ -1,0 +1,15 @@
+// jany-latyn — AltGr (right Alt) layer over a US base layout.
+// AltGr+o=ö  AltGr+u=ü  AltGr+i=í  AltGr+n=ŋ  AltGr+c=ç  AltGr+s=ş  (+Shift for capitals)
+partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "us(basic)"
+    include "level3(ralt_switch)"
+
+    key <AD07> { [ u, U, U00FC, U00DC ] }; // u → ü / Ü
+    key <AD08> { [ i, I, U00ED, U00CD ] }; // i → í / Í
+    key <AD09> { [ o, O, U00F6, U00D6 ] }; // o → ö / Ö
+    key <AB06> { [ n, N, U014B, U014A ] }; // n → ŋ / Ŋ
+    key <AB03> { [ c, C, U00E7, U00C7 ] }; // c → ç / Ç
+    key <AC02> { [ s, S, U015F, U015E ] }; // s → ş / Ş
+};
+

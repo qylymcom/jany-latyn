@@ -1,0 +1,14 @@
+name = "jany-latyn"
+compatibility_date = "2024-09-23"
+
+[assets]
+directory = "build"
+not_found_handling = "single-page-application"
+
+[vars]
+PUBLIC_SITE_NAME = "QYLYM"
+PUBLIC_SCRIPT_TITLE = "Jany-Latyn — Kyrgyz in Latin script"
+PUBLIC_CONTACT_EMAIL = "salam@qylym.com"
+PUBLIC_SUPPORT_URL = "https://github.com/qylymcom/jany-latyn/issues"
+PUBLIC_REPO_URL = "https://github.com/qylymcom/jany-latyn"
+PUBLIC_POSTHOG_HOST = "https://us.i.posthog.com"

@@ -1,0 +1,60 @@
+{
+  "source": "Whitepaper §9.5, 'What the tailoring changes', plus one list per anchor. Each list is in expected order.",
+  "configurations": [
+    {
+      "name": "canonical",
+      "options": {},
+      "lists": [
+        ["bas", "baş", "bat"],
+        ["kene", "keŋ", "kep"],
+        ["kol", "konok", "köl", "köp"],
+        ["kul", "kum", "kül", "küü"],
+        ["kir", "kyz"],
+        ["car", "çaí", "dal"],
+        ["ilim", "íol", "jol"],
+        ["pul", "qazaq", "rol"],
+        ["ura", "üí", "vagon", "yrys", "zor"],
+        ["ata", "Ata", "ATA", "atan"],
+        ["ÖRÜK", "özön"]
+      ]
+    },
+    {
+      "name": "dotless ı",
+      "options": { "yGrapheme": "dotless-i", "uvularK": "q" },
+      "lists": [
+        ["bas", "baş", "bat"],
+        ["kene", "keŋ", "kep"],
+        ["kol", "konok", "köl", "köp"],
+        ["kul", "kum", "kül", "küü"],
+        ["kız", "kir"],
+        ["hat", "ılay", "ilim", "íol", "jol"],
+        ["ılım", "Ilım", "ilim", "İlim"],
+        ["kul", "qul", "lak"]
+      ]
+    },
+    {
+      "name": "q and ğ",
+      "options": { "uvularK": "q", "uvularG": "ğ" },
+      "lists": [
+        ["gul", "ğul", "hal"],
+        ["kul", "qul", "lak"]
+      ]
+    },
+    {
+      "name": "CTA-aligned",
+      "options": { "yGrapheme": "dotless-i", "glideGrapheme": "y", "uvularK": "q", "uvularG": "ğ", "affricate": "c", "velarNasal": "tilde-n" },
+      "lists": [
+        ["car", "çaí", "dal"],
+        ["nan", "ñaq", "ob"],
+        ["gaz", "ğaz", "hat"]
+      ]
+    },
+    {
+      "name": "extended letters",
+      "options": { "extendedLetters": true },
+      "lists": [
+        ["ata", "äkä", "bala"]
+      ]
+    }
+  ]
+}

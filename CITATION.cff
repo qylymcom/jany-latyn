@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Jany-Latyn: A Latin Orthography and Comparative Testbed for the Kyrgyz Language"
+message: "If you use this software or specification, please cite it."
+type: software
+authors:
+  - family-names: "Madraimov"
+    given-names: "Emil"
+    email: salam@qylym.com
+repository-code: "https://github.com/qylymcom/jany-latyn"
+url: "https://qylym.com"
+abstract: >-
+  A Latin orthography for Kyrgyz designed to be derivable from Cyrillic, with a
+  deterministic conversion engine and a testbed in which each contested
+  orthographic choice is a selectable option.
+keywords:
+  - Kyrgyz
+  - orthography
+  - romanization
+  - Turkic languages
+  - transliteration
+license:
+  - MIT
+  - CC-BY-4.0
+  - PolyForm-Noncommercial-1.0.0
+version: "2026.1"
+date-released: "2026-09-19"
+doi: "REPLACE-AFTER-ZENODO-RELEASE"

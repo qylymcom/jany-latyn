@@ -1,0 +1,31 @@
+{
+  "name": "jany-latyn-monorepo",
+  "private": true,
+  "version": "2026.1.0",
+  "license": "SEE LICENSE IN LICENSING.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qylymcom/jany-latyn.git"
+  },
+  "homepage": "https://github.com/qylymcom/jany-latyn#readme",
+  "bugs": {
+    "url": "https://github.com/qylymcom/jany-latyn/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/engine",
+    "apps/web"
+  ],
+  "scripts": {
+    "build": "npm --workspace packages/engine run build",
+    "test": "npm --workspace packages/engine test",
+    "chart": "npm --workspace packages/engine run chart",
+    "check-whitepaper": "npm --workspace packages/engine run check-whitepaper",
+    "dev": "npm --workspace apps/web run dev",
+    "check:web": "npm --workspace apps/web run check",
+    "build:web": "npm --workspace apps/web run build"
+  }
+}

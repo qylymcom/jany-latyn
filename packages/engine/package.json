@@ -1,0 +1,54 @@
+{
+  "name": "jany-latyn",
+  "version": "2026.1.0",
+  "description": "Deterministic Cyrillic ↔ Jany-Latyn converter and CLI for Kyrgyz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qylymcom/jany-latyn.git",
+    "directory": "packages/engine"
+  },
+  "homepage": "https://github.com/qylymcom/jany-latyn/tree/main/packages/engine#readme",
+  "bugs": {
+    "url": "https://github.com/qylymcom/jany-latyn/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "jany-latyn": "./dist/src/cli.js"
+  },
+  "exports": {
+    "./convert": {
+      "source": "./src/convert.ts",
+      "types": "./dist/src/convert.d.ts",
+      "default": "./dist/src/convert.js"
+    },
+    "./alphabet": {
+      "source": "./src/alphabet.ts",
+      "types": "./dist/src/alphabet.d.ts",
+      "default": "./dist/src/alphabet.js"
+    },
+    "./testbedPresets": {
+      "source": "./src/testbedPresets.ts",
+      "types": "./dist/src/testbedPresets.d.ts",
+      "default": "./dist/src/testbedPresets.js"
+    },
+    "./collate": {
+      "source": "./src/collate.ts",
+      "types": "./dist/src/collate.d.ts",
+      "default": "./dist/src/collate.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "rm -rf dist && tsc && node --test dist/test/ && node dist/scripts/check-whitepaper.js",
+    "chart": "tsc && node dist/scripts/make-chart.js",
+    "check-whitepaper": "tsc && node dist/scripts/check-whitepaper.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "typescript": "^5.5.0"
+  }
+}
