@@ -7,7 +7,7 @@
 **Author:** Emil Madraimov · salam@qylym.com
 **Date:** September 2026
 **License:** This document is licensed CC BY 4.0. The reference engine is MIT; the web testbed is source-available under PolyForm Noncommercial 1.0.0. See `LICENSING.md` in the repository.
-**Cite as:** Emil Madraimov (2026). *Jany-Latyn: A Latin Orthography and Comparative Testbed for the Kyrgyz Language*, version 2026.1. REPLACE-DOI
+**Cite as:** Emil Madraimov (2026). *Jany-Latyn: A Latin Orthography and Comparative Testbed for the Kyrgyz Language*, version 2026.1. https://doi.org/10.5281/zenodo.22844477
 
 ---
 
