@@ -131,7 +131,7 @@ test('§9 display-variant maps emit the exact u-glyph codepoints', () => {
 test('§9.4 five formal letters decompose under NFD; ŋ and ı do not', () => {
   // The whitepaper rests the folding argument on this split: accent-stripping
   // handles the decomposable letters for free, and ŋ has to be handled explicitly.
-  for (const ch of ['ç', 'ş', 'ö', 'ü', 'í', 'ä', 'ñ']) {
+  for (const ch of ['ç', 'ş', 'ö', 'ü', 'í', 'ä', 'ñ', 'ğ']) {
     assert.equal(ch.normalize('NFD').length, 2, `${ch} should decompose`);
     assert.equal(ch.normalize('NFD')[0], ch.normalize('NFD')[0].normalize('NFC'), `${ch} base`);
   }

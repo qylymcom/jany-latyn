@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 /**
- * §11.1 testbed coupling — the "ı force-enables q" affordance.
+ * §11.1 testbed coupling — the "ı force-enables q" and "q force-enables ğ"
+ * affordances.
  *
  * This is a TESTBED behavior, not an engine invariant. These tests assert the
  * coupling where it actually lives (the shared pure module), and separately
@@ -11,6 +12,7 @@ import assert from 'node:assert/strict';
 import {
   resolveYGraphemeChange,
   resolveGlideGraphemeChange,
+  resolveUvularKChange,
   hasTildeClash,
   type TestbedOptionState,
 } from '../src/testbedPresets.js';
@@ -20,19 +22,22 @@ const canonical: TestbedOptionState = {
   yGrapheme: 'y',
   glideGrapheme: 'acute-i',
   uvularK: 'k',
+  uvularG: 'g',
 };
 
 test('§11.1 coupling: selecting dotless ı force-enables q', () => {
   const next = resolveYGraphemeChange(canonical, 'dotless-i');
   assert.equal(next.yGrapheme, 'dotless-i');
   assert.equal(next.uvularK, 'q'); // the coupling
+  assert.equal(next.uvularG, 'ğ'); // …which carries ğ with it (§6)
 });
 
 test('§11.1 coupling: selecting y reverts to unified k', () => {
-  const fromCTA: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'y', uvularK: 'q' };
+  const fromCTA: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'y', uvularK: 'q', uvularG: 'ğ' };
   const next = resolveYGraphemeChange(fromCTA, 'y');
   assert.equal(next.yGrapheme, 'y');
   assert.equal(next.uvularK, 'k');
+  assert.equal(next.uvularG, 'g');
   assert.equal(next.glideGrapheme, 'acute-i'); // clears the double-y collision
 });
 
@@ -41,17 +46,18 @@ test('§11.1 coupling: choosing y glide while ы is y forces ı + q', () => {
   assert.equal(next.glideGrapheme, 'y');
   assert.equal(next.yGrapheme, 'dotless-i');
   assert.equal(next.uvularK, 'q');
+  assert.equal(next.uvularG, 'ğ');
 });
 
 test('§11.1 coupling: glide change is inert when ы is already dotless ı', () => {
-  const dotless: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'acute-i', uvularK: 'q' };
+  const dotless: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'acute-i', uvularK: 'q', uvularG: 'ğ' };
   const next = resolveGlideGraphemeChange(dotless, 'y');
   assert.equal(next.yGrapheme, 'dotless-i');
   assert.equal(next.uvularK, 'q');
 });
 
 test('§11.1 coupling: glide change from ı + k leaves k untouched (only the ы=y case forces q)', () => {
-  const dotlessK: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'acute-i', uvularK: 'k' };
+  const dotlessK: TestbedOptionState = { yGrapheme: 'dotless-i', glideGrapheme: 'acute-i', uvularK: 'k', uvularG: 'g' };
   const next = resolveGlideGraphemeChange(dotlessK, 'y');
   assert.equal(next.glideGrapheme, 'y');
   assert.equal(next.yGrapheme, 'dotless-i');
@@ -76,7 +82,46 @@ test('§11.1 coupling: marked glides pass through the resolvers unchanged', () =
     const next = resolveGlideGraphemeChange(canonical, g);
     assert.deepEqual(next, { ...canonical, glideGrapheme: g });
     // Leaving dotless ı keeps a marked glide (only the y glide is cleared).
-    const back = resolveYGraphemeChange({ yGrapheme: 'dotless-i', glideGrapheme: g, uvularK: 'q' }, 'y');
+    const back = resolveYGraphemeChange({ yGrapheme: 'dotless-i', glideGrapheme: g, uvularK: 'q', uvularG: 'ğ' }, 'y');
     assert.equal(back.glideGrapheme, g);
   }
+});
+
+test('§11.1 coupling: selecting q force-enables ğ (§6 symmetry)', () => {
+  const next = resolveUvularKChange(canonical, 'q');
+  assert.equal(next.uvularK, 'q');
+  assert.equal(next.uvularG, 'ğ');
+});
+
+test('§11.1 coupling: reverting to unified k clears ğ', () => {
+  const both: TestbedOptionState = { ...canonical, uvularK: 'q', uvularG: 'ğ' };
+  const next = resolveUvularKChange(both, 'k');
+  assert.equal(next.uvularK, 'k');
+  assert.equal(next.uvularG, 'g');
+});
+
+test('§11.1 coupling: ğ stays settable on its own after the transition', () => {
+  // The resolver seeds ğ; the UI's plain setter can still take it back off,
+  // so q-without-ğ — the configuration §6 argues against — stays reachable.
+  const seeded = resolveUvularKChange(canonical, 'q');
+  const asymmetric: TestbedOptionState = { ...seeded, uvularG: 'g' };
+  assert.equal(asymmetric.uvularK, 'q');
+  assert.equal(asymmetric.uvularG, 'g');
+});
+
+test('§11.1 coupling: ı carries q and ğ transitively', () => {
+  const next = resolveYGraphemeChange(canonical, 'dotless-i');
+  assert.deepEqual(next, {
+    yGrapheme: 'dotless-i',
+    glideGrapheme: 'acute-i',
+    uvularK: 'q',
+    uvularG: 'ğ',
+  });
+});
+
+test('§11.1 engine keeps uvularK and uvularG independent (coupling is UI-only)', () => {
+  // Every combination remains a valid engine call, including the asymmetric ones.
+  assert.equal(cyrToJany('кыргыз', { uvularK: 'q', uvularG: 'g' }), 'qyrgyz');
+  assert.equal(cyrToJany('кыргыз', { uvularK: 'k', uvularG: 'ğ' }), 'kyrğyz');
+  assert.equal(cyrToJany('кыргыз', { uvularK: 'q', uvularG: 'ğ' }), 'qyrğyz');
 });

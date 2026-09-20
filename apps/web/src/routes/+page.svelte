@@ -10,6 +10,7 @@
   import {
     resolveYGraphemeChange,
     resolveGlideGraphemeChange,
+    resolveUvularKChange,
     hasTildeClash,
   } from "jany-latyn/testbedPresets";
   import { getProbeForVowelMode } from "$lib/fontcheck";
@@ -253,11 +254,14 @@
       yGrapheme: opts.yGrapheme,
       glideGrapheme: opts.glideGrapheme,
       uvularK: opts.uvularK,
+      uvularG: opts.uvularG,
     };
     if (key === "yGrapheme") {
       Object.assign(opts, resolveYGraphemeChange(coupled, value as Opts["yGrapheme"]));
     } else if (key === "glideGrapheme") {
       Object.assign(opts, resolveGlideGraphemeChange(coupled, value as Opts["glideGrapheme"]));
+    } else if (key === "uvularK") {
+      Object.assign(opts, resolveUvularKChange(coupled, value as Opts["uvularK"]));
     } else {
       (opts as Record<OptKey, string>)[key] = value;
     }

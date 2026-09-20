@@ -275,7 +275,7 @@ A Kyrgyz speaker reading *kar* produces [q] automatically; producing front [k] t
 
 The author's own preference is `q`. On phonological grounds it is the more honest letter, it is what most of the Turkic and Arabic-script world reaches for, and it has real historical weight in Kyrgyz specifically. The canonical standard nevertheless unifies `k` and `g`, and the reason is Principle 1 rather than a belief that `q` is wrong.
 
-If `q` is written, the voiced counterpart becomes an immediate question: *egemen* has front [g], *kagyluu* has back [ʁ], and if the voiceless distinction is worth a letter, symmetry says the voiced one is too. Every system that has taken the step has taken both halves of it: Tynystanov's 1928 alphabet had `q` and `ƣ` alongside `k` and `g` [[4]](#ref4), the CTA has `q` and `ğ` [[8]](#ref8), and the 2021 Kazakh alphabet uses ğ-breve for `ғ` [[5]](#ref5). A `q`-without-`ğ` system is possible, since the vowels predict `g`'s value just as they predicted `k`'s, but the asymmetry then has to be defended rather than assumed. The testbed's `q` mode currently leaves `g` unified; whether it should also derive `ğ` is an open question (§13.6).
+If `q` is written, the voiced counterpart becomes an immediate question: *egemen* has front [g], *kagyluu* has back [ʁ], and if the voiceless distinction is worth a letter, symmetry says the voiced one is too. Every system that has taken the step has taken both halves of it: Tynystanov's 1928 alphabet had `q` and `ƣ` alongside `k` and `g` [[4]](#ref4), the CTA has `q` and `ğ` [[8]](#ref8), and the 2021 Kazakh alphabet uses ğ-breve for `ғ` [[5]](#ref5). A `q`-without-`ğ` system is possible, since the vowels predict `g`'s value just as they predicted `k`'s, but the asymmetry has to be defended rather than assumed, and the defence does not hold. The lexicon dependency is the same dependency at the same strength: the rule that produces `qosmos` produces `ğaz`, `ğaloş`, `mağazin`, and `proğramma`, and nothing short of a loanword lexicon stops either of them. What separates the two letters is not derivability but which layer each one taxes. `q` is an ASCII key, so it costs no diacritic and it survives into the casual register; `ğ` costs a diacritic and folds back to `g` the moment the text drops to ASCII (§10). In a search index the relation inverts, since `ğ` folds to `g` for nothing under NFD while `q` and `k` are separate keys that split an index unless a fold is added (§9.4). Neither letter is cheap, and neither is cheap in a way that would license writing one without the other. **This system's position is therefore that `q` entails `ğ`.** The canonical standard declines both; a standard that adopts the voiceless letter adopts the voiced one with it. The testbed keeps them as independent toggles so that the asymmetric configuration can still be generated and looked at (§11.1), but one argument governs both.
 
 Three considerations keep the canonical standard on unified `k` and `g`:
 
@@ -428,6 +428,7 @@ The computational requirements an orthography proposal usually omits, and that a
 - **Normalization.** Canonical output is **Normalization Form C (NFC)** [[16]](#ref16), the Unicode form that writes a letter and its mark as one codepoint wherever a combined one exists. `í`, `ö`, and `ü` all have such codepoints, and input that arrives split into letter plus mark should be normalized on the way in. `ŋ` has no decomposition at all, which matters for the next point.
 - **Search folding.** A single `foldKey()` maps any register to one index key: `ö→o`, `ü→u`, `í→i`, `ç→c`, `ş→s`, `ŋ→n`, then casefold, which is the Unicode operation behind case-insensitive matching. For five of the six formal letters this is what standard accent-stripping already does, because `ç`, `ş`, `ö`, `ü`, and `í` split into a base letter plus a mark under Normalization Form D (NFD), the decomposed counterpart of NFC; `ä` folds to `a` the same way. `ŋ` is the exception among the formal letters and must be handled explicitly, since no amount of Unicode normalization will fold it to `n`. So is `ñ→n` (the §5.3 alternative) and `ı→i` (the §7 dotless option, which also keeps the casual register plain ASCII).
 - **Two folds are configuration-dependent.** When the compose-mode letters of §11.2 are enabled, `x→h` and `w→v` unify the distinctions that reverse conversion deliberately loses, so a search for *haram* matches *xaram* and *tav* matches *taw*. When they are not enabled, `x` and `w` are ordinary Latin letters in foreign names and must fold to themselves: *Linux*, *LAX*, and *X Factor* are not Kyrgyz words with a velar fricative, and folding them to *linuh* and *lah* would be wrong in an index that holds mixed-language content. The fold follows the configuration; it is not a property of the letters.
+- **The uvular letters fold unevenly.** `ğ` needs no rule of its own: it decomposes to `g` plus a breve under NFD and strips exactly as `ç` and `ş` do, so *bolğon* and *bolgon* land on one key. `q` is a base letter with nothing to strip, so it folds to itself, and *qyz* and *kyz* are two keys. An index holding text from both the canonical and the `q` configurations needs an explicit `q→k` rule to match them; whether that rule belongs in `foldKey` itself, at the cost of merging a distinction the configuration deliberately writes, is open (§13.6).
 - **Register equivalence holds for the strip fallback.** With the canonical ASCII mapping, the casual register *is* the folded form, so `çaí` and `cai` land on the same key (§10). Under the transitional digraph fallback the casual form is `chai`, which folds to a different key unless the index also applies `ch→c` and `sh→s`. Any deployment that indexes digraph-style text needs that extra pair of rules; the strip fallback needs nothing.
 - **Collation.** Under the untailored order of the Unicode Collation Algorithm [[6]](#ref6), `ç` sorts as a variant of `c` and `ş` as a variant of `s`, which is not the Kyrgyz alphabetical order. A locale for Jany-Latyn needs a collation tailoring, in the way Turkish tailors `ı`/`i`. The alphabet order is given in §9.5 and the tailoring in §9.6.
 
@@ -458,8 +459,8 @@ The CTA's placement of `X` next to `H` is a small precedent for the question §1
 | Configuration | Letters | Alphabet |
 | :--- | :---: | :--- |
 | Canonical | 28 | A B Ç D E F G H I Í J K L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
-| `q` added (§6) | 29 | A B Ç D E F G H I Í J K Q L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
-| `q` and `ğ` (symmetric) | 30 | A B Ç D E F G Ğ H I Í J K Q L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
+| `q` alone (asymmetric; §6) | 29 | A B Ç D E F G H I Í J K Q L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
+| `q` and `ğ` (§6) | 30 | A B Ç D E F G Ğ H I Í J K Q L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
 | Dotless `ı` with `q`, `ğ` | 30 | A B Ç D E F G Ğ H I İ J K Q L M N Ŋ O Ö P R S Ş T U Ü V Y Z |
 | CTA-aligned subset for Kyrgyz | 31 | A B C Ç D E F G Ğ H I İ J K Q L M N Ñ O Ö P R S Ş T U Ü V Y Z |
 | Common Turkic Alphabet, for reference | 34 | A B C Ç D E Ə F G Ğ H X I İ J K Q L M N Ñ O Ö P R S Ş T U Ū Ü V Y Z |
@@ -474,9 +475,9 @@ The last row is the Baku alphabet itself [[17]](#ref17), so the others can be re
 
 Native vocabulary only, so that nothing here depends on how a converter treats loanwords. Whether `q` is written is a lexicon question, not an alphabet question; see §6.
 
-| Cyrillic | Canonical | `q` added | Dotless `ı` | CTA-aligned |
+| Cyrillic | Canonical | `q` and `ğ` | Dotless `ı` | CTA-aligned |
 | :--- | :--- | :--- | :--- | :--- |
-| кыргыз | kyrgyz | qyrgyz | qırgız | qırğız |
+| кыргыз | kyrgyz | qyrğyz | qırğız | qırğız |
 | жазуу | jazuu | jazuu | jazuu | cazuu |
 | айылдар | aíyldar | aíyldar | ayıldar | ayıldar |
 | бийик | biíik | biíik | biyik | biyik |
@@ -488,9 +489,9 @@ And in running text:
 >
 > **Canonical.** Adamdardyn bir-biri menen almaşkan kattary, el aralyk immunogistohimiía je başka tehnikalyk jurnaldarda çykkan izildöö makalalar, elge belgilüü bolgon yrlar jana çygarmalar — baary bir alfavitte jazylat.
 >
-> **`q` added.** Adamdardyn bir-biri menen almaşqan qattary, el aralyq immunogistohimiía je başqa tehnikalyq jurnaldarda çyqqan izildöö maqalalar, elge belgilüü bolgon yrlar jana çygarmalar — baary bir alfavitte jazylat.
+> **`q` and `ğ`.** Adamdardyn bir-biri menen almaşqan qattary, el aralyq immunogistohimiía je başqa tehnikalyq jurnaldarda çyqqan izildöö maqalalar, elge belgilüü bolğon yrlar jana çyğarmalar — baary bir alfavitte jazylat.
 >
-> **Dotless `ı`.** Adamdardın bir-biri menen almaşqan qattarı, el aralıq immunogistohimiya je başqa tehnikalıq jurnaldarda çıqqan izildöö maqalalar, elge belgilüü bolgon ırlar jana çıgarmalar — baarı bir alfavitte jazılat.
+> **Dotless `ı`.** Adamdardın bir-biri menen almaşqan qattarı, el aralıq immunogistohimiya je başqa tehnikalıq jurnaldarda çıqqan izildöö maqalalar, elge belgilüü bolğon ırlar jana çığarmalar — baarı bir alfavitte jazılat.
 >
 > **CTA-aligned.** Adamdardın bir-biri menen almaşqan qattarı, el aralıq immunogistohimiya ce başqa tehnikalıq jurnaldarda çıqqan izildöö maqalalar, elge belgilüü bolğon ırlar cana çığarmalar — baarı bir alfavitte cazılat.
 
@@ -499,7 +500,7 @@ The CTA row is written as a person with a lexicon would write it: native `ж` as
 The passage is built to make the configurations differ visibly rather than to read elegantly. Three things in it repay following across the rows.
 
 - Native *же* becomes *ce* in the CTA row while the Russian loan *журнал* stays *jurnaldarda*, because in the CTA `c` is the affricate [dʒ] and `j` the fricative [ʒ]. Kyrgyz Cyrillic writes one `ж` for both, so no rule separates them: the split needs a loanword lexicon. In the other three rows a single `j` covers both sounds and the mapping stays derivable (§8.2).
-- *Техникалык* is the clearest case of `k` against `q` inside a single word. In the `q` rows it is *tehnikalyq*: the `k` of the loan stem stays velar while the `k` of the native suffix `-лык` becomes uvular. A local rule that reads the nearest vowel happens to get this word right, and the reference engine does. What no rule can supply is the reason (that *tehnika* is a loan), which is why the same heuristic also produces *qosmos* and *parq*. The same is true of `g` in the CTA row, where *immunogistohimiya* keeps plain `g` beside native *bolğon* and *çığarmalar*: the back-vowel rule happens to leave the loan alone, but nothing tells it why it should. A writer knows; a converter does not (§6).
+- *Техникалык* is the clearest case of `k` against `q` inside a single word. In the `q` rows it is *tehnikalyq*: the `k` of the loan stem stays velar while the `k` of the native suffix `-лык` becomes uvular. A local rule that reads the nearest vowel happens to get this word right, and the reference engine does. What no rule can supply is the reason (that *tehnika* is a loan), which is why the same heuristic also produces *qosmos* and *parq*. The same is true of `g` in every row that writes `ğ`, where *immunogistohimiía* keeps plain `g` beside native *bolğon* and *çyğarmalar*: the back-vowel rule happens to leave the loan alone, but nothing tells it why it should. A writer knows; a converter does not (§6).
 - *Immunogistohimiía* shows what the systems do with the vocabulary the language keeps acquiring: `h` for `х`, `ía` for the final `я`, doubled consonants intact, and a word long enough that legibility and sorting both have to hold across it.
 
 ### 9.6 Collation
@@ -599,16 +600,19 @@ A client-side application offers one-click presets, the canonical baseline again
 | :--- | :--- | :---: |
 | Front rounded vowels | `ö/ü` (canonical), `ө/ü`, `ө/ұ`, `ө/ū` | §4.1, §4.2 |
 | Sibilants | `ç/ş` (canonical), `ch/sh` | §5.2 |
+| Affricate `ж` | `j` (canonical), `c` — the CTA value, which is mechanical for loanwords | §5.1, §8.2 |
+| Loan signs `ъ`/`ь` | absorbed into the glide (canonical), apostrophe | §5.4 |
 | Velar nasal | `ŋ` (canonical), `ñ` | §5.3 |
 | Glide | `í` (canonical); `ĭ` and `ĩ` as marked alternatives; plain `i`, which renders the rejected barcode mapping for comparison; `y`, offered only while `ы` is written `ı` | §4.4, §7 |
-| Back unrounded vowel | `y` (canonical), `ı` — the testbed force-enables `q` when `ı` is selected; the engine keeps the two options independent | §7 |
-| Uvular consonant | unified `k` (canonical), allophonic `q` | §6 |
+| Back unrounded vowel | `y` (canonical), `ı` — the testbed force-enables `q`, and `ğ` behind it, when `ı` is selected; the engine keeps the options independent | §7 |
+| Uvular stop | unified `k` (canonical), allophonic `q` — selecting `q` also enables `ğ` | §6 |
+| Uvular fricative | unified `g` (canonical), allophonic `ğ` — settable on its own, so `q` without `ğ` stays reachable | §6 |
 | ASCII fallback | strip to `c/s` (canonical), expand to `ch/sh` | §10 |
 | Extended letters | off (canonical); `ä`, `x`/`h`, `w` each independently selectable — compose-mode, never emitted by forward conversion | §11.2 |
 
 A side-by-side inspector runs any combination against real text.
 
-Two couplings in that table belong to the testbed rather than to the mapping. Selecting `ı` also switches the uvular option to `q`, for the reason given in §7, and switching back to `y` restores `k`, returning the glide to `í` if it was `y` and leaving it alone otherwise; `q` can be set independently afterwards, so `ı` with `k` remains reachable. The `y` glide is offered only while `ы` is written `ı`, since under `y` the two would collide (§4.4). A third pairing is warned about rather than prevented: selecting the `ĩ` glide while the velar nasal is `ñ` puts the same tilde on two letters for two unrelated jobs, so the testbed says so and lets the reader judge the result. The engine itself imposes none of these rules: every combination of options is a valid call.
+Three couplings in that table belong to the testbed rather than to the mapping. Selecting `ı` switches the uvular options to `q` and `ğ`, for the reasons given in §7 and §6, and switching back to `y` restores `k` and `g`, returning the glide to `í` if it was `y` and leaving it alone otherwise. Selecting `q` on its own carries `ğ` with it by the argument of §6, and reverting to `k` takes it back off. Each coupling only seeds the option, so `ı` with `k`, and `q` without `ğ`, both remain reachable by setting the option afterwards. The `y` glide is offered only while `ы` is written `ı`, since under `y` the two would collide (§4.4). A fourth pairing is warned about rather than prevented: selecting the `ĩ` glide while the velar nasal is `ñ` puts the same tilde on two letters for two unrelated jobs, so the testbed says so and lets the reader judge the result. The engine itself imposes none of these rules: every combination of options is a valid call.
 
 The toggles are not a menu of equally valid house styles. Each one exists so that the counterexample can be generated rather than described: `q` turns *kosmos* into *qosmos*, `ı` shows what uppercasing does to the result, and Cyrillic `ө` can be switched on and the output sorted as a name list.
 
@@ -754,7 +758,7 @@ Some of these are experiments the testbed is built to support; the rest is speci
 - A stress-notation convention for teaching materials and dictionaries, which must not be the acute, since the acute is the glide (§4.4).
 - Orthographic rules beyond the letter level: hyphenation, abbreviations, the treatment of Russian personal names and surnames, and a policy for whether loanwords are spelled from their Russian source or from Kyrgyz pronunciation.
 - Capitalization beyond the core rule. Multi-character graphemes (`ía`, `ío`, `íu`, `ts`, and the digraph fallbacks) take the case pattern of the source word, so sentence case gives `Ía` and all-caps gives `ÍA`; that much is settled. What remains is narrower and largely stylistic: acronyms and initialisms carrying suffixes (*ЖОЖдо*), hyphenated compounds, and camel-case identifiers.
-- Whether `q` mode should also derive `ğ` (§6).
+- Whether `foldKey` should fold `q` to `k` (§9.4). `ğ` folds to `g` for free under NFD, so the voiced letter costs an index nothing while the voiceless one splits it. Folding would let one index serve text written in both configurations; not folding keeps a distinction the `q` configuration writes on purpose.
 - A machine-readable version marker for converted text (§11.4), so a document can declare which engine version produced it.
 - Promoting the documentation-conformance check from a curated example set to a full extractor. The current checker gates a hand-maintained list of pairs and also extracts every `cyrillic → latin` pair it finds in the prose, failing the build on any it cannot classify. What curation still decides is the configuration a pair runs in; an extractor that infers direction and configuration from context would close that gap.
 - Handwriting and pedagogy: nothing here has been tested with learners, and cedillas and acutes behave differently in handwriting than in type.

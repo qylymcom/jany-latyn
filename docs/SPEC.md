@@ -334,8 +334,10 @@ reverse, `c → ж` (§4.3).
 
 ⁴ `ğ` writes back-harmonic г as `ğ` by the same rule as `q` (`болгон → bolğon`)
 and is wrong for loanwords the same way (`газ → ğaz`, `гарантия → ğarantiía`).
-It is independent of `q`: `q` without `ğ` is a coherent, if asymmetric,
-configuration (whitepaper §6). The CTA preset uses both. In reverse, `ğ → г`.
+The engine keeps it independent of `q`, so `q` without `ğ` is a valid call,
+but whitepaper §6 argues that a standard adopting `q` adopts `ğ` with it, and
+the testbed couples the two options accordingly. The CTA preset uses both.
+In reverse, `ğ → г`.
 
 ## 8. Reference examples
 

@@ -127,9 +127,10 @@ const CONFIG_OVERRIDES: Record<string, { opts: JanyOptions; note: string }> = {
 // row "**Label.** text" after a "**Cyrillic.**" row is checked word by word.
 const COLUMN_CONFIGS: Record<string, JanyOptions> = {
   'Canonical': {},
-  'q added': { uvularK: 'q' },
+  // §6: q entails ğ, so the q column writes both.
+  'q and ğ': { uvularK: 'q', uvularG: 'ğ' },
   // With ы written ı, y is free for the glide, which is how §9.5 writes this row.
-  'Dotless ı': { yGrapheme: 'dotless-i', uvularK: 'q', glideGrapheme: 'y' },
+  'Dotless ı': { yGrapheme: 'dotless-i', uvularK: 'q', uvularG: 'ğ', glideGrapheme: 'y' },
   'CTA-aligned': { ...CTA_C, velarNasal: 'tilde-n' },
 };
 
