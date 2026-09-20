@@ -7,6 +7,11 @@
   import { i18n, LOCALES } from '$lib/i18n/index.svelte';
   import type { Locale } from '$lib/i18n/types.js';
   import Icon from '$lib/components/Icon.svelte';
+  import HeaderPicker from '$lib/components/HeaderPicker.svelte';
+  import { readingFont } from '$lib/readingFont.svelte';
+  import { FONTS } from '$lib/fonts';
+  import { fontCovers, getProbeForVowelMode } from '$lib/fontcheck';
+  import posthog from 'posthog-js';
 
   const SITE_NAME = env.PUBLIC_SITE_NAME ?? 'jany-latyn';
   let { children } = $props();
@@ -21,6 +26,27 @@
   function isActive(href: string): boolean {
     const path = page.url.pathname;
     return href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
+  }
+
+  // The whitepaper's reading font, offered in the header so it stays reachable
+  // anywhere in a long document. Fonts missing the canonical glyphs grey out.
+  const onWhitepaper = $derived(isActive('/whitepaper/'));
+  const fontItems = $derived(
+    FONTS.map((f) => ({
+      value: f.stack,
+      label: f.label,
+      font: f.stack,
+      disabled: f.probe !== '-apple-system' && !fontCovers(f.probe, getProbeForVowelMode())
+    }))
+  );
+  const localeItems = $derived(LOCALES.map((l) => ({ value: l.id, label: l.label })));
+
+  function selectFont(stack: string) {
+    readingFont.stack = stack;
+    const selected = FONTS.find((f) => f.stack === stack);
+    if (selected && posthog.__loaded) {
+      posthog.capture('font_selected', { location: 'whitepaper', font_label: selected.label });
+    }
   }
 
   let theme = $state<'light' | 'dark'>('light');
@@ -72,17 +98,30 @@
     </ul>
   </nav>
 
-  <div class="navbar-end gap-1">
-    <select
-      class="select select-ghost select-sm w-auto"
+  <div class="navbar-end gap-0.5 sm:gap-1">
+    {#if onWhitepaper}
+      <HeaderPicker
+        items={fontItems}
+        value={readingFont.stack}
+        onSelect={selectFont}
+        ariaLabel={i18n.t.playground.fontLabel.replace(/:$/, '')}
+      >
+        {#snippet trigger()}
+          <!-- The type convention (Kindle, Apple Books, Safari Reader), shown in the chosen font -->
+          <span class="text-base leading-none" style:font-family={readingFont.stack}>Aa</span>
+        {/snippet}
+      </HeaderPicker>
+    {/if}
+    <HeaderPicker
+      items={localeItems}
       value={i18n.locale}
-      aria-label="Language"
-      onchange={(e) => i18n.setLocale((e.currentTarget as HTMLSelectElement).value as Locale)}
+      onSelect={(v) => i18n.setLocale(v as Locale)}
+      ariaLabel="Language"
     >
-      {#each LOCALES as loc}
-        <option value={loc.id}>{loc.label}</option>
-      {/each}
-    </select>
+      {#snippet trigger()}
+        <Icon name="globe" size={18} />
+      {/snippet}
+    </HeaderPicker>
     <button
       type="button"
       class="btn btn-ghost btn-square btn-sm"

@@ -12,11 +12,12 @@
     resolveGlideGraphemeChange,
     hasTildeClash,
   } from "jany-latyn/testbedPresets";
-  import { fontCovers, getProbeForVowelMode } from "$lib/fontcheck";
-  import { FONTS, type FontEntry } from "$lib/fonts";
+  import { getProbeForVowelMode } from "$lib/fontcheck";
+  import { DEFAULT_FONT } from "$lib/fonts";
   import { i18n } from "$lib/i18n/index.svelte";
   import { SAMPLE_TEXTS } from "$lib/sample-texts/index";
   import Icon from "$lib/components/Icon.svelte";
+  import FontSelect from "$lib/components/FontSelect.svelte";
   import VirtualKeyboard from "$lib/components/VirtualKeyboard.svelte";
   import VoteModal from "$lib/components/VoteModal.svelte";
   import posthog from "posthog-js";
@@ -25,6 +26,8 @@
   type OptKey = keyof Opts;
 
   const SITE_NAME = env.PUBLIC_SITE_NAME ?? "jany-latyn";
+  // The orthography's name, which is not the site's brand: the standard preset is named after it.
+  const SCRIPT_NAME = env.PUBLIC_SCRIPT_TITLE ?? "Jany-Latyn";
   const SOUTHERN_SAMPLE = "__southern";
 
   const DEFAULTS: Opts = {
@@ -49,12 +52,13 @@
   }
 
   const VARIANTS: Variant[] = [
-    { id: "standard", card: "compModern", voteName: SITE_NAME, opts: DEFAULTS },
+    { id: "standard", card: "compModern", voteName: SCRIPT_NAME, opts: DEFAULTS },
     {
       id: "cta",
       card: "compCTA",
       voteName: "CTA Standard",
-      opts: { ...DEFAULTS, yGrapheme: "dotless-i", glideGrapheme: "y", uvularK: "q", uvularG: "ğ", affricate: "c" },
+      // The CTA writes the velar nasal ñ; without it this preset is not the CTA row of whitepaper §9.5.
+      opts: { ...DEFAULTS, yGrapheme: "dotless-i", glideGrapheme: "y", uvularK: "q", uvularG: "ğ", affricate: "c", velarNasal: "tilde-n" },
     },
     {
       id: "digraph",
@@ -78,7 +82,7 @@
 
   function variantName(v: Variant): string {
     const t = i18n.t.playground;
-    return { standard: SITE_NAME, cta: t.ctaPresetLabel, digraph: t.variantDigraphs, hybrid: t.variantHybrid }[v.id] ?? v.id;
+    return { standard: SCRIPT_NAME, cta: t.ctaPresetLabel, digraph: t.variantDigraphs, hybrid: t.variantHybrid }[v.id] ?? v.id;
   }
 
   function variantDesc(v: Variant | undefined): string {
@@ -107,7 +111,7 @@
 
   let input = $state("");
   let opts = $state<Opts>({ ...DEFAULTS });
-  let font = $state(FONTS[0].stack);
+  let font = $state(DEFAULT_FONT);
   let fallbackStyle = $state<"strip" | "digraph">("strip");
   let outputTab = $state<"latin" | "ascii">("latin");
   let showCustomize = $state(false);
@@ -138,10 +142,6 @@
       ({ "breve-i": "ĭĬ", "tilde-i": "ĩĨ" }[opts.glideGrapheme as string] ?? "") +
       (opts.velarNasal === "tilde-n" ? "ñÑ" : ""),
   );
-
-  function available(f: FontEntry): boolean {
-    return f.probe === "-apple-system" || fontCovers(f.probe, activeProbe);
-  }
 
   // ---- Letter options ----------------------------------------------------
 
@@ -290,7 +290,7 @@
   let voteTarget = $state<{ card: string; options: JanyOptions; presetName: string }>({
     card: "primary_output",
     options: {},
-    presetName: SITE_NAME,
+    presetName: SCRIPT_NAME,
   });
   let votedCombinations = $state<Record<string, boolean>>({});
 
@@ -473,18 +473,6 @@
     }, 0);
   }
 
-  function handleFontSelected(event: Event) {
-    const selectedFont = FONTS.find(
-      ({ stack }) => stack === (event.currentTarget as HTMLSelectElement).value,
-    );
-    if (selectedFont && posthog.__loaded) {
-      posthog.capture("font_selected", {
-        location: "playground",
-        font_label: selectedFont.label,
-      });
-    }
-  }
-
   // Keep the output aligned with the input while scrolling long texts.
   function syncScroll() {
     if (!textareaRef || !outputRef) return;
@@ -526,21 +514,7 @@
         </button>
       </div>
       <div class="ml-auto flex flex-wrap items-center gap-2">
-        <label class="flex items-center gap-2 text-sm text-base-content/70" for="preview-font">
-          {stripColon(i18n.t.playground.fontLabel)}
-          <select
-            id="preview-font"
-            class="select select-sm w-auto max-w-48"
-            bind:value={font}
-            onchange={handleFontSelected}
-          >
-            {#each FONTS as f}
-              <option value={f.stack} disabled={!available(f)}>
-                {f.label}{available(f) ? "" : ` ${i18n.t.playground.fontUnavailable}`}
-              </option>
-            {/each}
-          </select>
-        </label>
+        <FontSelect bind:value={font} probe={activeProbe} location="playground" />
         <button
           type="button"
           class="btn btn-ghost btn-sm gap-2"
@@ -631,7 +605,7 @@
   <div class="grid gap-4 lg:grid-cols-2">
     <!-- Input pane -->
     <section
-      class="flex flex-col overflow-hidden rounded-box border bg-base-100 transition-colors {isDragging
+      class="order-1 flex flex-col overflow-hidden rounded-box border bg-base-100 transition-colors {isDragging
         ? 'border-primary ring-2 ring-primary/30'
         : 'border-base-300'}"
     >
@@ -723,8 +697,25 @@
       </footer>
     </section>
 
+    <!-- Keyboard: under the input on mobile, under both panes on desktop -->
+    {#if showKeyboard}
+      <div class="order-2 lg:order-3 lg:col-span-2">
+        <VirtualKeyboard
+          activeVowels={opts.vowels}
+          activeY={opts.yGrapheme}
+          activeGlide={opts.glideGrapheme}
+          activeSibilants={opts.sibilants}
+          activeK={opts.uvularK}
+          activeG={opts.uvularG}
+          activeNasal={opts.velarNasal}
+          onInsert={handleKeyboardInsert}
+          onClose={() => (showKeyboard = false)}
+        />
+      </div>
+    {/if}
+
     <!-- Output pane -->
-    <section class="flex flex-col overflow-hidden rounded-box border border-base-300 bg-base-100">
+    <section class="order-3 flex flex-col overflow-hidden rounded-box border border-base-300 bg-base-100 lg:order-2">
       <header class="flex min-h-12 items-center gap-2 border-b border-base-300 px-3">
         <div class="tabs tabs-border tabs-sm" role="tablist">
           <button
@@ -818,20 +809,6 @@
       </footer>
     </section>
   </div>
-
-  {#if showKeyboard}
-    <VirtualKeyboard
-      activeVowels={opts.vowels}
-      activeY={opts.yGrapheme}
-      activeGlide={opts.glideGrapheme}
-      activeSibilants={opts.sibilants}
-      activeK={opts.uvularK}
-      activeG={opts.uvularG}
-      activeNasal={opts.velarNasal}
-      onInsert={handleKeyboardInsert}
-      onClose={() => (showKeyboard = false)}
-    />
-  {/if}
 
   <!-- Comparison -->
   {#if comparisons.length}

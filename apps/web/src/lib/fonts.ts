@@ -35,3 +35,8 @@ export const FONTS: readonly FontEntry[] = [
   { label: 'Brush Script', stack: "'Brush Script MT', SignPainter, cursive", probe: 'Brush Script MT' },
   { label: 'Arial Unicode MS', stack: "'Arial Unicode MS', Arial, sans-serif", probe: 'Arial Unicode MS' },
 ];
+
+export const DEFAULT_FONT = FONTS[0].stack;
+
+// Long-form reading (the whitepaper) starts on a serif; Georgia covers the canonical glyphs.
+export const SERIF_FONT = FONTS.find((f) => f.label === 'Georgia')?.stack ?? DEFAULT_FONT;
