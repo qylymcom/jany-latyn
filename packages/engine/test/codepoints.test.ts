@@ -128,6 +128,21 @@ test('§9 display-variant maps emit the exact u-glyph codepoints', () => {
   assert.equal(janyToMacronU('Ü').codePointAt(0), MACRON_U_CAP);
 });
 
+test('§9.4 five formal letters decompose under NFD; ŋ and ı do not', () => {
+  // The whitepaper rests the folding argument on this split: accent-stripping
+  // handles the decomposable letters for free, and ŋ has to be handled explicitly.
+  for (const ch of ['ç', 'ş', 'ö', 'ü', 'í', 'ä', 'ñ']) {
+    assert.equal(ch.normalize('NFD').length, 2, `${ch} should decompose`);
+    assert.equal(ch.normalize('NFD')[0], ch.normalize('NFD')[0].normalize('NFC'), `${ch} base`);
+  }
+  for (const ch of ['ŋ', 'Ŋ', 'ı']) {
+    assert.equal(ch.normalize('NFD').length, 1, `${ch} should have no decomposition`);
+  }
+  // Which is why these two need an explicit rule rather than accent-stripping.
+  assert.equal(foldKey('ŋ'), 'n');
+  assert.equal(foldKey('ı'), 'i');
+});
+
 test('§11.1 marked glides emit exact codepoints and reverse/fold like í', () => {
   const BREVE = 0x012d, BREVE_CAP = 0x012c, TILDE = 0x0129, TILDE_CAP = 0x0128;
   assert.deepEqual(cps(cyrToJany('ай', { glideGrapheme: 'breve-i' })), [0x61, BREVE]);

@@ -104,6 +104,10 @@ const CHECKS: Check[] = [
   R('11.2', 'äkä', 'ака'), R('11.2', 'källä', 'калла'), R('11.2', 'xaram', 'харам'),
   R('11.2', 'Xaram', 'Харам'), R('11.2', 'XALYK', 'ХАЛЫК'), R('11.2', 'Buhara', 'Бухара'),
   R('11.2', 'taw', 'тав'),
+  // §12.2 retrieval examples: the same word in the two configurations it compares.
+  F('12.2', 'кылым', 'kylym'), F('12.2', 'кылым', 'qılım', CTA),
+  F('12.2', 'жаным', 'janym'), F('12.2', 'жаным', 'canım', CTA_C),
+  F('12.2', 'жаңы', 'jaŋy'), F('12.2', 'жаңы', 'cañı', { ...CTA_C, velarNasal: 'tilde-n' }),
   // §8.2 CTA: c for [dʒ], j for loanword [ʒ]. The converter can only apply one rule.
   F('8.2', 'жол', 'col', CTA_C), F('8.2', 'же', 'ce', CTA_C),
   F('8.2', 'журнал', 'curnal', CTA_C),   // mechanical c: the loanword comes out wrong
@@ -124,7 +128,8 @@ const CONFIG_OVERRIDES: Record<string, { opts: JanyOptions; note: string }> = {
 const COLUMN_CONFIGS: Record<string, JanyOptions> = {
   'Canonical': {},
   'q added': { uvularK: 'q' },
-  'Dotless ı': { yGrapheme: 'dotless-i', uvularK: 'q' },
+  // With ы written ı, y is free for the glide, which is how §9.5 writes this row.
+  'Dotless ı': { yGrapheme: 'dotless-i', uvularK: 'q', glideGrapheme: 'y' },
   'CTA-aligned': { ...CTA_C, velarNasal: 'tilde-n' },
 };
 

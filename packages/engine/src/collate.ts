@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 /**
- * Alphabetical order (whitepaper §9.5, SPEC §6). `Intl.Collator` accepts no
+ * Alphabetical order (whitepaper §9.5–§9.6, SPEC §6). `Intl.Collator` accepts no
  * custom tailoring, so the order is an explicit rank table per configuration,
  * built from the same anchors as the published ICU rules:
  *

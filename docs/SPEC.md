@@ -286,7 +286,7 @@ modifies, as in Kyrgyz Cyrillic):
 A B Ç D E F G H I Í J K L M N Ŋ O Ö P R S Ş T U Ü V Y Z
 
 The alphabets of the other configurations and the collation tailoring, in ICU
-rule syntax, are given in whitepaper §9.5.
+rule syntax, are given in whitepaper §9.6.
 
 `compare(a, b, options?)` (`jany-latyn/collate`) implements that order from an
 explicit rank table per configuration, because `Intl.Collator` accepts no
