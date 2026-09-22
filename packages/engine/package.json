@@ -1,6 +1,6 @@
 {
   "name": "jany-latyn",
-  "version": "2026.2.0",
+  "version": "2026.3.0",
   "description": "Deterministic Cyrillic ↔ Jany-Latyn converter and CLI for Kyrgyz",
   "license": "MIT",
   "repository": {
