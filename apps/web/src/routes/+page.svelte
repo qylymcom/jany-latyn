@@ -13,6 +13,8 @@
     resolveUvularKChange,
     hasTildeClash,
   } from "jany-latyn/testbedPresets";
+  import { compare, compareCyrillic } from "jany-latyn/collate";
+  import { caseModeFor, upperStr } from "jany-latyn/casing";
   import { getProbeForVowelMode } from "$lib/fontcheck";
   import { DEFAULT_FONT } from "$lib/fonts";
   import { i18n } from "$lib/i18n/index.svelte";
@@ -115,8 +117,12 @@
   let font = $state(DEFAULT_FONT);
   let fallbackStyle = $state<"strip" | "digraph">("strip");
   let outputTab = $state<"latin" | "ascii">("latin");
+  let viewMode = $state<"text" | "list">("text");
+  let allCaps = $state(false);
   let showCustomize = $state(false);
   let showKeyboard = $state(false);
+  // Height of the bottom keyboard overlay, so the page can scroll clear of it.
+  let keyboardHeight = $state(0);
   let expanded = $state<Record<string, boolean>>({});
   let copied = $state<string | null>(null);
   let isDragging = $state(false);
@@ -125,10 +131,46 @@
   let textareaRef = $state<HTMLTextAreaElement | null>(null);
   let outputRef = $state<HTMLDivElement | null>(null);
 
+  const sampleGroups = $derived.by(() => {
+    const t = i18n.t.playground;
+    const groups = [
+      { kind: "text", label: t.sampleGroupText, items: SAMPLE_TEXTS.filter((s) => (s.kind ?? "text") === "text") },
+      { kind: "list", label: t.sampleGroupList, items: SAMPLE_TEXTS.filter((s) => s.kind === "list") },
+    ];
+    return viewMode === "list" ? [groups[1], groups[0]] : groups;
+  });
+
   const activeVariant = $derived(VARIANTS.find((v) => sameOpts(v.opts, opts)));
-  const display = $derived(cyrToJany(input, opts));
+  const caseMode = $derived(caseModeFor(opts));
+  const cased = (text: string) => (allCaps ? upperStr(text, caseMode) : text);
+  const display = $derived(cyrToJany(cased(input), opts));
   const fallbackDisplay = $derived(janyToFallback(display, fallbackStyle));
-  const output = $derived(outputTab === "latin" ? display : fallbackDisplay);
+
+  // List view (§9.6): each non-empty line is one entry. The two columns are
+  // sorted independently — the source by the Kyrgyz Cyrillic alphabet, the
+  // result by the active configuration's order — so the rows fall out of
+  // alignment exactly where the two orders disagree.
+  const listEntries = $derived.by(() => {
+    if (viewMode !== "list") return null;
+    const lines = input.split("\n").map((l) => l.trim()).filter(Boolean);
+    if (!lines.length) return null;
+    const convert = (line: string) => {
+      const latin = cyrToJany(cased(line), opts);
+      return outputTab === "latin" ? latin : janyToFallback(latin, fallbackStyle);
+    };
+    return {
+      cyr: [...lines].sort(compareCyrillic),
+      lat: lines.map(convert).sort((a, b) => compare(a, b, opts)),
+    };
+  });
+
+  const output = $derived(
+    listEntries
+      ? listEntries.lat.join("\n")
+      : outputTab === "latin"
+        ? display
+        : fallbackDisplay,
+  );
   const wordCount = $derived(input.trim() ? input.trim().split(/\s+/).length : 0);
 
   const comparisons = $derived(
@@ -414,12 +456,15 @@
     const target = e.currentTarget as HTMLSelectElement;
     if (target.value === SOUTHERN_SAMPLE) {
       // Southern-dialect ä is Latin in the source and passes through unchanged.
-      const words = "äkä källä gäldir";
+      const words = "äkä källä gäldir, xäräm bolot, ükämdan sura, mäxalläda bar";
       input = input ? `${input} ${words}` : words;
     } else {
       const sample = SAMPLE_TEXTS.find((s) => s.id === target.value);
       if (sample) {
         input = sample.content;
+        // A list sample is one entry per line and is meant to be sorted, so it
+        // carries its own view; prose samples put the view back.
+        viewMode = sample.kind === "list" ? "list" : "text";
         if (posthog.__loaded) {
           posthog.capture("sample_selected", { sample_id: sample.id });
         }
@@ -488,7 +533,7 @@
 
 <h1 class="sr-only">{SITE_NAME}</h1>
 
-<div class="space-y-5">
+<div class="space-y-5" style:padding-bottom={keyboardHeight ? `${keyboardHeight}px` : null}>
   <!-- Variant switcher -->
   <section class="rounded-box border border-base-300 bg-base-200/60 p-3 sm:p-4">
     <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
@@ -613,17 +658,35 @@
         ? 'border-primary ring-2 ring-primary/30'
         : 'border-base-300'}"
     >
-      <header class="flex min-h-12 items-center gap-2 border-b border-base-300 px-3">
-        <h2 class="text-sm font-medium">{i18n.t.playground.inputTitle}</h2>
-        <div class="ml-auto flex items-center gap-1">
+      <header class="flex min-h-12 flex-wrap items-center gap-2 border-b border-base-300 px-3 py-1.5">
+        <h2 class="shrink-0 text-sm font-medium">{i18n.t.playground.inputTitle}</h2>
+        <div class="join shrink-0" role="group" aria-label={i18n.t.playground.viewModeList}>
+          {#each [["text", i18n.t.playground.viewModeText], ["list", i18n.t.playground.viewModeList]] as [value, label]}
+            <button
+              type="button"
+              class="btn btn-xs join-item font-normal {viewMode === value
+                ? 'btn-primary'
+                : 'btn-outline border-base-300'}"
+              aria-pressed={viewMode === value}
+              onclick={() => (viewMode = value as "text" | "list")}
+            >
+              {label}
+            </button>
+          {/each}
+        </div>
+        <div class="ml-auto flex w-full items-center gap-1 sm:w-auto">
           <select
-            class="select select-ghost select-sm w-40 sm:w-56"
+            class="select select-ghost select-sm min-w-0 flex-1 sm:w-56 sm:flex-none"
             onchange={handleSampleSelect}
             aria-label={i18n.t.playground.selectSample}
           >
             <option value="" disabled selected>{i18n.t.playground.selectSample}</option>
-            {#each SAMPLE_TEXTS as s}
-              <option value={s.id}>{sampleTitle(s)}</option>
+            {#each sampleGroups as group (group.kind)}
+              <optgroup label={group.label}>
+                {#each group.items as s (s.id)}
+                  <option value={s.id}>{sampleTitle(s)}</option>
+                {/each}
+              </optgroup>
             {/each}
             <option value={SOUTHERN_SAMPLE}>{stripColon(i18n.t.playground.southernHelperTitle)}</option>
           </select>
@@ -701,27 +764,10 @@
       </footer>
     </section>
 
-    <!-- Keyboard: under the input on mobile, under both panes on desktop -->
-    {#if showKeyboard}
-      <div class="order-2 lg:order-3 lg:col-span-2">
-        <VirtualKeyboard
-          activeVowels={opts.vowels}
-          activeY={opts.yGrapheme}
-          activeGlide={opts.glideGrapheme}
-          activeSibilants={opts.sibilants}
-          activeK={opts.uvularK}
-          activeG={opts.uvularG}
-          activeNasal={opts.velarNasal}
-          onInsert={handleKeyboardInsert}
-          onClose={() => (showKeyboard = false)}
-        />
-      </div>
-    {/if}
-
     <!-- Output pane -->
     <section class="order-3 flex flex-col overflow-hidden rounded-box border border-base-300 bg-base-100 lg:order-2">
-      <header class="flex min-h-12 items-center gap-2 border-b border-base-300 px-3">
-        <div class="tabs tabs-border tabs-sm" role="tablist">
+      <header class="flex min-h-12 flex-wrap items-center gap-2 border-b border-base-300 px-3 py-1.5">
+        <div class="tabs tabs-border tabs-sm shrink-0" role="tablist">
           <button
             type="button"
             role="tab"
@@ -744,6 +790,15 @@
           </button>
         </div>
         <div class="ml-auto flex items-center gap-1">
+          <button
+            type="button"
+            class="btn btn-sm shrink-0 font-normal {allCaps ? 'btn-primary' : 'btn-ghost'}"
+            aria-pressed={allCaps}
+            title={i18n.t.playground.allCapsHint}
+            onclick={() => (allCaps = !allCaps)}
+          >
+            {i18n.t.playground.allCaps}
+          </button>
           <button
             type="button"
             class="btn btn-ghost btn-sm btn-square {hasVotedOutput ? 'text-error' : ''}"
@@ -786,16 +841,32 @@
         style:font-family={font}
         aria-live="polite"
       >
-        {#if output}
+        {#if listEntries}
+          <div class="grid grid-cols-[1fr_1fr] gap-x-4 whitespace-normal">
+            <div class="sticky top-0 bg-base-100 pb-1 text-xs font-medium text-base-content/60">
+              {i18n.t.playground.listSourceColumn}
+            </div>
+            <div class="sticky top-0 bg-base-100 pb-1 text-xs font-medium text-base-content/60">
+              {i18n.t.playground.listResultColumn}
+            </div>
+            {#each listEntries.cyr as entry, i}
+              <div class="border-t border-base-200 py-0.5">{entry}</div>
+              <div class="border-t border-base-200 py-0.5">{listEntries.lat[i]}</div>
+            {/each}
+          </div>
+        {:else if output}
           {output}
         {:else}
           <span class="text-base-content/40">{i18n.t.playground.emptyOutput}</span>
         {/if}
       </div>
 
-      <footer class="flex min-h-10 items-center gap-2 border-t border-base-300 px-3 text-xs text-base-content/60">
+      <footer class="flex min-h-10 flex-wrap items-center gap-2 border-t border-base-300 px-3 text-xs text-base-content/60">
+        {#if listEntries}
+          <span class="basis-full sm:basis-auto">{i18n.t.playground.listHint}</span>
+        {/if}
         {#if outputTab === "ascii"}
-          <span>{stripColon(i18n.t.playground.fallbackStyleLabel)}</span>
+          <span class="shrink-0">{stripColon(i18n.t.playground.fallbackStyleLabel)}</span>
           <div class="join">
             {#each [["strip", i18n.t.playground.fallbackStyleStrip], ["digraph", i18n.t.playground.fallbackStyleDigraph]] as [value, label]}
               <button
@@ -900,3 +971,18 @@
   onClose={() => (voteModalOpen = false)}
   onVoteSubmitted={handleVoteSubmitted}
 />
+
+{#if showKeyboard}
+  <VirtualKeyboard
+    activeVowels={opts.vowels}
+    activeY={opts.yGrapheme}
+    activeGlide={opts.glideGrapheme}
+    activeSibilants={opts.sibilants}
+    activeK={opts.uvularK}
+    activeG={opts.uvularG}
+    activeNasal={opts.velarNasal}
+    onInsert={handleKeyboardInsert}
+    onClose={() => (showKeyboard = false)}
+    onHeightChange={(h) => (keyboardHeight = h)}
+  />
+{/if}

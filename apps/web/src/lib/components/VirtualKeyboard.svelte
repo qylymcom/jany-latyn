@@ -13,7 +13,8 @@
     activeG = 'g',
     activeNasal = 'eng',
     onInsert,
-    onClose
+    onClose,
+    onHeightChange
   }: {
     activeVowels?: JanyOptions['vowels'];
     activeY?: JanyOptions['yGrapheme'];
@@ -24,7 +25,25 @@
     activeNasal?: JanyOptions['velarNasal'];
     onInsert: (char: string) => void;
     onClose?: () => void;
+    // Reports the overlay's height so the page can reserve room beneath it;
+    // reports 0 on teardown.
+    onHeightChange?: (height: number) => void;
   } = $props();
+
+  let rootEl = $state<HTMLElement | null>(null);
+
+  $effect(() => {
+    const el = rootEl;
+    if (!el || !onHeightChange) return;
+    const report = () => onHeightChange(el.offsetHeight);
+    const observer = new ResizeObserver(report);
+    observer.observe(el);
+    report();
+    return () => {
+      observer.disconnect();
+      onHeightChange(0);
+    };
+  });
 
   let keyboardMode = $state<'qwerty' | 'cyrillic'>('qwerty');
   let isAltActive = $state(false);
@@ -69,6 +88,7 @@
     function handleKeyDown(e: KeyboardEvent) {
       if (e.altKey) isAltActive = true;
       if (e.shiftKey) isShiftActive = true;
+      if (e.key === 'Escape' && onClose) onClose();
     }
     function handleKeyUp(e: KeyboardEvent) {
       if (!e.altKey) isAltActive = false;
@@ -112,12 +132,18 @@
   const CYR_SPECIAL = new Set(['ө', 'ү', 'ң']);
 
   const keyBase =
-    'btn btn-sm h-9 min-w-7 px-1 font-normal text-sm sm:h-10 sm:min-w-10 sm:px-2 sm:text-base';
+    'btn btn-sm h-9 min-w-0 flex-1 basis-0 px-0.5 font-normal text-sm sm:h-10 sm:px-1.5 sm:text-base';
   const keyPlain = 'border-base-300 bg-base-100 hover:bg-base-200';
   const keyAccent = 'border-primary/40 bg-primary/10 text-primary hover:bg-primary/20';
 </script>
 
-<section class="space-y-3 rounded-box border border-base-300 bg-base-200/60 p-3 sm:p-4">
+<section
+  bind:this={rootEl}
+  class="fixed inset-x-0 bottom-0 z-40 max-h-[55svh] overflow-y-auto border-t border-base-300 bg-base-200/95 shadow-[0_-4px_16px_rgba(0,0,0,0.12)] backdrop-blur-sm"
+  style="padding-bottom: env(safe-area-inset-bottom)"
+  aria-label="Virtual keyboard"
+>
+<div class="mx-auto w-full max-w-3xl space-y-3 px-2 py-3 sm:px-3 sm:py-4">
   <div class="flex flex-wrap items-center gap-2">
     <div class="tabs tabs-box tabs-sm bg-base-100" role="tablist">
       <button
@@ -172,10 +198,10 @@
     </div>
   {/if}
 
-  <div class="flex select-none flex-col gap-1 sm:gap-1.5">
+  <div class="flex w-full select-none flex-col gap-1 sm:gap-1.5">
     {#if keyboardMode === 'qwerty'}
       {#each qwertyRows as row, rowIndex}
-        <div class="flex justify-center gap-1 sm:gap-1.5">
+        <div class="flex w-full justify-center gap-1 sm:gap-1.5">
           {#if rowIndex === 3}
             <button
               type="button"
@@ -247,7 +273,7 @@
       </div>
     {:else}
       {#each cyrRows as row, rowIndex}
-        <div class="flex justify-center gap-1 sm:gap-1.5">
+        <div class="flex w-full justify-center gap-1 sm:gap-1.5">
           {#if rowIndex === 3}
             <button
               type="button"
@@ -302,4 +328,5 @@
       </div>
     {/if}
   </div>
+</div>
 </section>

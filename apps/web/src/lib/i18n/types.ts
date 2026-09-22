@@ -49,6 +49,15 @@ export interface PlaygroundTranslations {
   fallbackStyleLabel: string;
   fallbackStyleStrip: string;
   fallbackStyleDigraph: string;
+  viewModeText: string;
+  viewModeList: string;
+  listSourceColumn: string;
+  listResultColumn: string;
+  listHint: string;
+  sampleGroupText: string;
+  sampleGroupList: string;
+  allCaps: string;
+  allCapsHint: string;
   ctaPresetLabel: string;
   comparisonTitle: string;
   yCollisionDisallowed: string;

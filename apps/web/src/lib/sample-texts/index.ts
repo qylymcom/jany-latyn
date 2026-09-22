@@ -6,10 +6,14 @@ import lullabyRaw from './lullaby.txt?raw';
 import ekiKoiRaw from './eki-koidun-erdigi.txt?raw';
 import jeerencheRaw from './janybek-han-menen-jeerenche-chechen.txt?raw';
 import constitutionRaw from './constitution.txt?raw';
+import placesRaw from './names-places.txt?raw';
+import peopleRaw from './names-people.txt?raw';
+import streetsRaw from './names-streets.txt?raw';
+import signsRaw from './signs.txt?raw';
 
 export interface SampleText {
   id: string;
-  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal';
+  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal' | 'names' | 'signs';
   title: {
     ky: string;
     ru: string;
@@ -17,6 +21,10 @@ export interface SampleText {
     tr: string;
   };
   author?: string;
+  // 'list' samples are one entry per line, meant for the playground's list view,
+  // which capitalizes and collation-sorts each line instead of running prose
+  // (whitepaper §9.6 order, §13.6 capitalization). Absent means 'text'.
+  kind?: 'text' | 'list';
   content: string;
 }
 
@@ -106,5 +114,53 @@ export const SAMPLE_TEXTS: SampleText[] = [
     },
     author: 'Кыргыз Республикасы',
     content: constitutionRaw.trim()
+  },
+  {
+    id: 'names-places',
+    category: 'names',
+    kind: 'list',
+    title: {
+      ky: 'Жер-суу аттары',
+      ru: 'Географические названия',
+      en: 'Place Names',
+      tr: 'Yer Adları'
+    },
+    content: placesRaw.trim()
+  },
+  {
+    id: 'names-people',
+    category: 'names',
+    kind: 'list',
+    title: {
+      ky: 'Ысымдар',
+      ru: 'Имена',
+      en: 'First Names',
+      tr: 'Adlar'
+    },
+    content: peopleRaw.trim()
+  },
+  {
+    id: 'names-streets',
+    category: 'names',
+    kind: 'list',
+    title: {
+      ky: 'Көчө аттары',
+      ru: 'Названия улиц',
+      en: 'Street Names',
+      tr: 'Sokak Adları'
+    },
+    content: streetsRaw.trim()
+  },
+  {
+    id: 'signs',
+    category: 'signs',
+    kind: 'list',
+    title: {
+      ky: 'Жарыялар жана эскертүүлөр',
+      ru: 'Объявления и предупреждения',
+      en: 'Notices and Signs',
+      tr: 'Duyurular ve Levhalar'
+    },
+    content: signsRaw.trim()
   }
 ];
