@@ -30,6 +30,11 @@
       "types": "./dist/src/alphabet.d.ts",
       "default": "./dist/src/alphabet.js"
     },
+    "./casing": {
+      "source": "./src/casing.ts",
+      "types": "./dist/src/casing.d.ts",
+      "default": "./dist/src/casing.js"
+    },
     "./testbedPresets": {
       "source": "./src/testbedPresets.ts",
       "types": "./dist/src/testbedPresets.d.ts",
