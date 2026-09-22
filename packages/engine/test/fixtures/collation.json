@@ -5,56 +5,231 @@
       "name": "canonical",
       "options": {},
       "lists": [
-        ["bas", "baş", "bat"],
-        ["kene", "keŋ", "kep"],
-        ["kol", "konok", "köl", "köp"],
-        ["kul", "kum", "kül", "küü"],
-        ["kir", "kyz"],
-        ["car", "çaí", "dal"],
-        ["ilim", "íol", "jol"],
-        ["pul", "qazaq", "rol"],
-        ["ura", "üí", "vagon", "yrys", "zor"],
-        ["ata", "Ata", "ATA", "atan"],
-        ["ÖRÜK", "özön"]
+        [
+          "bas",
+          "baş",
+          "bat"
+        ],
+        [
+          "kene",
+          "keŋ",
+          "kep"
+        ],
+        [
+          "kol",
+          "konok",
+          "köl",
+          "köp"
+        ],
+        [
+          "kul",
+          "kum",
+          "kül",
+          "küü"
+        ],
+        [
+          "kir",
+          "kyz"
+        ],
+        [
+          "car",
+          "çaí",
+          "dal"
+        ],
+        [
+          "ilim",
+          "íol",
+          "jol"
+        ],
+        [
+          "pul",
+          "qazaq",
+          "rol"
+        ],
+        [
+          "ura",
+          "üí",
+          "vagon",
+          "yrys",
+          "zor"
+        ],
+        [
+          "ata",
+          "Ata",
+          "ATA",
+          "atan"
+        ],
+        [
+          "ÖRÜK",
+          "özön"
+        ]
       ]
     },
     {
       "name": "dotless ı",
-      "options": { "yGrapheme": "dotless-i", "uvularK": "q" },
+      "options": {
+        "yGrapheme": "dotless-i",
+        "uvularK": "q"
+      },
       "lists": [
-        ["bas", "baş", "bat"],
-        ["kene", "keŋ", "kep"],
-        ["kol", "konok", "köl", "köp"],
-        ["kul", "kum", "kül", "küü"],
-        ["kız", "kir"],
-        ["hat", "ılay", "ilim", "íol", "jol"],
-        ["ılım", "Ilım", "ilim", "İlim"],
-        ["kul", "qul", "lak"]
+        [
+          "bas",
+          "baş",
+          "bat"
+        ],
+        [
+          "kene",
+          "keŋ",
+          "kep"
+        ],
+        [
+          "kol",
+          "konok",
+          "köl",
+          "köp"
+        ],
+        [
+          "kul",
+          "kum",
+          "kül",
+          "küü"
+        ],
+        [
+          "kız",
+          "kir"
+        ],
+        [
+          "hat",
+          "ılay",
+          "ilim",
+          "íol",
+          "jol"
+        ],
+        [
+          "ılım",
+          "Ilım",
+          "ilim",
+          "İlim"
+        ],
+        [
+          "kul",
+          "qul",
+          "lak"
+        ]
       ]
     },
     {
       "name": "q and ğ",
-      "options": { "uvularK": "q", "uvularG": "ğ" },
+      "options": {
+        "uvularK": "q",
+        "uvularG": "ğ"
+      },
       "lists": [
-        ["gul", "ğul", "hal"],
-        ["kul", "qul", "lak"]
+        [
+          "gul",
+          "ğul",
+          "hal"
+        ],
+        [
+          "kul",
+          "qul",
+          "lak"
+        ]
       ]
     },
     {
       "name": "CTA-aligned",
-      "options": { "yGrapheme": "dotless-i", "glideGrapheme": "y", "uvularK": "q", "uvularG": "ğ", "affricate": "c", "velarNasal": "tilde-n" },
+      "options": {
+        "yGrapheme": "dotless-i",
+        "glideGrapheme": "y",
+        "uvularK": "q",
+        "uvularG": "ğ",
+        "affricate": "c",
+        "velarNasal": "tilde-n"
+      },
       "lists": [
-        ["car", "çaí", "dal"],
-        ["nan", "ñaq", "ob"],
-        ["gaz", "ğaz", "hat"]
+        [
+          "car",
+          "çaí",
+          "dal"
+        ],
+        [
+          "nan",
+          "ñaq",
+          "ob"
+        ],
+        [
+          "gaz",
+          "ğaz",
+          "hat"
+        ]
       ]
     },
     {
       "name": "extended letters",
-      "options": { "extendedLetters": true },
+      "options": {
+        "extendedLetters": true
+      },
       "lists": [
-        ["ata", "äkä", "bala"]
+        [
+          "ata",
+          "äkä",
+          "bala"
+        ]
       ]
     }
-  ]
+  ],
+  "cyrillic": {
+    "source": "SPEC §6 native Kyrgyz order: а б в г д е ё ж з и й к л м н ң о ө п р с т у ү ф х ц ч ш щ ъ ы ь э ю я. Each list is in expected order.",
+    "lists": [
+      [
+        "Бишкек",
+        "Жалал-Абад",
+        "Каракол",
+        "Каракөл",
+        "Кызыл-Кыя",
+        "Ош",
+        "Ысык-Көл"
+      ],
+      [
+        "кен",
+        "кең",
+        "кеп"
+      ],
+      [
+        "кол",
+        "конок",
+        "көл",
+        "көп"
+      ],
+      [
+        "кул",
+        "кум",
+        "күл",
+        "күү"
+      ],
+      [
+        "ель",
+        "ёлка",
+        "жол"
+      ],
+      [
+        "ата",
+        "Ата",
+        "АТА",
+        "атан"
+      ],
+      [
+        "ырыс",
+        "эже",
+        "юрист",
+        "ящик"
+      ],
+      [
+        "Асел",
+        "Асель",
+        "Аяна"
+      ]
+    ]
+  }
 }

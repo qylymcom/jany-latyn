@@ -14,7 +14,7 @@
  * (casing.ts), so in the dotless configuration I sorts with ı and İ with i.
  * The expected orderings are pinned in test/fixtures/collation.json.
  */
-import { caseModeFor, isUpperChar, lowerStr } from './casing.js';
+import { caseModeFor, isUpperChar, lowerStr, type CaseMode } from './casing.js';
 import type { JanyOptions } from './convert.js';
 
 export interface CollateOptions extends JanyOptions {
@@ -72,8 +72,28 @@ function cmp(a: number, b: number): number {
  * `words.sort((a, b) => compare(a, b, { yGrapheme: 'dotless-i', uvularK: 'q' }))`.
  */
 export function compare(a: string, b: string, options?: CollateOptions): number {
-  const mode = caseModeFor(options);
-  const ranks = rankTable(options);
+  return compareWith(a, b, rankTable(options), caseModeFor(options));
+}
+
+// The native Kyrgyz Cyrillic alphabet (SPEC §6). Unlike the Latin order it takes
+// no configuration: it is the order every Kyrgyz reader learned, and the list
+// view sorts the source column by it so the two columns can be read against
+// each other.
+const CYRILLIC = [...'абвгдеёжзийклмнңоөпрстуүфхцчшщъыьэюя'];
+const CYRILLIC_RANKS = new Map(CYRILLIC.map((l, i) => [l, i]));
+
+/**
+ * Compares two Kyrgyz Cyrillic strings in the native alphabet order.
+ * Takes no options; the Cyrillic order is fixed.
+ */
+export function compareCyrillic(a: string, b: string): number {
+  return compareWith(a, b, CYRILLIC_RANKS, 'default');
+}
+
+// Shared by both comparators: primary rank, then the exact letter, then case
+// with lowercase first. Case is resolved with an explicit table (casing.ts),
+// never a locale case function.
+function compareWith(a: string, b: string, ranks: Map<string, number>, mode: CaseMode): number {
   const A = [...a.normalize('NFC')], B = [...b.normalize('NFC')];
   const la = [...lowerStr(A.join(''), mode)], lb = [...lowerStr(B.join(''), mode)];
   const n = Math.min(la.length, lb.length);
