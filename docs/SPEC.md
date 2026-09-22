@@ -192,7 +192,7 @@ restores the native Kyrgyz one. Loan-only distinctions are the accepted losses:
 | `ío` | **ё** (koíon → коён) | loan йо: `raíon → раён` |
 | `ía` after consonant | **я** (semía → семя without ь) | loan ья: requires restoreLoans |
 | `ş` | **ш** | loan щ: `borş → борш` |
-| legacy `sh` | **ш** | name Исхак in digraph mode: `ishak → ишак` |
+| legacy `sh` | **ш** | names with с+х: `ishak → ишак`, `ashat → ашат` |
 | post-vocalic `e` | **е** | loan э: `poet → поет` |
 | dropped `ь`, `ъ` | *(nothing recoverable)* | `aprel → апрел` |
 | `ä` (compose-mode, §11.2) | **а** | `äkä → ака`, `källä → калла` |
