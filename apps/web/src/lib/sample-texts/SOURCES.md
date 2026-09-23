@@ -9,6 +9,7 @@
 | `manas.txt` | *Manas*, Sagymbai Orozbakov version, excerpt | Traditional epic | Folklore |
 | `anthem.txt` | State anthem of the Kyrgyz Republic | Official state symbol | Official text |
 | `constitution.txt` | Preamble to the Constitution of the Kyrgyz Republic | Official document | Official text |
+| `kg-2026-speech-unga.txt` | Address of President S. N. Japarov to the 81st session of the UN General Assembly, 22 September 2026, verbatim; line wraps from the PDF joined, page numbers removed | United Nations General Debate, <https://gadebate.un.org/en/81/kyrgyzstan> | Official text |
 
 The proverbs and the two tales were taken from the **Kyrgyz Folklore Text Corpus v1.0**
 (<https://mozilladatacollective.com/datasets/cmlqoukmi000hnr07cprdmxsc>), which is released under

@@ -6,6 +6,7 @@ import lullabyRaw from './lullaby.txt?raw';
 import ekiKoiRaw from './eki-koidun-erdigi.txt?raw';
 import jeerencheRaw from './janybek-han-menen-jeerenche-chechen.txt?raw';
 import constitutionRaw from './constitution.txt?raw';
+import ungaSpeechRaw from './kg-2026-speech-unga.txt?raw';
 import placesRaw from './names-places.txt?raw';
 import peopleRaw from './names-people.txt?raw';
 import streetsRaw from './names-streets.txt?raw';
@@ -13,7 +14,7 @@ import signsRaw from './signs.txt?raw';
 
 export interface SampleText {
   id: string;
-  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal' | 'names' | 'signs';
+  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal' | 'speech' | 'names' | 'signs';
   title: {
     ky: string;
     ru: string;
@@ -114,6 +115,20 @@ export const SAMPLE_TEXTS: SampleText[] = [
     },
     author: 'Кыргыз Республикасы',
     content: constitutionRaw.trim()
+  },
+  {
+    // A stress test: loanwords from several sources, names of people and
+    // places, abbreviations, hyphenation, and capitalization as read from a prompter.
+    id: 'kg-2026-speech-unga',
+    category: 'speech',
+    title: {
+      ky: 'БУУнун Башкы Ассамблеясынын 81-сессиясындагы сөз (2026)',
+      ru: 'Выступление Кыргызстана на 81-й сессии Генассамблеи ООН (2026)',
+      en: 'Kyrgyzstan Speech at the 81st UNGA 2026',
+      tr: 'Kırgızistan’ın BM Genel Kurulu 81. Oturumu Konuşması (2026)'
+    },
+    author: 'С. Н. Жапаров',
+    content: ungaSpeechRaw.trim()
   },
   {
     id: 'names-places',
