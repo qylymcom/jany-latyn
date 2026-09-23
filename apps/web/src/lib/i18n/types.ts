@@ -117,6 +117,9 @@ export interface AlphabetTranslations {
   loanLetters: string;
   longVowels: string;
   russianZhaNote: string;
+  loanTag: string;
+  canonicalAlphabet: string;
+  lettersCount: string;
 }
 
 export interface AboutTranslations {

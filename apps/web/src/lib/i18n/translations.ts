@@ -117,6 +117,9 @@ export const TRANSLATIONS: Record<BaseLocale, Translations> = {
       loanLetters: 'Өздөштүрүлгөн тамгалар (орусча сөздөр үчүн)',
       longVowels: 'Созулма үндүүлөр (кош тамгалар)',
       russianZhaNote: 'Кирме сөздөрдөгү орусча ж [ʒ] болуп айтылат, бирок дайыма j деп жазылат.',
+      loanTag: 'кирме сөз',
+      canonicalAlphabet: 'Канондук алфавит',
+      lettersCount: 'тамга',
     },
     about: {
       title: 'Долбоор жөнүндө',
@@ -264,6 +267,9 @@ export const TRANSLATIONS: Record<BaseLocale, Translations> = {
       loanLetters: 'Заимствованные буквы (только русские заимствования)',
       longVowels: 'Долгие гласные (удвоенная буква)',
       russianZhaNote: 'Русская ж в заимствованиях произносится как [ʒ] (ж), но всегда пишется как j.',
+      loanTag: 'заимств.',
+      canonicalAlphabet: 'Канонический алфавит',
+      lettersCount: 'букв',
     },
     about: {
       title: 'О проекте',
@@ -412,6 +418,9 @@ export const TRANSLATIONS: Record<BaseLocale, Translations> = {
       loanLetters: 'Loan letters (Russian loans only)',
       longVowels: 'Long vowels (doubled letter)',
       russianZhaNote: 'Russian ж in loans is pronounced [ʒ] (zh-like) but always written j.',
+      loanTag: 'loan',
+      canonicalAlphabet: 'Canonical alphabet',
+      lettersCount: 'letters',
     },
     about: {
       title: 'About',
@@ -559,6 +568,9 @@ export const TRANSLATIONS: Record<BaseLocale, Translations> = {
       loanLetters: 'Alıntı harfler (yalnızca Rusça kökenli kelimeler için)',
       longVowels: 'Uzun ünlüler (çift harf)',
       russianZhaNote: 'Alıntı kelimelerdeki Rusça ж [ʒ] (j) olarak telaffuz edilir, ancak her zaman j olarak yazılır.',
+      loanTag: 'alıntı',
+      canonicalAlphabet: 'Kanonik alfabe',
+      lettersCount: 'harf',
     },
     about: {
       title: 'Hakkında',
@@ -707,6 +719,9 @@ export const TRANSLATIONS: Record<BaseLocale, Translations> = {
       loanLetters: '借词字母（仅用于俄语借词）',
       longVowels: '长元音（字母重写）',
       russianZhaNote: '俄语借词中的 ж 读作 [ʒ]，但一律写作 j。',
+      loanTag: '借词',
+      canonicalAlphabet: '规范字母表',
+      lettersCount: '个字母',
     },
     about: {
       title: '关于',
