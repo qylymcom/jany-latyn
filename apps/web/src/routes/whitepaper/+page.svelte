@@ -2,33 +2,22 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import { i18n } from '$lib/i18n/index.svelte';
+  import type { Locale } from '$lib/i18n/types.js';
   import { readingFont } from '$lib/readingFont.svelte';
   import Icon from '$lib/components/Icon.svelte';
 
   let { data }: { data: PageData } = $props();
 
-  const tocTitle = $derived(
-    i18n.locale === 'en'
-      ? 'Table of Contents'
-      : i18n.locale === 'ru'
-        ? 'Содержание'
-        : i18n.locale === 'tr'
-          ? 'İçindekiler'
-          : i18n.locale === 'ky-jany'
-            ? 'Mazmunu'
-            : 'Мазмуну'
-  );
-  const topTitle = $derived(
-    i18n.locale === 'en'
-      ? 'Back to top'
-      : i18n.locale === 'ru'
-        ? 'Наверх'
-        : i18n.locale === 'tr'
-          ? 'Başa dön'
-          : i18n.locale === 'ky-jany'
-            ? 'Başyna'
-            : 'Башына'
-  );
+  const LABELS: Record<Locale, { toc: string; top: string }> = {
+    'ky-jany': { toc: 'Mazmunu', top: 'Başyna' },
+    ky: { toc: 'Мазмуну', top: 'Башына' },
+    ru: { toc: 'Содержание', top: 'Наверх' },
+    en: { toc: 'Table of Contents', top: 'Back to top' },
+    tr: { toc: 'İçindekiler', top: 'Başa dön' },
+    zh: { toc: '目录', top: '返回顶部' }
+  };
+  const tocTitle = $derived(LABELS[i18n.locale].toc);
+  const topTitle = $derived(LABELS[i18n.locale].top);
 
   // The sidebar is desktop-only and the accordion sits at the top of the page, so on a
   // phone the contents are unreachable once you are reading. These float alongside.

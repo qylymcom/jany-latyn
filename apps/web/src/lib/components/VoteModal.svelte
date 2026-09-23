@@ -28,6 +28,18 @@
   let customNote = $state<string>('');
   let isSubmitting = $state(false);
 
+  type Lang = 'ky' | 'ru' | 'en' | 'tr' | 'zh';
+  // The Latin Kyrgyz interface shows these in Cyrillic Kyrgyz, as before.
+  const lang = $derived<Lang>(i18n.locale === 'ky-jany' ? 'ky' : i18n.locale);
+
+  const TEXT: Record<Lang, { why: string; comment: string; cancel: string; submit: string }> = {
+    ky: { why: 'Эмне үчүн бул вариантты тандадыңыз? (Кааласаңыз)', comment: 'Оюңузду жазыңыз…', cancel: 'Жокко чыгаруу', submit: 'Добуш берүү' },
+    ru: { why: 'Почему вы выбрали этот вариант? (Необязательно)', comment: 'Напишите комментарий…', cancel: 'Отмена', submit: 'Проголосовать' },
+    en: { why: 'Why do you prefer this option? (Optional)', comment: 'Add your comment…', cancel: 'Cancel', submit: 'Submit Vote' },
+    tr: { why: 'Bu seçeneği neden tercih ettiniz? (İsteğe bağlı)', comment: 'Yorumunuzu ekleyin…', cancel: 'İptal', submit: 'Oy Ver' },
+    zh: { why: '你为什么选择这个方案？（可选）', comment: '写下你的意见…', cancel: '取消', submit: '提交投票' }
+  };
+
   const REASONS = [
     {
       id: 'natural_kyrgyz',
@@ -35,7 +47,8 @@
         ky: '«Кыргыз тилине эң жакын экен, менин оюмча»',
         ru: '«Наиболее естественно для кыргызского языка»',
         en: '“Most natural for Kyrgyz language”',
-        tr: '«Bence Kırgızcaya en yakın ve doğal olanı»'
+        tr: '«Bence Kırgızcaya en yakın ve doğal olanı»',
+        zh: '«我认为最贴近吉尔吉斯语»'
       }
     },
     {
@@ -44,7 +57,8 @@
         ky: '«Түрк тилдүү бир туугандарга тааныш жана жакын»',
         ru: '«Привычно для носителей других тюркских языков»',
         en: '“Natural for a Turkish / Turkic speaker”',
-        tr: '«Türkçe / diğer Türk dilleri konuşurları için tanıdık»'
+        tr: '«Türkçe / diğer Türk dilleri konuşurları için tanıdık»',
+        zh: '«对土耳其语 / 突厥语使用者最熟悉»'
       }
     },
     {
@@ -53,7 +67,8 @@
         ky: '«Кадимки QWERTY клавиатурасында терүүгө эң ыңгайлуу»',
         ru: '«Удобнее всего для набора на стандартной QWERTY»',
         en: '“Most ergonomic for standard QWERTY typing”',
-        tr: '«Standart QWERTY klavyede yazması en rahat olanı»'
+        tr: '«Standart QWERTY klavyede yazması en rahat olanı»',
+        zh: '«在标准 QWERTY 键盘上最好输入»'
       }
     },
     {
@@ -62,7 +77,8 @@
         ky: '«Ариптерде жана экранда кооз, туруктуу көрүнөт»',
         ru: '«Красивая типографика и стабильное отображение»',
         en: '“Best visual typography and font clarity”',
-        tr: '«Yazı tiplerinde ve ekranda en estetik ve okunaklı olanı»'
+        tr: '«Yazı tiplerinde ve ekranda en estetik ve okunaklı olanı»',
+        zh: '«字体效果最美观、显示最清晰»'
       }
     },
     {
@@ -71,7 +87,8 @@
         ky: 'Башка себеп…',
         ru: 'Другая причина…',
         en: 'Other reason…',
-        tr: 'Diğer bir neden…'
+        tr: 'Diğer bir neden…',
+        zh: '其他原因…'
       }
     }
   ];
@@ -93,6 +110,7 @@
         velar_nasal: options.velarNasal ?? 'eng',
         uvular_g: options.uvularG ?? 'g',
         affricate: options.affricate ?? 'j',
+        velar_fricative: options.velarFricative ?? 'h',
         reason_id: selectedReason,
         custom_note: customNote.trim() || undefined,
         text_length: sampleLength
@@ -130,13 +148,14 @@
           {#if options.velarNasal === 'tilde-n'}<span class="badge badge-sm badge-neutral">ñ</span>{/if}
           {#if options.uvularG === 'ğ'}<span class="badge badge-sm badge-neutral">g/ğ</span>{/if}
           {#if options.affricate === 'c'}<span class="badge badge-sm badge-neutral">ж→c</span>{/if}
+          {#if options.velarFricative === 'x'}<span class="badge badge-sm badge-neutral">х→x</span>{/if}
         </div>
       </div>
 
       <!-- Reasons List -->
       <div class="space-y-2">
         <div class="text-xs sm:text-sm font-semibold text-base-content/80 block">
-          {i18n.locale === 'en' ? 'Why do you prefer this option? (Optional)' : i18n.locale === 'ru' ? 'Почему вы выбрали этот вариант? (Необязательно)' : i18n.locale === 'tr' ? 'Bu seçeneği neden tercih ettiniz? (İsteğe bağlı)' : 'Эмне үчүн бул вариантты тандадыңыз? (Кааласаңыз)'}
+          {TEXT[lang].why}
         </div>
 
         <div class="space-y-1.5">
@@ -149,7 +168,7 @@
                 value={r.id}
                 bind:group={selectedReason}
               />
-              <span class="leading-snug">{r.label[i18n.locale === 'en' ? 'en' : i18n.locale === 'ru' ? 'ru' : i18n.locale === 'tr' ? 'tr' : 'ky']}</span>
+              <span class="leading-snug">{r.label[lang]}</span>
             </label>
           {/each}
         </div>
@@ -159,7 +178,7 @@
             <input
               type="text"
               class="input input-bordered input-sm w-full text-xs sm:text-sm"
-              placeholder={i18n.locale === 'en' ? 'Add your comment…' : i18n.locale === 'ru' ? 'Напишите комментарий…' : i18n.locale === 'tr' ? 'Yorumunuzu ekleyin…' : 'Оюңузду жазыңыз…'}
+              placeholder={TEXT[lang].comment}
               bind:value={customNote}
             />
           </div>
@@ -169,13 +188,13 @@
       <!-- Action Buttons -->
       <div class="modal-action pt-2 border-t border-base-content/10">
         <button type="button" class="btn btn-sm btn-ghost" onclick={onClose}>
-          {i18n.locale === 'en' ? 'Cancel' : i18n.locale === 'ru' ? 'Отмена' : i18n.locale === 'tr' ? 'İptal' : 'Жокко чыгаруу'}
+          {TEXT[lang].cancel}
         </button>
         <button type="button" class="btn btn-sm btn-primary gap-1" disabled={isSubmitting || alreadyVoted} onclick={submitVote}>
           {#if alreadyVoted}
             💖 {i18n.t.playground.votedBadge}
           {:else}
-            💖 {i18n.locale === 'en' ? 'Submit Vote' : i18n.locale === 'ru' ? 'Проголосовать' : i18n.locale === 'tr' ? 'Oy Ver' : 'Добуш берүү'}
+            💖 {TEXT[lang].submit}
           {/if}
         </button>
       </div>

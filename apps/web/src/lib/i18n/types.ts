@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
-export type Locale = 'ky-jany' | 'ky' | 'ru' | 'en' | 'tr';
+export type Locale = 'ky-jany' | 'ky' | 'ru' | 'en' | 'tr' | 'zh';
 
 export interface NavTranslations {
   siteTitle: string;
@@ -71,6 +71,10 @@ export interface PlaygroundTranslations {
   affricateUnified: string;
   affricateMechanical: string;
   affricateWarningLoanwords: string;
+  velarFricativeLabel: string;
+  velarFricativeH: string;
+  velarFricativeX: string;
+  velarFricativeNote: string;
   southernHelperTitle: string;
   copyInput: string;
   fallbackTitle: string;
@@ -113,6 +117,9 @@ export interface AlphabetTranslations {
   loanLetters: string;
   longVowels: string;
   russianZhaNote: string;
+  loanTag: string;
+  canonicalAlphabet: string;
+  lettersCount: string;
 }
 
 export interface AboutTranslations {
@@ -127,6 +134,24 @@ export interface AboutTranslations {
   license: string;
   contactTitle: string;
   supportTitle: string;
+  privacyTitle: string;
+  privacyStorage: string;
+  privacyDeployments: string;
+  privacyOff: string;
+  privacyOn: string;
+  privacyAccepted: string;
+  privacyDeclined: string;
+  privacyChoice: string;
+  privacyGranted: string;
+  privacyDenied: string;
+  privacyPending: string;
+}
+
+export interface ConsentTranslations {
+  message: string;
+  accept: string;
+  decline: string;
+  learnMore: string;
 }
 
 export interface Translations {
@@ -134,6 +159,7 @@ export interface Translations {
   playground: PlaygroundTranslations;
   alphabet: AlphabetTranslations;
   about: AboutTranslations;
+  consent: ConsentTranslations;
 }
 
-export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr';
+export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr' | 'zh';

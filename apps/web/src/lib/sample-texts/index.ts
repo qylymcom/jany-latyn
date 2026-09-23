@@ -6,6 +6,7 @@ import lullabyRaw from './lullaby.txt?raw';
 import ekiKoiRaw from './eki-koidun-erdigi.txt?raw';
 import jeerencheRaw from './janybek-han-menen-jeerenche-chechen.txt?raw';
 import constitutionRaw from './constitution.txt?raw';
+import ungaSpeechRaw from './kg-2026-speech-unga.txt?raw';
 import placesRaw from './names-places.txt?raw';
 import peopleRaw from './names-people.txt?raw';
 import streetsRaw from './names-streets.txt?raw';
@@ -13,12 +14,13 @@ import signsRaw from './signs.txt?raw';
 
 export interface SampleText {
   id: string;
-  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal' | 'names' | 'signs';
+  category: 'lyric' | 'epic' | 'anthem' | 'prose' | 'proverbs' | 'legal' | 'speech' | 'names' | 'signs';
   title: {
     ky: string;
     ru: string;
     en: string;
     tr: string;
+    zh: string;
   };
   author?: string;
   // 'list' samples are one entry per line, meant for the playground's list view,
@@ -38,7 +40,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Макал-лакаптар',
       ru: 'Кыргызские пословицы и поговорки',
       en: 'Kyrgyz Proverbs and Sayings',
-      tr: 'Kırgız Atasözleri ve Deyimleri'
+      tr: 'Kırgız Atasözleri ve Deyimleri',
+      zh: '吉尔吉斯谚语与俗语'
     },
     author: 'Элдик',
     content: proverbsRaw.trim()
@@ -50,7 +53,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Мамлекеттик Гимн',
       ru: 'Государственный Гимн',
       en: 'National Anthem of Kyrgyz Republic',
-      tr: 'Kırgız Cumhuriyeti Millî Marşı'
+      tr: 'Kırgız Cumhuriyeti Millî Marşı',
+      zh: '吉尔吉斯共和国国歌'
     },
     author: 'Ж. Садыков, Ш. Кулуев',
     content: anthemRaw.trim()
@@ -62,7 +66,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: '«Манас» — Манастын сырткы сыпаты',
       ru: '«Манас» — Облик новорождённого Манаса',
       en: '“Manas” — Newborn Manas Portrait',
-      tr: '«Manas» — Yenidoğan Manas’ın Portresi'
+      tr: '«Manas» — Yenidoğan Manas’ın Portresi',
+      zh: '《玛纳斯》——新生玛纳斯的形象'
     },
     author: 'Сагымбай Орозбаков варианты',
     content: manasRaw.trim()
@@ -74,7 +79,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: '«Алдей, алдей ак балам» (Бешик ыры)',
       ru: '«Алдей, алдей» (Колыбельная)',
       en: '“Aldei, Aldei” (Cradle Lullaby)',
-      tr: '«Aldey, Aldey» (Beşik Ninnisi)'
+      tr: '«Aldey, Aldey» (Beşik Ninnisi)',
+      zh: '《阿尔代，阿尔代》（摇篮曲）'
     },
     author: 'Элдик ыр',
     content: lullabyRaw.trim()
@@ -86,7 +92,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: '«Эки койдун эрдиги» (Жомок)',
       ru: '«Храбрость двух овец» (Сказка)',
       en: '“The Bravery of Two Sheep” (Folk Tale)',
-      tr: '«İki Koyunun Yiğitliği» (Masal)'
+      tr: '«İki Koyunun Yiğitliği» (Masal)',
+      zh: '《两只羊的勇气》（民间故事）'
     },
     author: 'Элдик жомок',
     content: ekiKoiRaw.trim()
@@ -98,7 +105,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: '«Жаныбек хан менен Жээренче чечен» (Жомок)',
       ru: '«Жаныбек-хан и Жээренче-чечен» (Сказка)',
       en: '“Janybek Khan and Jeerenche the Wise” (Folk Tale)',
-      tr: '«Canıbek Han ile Ceyrençe Şeşen» (Masal)'
+      tr: '«Canıbek Han ile Ceyrençe Şeşen» (Masal)',
+      zh: '《加内别克汗与智者杰连切》（民间故事）'
     },
     author: 'Элдик жомок',
     content: jeerencheRaw.trim()
@@ -110,10 +118,26 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Конституциянын Преамбуласы',
       ru: 'Преамбула Конституции КР',
       en: 'Constitution Preamble',
-      tr: 'Kırgızistan Anayasası Başlangıç Metni'
+      tr: 'Kırgızistan Anayasası Başlangıç Metni',
+      zh: '宪法序言'
     },
     author: 'Кыргыз Республикасы',
     content: constitutionRaw.trim()
+  },
+  {
+    // A stress test: loanwords from several sources, names of people and
+    // places, abbreviations, hyphenation, and capitalization as read from a prompter.
+    id: 'kg-2026-speech-unga',
+    category: 'speech',
+    title: {
+      ky: 'БУУнун Башкы Ассамблеясынын 81-сессиясындагы сөз (2026)',
+      ru: 'Выступление Кыргызстана на 81-й сессии Генассамблеи ООН (2026)',
+      en: 'Kyrgyzstan Speech at the 81st UNGA 2026',
+      tr: 'Kırgızistan’ın BM Genel Kurulu 81. Oturumu Konuşması (2026)',
+      zh: '吉尔吉斯斯坦在第81届联合国大会上的讲话（2026）'
+    },
+    author: 'С. Н. Жапаров',
+    content: ungaSpeechRaw.trim()
   },
   {
     id: 'names-places',
@@ -123,7 +147,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Жер-суу аттары',
       ru: 'Географические названия',
       en: 'Place Names',
-      tr: 'Yer Adları'
+      tr: 'Yer Adları',
+      zh: '地名'
     },
     content: placesRaw.trim()
   },
@@ -135,7 +160,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Ысымдар',
       ru: 'Имена',
       en: 'First Names',
-      tr: 'Adlar'
+      tr: 'Adlar',
+      zh: '人名'
     },
     content: peopleRaw.trim()
   },
@@ -147,7 +173,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Көчө аттары',
       ru: 'Названия улиц',
       en: 'Street Names',
-      tr: 'Sokak Adları'
+      tr: 'Sokak Adları',
+      zh: '街道名'
     },
     content: streetsRaw.trim()
   },
@@ -159,7 +186,8 @@ export const SAMPLE_TEXTS: SampleText[] = [
       ky: 'Жарыялар жана эскертүүлөр',
       ru: 'Объявления и предупреждения',
       en: 'Notices and Signs',
-      tr: 'Duyurular ve Levhalar'
+      tr: 'Duyurular ve Levhalar',
+      zh: '通知与标识'
     },
     content: signsRaw.trim()
   }
