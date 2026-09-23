@@ -7,6 +7,25 @@ import posthog from 'posthog-js';
 // PUBLIC_POSTHOG_HOST. Only the hosted testbed does; a clone, a self-hosted
 // copy, or a classroom deployment sends nothing. Every capture() call in the
 // app is guarded by posthog.__loaded, which stays false when init is skipped.
+const RELOADED_AT = 'jany_chunk_reload_at';
+
+// A chunk that fails to load belongs to a deploy that has since been replaced.
+// Reload once to pick up the current build; the timestamp guard stops a loop
+// when the failure is a real network error rather than a stale tab.
+if (typeof window !== 'undefined') {
+  window.addEventListener('vite:preloadError', (event) => {
+    try {
+      const last = Number(sessionStorage.getItem(RELOADED_AT) ?? 0);
+      if (Date.now() - last < 60_000) return;
+      sessionStorage.setItem(RELOADED_AT, String(Date.now()));
+    } catch {
+      return;
+    }
+    event.preventDefault();
+    window.location.reload();
+  });
+}
+
 export function init() {
   const key = env.PUBLIC_POSTHOG_KEY?.trim();
   const host = env.PUBLIC_POSTHOG_HOST?.trim();
