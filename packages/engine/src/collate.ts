@@ -7,6 +7,7 @@
  *   &c < ç   &i < í   &n < ŋ   &o < ö   &s < ş   &u < ü
  *   &k < q   (uvularK: 'q')        &g < ğ   (uvularG: 'ğ')
  *   &a < ä   (extendedLetters)     &h < ı < i < í   (yGrapheme: 'dotless-i')
+ *   &h < x   (velarFricative: 'x', the CTA's position for X)
  *
  * Letters a configuration does not anchor keep their default Latin position.
  * Comparison is primary (letters) first, then the exact letter, then case,
@@ -45,6 +46,7 @@ function rankTable(o: CollateOptions | undefined): Map<string, number> {
   if (o?.uvularK === 'q') insertAfter(order, 'k', 'q');
   if (o?.uvularG === 'ğ') insertAfter(order, 'g', 'ğ');
   if (o?.extendedLetters) insertAfter(order, 'a', 'ä');
+  if (o?.velarFricative === 'x') insertAfter(order, 'h', 'x');
   if (o?.yGrapheme === 'dotless-i') insertAfter(order, 'h', 'ı', 'i', 'í', 'ĭ', 'ĩ');
   return new Map(order.map((l, i) => [l, i]));
 }

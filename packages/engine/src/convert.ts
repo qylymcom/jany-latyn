@@ -18,6 +18,10 @@ export interface JanyOptions {
   // mapping: every ж becomes c, which is right for native [dʒ] and wrong for
   // loanword [ʒ] (журнал → curnal, not jurnal); Cyrillic does not mark the difference.
   affricate?: 'j' | 'c';
+  // х: 'h' writes every х as h (canonical). 'x' writes every х as x, for readers
+  // who take the velar [x] to be the better value; it is the same one-letter
+  // mapping, not the §11.2 split, which Cyrillic cannot supply.
+  velarFricative?: 'h' | 'x';
 }
 
 export interface JanyCyrOptions {
@@ -96,6 +100,7 @@ function getWordConverter(options?: JanyOptions): {
   const uvularG = options?.uvularG ?? 'g';
   const velarNasal = options?.velarNasal ?? 'eng';
   const affricate = options?.affricate ?? 'j';
+  const velarFricative = options?.velarFricative ?? 'h';
 
   if (vowels === 'latin-umlaut') {
     map.set('ө', 'ö');
@@ -146,6 +151,10 @@ function getWordConverter(options?: JanyOptions): {
 
   if (affricate === 'c') {
     map.set('ж', 'c');
+  }
+
+  if (velarFricative === 'x') {
+    map.set('х', 'x');
   }
 
   return { map, glide, sibilants, signs, uvularK, uvularG };

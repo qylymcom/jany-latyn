@@ -44,6 +44,9 @@ KY_JANY_DICTIONARY.playground.affricateLabel = 'ж tamgasy:';
 KY_JANY_DICTIONARY.playground.affricateWarningLoanwords =
   'Eskertüü: kirillitsa [dʒ] menen [ʒ] tybyştaryn bir ele «ж» tamgasy menen jazat, oşonduktan bul aíyrmany kirillitsadan çygaruuga bolboít, jana ereje boíunça koíulgan «c» kirme sözdördö kata bolot («журнал → curnal», «гараж → garac», «режим → recim»). Sözdü bilgen adam any tuura jazat.';
 KY_JANY_DICTIONARY.playground.velarNasalLabel = 'ң tamgasy:';
+KY_JANY_DICTIONARY.playground.velarFricativeLabel = 'х tamgasy:';
+KY_JANY_DICTIONARY.playground.velarFricativeNote =
+  'Eskertüü: «х» tybyşy süílööçügö jana aímakka jaraşa [h] je [x] bolup aítylat, birok sözdördü aíyrmalabaít (§11.2), oşonduktan «x» ar bir «х» üçün jazylat. Latyn tekstterinde «x» el aralyk maanisin da saktaít (Linux, taxi).';
 KY_JANY_DICTIONARY.playground.velarNasalEng = 'ŋ (eŋ)';
 KY_JANY_DICTIONARY.playground.velarNasalTildeN = 'ñ (tilde menen)';
 KY_JANY_DICTIONARY.playground.fallbackStyleLabel = 'ASCII stili:';

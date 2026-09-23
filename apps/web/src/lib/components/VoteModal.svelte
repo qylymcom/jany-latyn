@@ -93,6 +93,7 @@
         velar_nasal: options.velarNasal ?? 'eng',
         uvular_g: options.uvularG ?? 'g',
         affricate: options.affricate ?? 'j',
+        velar_fricative: options.velarFricative ?? 'h',
         reason_id: selectedReason,
         custom_note: customNote.trim() || undefined,
         text_length: sampleLength
@@ -130,6 +131,7 @@
           {#if options.velarNasal === 'tilde-n'}<span class="badge badge-sm badge-neutral">ñ</span>{/if}
           {#if options.uvularG === 'ğ'}<span class="badge badge-sm badge-neutral">g/ğ</span>{/if}
           {#if options.affricate === 'c'}<span class="badge badge-sm badge-neutral">ж→c</span>{/if}
+          {#if options.velarFricative === 'x'}<span class="badge badge-sm badge-neutral">х→x</span>{/if}
         </div>
       </div>
 

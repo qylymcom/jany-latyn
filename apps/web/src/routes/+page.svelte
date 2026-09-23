@@ -43,6 +43,7 @@
     uvularG: "g",
     velarNasal: "eng",
     affricate: "j",
+    velarFricative: "h",
   };
 
   // Named variants double as presets (top switcher) and as comparison rows.
@@ -107,6 +108,7 @@
       o.uvularG === "ğ" ? "g/ğ" : "g",
       o.affricate === "c" ? "c" : "j",
       o.velarNasal === "tilde-n" ? "ñ" : "ŋ",
+      o.velarFricative === "x" ? "x" : "h",
     ].join(" · ");
   }
 
@@ -279,6 +281,14 @@
           { value: "c", glyph: "c", desc: t.affricateMechanical },
         ],
       },
+      {
+        key: "velarFricative",
+        label: t.velarFricativeLabel,
+        choices: [
+          { value: "h", glyph: "h", desc: t.velarFricativeH },
+          { value: "x", glyph: "x", desc: t.velarFricativeX },
+        ],
+      },
     ];
   });
 
@@ -340,7 +350,7 @@
   });
   let votedCombinations = $state<Record<string, boolean>>({});
 
-  // Key format predates velarNasal, uvularG, and affricate; they are appended only when
+  // Key format predates velarNasal, uvularG, affricate, and velarFricative; they are appended only when
   // non-default so earlier stored votes still match.
   function getCombinationKey(o: JanyOptions, isAscii = false): string {
     const parts: string[] = [
@@ -354,6 +364,7 @@
     if (o.velarNasal && o.velarNasal !== "eng") parts.push(o.velarNasal);
     if (o.uvularG && o.uvularG !== "g") parts.push(`uvularG-${o.uvularG}`);
     if (o.affricate && o.affricate !== "j") parts.push(`affricate-${o.affricate}`);
+    if (o.velarFricative && o.velarFricative !== "h") parts.push(`velarFricative-${o.velarFricative}`);
     const key = parts.join("|");
     return isAscii ? `ascii:${key}` : key;
   }
@@ -630,6 +641,12 @@
               <p class="flex gap-1.5 text-xs text-base-content/70">
                 <Icon name="alert" size={14} class="mt-px text-warning" />
                 <span>{i18n.t.playground.affricateWarningLoanwords}</span>
+              </p>
+            {/if}
+            {#if row.key === "velarFricative" && opts.velarFricative === "x"}
+              <p class="flex gap-1.5 text-xs text-base-content/70">
+                <Icon name="info" size={14} class="mt-px text-info" />
+                <span>{i18n.t.playground.velarFricativeNote}</span>
               </p>
             {/if}
           </div>

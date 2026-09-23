@@ -71,6 +71,10 @@ export interface PlaygroundTranslations {
   affricateUnified: string;
   affricateMechanical: string;
   affricateWarningLoanwords: string;
+  velarFricativeLabel: string;
+  velarFricativeH: string;
+  velarFricativeX: string;
+  velarFricativeNote: string;
   southernHelperTitle: string;
   copyInput: string;
   fallbackTitle: string;

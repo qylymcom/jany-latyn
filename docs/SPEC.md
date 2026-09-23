@@ -310,6 +310,7 @@ orderings are pinned in `packages/engine/test/fixtures/collation.json`.
 | Uvular consonant | unified `k`, allophonic `q` | `k` |
 | ж | `j` (unified), `c` (mechanical CTA mapping)³ | `j` |
 | г | unified `g`, allophonic `ğ`⁴ | `g` |
+| х | `h` (unified), `x` (every х written x; not the §11.2 split) | `h` |
 | ASCII fallback | strip `c/s` (canonical), digraph `ch/sh` | strip |
 | Extended letters (§11.2) | off, `ä`, `x`/`h`, `w` — compose-mode, never emitted forward | off |
 
