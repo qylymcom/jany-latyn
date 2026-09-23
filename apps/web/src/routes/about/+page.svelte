@@ -1,12 +1,25 @@
 <!-- SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 -->
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { env } from '$env/dynamic/public';
   import { i18n } from '$lib/i18n/index.svelte';
+  import { consent } from '$lib/consent.svelte';
   import posthog from 'posthog-js';
 
   const CONTACT_EMAIL = env.PUBLIC_CONTACT_EMAIL ?? 'salam@qylym.com';
   const SUPPORT_URL = env.PUBLIC_SUPPORT_URL ?? 'https://github.com/qylymcom/jany-latyn/issues';
   const REPO_URL = env.PUBLIC_REPO_URL ?? 'https://github.com/qylymcom/jany-latyn';
+
+  // The consent banner links to #privacy, so arriving that way opens the section.
+  let privacyOpen = $state(false);
+  onMount(() => {
+    consent.refresh();
+    privacyOpen = location.hash === '#privacy';
+  });
+
+  const choiceLabel = $derived(
+    { granted: i18n.t.about.privacyGranted, denied: i18n.t.about.privacyDenied, pending: i18n.t.about.privacyPending, off: '' }[consent.status]
+  );
 </script>
 
 <h1 class="text-2xl font-bold mb-4">{i18n.t.about.title}</h1>
@@ -49,6 +62,31 @@
     <div class="collapse-title font-medium">{i18n.t.about.contactTitle}</div>
     <div class="collapse-content">
       <p><a class="link" href="mailto:{CONTACT_EMAIL}" onclick={() => posthog.__loaded && posthog.capture('contact_link_clicked')}>{CONTACT_EMAIL}</a></p>
+    </div>
+  </div>
+
+  <div class="collapse collapse-arrow bg-base-200" id="privacy">
+    <input type="checkbox" bind:checked={privacyOpen} />
+    <div class="collapse-title font-medium">{i18n.t.about.privacyTitle}</div>
+    <div class="collapse-content space-y-2">
+      <p>{i18n.t.about.privacyStorage}</p>
+      {#if consent.status === 'off'}
+        <p>{i18n.t.about.privacyOff}</p>
+      {:else}
+        <p>{i18n.t.about.privacyOn}</p>
+        <p>{i18n.t.about.privacyAccepted}</p>
+        <p>{i18n.t.about.privacyDeclined}</p>
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          <span>{i18n.t.about.privacyChoice} <strong>{choiceLabel}</strong></span>
+          <button type="button" class="btn btn-xs btn-outline" disabled={consent.status === 'denied'} onclick={() => consent.decline()}>
+            {i18n.t.consent.decline}
+          </button>
+          <button type="button" class="btn btn-xs btn-primary" disabled={consent.status === 'granted'} onclick={() => consent.accept()}>
+            {i18n.t.consent.accept}
+          </button>
+        </div>
+      {/if}
+      <p class="text-sm text-base-content/70">{i18n.t.about.privacyDeployments}</p>
     </div>
   </div>
 

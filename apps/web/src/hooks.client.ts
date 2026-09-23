@@ -37,6 +37,11 @@ export function init() {
     autocapture: false,
     disable_session_recording: true,
     person_profiles: 'identified_only',
+    // Nothing is captured until the visitor answers the consent banner. Accepting
+    // stores an identifier; declining counts events with PostHog's daily-rotating
+    // server hash and stores nothing (needs "Cookieless server hash mode" enabled
+    // in the PostHog project settings).
+    cookieless_mode: 'on_reject',
     capture_exceptions: {
       capture_unhandled_errors: true,
       capture_unhandled_rejections: true,

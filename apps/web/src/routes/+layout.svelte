@@ -8,6 +8,7 @@
   import type { Locale } from '$lib/i18n/types.js';
   import Icon from '$lib/components/Icon.svelte';
   import HeaderPicker from '$lib/components/HeaderPicker.svelte';
+  import ConsentBanner from '$lib/components/ConsentBanner.svelte';
   import { readingFont } from '$lib/readingFont.svelte';
   import { FONTS } from '$lib/fonts';
   import { fontCovers, getProbeForVowelMode } from '$lib/fontcheck';
@@ -137,3 +138,5 @@
 <main class="container mx-auto max-w-6xl px-4 py-6 sm:px-6">
   {@render children()}
 </main>
+
+<ConsentBanner />

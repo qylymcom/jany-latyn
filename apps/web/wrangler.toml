@@ -4,3 +4,11 @@ compatibility_date = "2024-09-23"
 [assets]
 directory = "build"
 not_found_handling = "404-page"
+
+# Workers Logs and metrics. This Worker has no script: every request, including
+# the 404 page, is served by the asset layer without invoking a Worker, so these
+# logs stay empty until a script (main) is added. Client-side errors reach
+# PostHog instead (hooks.client.ts).
+[observability]
+enabled = true
+head_sampling_rate = 1

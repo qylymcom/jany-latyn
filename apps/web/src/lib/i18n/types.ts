@@ -131,6 +131,24 @@ export interface AboutTranslations {
   license: string;
   contactTitle: string;
   supportTitle: string;
+  privacyTitle: string;
+  privacyStorage: string;
+  privacyDeployments: string;
+  privacyOff: string;
+  privacyOn: string;
+  privacyAccepted: string;
+  privacyDeclined: string;
+  privacyChoice: string;
+  privacyGranted: string;
+  privacyDenied: string;
+  privacyPending: string;
+}
+
+export interface ConsentTranslations {
+  message: string;
+  accept: string;
+  decline: string;
+  learnMore: string;
 }
 
 export interface Translations {
@@ -138,6 +156,7 @@ export interface Translations {
   playground: PlaygroundTranslations;
   alphabet: AlphabetTranslations;
   about: AboutTranslations;
+  consent: ConsentTranslations;
 }
 
 export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr';
