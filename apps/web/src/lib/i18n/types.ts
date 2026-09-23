@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
-export type Locale = 'ky-jany' | 'ky' | 'ru' | 'en' | 'tr';
+export type Locale = 'ky-jany' | 'ky' | 'ru' | 'en' | 'tr' | 'zh';
 
 export interface NavTranslations {
   siteTitle: string;
@@ -159,4 +159,4 @@ export interface Translations {
   consent: ConsentTranslations;
 }
 
-export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr';
+export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr' | 'zh';

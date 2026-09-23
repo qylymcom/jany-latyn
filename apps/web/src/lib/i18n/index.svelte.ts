@@ -60,7 +60,7 @@ function getInitialLocale(): Locale {
 
   try {
     const saved = localStorage.getItem('jany_latyn_locale') as Locale;
-    if (saved && (saved === 'ky-jany' || saved === 'ky' || saved === 'ru' || saved === 'en' || saved === 'tr')) {
+    if (saved && (saved === 'ky-jany' || saved === 'ky' || saved === 'ru' || saved === 'en' || saved === 'tr' || saved === 'zh')) {
       return saved;
     }
   } catch {
@@ -78,6 +78,7 @@ function getInitialLocale(): Locale {
       if (primary === 'en') return 'en';
       if (primary === 'ru') return 'ru';
       if (primary === 'tr') return 'tr';
+      if (primary === 'zh') return 'zh';
       if (primary === 'ky') return 'ky';
     }
   }
@@ -85,11 +86,17 @@ function getInitialLocale(): Locale {
   return 'ky-jany';
 }
 
+// The interface Chinese is Simplified, so the page says so; that also lets the
+// browser pick Simplified glyph forms from a CJK font.
+function htmlLang(locale: Locale): string {
+  return locale === 'ky-jany' ? 'ky' : locale === 'zh' ? 'zh-Hans' : locale;
+}
+
 const initialLocale = getInitialLocale();
 let currentLocale = $state<Locale>(initialLocale);
 
 if (typeof document !== 'undefined') {
-  document.documentElement.lang = initialLocale === 'ky-jany' ? 'ky' : initialLocale;
+  document.documentElement.lang = htmlLang(initialLocale);
 }
 
 export const i18n = {
@@ -106,7 +113,7 @@ export const i18n = {
       }
     }
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = val === 'ky-jany' ? 'ky' : val;
+      document.documentElement.lang = htmlLang(val);
     }
   },
   get t(): Translations {
@@ -126,4 +133,5 @@ export const LOCALES: ReadonlyArray<{ id: Locale; label: string }> = [
   { id: 'ru', label: 'Русский' },
   { id: 'en', label: 'English' },
   { id: 'tr', label: 'Türkçe' },
+  { id: 'zh', label: '简体中文' },
 ];

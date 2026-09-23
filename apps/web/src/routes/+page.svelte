@@ -460,7 +460,7 @@
 
   function sampleTitle(s: (typeof SAMPLE_TEXTS)[number]): string {
     const l = i18n.locale;
-    return s.title[l === "en" || l === "ru" || l === "tr" ? l : "ky"];
+    return s.title[l === "ky-jany" ? "ky" : l];
   }
 
   function handleSampleSelect(e: Event) {
