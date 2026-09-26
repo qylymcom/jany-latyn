@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 /**
- * Alphabetical order (whitepaper §9.5–§9.6, SPEC §6). `Intl.Collator` accepts no
+ * Alphabetical order (whitepaper §17 and Appendix C, SPEC §6). `Intl.Collator` accepts no
  * custom tailoring, so the order is an explicit rank table per configuration,
  * built from the same anchors as the published ICU rules:
  *
@@ -19,7 +19,7 @@ import { caseModeFor, isUpperChar, lowerStr, type CaseMode } from './casing.js';
 import type { JanyOptions } from './convert.js';
 
 export interface CollateOptions extends JanyOptions {
-  // The §11.2 compose-mode letter ä sorts after a when enabled.
+  // The compose-mode letter ä (whitepaper §20) sorts after a when enabled.
   extendedLetters?: boolean;
 }
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
-// Fonts verified to cover canonical Jany-latyn (ö ü ŋ Ö Ü Ŋ) and fallback/variants; other systems degrade
+// Fonts verified to cover Jany-Latyn (ö ü ŋ Ö Ü Ŋ) and fallback/variants; other systems degrade
 // per-glyph down each stack, and fontCovers() greys out bad options.
 export interface FontEntry {
   label: string;
@@ -38,5 +38,5 @@ export const FONTS: readonly FontEntry[] = [
 
 export const DEFAULT_FONT = FONTS[0].stack;
 
-// Long-form reading (the whitepaper) starts on a serif; Georgia covers the canonical glyphs.
+// Long-form reading (the whitepaper) starts on a serif; Georgia covers the Jany-Latyn glyphs.
 export const SERIF_FONT = FONTS.find((f) => f.label === 'Georgia')?.stack ?? DEFAULT_FONT;

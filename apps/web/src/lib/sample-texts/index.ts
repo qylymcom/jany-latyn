@@ -25,7 +25,7 @@ export interface SampleText {
   author?: string;
   // 'list' samples are one entry per line, meant for the playground's list view,
   // which capitalizes and collation-sorts each line instead of running prose
-  // (whitepaper §9.6 order, §13.6 capitalization). Absent means 'text'.
+  // (whitepaper §17.4 order, §23.6 capitalization). Absent means 'text'.
   kind?: 'text' | 'list';
   content: string;
 }

@@ -50,7 +50,7 @@ test('§2.1 reverse casing follows the Latin source word', () => {
   assert.equal(janyToCyr('Chaí'), 'Чай');
   assert.equal(janyToCyr('CHAÍ'), 'ЧАЙ');
   assert.equal(janyToCyr('SHAAR'), 'ШААР');
-  // ts → тс is the §9.1 native-priority rule; casing still follows the source.
+  // ts → тс is the §18.1 native-priority rule; casing still follows the source.
   assert.equal(janyToCyr('Tsirk'), 'Тсирк');
   assert.equal(janyToCyr('TSIRK'), 'ТСИРК');
 });
@@ -59,7 +59,7 @@ test('§2.1 round trip preserves each case pattern', () => {
   for (const word of ['ЯБЛОКО', 'Яблоко', 'яблоко', 'Европа', 'ЕВРОПА', 'Ёлка', 'ЮРИСТ']) {
     assert.equal(janyToCyr(cyrToJany(word)), word, word);
   }
-  // Loan ц comes back as тс by design (§9.1); the case pattern still survives.
+  // Loan ц comes back as тс by design (§18.1); the case pattern still survives.
   assert.equal(janyToCyr(cyrToJany('ЦИРК')), 'ТСИРК');
   assert.equal(janyToCyr(cyrToJany('Цирк')), 'Тсирк');
   assert.equal(janyToCyr(cyrToJany('цирк')), 'тсирк');
@@ -106,7 +106,7 @@ test('§2.1 dotless ı: explicit case tables only, no string case function is re
   assert.deepEqual(results.slice(0, 6), [
     'kırgız', 'Kırgız', 'KIRGIZ',
     'кыргыз', 'Кыргыз',
-    // Without the configuration, the reverse reads I as i (canonical); with
+    // Without the configuration, the reverse reads I as i (Jany-Latyn); with
     // { yGrapheme: 'dotless-i' } it reads I as ı (tested below).
     'КИРГИЗ',
   ]);
@@ -144,12 +144,12 @@ test('§2.1 dotless configuration uses the Turkish pairs: ı ↔ I, i ↔ İ', (
   assert.equal(janyToCyr('ILIM', D), 'ЫЛЫМ');
 });
 
-test('§2.1 canonical all caps is unaffected by the Turkish pairs', () => {
+test('§2.1 Jany-Latyn all caps is unaffected by the Turkish pairs', () => {
   assert.equal(cyrToJany('ИЛИМ'), 'ILIM');
   assert.equal(cyrToJany('КЫРГЫЗ ИЛИМИ'), 'KYRGYZ ILIMI');
   assert.equal(janyToCyr('ILIM'), 'ИЛИМ');
-  assert.equal(janyToCyr('KIRGIZ'), 'КИРГИЗ'); // canonical I is i
-  assert.equal(janyToCyr('İLİM'), 'ИЛИМ');   // İ in canonical input reads as i
+  assert.equal(janyToCyr('KIRGIZ'), 'КИРГИЗ'); // Jany-Latyn I is i
+  assert.equal(janyToCyr('İLİM'), 'ИЛИМ');   // İ in Jany-Latyn input reads as i
 });
 
 test('§2.1 the Turkish pairs follow the configuration, not the process locale', () => {
@@ -158,13 +158,13 @@ test('§2.1 the Turkish pairs follow the configuration, not the process locale',
     const { cyrToJany, janyToCyr } = await import(${JSON.stringify(convert)});
     console.log(JSON.stringify({
       locale: Intl.DateTimeFormat().resolvedOptions().locale,
-      canonical: cyrToJany('ИЛИМ'),
-      canonicalRev: janyToCyr('ILIM'),
+      janyLatyn: cyrToJany('ИЛИМ'),
+      janyLatynRev: janyToCyr('ILIM'),
       dotless: cyrToJany('ИЛИМ', { yGrapheme: 'dotless-i' }),
     }));`;
   const env = { ...process.env, LANG: 'tr_TR.UTF-8', LC_ALL: 'tr_TR.UTF-8', LANGUAGE: 'tr' };
   const out = JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', script], { env, encoding: 'utf8' }));
-  assert.equal(out.canonical, 'ILIM', `canonical output changed under locale ${out.locale}`);
-  assert.equal(out.canonicalRev, 'ИЛИМ');
+  assert.equal(out.janyLatyn, 'ILIM', `Jany-Latyn output changed under locale ${out.locale}`);
+  assert.equal(out.janyLatynRev, 'ИЛИМ');
   assert.equal(out.dotless, 'İLİM');
 });

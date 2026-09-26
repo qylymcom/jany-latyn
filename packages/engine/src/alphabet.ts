@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Canonical single-letter mapping, lowercase, Kyrgyz alphabet order.
-// Canonical: ө maps to Latin ö (U+00F6); ү maps to Latin ü (U+00FC); й maps to Latin í (U+00ED).
+// Jany-Latyn single-letter mapping, lowercase, Kyrgyz alphabet order.
+// Jany-Latyn: ө maps to Latin ö (U+00F6); ү maps to Latin ü (U+00FC); й maps to Latin í (U+00ED).
 export const LETTER_MAP: ReadonlyArray<readonly [string, string]> = [
   ['а', 'a'], ['б', 'b'], ['в', 'v'], ['г', 'g'], ['д', 'd'], ['е', 'e'],
   ['ё', 'ío'], ['ж', 'j'], ['з', 'z'], ['и', 'i'], ['й', 'í'], ['к', 'k'],
@@ -10,11 +10,11 @@ export const LETTER_MAP: ReadonlyArray<readonly [string, string]> = [
   ['ъ', ''], ['ы', 'y'], ['ь', ''], ['э', 'e'], ['ю', 'íu'], ['я', 'ía'],
 ];
 
-// Extended (compose-mode) letters — §11.2 whitepaper. These mark sound
+// Extended (compose-mode) letters — whitepaper §20. These mark sound
 // distinctions that Kyrgyz Cyrillic does not write, so cyrToJany NEVER emits
 // them: they are only valid when a person writes Latin directly. Reverse
-// conversion folds each back to its Cyrillic base letter — the §9.1
-// native-priority rule applied to a new case: the distinction survives in
+// conversion folds each back to its Cyrillic base letter — the whitepaper
+// §18.1 native-priority rule applied to a new case: the distinction survives in
 // Latin and is lost on the way back, exactly as loan ц and щ are.
 export const EXTENDED_LETTERS: ReadonlyArray<readonly [string, string]> = [
   ['ä', 'а'], // back /ɑ/ vs front /æ/ — southern speech, Persian loans
@@ -22,7 +22,7 @@ export const EXTENDED_LETTERS: ReadonlyArray<readonly [string, string]> = [
   ['w', 'в'], // labiodental [v] vs [w] — loanwords, intervocalic /b/
 ];
 
-// ASCII fallback — strip-only (canonical, §10 whitepaper): every diacritic
+// ASCII fallback — strip-only (the default, whitepaper §19): every diacritic
 // drops to its base letter. A digraph style (Ç→Ch, Ş→Sh) is available as
 // the second argument to janyToFallback().
 export const FALLBACK: ReadonlyArray<readonly [string, string]> = [
@@ -35,9 +35,9 @@ export const FALLBACK: ReadonlyArray<readonly [string, string]> = [
   ['Ş', 'S'], ['ş', 's'],
   ['Ŋ', 'N'], ['ŋ', 'n'],
   ['Ñ', 'N'], ['ñ', 'n'], // tilde-n alternative for ŋ
-  ['İ', 'I'], ['ı', 'i'], // dotless-ı option (CTA §7): keeps casual register ASCII
-  ['Ğ', 'G'], ['ğ', 'g'], // ğ option (CTA §6)
+  ['İ', 'I'], ['ı', 'i'], // dotless-ı option (whitepaper §9): keeps the plain form ASCII
+  ['Ğ', 'G'], ['ğ', 'g'], // ğ option (whitepaper §8)
   ['Í', 'I'], ['í', 'i'],
-  ['Ĭ', 'I'], ['ĭ', 'i'], // breve glide alternative (§11.1)
-  ['Ĩ', 'I'], ['ĩ', 'i'], // tilde glide alternative (§11.1)
+  ['Ĭ', 'I'], ['ĭ', 'i'], // breve glide alternative (whitepaper §7)
+  ['Ĩ', 'I'], ['ĩ', 'i'], // tilde glide alternative (whitepaper §7)
 ];

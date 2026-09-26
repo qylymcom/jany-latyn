@@ -14,7 +14,7 @@
   const core = LETTER_MAP.filter(([c]) => !LOAN.has(c));
   const loan = LETTER_MAP.filter(([c]) => LOAN.has(c));
 
-  // The canonical alphabet (whitepaper §9.5): every letter the mapping writes,
+  // The Jany-Latyn alphabet (whitepaper §17.2): every letter the mapping writes,
   // in Jany-Latyn order. Derived rather than listed, so it cannot drift from LETTER_MAP.
   const ALPHABET = [...new Set(LETTER_MAP.flatMap(([, jany]) => [...jany]))].sort((a, b) => compare(a, b));
 
@@ -27,8 +27,8 @@
   };
 
   // The one allophone worth a line of its own where a letter serves two sounds:
-  // uvular [q] and [ʁ] next to back vowels (§6), and the [h] many speakers use
-  // for х (§11.2).
+  // uvular [q] and [ʁ] next to back vowels (whitepaper §8), and the [h] many
+  // speakers use for х (whitepaper §20).
   const ALLOPHONE: Readonly<Record<string, string>> = { k: 'q', g: 'ʁ', h: 'h' };
 
   // Glosses per interface language. Kyrgyz needs none, and a gloss that would
@@ -104,13 +104,13 @@
 
 <section class="mb-2">
   <h2 class="text-lg font-semibold mb-2">
-    {i18n.t.alphabet.canonicalAlphabet}
+    {i18n.t.alphabet.janyLatynAlphabet}
     <span class="font-normal text-base-content/60">({ALPHABET.length} {i18n.t.alphabet.lettersCount})</span>
   </h2>
   <!-- One column per letter, capital over lowercase over IPA, so the three stay
        aligned when the row wraps. Lowercase shows í against i, the cedillas, and the
        descender of ŋ; the capital Ŋ is left to the font (N-based or n-based),
-       per whitepaper §5.3. -->
+       per whitepaper §14. -->
   <ol class="flex flex-wrap gap-y-3 text-2xl font-semibold" style:font-family={font}>
     {#each ALPHABET as l}
       <li class="flex w-9 flex-col items-center leading-tight">

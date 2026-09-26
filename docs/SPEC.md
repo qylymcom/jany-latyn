@@ -7,11 +7,11 @@ Status: draft v0.3.
 > For the comprehensive linguistic, sociolinguistic, and typographic case for
 > this script, see [WHITEPAPER.md](WHITEPAPER.md).
 
-## 1. Canonical mapping
+## 1. Mapping
 
 ### Vowels
 
-| Cyrillic | Canonical | Long (doubled) | ASCII strip fallback |
+| Cyrillic | Jany-Latyn | Long (doubled) | ASCII strip fallback |
 |---|---|---|---|
 | а | a | aa | unchanged |
 | э, е | e | ee | unchanged |
@@ -21,26 +21,26 @@ Status: draft v0.3.
 | у | u | uu | unchanged |
 | ү | ü (Latin U+00FC, cap Ü U+00DC) | üü | u / uu |
 
-Standard Jany uses Latin **ö** (Öö U+00D6 / U+00F6) and Latin **ü** (Üü
+Jany-Latyn uses Latin **ö** (Öö U+00D6 / U+00F6) and Latin **ü** (Üü
 U+00DC / U+00FC). Cyrillic ө (Өө U+04E8/U+04E9, hybrid mode), Kazakh ұ
 (Ұұ U+04B0/U+04B1), and macron ū (Ūū U+016A/U+016B) remain supported as
 secondary display variants and in reverse transliteration.
 
 ### Consonants
 
-| Cyrillic | Canonical | Notes |
+| Cyrillic | Jany-Latyn | Notes |
 |---|---|---|
 | б г д | b g d | |
 | ж | j | all contexts; zh does not exist (ажыратуу → ajyratuu) |
 | з | z | |
-| й | í (Latin U+00ED, cap Í U+00CD) | universal palatal glide /j/ (aí, toí, tyíyn, biíik, kiíim); ĭ and ĩ available as marked testbed alternatives (§11.1 whitepaper) |
+| й | í (Latin U+00ED, cap Í U+00CD) | universal palatal glide /j/ (aí, toí, tyíyn, biíik, kiíim); ĭ and ĩ available as marked testbed alternatives (whitepaper §7) |
 | к | k | q not used by default; back-vowel [q] allophone is predictable |
 | л м н | l m n | |
-| ң | ŋ (U+014B, cap Ŋ U+014A) | canonical; ñ (U+00F1) available as first-class testbed option (§5.3 whitepaper) |
+| ң | ŋ (U+014B, cap Ŋ U+014A) | ñ (U+00F1) is a comparison setting in the testbed, not part of Jany-Latyn (whitepaper §14) |
 | п р с т | p r s t | |
 | в ф | v f | loans only |
 | х | h | рахмат → rahmat |
-| ц | ts | loans only; reverse is тс (native-priority §9.1 whitepaper) — see §4 |
+| ц | ts | loans only; reverse is тс (native-priority rule, whitepaper §18.1) — see §4 |
 | ч | ç (Latin U+00E7, cap Ç U+00C7) | strip fallback c; digraph fallback ch; чай → çaí |
 | ш | ş (Latin U+015F, cap Ş U+015E) | strip fallback s; digraph fallback sh; шаар → şaar |
 | щ | ş | loan only; merged into ş (ящик → íaşik) |
@@ -152,34 +152,34 @@ whether they should), hyphenated compounds (each hyphen-separated part is
 cased as its own word), and camel-case identifiers (they fall to the
 mixed-case row).
 
-## 3. ASCII fallback (casual register, §10 whitepaper)
+## 3. ASCII fallback (plain form, whitepaper §19)
 
-The **canonical (default) strip style** drops every diacritic to its base letter:
+The **default strip style** drops every diacritic to its base letter:
 
 `ö→o`, `ü→u`, `í→i`, `ŋ→n`, `ç→c`, `ş→s`
 
 Capitals: `Ö→O`, `Ü→U`, `Í→I`, `Ŋ→N`, `Ç→C`, `Ş→S`.
 
 The dotless-ı and ğ options (§7) also strip to ASCII: `ı→i`, `İ→I`, `ğ→g`,
-`Ğ→G`, so the casual register stays plain ASCII in every configuration.
+`Ğ→G`, so the plain form stays ASCII in every configuration.
 
 A **digraph style** (`janyToFallback(text, 'digraph')`) expands the sibilants
 to `ç→ch` / `ş→sh` while still stripping all other diacritics. Both styles
 are selectable in the testbed.
 
-The casual register is **one-way**: ASCII text cannot be mechanically restored
-to the formal register or to Cyrillic. Do not describe this as round-tripping.
+The plain form is **one-way**: ASCII text cannot be mechanically restored
+to the full form or to Cyrillic. Do not describe this as round-tripping.
 
 Accepted mergers under strip style (resolved by context as in SMS Kyrgyz):
 кол/көл → `kol`; жаңы/жаны → `jany`; баш/бас → `bas`.
 
-## 4. Reverse conversion (§9 whitepaper)
+## 4. Reverse conversion (whitepaper §18)
 
 Latin→Cyrillic is **deterministic and lossless for native Kyrgyz vocabulary**,
 **lossy for the loanword classes below**. Do not describe it as bijective or
 100% bidirectional.
 
-### 4.1 The native-priority rule (§9.1 whitepaper)
+### 4.1 The native-priority rule (whitepaper §18.1)
 
 Where two Cyrillic spellings map to the same Latin string, reverse conversion
 restores the native Kyrgyz one. Loan-only distinctions are the accepted losses:
@@ -195,9 +195,9 @@ restores the native Kyrgyz one. Loan-only distinctions are the accepted losses:
 | legacy `sh` | **ш** | names with с+х: `ishak → ишак`, `ashat → ашат` |
 | post-vocalic `e` | **е** | loan э: `poet → поет` |
 | dropped `ь`, `ъ` | *(nothing recoverable)* | `aprel → апрел` |
-| `ä` (compose-mode, §11.2) | **а** | `äkä → ака`, `källä → калла` |
-| `x` (compose-mode, §11.2) | **х** | `Xaram → Харам` (merges with `Buhara → Бухара`) |
-| `w` (compose-mode, §11.2) | **в** | `taw → тав` (merges with `tav`) |
+| `ä` (compose-mode, whitepaper §20) | **а** | `äkä → ака`, `källä → калла` |
+| `x` (compose-mode, whitepaper §20) | **х** | `Xaram → Харам` (merges with `Buhara → Бухара`) |
+| `w` (compose-mode, whitepaper §20) | **в** | `taw → тав` (merges with `tav`) |
 
 The last three are **extended (compose-mode) letters**: `cyrToJany` never emits
 them, but reverse conversion accepts and folds them to their Cyrillic base —
@@ -205,7 +205,7 @@ the native-priority rule applied to loan/dialect distinctions Latin can write
 and Cyrillic cannot. The single source is `EXTENDED_LETTERS` in
 `packages/engine/src/alphabet.ts`.
 
-### 4.2 Opt-in loan restoration (§9.2 whitepaper)
+### 4.2 Opt-in loan restoration (whitepaper §18.2)
 
 `janyToCyr(text, { restoreLoans: true })` applies a small lookup list
 (`packages/engine/src/loanRestore.ts`) that restores known loanwords:
@@ -220,12 +220,12 @@ is deliberate — the proper name is the one that appears in documents.
 
 `ee → ээ`; word-initial `e → э`; elsewhere `e → е`; `í/ĭ/ĩ → й`; `ía/ío/íu →
 я/ё/ю`; `ç → ч`; `ş → ш`; `j/c → ж`; `g/ğ → г`; `ü/ū/ұ → ү`; `ŋ/ñ → ң`; `q/k → к`;
-compose-mode `ä → а`, `x → х`, `w → в` (§11.2).
+compose-mode `ä → а`, `x → х`, `w → в` (whitepaper §20).
 
 Legacy digraphs `ch`, `sh`, `sch`, and apostrophes (`ob'ekt`, `sem'ía`) are
 fully supported for backward compatibility.
 
-High-front glides with canonical í (`biíik → бийик`) and legacy y
+High-front glides with the Jany-Latyn í (`biíik → бийик`) and legacy y
 (`biyik → бийик`) both restore correctly.
 
 `janyToCyr(text, { yGrapheme: 'dotless-i' })` reads capitals with the Turkish
@@ -236,9 +236,9 @@ The marked glide alternatives `ĭ` (U+012D) and `ĩ` (U+0129), with capitals
 normalization, so every `í` context rule (`íe`, `ía/ío/íu`, post-vocalic
 `íe → йе`) applies to them unchanged (`biĭik → бийик`, `okuĩa → окуя`).
 
-## 5. Search folding — `foldKey()` (§9.4 whitepaper)
+## 5. Search folding — `foldKey()` (whitepaper Appendix B)
 
-`foldKey(text, options?)` maps any register (formal or casual) to a single
+`foldKey(text, options?)` maps either form (full or plain) to a single
 search key. It assumes Kyrgyz text.
 
 **Unconditional folds:**
@@ -249,28 +249,28 @@ search key. It assumes Kyrgyz text.
 3. NFD decomposition + strip all combining marks (handles `ö→o`, `ü→u`,
    `í/ĭ/ĩ→i`,
    `ç→c`, `ş→s`, `ä→a`, `ğ→g` automatically via Unicode).
+4. Casefold to lowercase.
 
 Folding is not configuration-dependent for `i`: `foldKey('İ') === foldKey('i')
 === foldKey('ı') === 'i'` in every configuration, including dotless ı with the
 Turkish case pairs. Search still merges `ı` and `i`, which collation (§6) and
 casing (§2.1) keep apart.
-4. Casefold to lowercase.
 
-Result: `foldKey('biíik') === foldKey('biiik')` — formal and casual spellings
-of the same word land on the same key. `ä` folds to `a` unconditionally
+Result: `foldKey('biíik') === foldKey('biiik')` — full-form and plain-form
+spellings of the same word land on the same key. `ä` folds to `a` unconditionally
 (it decomposes and has no competing international value).
 
 **Configuration-dependent folds** (`FoldKeyOptions`):
 
-- `extendedLetters: ['x' | 'w']` — the §11.2 compose-mode splits. When `'x'`
+- `extendedLetters: ['x' | 'w']` — the compose-mode splits (whitepaper §20). When `'x'`
   is active, `x → h`; when `'w'` is active, `w → v`, unifying the distinctions
   that reverse conversion loses (`foldKey('xaram', { extendedLetters: ['x'] })
   === foldKey('haram', …)`). **Off by default**: outside a Kyrgyz-only index
   `x`/`w` carry their international value, so *Linux*, *LAX*, *X Factor* must
   fold to themselves, not *linuh* / *lah*.
-- `digraphInput: true` — the input is digraph-fallback ASCII (§10). Adds
-  `ch → c`, `sh → s` so the digraph casual form folds to the formal word's key.
-  **Off by default**: `ch`/`sh` are legitimate formal sequences (`başçy`) and
+- `digraphInput: true` — the input is digraph-fallback ASCII (whitepaper §19). Adds
+  `ch → c`, `sh → s` so the digraph plain form folds to the full-form word's key.
+  **Off by default**: `ch`/`sh` are legitimate full-form sequences (`başçy`) and
   folding them unconditionally would merge distinct words. The strip fallback
   needs no option — it already *is* the folded form.
 
@@ -280,13 +280,13 @@ Native Kyrgyz order (from `LETTER_MAP` in `packages/engine/src/alphabet.ts`):
 
 а б в г д е ё ж з и й к л м н ң о ө п р с т у ү ф х ц ч ш щ ъ ы ь э ю я
 
-Canonical Jany-Latyn order (28 letters; a modified letter follows the letter it
+Jany-Latyn order (28 letters; a modified letter follows the letter it
 modifies, as in Kyrgyz Cyrillic):
 
 A B Ç D E F G H I Í J K L M N Ŋ O Ö P R S Ş T U Ü V Y Z
 
-The alphabets of the other configurations and the collation tailoring, in ICU
-rule syntax, are given in whitepaper §9.6.
+The alphabets of the comparison settings are in whitepaper §17.3, and the
+collation tailoring, in ICU rule syntax, is in whitepaper Appendix C.
 
 `compare(a, b, options?)` (`jany-latyn/collate`) implements that order from an
 explicit rank table per configuration, because `Intl.Collator` accepts no
@@ -298,7 +298,7 @@ their default Latin position. Ties break on the exact letter, then on case,
 lowercase first, using that configuration's case table (§2.1). The expected
 orderings are pinned in `packages/engine/test/fixtures/collation.json`.
 
-## 7. Testbed option inventory (§11.1 whitepaper)
+## 7. Testbed option inventory (whitepaper §7)
 
 | Option | Values | Default |
 |---|---|---|
@@ -310,19 +310,24 @@ orderings are pinned in `packages/engine/test/fixtures/collation.json`.
 | Uvular consonant | unified `k`, allophonic `q` | `k` |
 | ж | `j` (unified), `c` (mechanical CTA mapping)³ | `j` |
 | г | unified `g`, allophonic `ğ`⁴ | `g` |
-| х | `h` (unified), `x` (every х written x; not the §11.2 split) | `h` |
-| ASCII fallback | strip `c/s` (canonical), digraph `ch/sh` | strip |
-| Extended letters (§11.2) | off, `ä`, `x`/`h`, `w` — compose-mode, never emitted forward | off |
+| х | `h` (unified), `x` (every х written x; not the whitepaper §20 split) | `h` |
+| ASCII fallback | strip `c/s` (Jany-Latyn default), digraph `ch/sh` | strip |
+| Extended letters (whitepaper §20) | off, `ä`, `x`/`h`, `w` — compose-mode, never emitted forward | off |
 
-¹ Selecting `ı` force-enables allophonic `q` (§7). This is a **testbed
-affordance, not an engine invariant**: the pure `cyrToJany` keeps `yGrapheme`
-and `uvularK` independent (`{ yGrapheme: 'dotless-i', uvularK: 'k' }` is valid).
-The coupling lives in `packages/engine/src/testbedPresets.ts` and is shared by the web UI.
+¹ Selecting `ı` seeds allophonic `q`, `ğ`, and the `y` glide, which together
+are the q+ğ+ı setting (whitepaper §7). Switching back to `y` restores `k` and
+`g` and returns a `y` glide to `í`. The coupling only seeds the options, so `ı`
+with `k` and `ı` with the `í` glide stay reachable by setting the option
+afterwards. This is a **testbed affordance, not an engine invariant**: the pure
+`cyrToJany` keeps `yGrapheme`, `glideGrapheme`, and `uvularK` independent
+(`{ yGrapheme: 'dotless-i', uvularK: 'k' }` is valid). The coupling lives in
+`packages/engine/src/testbedPresets.ts` and is shared by the web UI.
 
-² The `y` glide is offered only while ы is written `ı`; choosing it while ы is
-`y` forces `ı` (and therefore `q`), since `y` would otherwise play two roles
-(§4.4). The `ĩ` glide combined with the `ñ` velar nasal is **warned about, not
-prevented** (`hasTildeClash()` in `packages/engine/src/testbedPresets.ts`): the same tilde
+² The `y` glide is offered only while ы is written `ı`, since `y` would
+otherwise play two roles (whitepaper §10). While ы is `y` the testbed disables
+it, and `resolveGlideGraphemeChange()` returns the state unchanged. The `ĩ`
+glide combined with the `ñ` velar nasal is **warned about, not prevented**
+(`hasTildeClash()` in `packages/engine/src/testbedPresets.ts`): the same tilde
 ends up on two letters for two unrelated jobs, but the text stays unambiguous.
 As with footnote ¹, the engine accepts every combination.
 
@@ -330,14 +335,14 @@ As with footnote ¹, the engine accepts every combination.
 and wrong for loanword ж [ʒ], which the CTA writes `j` (`журнал → curnal`, not
 `jurnal`). Cyrillic writes both sounds as ж, so the distinction cannot be
 derived; a writer who knows the word makes it. The testbed warns about this
-exactly as it warns about `q` (`космос → qosmos`). The CTA preset uses `c`. In
+exactly as it warns about `q` (`космос → qosmos`). The CTA-aligned preset uses `c`. In
 reverse, `c → ж` (§4.3).
 
 ⁴ `ğ` writes back-harmonic г as `ğ` by the same rule as `q` (`болгон → bolğon`)
 and is wrong for loanwords the same way (`газ → ğaz`, `гарантия → ğarantiía`).
 The engine keeps it independent of `q`, so `q` without `ğ` is a valid call,
-but whitepaper §6 argues that a standard adopting `q` adopts `ğ` with it, and
-the testbed couples the two options accordingly. The CTA preset uses both.
+but whitepaper §8 argues that a standard adopting `q` adopts `ğ` with it, and
+the testbed couples the two options accordingly. The CTA-aligned preset uses both.
 In reverse, `ğ → г`.
 
 ## 8. Reference examples
@@ -367,7 +372,7 @@ Kunan koídu soí balam,
 Kuíruguna toí balam.
 ```
 
-The lullaby in ASCII strip fallback (canonical §10):
+The lullaby in the plain form (strip fallback, whitepaper §19):
 
 ```
 Aldei, aldei ak balam,
@@ -395,14 +400,15 @@ property of engine agreement.)
 ## 9. Codepoint inventory
 
 Ö U+00D6, ö U+00F6, Ü U+00DC, ü U+00FC, Í U+00CD, í U+00ED,
-Ŋ U+014A, ŋ U+014B, Ñ U+00D1, ñ U+00F1 (tilde-n alternative),
+Ŋ U+014A, ŋ U+014B,
 Ç U+00C7, ç U+00E7, Ş U+015E, ş U+015F.
 
-Testbed options (never canonical): I U+0049 / ı U+0131 and İ U+0130 / i U+0069
-(the Turkish case pairs of the dotless-ı configuration), Ğ U+011E, ğ U+011F.
+Comparison settings (not part of Jany-Latyn): I U+0049 / ı U+0131 and
+İ U+0130 / i U+0069 (the Turkish case pairs of the dotless-ı configuration),
+Ğ U+011E, ğ U+011F, and Ñ U+00D1, ñ U+00F1 (the tilde-n velar nasal).
 
-Marked glide alternatives (testbed only, never canonical): Ĭ U+012C,
-ĭ U+012D (breve), Ĩ U+0128, ĩ U+0129 (tilde). Both decompose under NFD, so
+Marked glide alternatives (comparison settings only, not part of Jany-Latyn):
+Ĭ U+012C, ĭ U+012D (breve), Ĩ U+0128, ĩ U+0129 (tilde). Both decompose under NFD, so
 `foldKey()` and the ASCII fallback reduce them to `i` like `í`.
 
 Hard and soft signs (ъ and ь) are absorbed; words are 100% alphabetic
@@ -412,5 +418,5 @@ for legacy backward compatibility.
 Secondary display variants: Cyrillic Ө/ө (U+04E8/U+04E9, hybrid mode),
 Kazakh Ұ/ұ (U+04B0/U+04B1), macron Ū/ū (U+016A/U+016B).
 
-No combining marks appear in canonical output; `foldKey()` uses them
+No combining marks appear in the converter's output; `foldKey()` uses them
 internally during NFD stripping.

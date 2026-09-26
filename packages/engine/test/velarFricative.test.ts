@@ -2,7 +2,7 @@
 /**
  * The х toggle (testbed option inventory, SPEC §7). 'h' writes every х as h and
  * is the default; 'x' writes every х as x. Both are one-letter mappings from
- * Cyrillic, unlike the §11.2 compose-mode split, which Cyrillic cannot supply.
+ * Cyrillic, unlike the whitepaper §20 compose-mode split, which Cyrillic cannot supply.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

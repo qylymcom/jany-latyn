@@ -14,6 +14,6 @@ export function getProbeForVowelMode(mode?: string): string {
   if (mode === 'cyrillic-u') return 'өұӨҰíÍŋŊçşÇŞä';
   if (mode === 'hybrid') return 'өüӨÜíÍŋŊçşÇŞä';
   if (mode === 'draft-macron') return 'өūӨŪíÍŋŊçşÇŞä';
-  return 'öüíŋçşÖÜÍŊÇŞä'; // canonical default
+  return 'öüíŋçşÖÜÍŊÇŞä'; // Jany-Latyn default
 }
 

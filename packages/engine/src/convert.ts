@@ -14,13 +14,13 @@ export interface JanyOptions {
   // is wrong for loanwords (газ → ğaz), which Cyrillic does not mark.
   uvularG?: 'g' | 'ğ';
   velarNasal?: 'eng' | 'tilde-n';
-  // ж: 'j' writes every ж as j (canonical, derivable). 'c' is the mechanical CTA
+  // ж: 'j' writes every ж as j (Jany-Latyn, derivable). 'c' is the mechanical CTA
   // mapping: every ж becomes c, which is right for native [dʒ] and wrong for
   // loanword [ʒ] (журнал → curnal, not jurnal); Cyrillic does not mark the difference.
   affricate?: 'j' | 'c';
-  // х: 'h' writes every х as h (canonical). 'x' writes every х as x, for readers
+  // х: 'h' writes every х as h (Jany-Latyn). 'x' writes every х as x, for readers
   // who take the velar [x] to be the better value; it is the same one-letter
-  // mapping, not the §11.2 split, which Cyrillic cannot supply.
+  // mapping, not the whitepaper §20 split, which Cyrillic cannot supply.
   velarFricative?: 'h' | 'x';
 }
 
@@ -36,7 +36,7 @@ const BACK_VOWELS = new Set(['а', 'о', 'у', 'ы', 'я', 'ё', 'ю']);
 const FRONT_VOWELS = new Set(['э', 'е', 'и', 'ө', 'ү']);
 const ALL_CYR_VOWELS = new Set(['а', 'о', 'у', 'ы', 'я', 'ё', 'ю', 'э', 'е', 'и', 'ө', 'ү']);
 
-// Whether к (→ q) or г (→ ğ) at index is uvular: the §6 back-harmony rule.
+// Whether к (→ q) or г (→ ğ) at index is uvular: the whitepaper §8 back-harmony rule.
 // lowerWord must already be lowercase (casing.ts); no case function is called here.
 function isUvular(lowerWord: string, index: number): boolean {
 
@@ -72,8 +72,8 @@ function isUvular(lowerWord: string, index: number): boolean {
 }
 
 // Letter written for й (and the glide half of я/ю/ё/iotated е) per option.
-// ĭ and ĩ are §11.1 marked alternatives to the canonical í; plain i and y are
-// comparison modes (§4.4, §7).
+// ĭ and ĩ are marked alternatives to the Jany-Latyn í (whitepaper §7); plain i and
+// y are comparison modes (whitepaper §10, §9).
 const GLIDE_LETTER: Readonly<Record<NonNullable<JanyOptions['glideGrapheme']>, string>> = {
   'acute-i': 'í',
   'breve-i': 'ĭ',
@@ -203,8 +203,8 @@ const FALLBACK_DIGRAPH_SIBILANTS: ReadonlyArray<readonly [string, string]> = [
   ['Ş', 'Sh'], ['ş', 'sh'],
 ];
 
-// Convert formal-register Jany-Latyn to plain ASCII (casual register, §10).
-// style='strip' (canonical): every diacritic drops to its base letter.
+// Convert full-form Jany-Latyn to ASCII (the plain form, whitepaper §19).
+// style='strip' (the default): every diacritic drops to its base letter.
 // style='digraph': sibilants expand to ch/sh; all other diacritics still strip.
 export function janyToFallback(text: string, style: 'strip' | 'digraph' = 'strip'): string {
   let out = text;
@@ -220,24 +220,24 @@ export function janyToFallback(text: string, style: 'strip' | 'digraph' = 'strip
 }
 
 export interface FoldKeyOptions {
-  // Which §11.2 compose-mode splits are active in this deployment. When 'x' is
+  // Which compose-mode splits (whitepaper §20) are active in this deployment. When 'x' is
   // listed, x folds to h; when 'w' is listed, w folds to v. Off by default,
   // because outside a Kyrgyz-only index x and w carry their international value
   // (Linux, LAX, X Factor) and must fold to themselves. (ä always folds to a —
   // it decomposes under NFD and has no competing value.)
   extendedLetters?: ReadonlyArray<'x' | 'w'>;
-  // Set when the input is digraph-fallback ASCII (§10): also fold ch→c, sh→s so
+  // Set when the input is digraph-fallback ASCII (whitepaper §19): also fold ch→c, sh→s so
   // the digraph casual form lands on the same key as the formal word. Off by
   // default — ch and sh are legitimate formal sequences (başçy) and folding
   // them unconditionally would merge genuinely distinct words.
   digraphInput?: boolean;
 }
 
-// foldKey maps any register (formal or casual) to a single search key.
+// foldKey maps either form (full or plain) to a single search key.
 // It assumes Kyrgyz text: ö→o, ü→u, í/ĭ/ĩ→i, ç→c, ş→s, ä→a all fold via NFD (their
 // diacritics decompose and strip), while ŋ→n, ñ→n, and ı→i have no
 // decomposition and are folded explicitly. Two folds are configuration
-// -dependent (§9.4) and controlled by options: the §11.2 compose-mode letters
+// -dependent (whitepaper Appendix B) and controlled by options: the §20 compose-mode letters
 // x→h / w→v, and the digraph-fallback pair ch→c / sh→s. A mixed-language index
 // must set these deliberately — the defaults keep x, w, ch, sh as themselves.
 export function foldKey(text: string, options?: FoldKeyOptions): string {
@@ -295,17 +295,17 @@ const REVERSE_SINGLE: Readonly<Record<string, string>> = {
   'ŋ': 'ң',
   'ñ': 'ң', // tilde-n alternative
   'í': 'й',
-  // §11.1 marked glide alternatives. janyToCyr folds both to í before
+  // Whitepaper §7 marked glide alternatives. janyToCyr folds both to í before
   // reverting (so íe/ía/ío/íu contexts apply to them too); listed here so the
   // single-letter table stays complete.
   'ĭ': 'й',
   'ĩ': 'й',
-  // §11.2 extended (compose-mode) letters fold to their Cyrillic base:
+  // Whitepaper §20 extended (compose-mode) letters fold to their Cyrillic base:
   // ä→а, x→х, w→в. Single auditable source in alphabet.ts.
   ...Object.fromEntries(EXTENDED_LETTERS),
 };
 
-// §9.1 native-priority rule: ts is NOT in this list because ts → тс (not ц).
+// Whitepaper §18.1 native-priority rule: ts is NOT in this list because ts → тс (not ц).
 // Loan ц is an accepted loss; native т+с clusters are frequent and productive.
 const REVERSE_DIGRAPHS: ReadonlyArray<readonly [string, string]> = [
   ['sch', 'щ'], ['sh', 'ш'], ['ch', 'ч'],
@@ -313,11 +313,11 @@ const REVERSE_DIGRAPHS: ReadonlyArray<readonly [string, string]> = [
   ['ya', 'я'], ['yo', 'ё'], ['yu', 'ю'],
 ];
 
-// ĭ/ĩ (and capitals) read exactly like the canonical í glide in reverse.
+// ĭ/ĩ (and capitals) read exactly like the Jany-Latyn í glide in reverse.
 const MARKED_GLIDE = /[ĭĩĬĨ]/g;
 const MARKED_GLIDE_TO_ACUTE: Readonly<Record<string, string>> = { 'ĭ': 'í', 'ĩ': 'í', 'Ĭ': 'Í', 'Ĩ': 'Í' };
 
-const CANON_VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'y', 'ө', 'ö', 'ü', 'ū', 'ұ', 'ä', 'ı']);
+const VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'y', 'ө', 'ö', 'ü', 'ū', 'ұ', 'ä', 'ı']);
 const JANY_WORD = /[\p{L}']+/gu;
 
 // Reverts one lowercase word. Each segment records which source character it
@@ -341,12 +341,12 @@ function revertWord(word: string, restoreLoans: boolean, offset = 0): Segment[] 
   for (let i = 0; i < word.length; i++) {
     if (word.startsWith('íe', i)) {
       if (out === '') {
-        // word-initial íe → е (Íevropa → Европа, §9.1)
+        // word-initial íe → е (Íevropa → Европа, §18.1)
         put(i, 'е');
       } else {
         const prev = i > 0 ? word[i - 1] : '';
-        if (CANON_VOWELS.has(prev)) {
-          // post-vocalic íe → йе — §9.1 native-priority rule
+        if (VOWELS.has(prev)) {
+          // post-vocalic íe → йе — §18.1 native-priority rule
           // Preserves root integrity: kiíet→кийет, tiíet→тийет
           // Accepted loss: proíekt→пройект, pereíezd→перейезд
           put(i, 'йе');
@@ -400,21 +400,21 @@ function revertWord(word: string, restoreLoans: boolean, offset = 0): Segment[] 
     if (ch === 'i') {
       const prev = i > 0 ? word[i - 1] : '';
       const prevPrev = i > 1 ? word[i - 2] : '';
-      if (prev === 'y' && i > 1 && CANON_VOWELS.has(prevPrev) && prevPrev !== 'y') {
+      if (prev === 'y' && i > 1 && VOWELS.has(prevPrev) && prevPrev !== 'y') {
         put(i, 'и');
         continue;
       }
-      put(i, i > 0 && CANON_VOWELS.has(prev) && prev !== 'y' ? 'й' : 'и');
+      put(i, i > 0 && VOWELS.has(prev) && prev !== 'y' ? 'й' : 'и');
       continue;
     }
     if (ch === 'y') {
       const prev = i > 0 ? word[i - 1] : '';
       const prevPrev = i > 1 ? word[i - 2] : '';
-      if (prev === 'i' && CANON_VOWELS.has(prevPrev)) {
+      if (prev === 'i' && VOWELS.has(prevPrev)) {
         put(i, 'ы');
         continue;
       }
-      put(i, (i > 0 && CANON_VOWELS.has(prev) && prev !== 'y') ? 'й' : 'ы');
+      put(i, (i > 0 && VOWELS.has(prev) && prev !== 'y') ? 'й' : 'ы');
       continue;
     }
     if (ch === "'") {
@@ -439,10 +439,10 @@ function revertWord(word: string, restoreLoans: boolean, offset = 0): Segment[] 
 }
 
 // Latin→Cyrillic conversion. Deterministic and lossless for native Kyrgyz
-// vocabulary; lossy for the loanword classes listed in §9.1.
+// vocabulary; lossy for the loanword classes listed in whitepaper §18.1.
 // This function is NOT bijective or lossless for Russian loanwords — do not
 // describe it as such in documentation.
-// With restoreLoans:true the loan-restoration list (§9.2) is applied first.
+// With restoreLoans:true the loan-restoration list (§18.2) is applied first.
 export function janyToCyr(text: string, options?: JanyCyrOptions): string {
   const restoreLoans = options?.restoreLoans ?? false;
   const mode = caseModeFor(options);

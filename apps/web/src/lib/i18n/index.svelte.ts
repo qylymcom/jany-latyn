@@ -21,10 +21,9 @@ const KY_JANY_DICTIONARY: Translations = deepConvert(TRANSLATIONS.ky);
 KY_JANY_DICTIONARY.about.whatIsThisContent =
   'Jany-Latyn — kirillitsadan çygaryluuçu kyrgyz tilinin latyn jazuusu. Anyn determindüü konverteri jana ar bir talaştuu tandoo özünçö parametr bolgon synoo çöírösü bar. Negizgi dal kelüülör: ж→j, ч→ç, ш→ş, х→h, ң→ŋ, ө→ö, ү→ü, ы→y, й→í; sozulma ündüülör koş jazylat (даамдуу → daamduu), orusça ъ/ь belgileri siŋirilet, oşonduktan ar bir söz tamgalardan gana turat.';
 KY_JANY_DICTIONARY.about.usagePlayground =
-  'Oíun talaasy: başky bette kyrgyzça kirillitsada teriŋiz — Jany-Latyn jana ASCII rezervdik türü terip jatkanda ele çygat. Daíar varianttardyn (Jany-Latyn, CTA, digraftar, aralaş ө) ortosunda kotoruluŋuz je ar bir tamgany özüŋüz tandaŋyz; salyştyruu tizmesi ar bir variant kaísy sözdördü özgörtkönün körsötöt. Ülgü tekstter, faíldy jüktöö jana saktoo, virtualdyk klaviatura jana aripti aldyn ala körüü da bar.';
+  'Oíun talaasy: başky bette kyrgyzça kirillitsada teriŋiz — Jany-Latyn jana ASCII rezervdik türü terip jatkanda ele çygat. Daíar varianttardyn (Jany-Latyn, CTA ülgüsündö, digraftar, aralaş ө) ortosunda kotoruluŋuz je ar bir tamgany özüŋüz tandaŋyz; salyştyruu tizmesi ar bir variant kaísy sözdördü özgörtkönün körsötöt. Ülgü tekstter, faíldy jüktöö jana saktoo, virtualdyk klaviatura jana aripti aldyn ala körüü da bar.';
 KY_JANY_DICTIONARY.alphabet.russianZhaNote =
   'Kirme sözdördögü orusça ж [ʒ] bolup aítylat, birok daíyma j dep jazylat.';
-KY_JANY_DICTIONARY.playground.uVariantLabel = 'ү katary:';
 KY_JANY_DICTIONARY.playground.vowelModeLabel = 'Ündüülör (ө, ү):';
 KY_JANY_DICTIONARY.playground.vowelLatinUmlaut = 'ö / ü (toluk latyn)';
 KY_JANY_DICTIONARY.playground.vowelHybrid = 'ө / ü (aralaş ө)';
@@ -46,11 +45,11 @@ KY_JANY_DICTIONARY.playground.affricateWarningLoanwords =
 KY_JANY_DICTIONARY.playground.velarNasalLabel = 'ң tamgasy:';
 KY_JANY_DICTIONARY.playground.velarFricativeLabel = 'х tamgasy:';
 KY_JANY_DICTIONARY.playground.velarFricativeNote =
-  'Eskertüü: «х» tybyşy süílööçügö jana aímakka jaraşa [h] je [x] bolup aítylat, birok sözdördü aíyrmalabaít (§11.2), oşonduktan «x» ar bir «х» üçün jazylat. Latyn tekstterinde «x» el aralyk maanisin da saktaít (Linux, taxi).';
+  'Eskertüü: «х» tybyşy süílööçügö jana aímakka jaraşa [h] je [x] bolup aítylat, birok sözdördü aíyrmalabaít (§20), oşonduktan «x» ar bir «х» üçün jazylat. Latyn tekstterinde «x» el aralyk maanisin da saktaít (Linux, taxi).';
 KY_JANY_DICTIONARY.playground.velarNasalEng = 'ŋ (eŋ)';
 KY_JANY_DICTIONARY.playground.velarNasalTildeN = 'ñ (tilde menen)';
 KY_JANY_DICTIONARY.playground.fallbackStyleLabel = 'ASCII stili:';
-KY_JANY_DICTIONARY.playground.fallbackStyleStrip = 'c / s (tizmek, §10)';
+KY_JANY_DICTIONARY.playground.fallbackStyleStrip = 'c / s (tizmek, §19)';
 KY_JANY_DICTIONARY.playground.fallbackStyleDigraph = 'ch / sh (digraftar)';
 
 function getInitialLocale(): Locale {

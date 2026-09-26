@@ -9,8 +9,8 @@ capitals Ö/Ü/Í/Ŋ/Ç/Ş.
 
 ## Testbed letters (ĭ, ĩ, ñ, ı, ä)
 
-The installable layouts below type the canonical letters only. The
-alternatives that the testbed can select (§11.1 whitepaper) are not on them:
+The installable layouts below type the Jany-Latyn letters only. The
+comparison settings that the testbed can select (whitepaper §7) are not on them:
 
 | Letter | Codepoint | Used when |
 |---|---|---|
@@ -18,7 +18,7 @@ alternatives that the testbed can select (§11.1 whitepaper) are not on them:
 | ĩ Ĩ | U+0129 / U+0128 | glide option `tilde-i` |
 | ñ Ñ | U+00F1 / U+00D1 | velar-nasal option `tilde-n` |
 | ı I | U+0131 / U+0049 | ы option `dotless-i` |
-| ä Ä | U+00E4 / U+00C4 | §11.2 compose-mode letter |
+| ä Ä | U+00E4 / U+00C4 | compose-mode letter (whitepaper §20) |
 
 The web playground's virtual keyboard covers all of them. Its Alt / Option
 layer follows the options currently selected, so the same keys always produce

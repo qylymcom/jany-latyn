@@ -8,10 +8,10 @@ import assert from 'node:assert/strict';
 import { cyrToJany, janyToCyr, janyToFallback, foldKey } from '../src/convert.js';
 
 // ---------------------------------------------------------------------------
-// §9.1  Native round-trip fixtures
+// §18.1  Native round-trip fixtures
 // "Native Kyrgyz vocabulary round-trips exactly"
 // ---------------------------------------------------------------------------
-test('§9.1 native round-trip: vowel harmony and basic morphology', () => {
+test('§18.1 native round-trip: vowel harmony and basic morphology', () => {
   for (const cyr of [
     'жаңы', 'күнгө', 'башчы', 'тоок',
     'эне', 'мектеп', 'ааламдык',
@@ -20,17 +20,17 @@ test('§9.1 native round-trip: vowel harmony and basic morphology', () => {
   }
 });
 
-test('§9.1 native round-trip: ts cluster (must not collapse to ц)', () => {
+test('§18.1 native round-trip: ts cluster (must not collapse to ц)', () => {
   for (const cyr of ['өтсө', 'кетсе', 'айтса']) {
     assert.equal(janyToCyr(cyrToJany(cyr)), cyr, `round-trip failed: ${cyr}`);
   }
   // Forward: ц → ts
   assert.equal(cyrToJany('цирк'), 'tsirk');
-  // Reverse: ts → тс (native-priority §9.1) — loan ц is the accepted loss
+  // Reverse: ts → тс (native-priority §18.1) — loan ц is the accepted loss
   assert.equal(janyToCyr('tsirk'), 'тсирк');
 });
 
-test('§9.1 native round-trip: íe glide and kii- root forms', () => {
+test('§18.1 native round-trip: íe glide and kii- root forms', () => {
   for (const cyr of ['кийет', 'тийет', 'тийиштүү', 'бийик']) {
     assert.equal(janyToCyr(cyrToJany(cyr)), cyr, `round-trip failed: ${cyr}`);
   }
@@ -40,22 +40,22 @@ test('§9.1 native round-trip: íe glide and kii- root forms', () => {
   assert.equal(janyToCyr('kiíet'), 'кийет');
 });
 
-test('§9.1 native round-trip: long ee vowel', () => {
+test('§18.1 native round-trip: long ee vowel', () => {
   for (const cyr of ['ээги', 'керээз', 'кээде', 'жээк']) {
     assert.equal(janyToCyr(cyrToJany(cyr)), cyr, `round-trip failed: ${cyr}`);
   }
 });
 
 // ---------------------------------------------------------------------------
-// §9.1  Documented losses — asserted so a "fix" that silently restores them fails
+// §18.1  Documented losses — asserted so a "fix" that silently restores them fails
 // ---------------------------------------------------------------------------
-test('§9.1 documented loss: loan ц → тс (tsirk round-trips to тсирк, not цирк)', () => {
+test('§18.1 documented loss: loan ц → тс (tsirk round-trips to тсирк, not цирк)', () => {
   assert.equal(cyrToJany('цирк'), 'tsirk');
   assert.equal(janyToCyr('tsirk'), 'тсирк');
   assert.notEqual(janyToCyr('tsirk'), 'цирк');
 });
 
-test('§9.1 documented loss: post-vocalic loan е → йе', () => {
+test('§18.1 documented loss: post-vocalic loan е → йе', () => {
   assert.equal(janyToCyr('proíekt'), 'пройект');
   assert.notEqual(janyToCyr('proíekt'), 'проект');
 
@@ -63,35 +63,35 @@ test('§9.1 documented loss: post-vocalic loan е → йе', () => {
   assert.notEqual(janyToCyr('pereíezd'), 'переезд');
 });
 
-test('§9.1 documented loss: íon → раён (ío → ё, not йо)', () => {
+test('§18.1 documented loss: íon → раён (ío → ё, not йо)', () => {
   // ío → ё: раіon → раён (iotated ё, not й+о)
   assert.equal(janyToCyr('raíon'), 'раён');
 });
 
-test('§9.1 documented loss: semía → семя (ь not recovered without restoreLoans)', () => {
+test('§18.1 documented loss: semía → семя (ь not recovered without restoreLoans)', () => {
   assert.equal(janyToCyr('semía'), 'семя');
   assert.notEqual(janyToCyr('semía'), 'семья');
 });
 
-test('§9.1 documented loss: borş → борш (щ merges into ш)', () => {
+test('§18.1 documented loss: borş → борш (щ merges into ш)', () => {
   assert.equal(cyrToJany('борщ'), 'borş');
   assert.equal(janyToCyr('borş'), 'борш');
   assert.notEqual(janyToCyr('borş'), 'борщ');
 });
 
-test('§9.1 documented loss: aprel → апрел (ь not recovered without restoreLoans)', () => {
+test('§18.1 documented loss: aprel → апрел (ь not recovered without restoreLoans)', () => {
   assert.equal(janyToCyr('aprel'), 'апрел');
   assert.notEqual(janyToCyr('aprel'), 'апрель');
 });
 
-test('§9.1 documented loss: poet → поет (post-vocalic э not restored)', () => {
+test('§18.1 documented loss: poet → поет (post-vocalic э not restored)', () => {
   assert.equal(janyToCyr('poet'), 'поет');
 });
 
 // ---------------------------------------------------------------------------
-// §9.2  Loan restoration — opt-in only
+// §18.2  Loan restoration — opt-in only
 // ---------------------------------------------------------------------------
-test('§9.2 restoreLoans restores ъ/ь and post-vocalic е loanwords', () => {
+test('§18.2 restoreLoans restores ъ/ь and post-vocalic е loanwords', () => {
   const opts = { restoreLoans: true };
   assert.equal(janyToCyr('semía', opts), 'семья');
   assert.equal(janyToCyr('obíekt', opts), 'объект');
@@ -105,27 +105,27 @@ test('§9.2 restoreLoans restores ъ/ь and post-vocalic е loanwords', () => {
 });
 
 // ---------------------------------------------------------------------------
-// §9.3  е/э/ee/íe system — four-rule algorithm
+// Appendix A  е/э/ee/íe system — four-rule algorithm
 // ---------------------------------------------------------------------------
-test('§9.3 forward: word-initial iotated е → íe; word-initial non-iotated э → e', () => {
+test('Appendix A forward: word-initial iotated е → íe; word-initial non-iotated э → e', () => {
   assert.equal(cyrToJany('Европа'), 'Íevropa');
   assert.equal(cyrToJany('енот'), 'íenot');
   assert.equal(cyrToJany('эл'), 'el');
   assert.equal(cyrToJany('эне'), 'ene');
 });
 
-test('§9.3 forward: doubled ээ → ee', () => {
+test('Appendix A forward: doubled ээ → ee', () => {
   assert.equal(cyrToJany('ээги'), 'eegi');
   assert.equal(cyrToJany('керээз'), 'kereez');
 });
 
-test('§9.3 forward: post-vocalic е in iotated loan → íe', () => {
+test('Appendix A forward: post-vocalic е in iotated loan → íe', () => {
   assert.equal(cyrToJany('переезд'), 'pereíezd');
   assert.equal(cyrToJany('проект'), 'proíekt');
   assert.equal(cyrToJany('поэт'), 'poet');  // non-iotated: stays e
 });
 
-test('§9.3 reverse: ee → ээ; word-initial e → э; post-consonantal e → е', () => {
+test('Appendix A reverse: ee → ээ; word-initial e → э; post-consonantal e → е', () => {
   assert.equal(janyToCyr('eegi'), 'ээги');
   assert.equal(janyToCyr('el'), 'эл');
   assert.equal(janyToCyr('ene'), 'эне');
@@ -134,9 +134,9 @@ test('§9.3 reverse: ee → ээ; word-initial e → э; post-consonantal e → 
 });
 
 // ---------------------------------------------------------------------------
-// §9.4 / §10  foldKey — formal and casual forms map to the same key
+// Appendix B / §19  foldKey — the full and plain forms map to the same key
 // ---------------------------------------------------------------------------
-test('§9.4 foldKey: formal and casual forms land on the same key', () => {
+test('Appendix B foldKey: full and plain forms land on the same key', () => {
   const pairs: [string, string][] = [
     ['köl', 'kol'],       // formal/casual
     ['küz', 'kuz'],
@@ -150,13 +150,13 @@ test('§9.4 foldKey: formal and casual forms land on the same key', () => {
   }
 });
 
-test('§9.4 foldKey: ŋ folds to n (explicit — no Unicode decomposition)', () => {
+test('Appendix B foldKey: ŋ folds to n (explicit — no Unicode decomposition)', () => {
   assert.equal(foldKey('jaŋy'), 'jany');
   assert.equal(foldKey('JAŊY'), 'jany');
   assert.equal(foldKey('jañy'), 'jany');  // tilde-n alternative
 });
 
-test('§9.4 foldKey: every native round-trip word folds equal to its casual fallback', () => {
+test('Appendix B foldKey: every native round-trip word folds equal to its plain form', () => {
   const natives = [
     'өтсө', 'кетсе', 'айтса', 'кийет', 'тийиштүү', 'бийик',
     'жаңы', 'күнгө', 'башчы', 'тоок', 'ээги', 'керээз', 'эне', 'мектеп',
@@ -169,9 +169,9 @@ test('§9.4 foldKey: every native round-trip word folds equal to its casual fall
 });
 
 // ---------------------------------------------------------------------------
-// §10  Casual register — one-way, documented mergers
+// §19  Plain form — one-way, documented mergers
 // ---------------------------------------------------------------------------
-test('§10 casual register: strip-only is the canonical default', () => {
+test('§19 plain form: strip-only is the default', () => {
   assert.equal(janyToFallback('çaí'), 'cai');
   assert.equal(janyToFallback('başçy'), 'bascý'.replace('ý', 'y'));  // ç→c, ş→s
   assert.equal(janyToFallback('jaŋy'), 'jany');
@@ -180,27 +180,27 @@ test('§10 casual register: strip-only is the canonical default', () => {
   assert.equal(janyToFallback('küz'), 'kuz');
 });
 
-test('§10 casual register: documented mergers (кол/көл, жаңы/жаны)', () => {
+test('§19 plain form: documented mergers (кол/көл, жаңы/жаны)', () => {
   assert.equal(janyToFallback(cyrToJany('кол')), 'kol');
   assert.equal(janyToFallback(cyrToJany('көл')), 'kol');
   assert.equal(janyToFallback(cyrToJany('жаңы')), 'jany');
   assert.equal(janyToFallback(cyrToJany('жаны')), 'jany');
-  // §10: strip fallback merges баш and бас under 'bas'
+  // §19: strip fallback merges баш and бас under 'bas'
   assert.equal(janyToFallback(cyrToJany('баш')), 'bas');
   assert.equal(janyToFallback(cyrToJany('бас')), 'bas');
 });
 
-test('§10 casual register: digraph style is opt-in, not default', () => {
+test('§19 plain form: digraph style is opt-in, not default', () => {
   assert.equal(janyToFallback('çaí', 'digraph'), 'chai');
   assert.equal(janyToFallback('başçy', 'digraph'), 'bashchy');
   assert.equal(janyToFallback('köl', 'digraph'), 'kol');   // non-sibilants still strip
 });
 
 // ---------------------------------------------------------------------------
-// §11.1  Option matrix smoke tests — every documented configuration produces output
+// §7  Option matrix smoke tests — every documented configuration produces output
 // ---------------------------------------------------------------------------
-test('§11.1 option matrix: front rounded vowels (four configurations)', () => {
-  // latin-umlaut (canonical default)
+test('§7 option matrix: front rounded vowels (four configurations)', () => {
+  // latin-umlaut (the Jany-Latyn default)
   assert.equal(cyrToJany('күл'), 'kül');
   assert.equal(cyrToJany('көл'), 'köl');
 
@@ -217,13 +217,13 @@ test('§11.1 option matrix: front rounded vowels (four configurations)', () => {
   assert.equal(cyrToJany('күл', { vowels: 'draft-macron' }), 'kūl');
 });
 
-test('§11.1 option matrix: sibilants (cedilla vs digraph)', () => {
+test('§7 option matrix: sibilants (cedilla vs digraph)', () => {
   assert.equal(cyrToJany('чай'), 'çaí');                                  // default cedilla
   assert.equal(cyrToJany('чай', { sibilants: 'digraph' }), 'chaí');
   assert.equal(cyrToJany('шаар', { sibilants: 'digraph' }), 'shaar');
 });
 
-test('§11.1 option matrix: velar nasal (ŋ vs ñ)', () => {
+test('§7 option matrix: velar nasal (ŋ vs ñ)', () => {
   assert.equal(cyrToJany('жаңы'), 'jaŋy');                          // default eng
   // жаңы = ж+а+ң+ы → j+a+ñ+y in tilde-n mode
   assert.equal(cyrToJany('жаңы', { velarNasal: 'tilde-n' }), 'jañy');
@@ -231,24 +231,24 @@ test('§11.1 option matrix: velar nasal (ŋ vs ñ)', () => {
   assert.equal(janyToCyr('jañy'), 'жаңы');
 });
 
-test('§11.1 option matrix: back unrounded vowel (y vs dotless-ı)', () => {
+test('§7 option matrix: back unrounded vowel (y vs dotless-ı)', () => {
   assert.equal(cyrToJany('кыргыз'), 'kyrgyz');                         // default y
   assert.equal(cyrToJany('кыргыз', { yGrapheme: 'dotless-i' }), 'kırgız');
   // Reverse: dotless ı → ы
   assert.equal(janyToCyr('kırgız'), 'кыргыз');
-  // §10: casual register must be plain ASCII even in the ı configuration
+  // §19: the plain form must be ASCII even in the ı configuration
   assert.equal(janyToFallback('kırgız'), 'kirgiz');
-  // §9.4: ı-config formal and its casual form fold to the same key
+  // Appendix B: the ı-config full form and its plain form fold to the same key
   assert.equal(foldKey('kırgız'), foldKey('kirgiz'));
 });
 
-test('§11.1 option matrix: uvular consonant (unified k vs allophonic q)', () => {
+test('§7 option matrix: uvular consonant (unified k vs allophonic q)', () => {
   assert.equal(cyrToJany('кыргыз'), 'kyrgyz');                         // default k
   assert.equal(cyrToJany('кыргыз', { uvularK: 'q' }), 'qyrgyz');
   assert.equal(cyrToJany('кел', { uvularK: 'q' }), 'kel');             // front vowel: stays k
 });
 
-test('§11.1 option matrix: ASCII fallback (strip vs digraph, §10)', () => {
+test('§7 option matrix: ASCII fallback (strip vs digraph, §19)', () => {
   assert.equal(janyToFallback('başçy'), 'bascý'.replace('ý', 'y'));
   // Simpler: assert each sibilant
   assert.equal(janyToFallback('ş'), 's');
@@ -258,10 +258,10 @@ test('§11.1 option matrix: ASCII fallback (strip vs digraph, §10)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// §11.2  Extended (compose-mode) letters: ä, x, w
+// §20  Extended (compose-mode) letters: ä, x, w
 // Never emitted by cyrToJany; reverse folds each to its Cyrillic base.
 // ---------------------------------------------------------------------------
-test('§11.2 extended letters reverse-fold to their Cyrillic base', () => {
+test('§20 extended letters reverse-fold to their Cyrillic base', () => {
   assert.equal(janyToCyr('äkä'), 'ака');       // ä → а
   assert.equal(janyToCyr('källä'), 'калла');
   assert.equal(janyToCyr('xaram'), 'харам');   // x → х
@@ -272,14 +272,14 @@ test('§11.2 extended letters reverse-fold to their Cyrillic base', () => {
   assert.equal(janyToCyr('XALYK'), 'ХАЛЫК');   // ALL-CAPS extended letter
 });
 
-test('§11.2 extended letters are never emitted by forward conversion', () => {
+test('§20 extended letters are never emitted by forward conversion', () => {
   // cyrToJany cannot produce ä/x/w — Cyrillic writes one а, one х, one в
   assert.equal(cyrToJany('ака'), 'aka');
   assert.equal(cyrToJany('харам'), 'haram');
   assert.equal(cyrToJany('ватан'), 'vatan');
 });
 
-test('§9.4 foldKey: x/w folds are configuration-dependent', () => {
+test('Appendix B foldKey: x/w folds are configuration-dependent', () => {
   // ä folds unconditionally (NFD decomposition, no competing value)
   assert.equal(foldKey('äkä'), foldKey('aka'));
 
@@ -301,7 +301,7 @@ test('§9.4 foldKey: x/w folds are configuration-dependent', () => {
   );
 });
 
-test('§9.4 foldKey: digraph-fallback register equivalence', () => {
+test('Appendix B foldKey: digraph-fallback register equivalence', () => {
   // Strip fallback: casual IS the folded form — keys match with no options.
   assert.equal(foldKey('çaí'), foldKey('cai'));
   assert.equal(foldKey('başçy'), foldKey('bascy'));
