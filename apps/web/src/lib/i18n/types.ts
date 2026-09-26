@@ -16,9 +16,6 @@ export interface PlaygroundTranslations {
   placeholder: string;
   fontLabel: string;
   fontUnavailable: string;
-  uVariantLabel: string;
-  uCanonical: string;
-  uCyrillic: string;
   vowelModeLabel: string;
   vowelLatinUmlaut: string;
   vowelHybrid: string;
@@ -118,7 +115,7 @@ export interface AlphabetTranslations {
   longVowels: string;
   russianZhaNote: string;
   loanTag: string;
-  canonicalAlphabet: string;
+  janyLatynAlphabet: string;
   lettersCount: string;
 }
 

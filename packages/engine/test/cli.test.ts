@@ -7,11 +7,11 @@ const CLI = 'dist/src/cli.js';
 const run = (args: string[], input: string) =>
   execFileSync(process.execPath, [CLI, ...args], { input, encoding: 'utf8' });
 
-test('default direction converts stdin Cyrillic to canonical', () => {
+test('default direction converts stdin Cyrillic to Jany-Latyn', () => {
   assert.equal(run([], 'Ак мөңгүлүү\n'), 'Ak möŋgülüü\n');
 });
 
-test('--to fallback chains canonical then ASCII fallback', () => {
+test('--to fallback chains Jany-Latyn then ASCII fallback', () => {
   assert.equal(run(['--to', 'fallback'], 'мөңгүлүү\n'), 'monguluu\n');
 });
 

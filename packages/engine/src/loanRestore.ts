@@ -2,7 +2,7 @@
 // Known loanwords whose correct Cyrillic form cannot be recovered by the core
 // rule-based engine. The core is complete on its own; this list only ever
 // restores loan spellings that the core has already flagged as lossy.
-// See whitepaper §9.2.
+// See whitepaper §18.2.
 //
 // Known side effect: the 'ishak' prefix entry restores the proper name Исхак
 // but will mis-convert the Russian loan ишак in digraph-mode input. That trade

@@ -48,13 +48,13 @@ test('FALLBACK covers ü, ö, ä, ŋ, legacy ū, and sibilant cedillas ç, ş', 
   assert.equal(map.get('Ş'), 'S');
 });
 
-test('LETTER_MAP maps ө to canonical ö and ү to canonical ü', () => {
+test('LETTER_MAP maps ө to Jany-Latyn ö and ү to Jany-Latyn ü', () => {
   const map = new Map(LETTER_MAP);
   assert.equal(map.get('ө'), 'ö');
   assert.equal(map.get('ү'), 'ü');
 });
 
-test('LETTER_MAP maps й to canonical í, and iotated vowels to ía, ío, íu', () => {
+test('LETTER_MAP maps й to Jany-Latyn í, and iotated vowels to ía, ío, íu', () => {
   const map = new Map(LETTER_MAP);
   assert.equal(map.get('й'), 'í');
   assert.equal(map.get('я'), 'ía');

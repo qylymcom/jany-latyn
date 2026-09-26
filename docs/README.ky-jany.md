@@ -113,7 +113,7 @@ npm run dev
 Brauzerde `http://localhost:5173` daregine kirip, jazuunu synap körsöŋüz bolot:
 - **Jany-Latyn formaty demeíki abalda:** Veb-saíttyn özü Jany-Latyn jazuusunda açylyp, okuuga jeŋil ekenin daroo körsötöt.
 - **Tüz transliteratsiía:** Sol jakta kirillitsa menen teriŋiz, oŋ jakta latyn jazuusun okuŋuz; ASCII fallback özünçö ötmöktö.
-- **Varianttardy kotoruu:** jany-latyn, CTA, digraftar jana aralaş ө bir basuu menen, je ar bir tamgany özüŋüz tandaŋyz (`ĭ`/`ĩ` jana `ñ` varianttary menen koşo). Salyştyruu tizmesi ar bir variant özgörtkön sözdördü belgileít.
+- **Varianttardy kotoruu:** jany-latyn, CTA ülgüsündö, digraftar jana aralaş ө bir basuu menen, je ar bir tamgany özüŋüz tandaŋyz (`ĭ`/`ĩ` jana `ñ` varianttary menen koşo). Salyştyruu tizmesi ar bir variant özgörtkön sözdördü belgileít.
 - **Virtualdyk klaviatura:** Alt katmary jana tez kirgizüü katary tandalgan parametrlerge ylaíyktaşat, oşonduktan uçurdagy varianttyn ar bir tamgasyn terüügö bolot ([docs/keyboard.md](keyboard.md)).
 - **Jaryk jana karaŋgy temalar:** Demeíki boíunça tutumdun jöndöösünö ylaíyk; kotorguç meníuda.
 - **Aripterdi tekşerüü:** Tutumduk jana zamanbap veb-aripterdin koldoosun baíkaŋyz.

@@ -1,8 +1,8 @@
 {
-  "source": "Whitepaper §9.5, 'What the tailoring changes', plus one list per anchor. Each list is in expected order.",
+  "source": "Whitepaper §17.4, 'Sorting: what the tailoring changes', plus one list per anchor. Each list is in expected order.",
   "configurations": [
     {
-      "name": "canonical",
+      "name": "Jany-Latyn",
       "options": {},
       "lists": [
         [

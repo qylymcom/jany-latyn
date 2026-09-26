@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 /**
- * The proper-name and signage list samples (§9.6 order, §13.6 capitalization).
+ * The proper-name and signage list samples (whitepaper §17.4 order, §23.6 capitalization).
  *
  * These files are one entry per line and exist to be sorted, so the checks here
  * are about list shape and about the collation and round-trip behavior the
@@ -47,7 +47,7 @@ test('list samples: both orders are total, so sorting is deterministic', { skip 
   }
 });
 
-test('§9.6 iotation moves an entry to a different letter of the alphabet', { skip }, () => {
+test('§17.4 iotation moves an entry to a different letter of the alphabet', { skip }, () => {
   // Екатеринбург leaves the E section and lands in the Í section: the whole
   // word relocates, which no single-letter anchor in the tailoring predicts.
   assert.equal(cyrToJany('Екатеринбург'), 'Íekaterinburg');
@@ -56,27 +56,27 @@ test('§9.6 iotation moves an entry to a different letter of the alphabet', { sk
   assert.ok(compare('Íekaterinburg', 'Jakyp') < 0);   // and before J
 });
 
-test('§9.6 ö is its own letter, so Karaköl follows every Karako- entry', { skip }, () => {
+test('§17.4 ö is its own letter, so Karaköl follows every Karako- entry', { skip }, () => {
   assert.ok(compare('Karakol', 'Karaköl') < 0);
-  // q mode separates the pair in two positions rather than one (§6).
+  // q mode separates the pair in two positions rather than one (§8).
   const q = { uvularK: 'q', uvularG: 'ğ' } as const;
   assert.equal(cyrToJany('Каракол', q), 'Qaraqol');
   assert.equal(cyrToJany('Каракөл', q), 'Qaraköl');
 });
 
-test('§7 the dotless configuration opens Ысык-Көл on a capital read as dotted i', { skip }, () => {
+test('§9 the dotless configuration opens Ысык-Көл on a capital read as dotted i', { skip }, () => {
   const dotless = { yGrapheme: 'dotless-i', uvularK: 'q', uvularG: 'ğ', glideGrapheme: 'y' } as const;
   assert.equal(cyrToJany('Ысык-Көл', dotless), 'Isıq-Köl');
 });
 
-test('§9.6 ç anchors to c, so Ч entries re-section rather than shift', { skip }, () => {
+test('§17.4 ç anchors to c, so Ч entries re-section rather than shift', { skip }, () => {
   assert.equal(cyrToJany('Чычкан'), 'Çyçkan');
   assert.ok(compare('Çyçkan', 'Dan') < 0);      // third letter of the Latin alphabet
   assert.ok(compareCyrillic('Чычкан', 'Шымкент') < 0);   // twenty-eighth of the Cyrillic one
   assert.ok(compareCyrillic('Чычкан', 'Ысык-Көл') < 0);
 });
 
-test('§9.2 the sh loss is unconditional, not a digraph-mode artifact', { skip }, () => {
+test('§18.2 the sh loss is unconditional, not a digraph-mode artifact', { skip }, () => {
   // No option is set anywhere: с+х produces s+h, which reverse reads as ш.
   assert.equal(cyrToJany('Исхак'), 'Ishak');
   assert.equal(janyToCyr('Ishak'), 'Ишак');
@@ -84,18 +84,18 @@ test('§9.2 the sh loss is unconditional, not a digraph-mode artifact', { skip }
   assert.equal(janyToCyr('Ashat'), 'Ашат');
 });
 
-test('§9.2 the restoration list can take Исхак but not Асхат', { skip }, () => {
+test('§18.2 the restoration list can take Исхак but not Асхат', { skip }, () => {
   // ishak is listed: its competitor, the Russian loan ишак, is not native.
   assert.equal(janyToCyr('Ishak', { restoreLoans: true }), 'Исхак');
   // Асхат cannot be added. In digraph input `ashat` is also native ашат, and
-  // §9.1 ranks native first, so an entry would invert the priority rule.
+  // §18.1 ranks native first, so an entry would invert the priority rule.
   assert.equal(cyrToJany('ашат', { sibilants: 'digraph' }), 'ashat');
   assert.equal(cyrToJany('Асхат', { sibilants: 'digraph' }), 'Ashat');
   assert.equal(janyToCyr('ashat', { restoreLoans: true }), 'ашат');
 });
 
-test('§12.4 CTA signage resolves into other Kyrgyz words for an untrained reader', { skip }, () => {
-  // The forms §12.4 cites, generated the way the testbed generates them: the
+test('§22.4 CTA signage resolves into other Kyrgyz words for an untrained reader', { skip }, () => {
+  // The forms §22.4 cites, generated the way the testbed generates them: the
   // source is uppercased with the configuration's case table, then converted.
   const cta = {
     yGrapheme: 'dotless-i', glideGrapheme: 'y', uvularK: 'q',
@@ -108,12 +108,12 @@ test('§12.4 CTA signage resolves into other Kyrgyz words for an untrained reade
   assert.equal(caps('чыгуу', cta), 'ÇIĞUU');
   assert.equal(caps('кирүү', cta), 'KİRÜÜ');      // the dotless case table on a real word
 
-  // The casual register strips the cedilla, and the dotless ı folds to i, so the
-  // exit sign reaches CIGUU where canonical spelling reaches CYGUU (§7, §10).
+  // The plain form strips the cedilla, and the dotless ı folds to i, so the
+  // exit sign reaches CIGUU where Jany-Latyn reaches CYGUU (§9, §19).
   assert.equal(janyToFallback(caps('чыгуу', cta)), 'CIGUU');
   assert.equal(janyToFallback(caps('чыгуу', {})), 'CYGUU');
 
-  // Canonical keeps all three legible to a Cyrillic-literate reader.
+  // Jany-Latyn keeps all three legible to a Cyrillic-literate reader.
   assert.equal(caps('жарыя', {}), 'JARYÍA');
   assert.equal(caps('чыгуу', {}), 'ÇYGUU');
   assert.equal(caps('кирүү', {}), 'KIRÜÜ');

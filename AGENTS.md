@@ -18,14 +18,14 @@ When modifying or extending the transliteration engine, **never violate these pr
 
 1. **Zero External Runtime Dependencies:**
    `packages/engine/src/` must remain pure TypeScript/JavaScript using only the Node.js standard library.
-2. **Canonical Glyphs:**
+2. **Jany-Latyn Glyphs:**
    - **`ч` → `ç / Ç`** (Latin U+00E7 / U+00C7, c with cedilla), with `ch` supported as a configurable option and backward-compatible reverse rule.
    - **`ш` → `ş / Ş`** (Latin U+015F / U+015E, s with cedilla), with `sh` supported as a configurable option and backward-compatible reverse rule.
    - **`щ` → `ş / Ş`** (merged into `ş` matching spoken Kyrgyz phonology; avoids disastrous reverse collisions with native `başçy`).
    - **`ү` → `ü / Ü`** (Latin U+00FC / U+00DC), with `ū`, `ұ`, and `ʉ` supported as configurable variants.
    - **`ө` → `ö / Ö`** (Latin U+00F6 / U+00D6), with Cyrillic `ө` supported as a configurable variant.
    - **`ң` → `ŋ / Ŋ`** (U+014B / U+014A, eng).
-   - **`й` → `í / Í`** (Latin U+00ED / U+00CD, i with acute) in all phonotactic positions. `ĭ` (U+012D) and `ĩ` (U+0129) exist only as testbed alternatives (`glideGrapheme: 'breve-i' | 'tilde-i'`); never make either canonical.
+   - **`й` → `í / Í`** (Latin U+00ED / U+00CD, i with acute) in all phonotactic positions. `ĭ` (U+012D) and `ĩ` (U+0129) exist only as testbed alternatives (`glideGrapheme: 'breve-i' | 'tilde-i'`); never make either part of Jany-Latyn.
    - **`ж` → `j`** in all contexts (never `zh`).
    - **`ы` → `y`**, **`и` → `i`**.
 3. **No `q` or `ğ`:**
@@ -33,9 +33,9 @@ When modifying or extending the transliteration engine, **never violate these pr
 4. **Phonemic Long Vowels Are Doubled & Glides Are Universal `í`:**
    Written doubled (`аа → aa`, `ээ → ee`, `оо → oo`, `уу → uu`, `өө → öö`, `үү → üü`). Never use combining diacritics for vowel length (they break search indexing and plain typing). High-front glides preserve morphemic roots without triple vowels: `/j/` is written `í` (`бийик → biíik`, `кийин → kiíin`, `кийим → kiíim`, `тийиштүү → tiíiştüü`, `бий → bií`, `бийи → biíi`), avoiding barcode-like `iii` via the acute accent while eliminating artificial root mutations or lookahead dictionaries.
 5. **Russian Signs Absorbed (Pure-Alphabetic Tokens):**
-   Hard and soft signs (`ъ` and `ь`) are absorbed into vowel glides in hiatus (`объект → obíekt`, `семья → semía`) and depalatalized at coda (`июль → iíul`, `апрель → aprel`). Words in canonical Jany-latyn are 100% alphabetic (`\p{L}+`) without internal punctuation or apostrophes, optimizing tokenization for search indexing and LLMs.
+   Hard and soft signs (`ъ` and `ь`) are absorbed into vowel glides in hiatus (`объект → obíekt`, `семья → semía`) and depalatalized at coda (`июль → iíul`, `апрель → aprel`). Words in Jany-Latyn are 100% alphabetic (`\p{L}+`) without internal punctuation or apostrophes, optimizing tokenization for search indexing and LLMs.
 6. **Backward Compatibility:**
-   `janyToCyr` must reverse canonical `ü`, legacy `ū`, and alternative `ұ` back to `ү`, legacy `iy/iyi` to `ий/ийи`, the testbed glides `ĭ`/`ĩ` to `й` exactly like `í` (they are folded to `í` before reversal), legacy digraphs `ch`, `sh`, `sch` to `ч`, `ш`, `щ`, and legacy apostrophe signs (`ob'ekt`, `sem'ía`) back to `ъ` and `ь`.
+   `janyToCyr` must reverse the Jany-Latyn `ü`, legacy `ū`, and alternative `ұ` back to `ү`, legacy `iy/iyi` to `ий/ийи`, the testbed glides `ĭ`/`ĩ` to `й` exactly like `í` (they are folded to `í` before reversal), legacy digraphs `ch`, `sh`, `sch` to `ч`, `ш`, `щ`, and legacy apostrophe signs (`ob'ekt`, `sem'ía`) back to `ъ` and `ь`.
 
 ---
 
@@ -50,7 +50,7 @@ jany-latyn/
 │   ├── src/
 │   │   ├── alphabet.ts        # Declarative letter mappings (LETTER_MAP) and ASCII fallback (FALLBACK)
 │   │   ├── convert.ts         # Core transliteration logic:
-│   │   │                      # - cyrToJany(): Cyrillic -> Canonical Jany
+│   │   │                      # - cyrToJany(): Cyrillic -> Jany-Latyn
 │   │   │                      # - janyToFallback(): Jany -> ASCII Fallback (o, u, i, n)
 │   │   │                      # - janyToCyr(): Jany -> Cyrillic (deterministic reverse)
 │   │   │                      # - janyToCyrillicU(): Jany -> Display variant with Cyrillic ұ
@@ -58,7 +58,7 @@ jany-latyn/
 │   │   ├── casing.ts          # SPEC §2.1: recase from the source word's pattern; explicit case tables per configuration
 │   │   ├── collate.ts         # SPEC §6: compare(a, b, options), a rank table per configuration (jany-latyn/collate)
 │   │   ├── loanRestore.ts     # Opt-in loanword restoration for reverse conversion
-│   │   ├── testbedPresets.ts  # §11.1 testbed-only option couplings (ı→q, y-glide) and the ĩ+ñ warning
+│   │   ├── testbedPresets.ts  # Whitepaper §7 testbed-only option couplings (ı→q+ğ+y glide, q→ğ) and the ĩ+ñ warning
 │   │   └── cli.ts             # CLI executable (node packages/engine/dist/src/cli.js)
 │   ├── keymaps/
 │   │   ├── jany-latyn.keylayout # macOS XML keyboard layout (full ANSI coverage)

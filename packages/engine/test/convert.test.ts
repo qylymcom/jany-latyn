@@ -85,7 +85,7 @@ test('reverse conversion: bijective restoration with zero heuristics', () => {
   assert.equal(janyToCyr('biíik'), 'бийик');
   assert.equal(janyToCyr('kiíim'), 'кийим');
   assert.equal(janyToCyr('saíakat'), 'саякат');
-  // §9.1 native-priority: ts→тс (not ц), so авиация round-trips to авиатсия
+  // §18.1 native-priority: ts→тс (not ц), so авиация round-trips to авиатсия
   assert.equal(janyToCyr('aviatsiía'), 'авиатсия');
   assert.equal(janyToCyr('Íevropa'), 'Европа');
   assert.equal(janyToCyr('el'), 'эл');
@@ -107,11 +107,11 @@ test('loanword hiatus with e is written íe (переезд, поезд, про�
   assert.equal(cyrToJany('переезд'), 'pereíezd');
   assert.equal(cyrToJany('поезд'), 'poíezd');
   assert.equal(cyrToJany('проект'), 'proíekt');
-  // §9.1 native-priority: post-vocalic íe→йе, so loanwords are lossy without restoreLoans
+  // §18.1 native-priority: post-vocalic íe→йе, so loanwords are lossy without restoreLoans
   assert.equal(janyToCyr('pereíezd'), 'перейезд');
   assert.equal(janyToCyr('poíezd'), 'пойезд');
   assert.equal(janyToCyr('proíekt'), 'пройект');
-  // §9.2 restoreLoans restores correct Cyrillic spellings
+  // §18.2 restoreLoans restores correct Cyrillic spellings
   assert.equal(janyToCyr('pereíezd', { restoreLoans: true }), 'переезд');
   assert.equal(janyToCyr('poíezd', { restoreLoans: true }), 'поезд');
   assert.equal(janyToCyr('proíekt', { restoreLoans: true }), 'проект');
@@ -223,7 +223,7 @@ test('reverse: iy and iyi restore deterministically', () => {
 });
 
 test('reverse is exact for every unambiguous letter', () => {
-  // ц is ambiguous: ts→тс (native-priority §9.1) so ц cannot be round-tripped
+  // ц is ambiguous: ts→тс (native-priority §18.1) so ц cannot be round-tripped
   const AMBIGUOUS = new Set(['е', 'э', 'и', 'й', 'ъ', 'ь', 'щ', 'ц']);
   for (const [cyr] of LETTER_MAP) {
     if (AMBIGUOUS.has(cyr)) continue;
@@ -231,13 +231,13 @@ test('reverse is exact for every unambiguous letter', () => {
   }
 });
 
-test('forward: ү converts to canonical ü and үү to üü', () => {
+test('forward: ү converts to Jany-Latyn ü and үү to üü', () => {
   assert.equal(cyrToJany('күз'), 'küz');
   assert.equal(cyrToJany('жүгүрүү'), 'jügürüü');
   assert.equal(cyrToJany('ҮЙ'), 'ÜÍ');
 });
 
-test('reverse: recognizes canonical ü, legacy ū, and ұ', () => {
+test('reverse: recognizes Jany-Latyn ü, legacy ū, and ұ', () => {
   assert.equal(janyToCyr('küz'), 'күз');
   assert.equal(janyToCyr('kūz'), 'күз');
   assert.equal(janyToCyr('kұz'), 'күз');
@@ -272,7 +272,7 @@ test('display variant: janyToMacronU is identity pass-through', () => {
 });
 
 test('cyrToJany with options', () => {
-  // Default (canonical: ö / ü, y, ç/ş)
+  // Default (Jany-Latyn: ö / ü, y, ç/ş)
   assert.equal(cyrToJany('көл'), 'köl');
   assert.equal(cyrToJany('күз'), 'küz');
   assert.equal(cyrToJany('чай'), 'çaí');
@@ -327,7 +327,7 @@ test('cyrToJany with options', () => {
   assert.equal(cyrToJany('окуя', { glideGrapheme: 'i' }), 'okuia');
   assert.equal(cyrToJany('Европа', { glideGrapheme: 'i' }), 'Ievropa');
 
-  // glideGrapheme: breve-i / tilde-i (§11.1 marked alternatives) behave like í
+  // glideGrapheme: breve-i / tilde-i (§7 marked alternatives) behave like í
   for (const [g, m] of [['breve-i', 'ĭ'], ['tilde-i', 'ĩ']] as const) {
     assert.equal(cyrToJany('ай', { glideGrapheme: g }), `a${m}`);
     assert.equal(cyrToJany('бийик', { glideGrapheme: g }), `bi${m}ik`);
@@ -339,7 +339,7 @@ test('cyrToJany with options', () => {
     assert.equal(cyrToJany('объект', { glideGrapheme: g }), `ob${m}ekt`);
   }
 
-  // glideGrapheme: acute-i (canonical default)
+  // glideGrapheme: acute-i (the Jany-Latyn default)
   assert.equal(cyrToJany('окуя'), 'okuía');
   assert.equal(cyrToJany('саякат'), 'saíakat');
   assert.equal(cyrToJany('аюу'), 'aíuu');
@@ -448,10 +448,10 @@ test('janyToFallback handles all variants', () => {
   assert.equal(janyToFallback('köl'), 'kol');
   assert.equal(janyToFallback('küz'), 'kuz');
   assert.equal(janyToFallback('äkä'), 'aka');
-  // §10 canonical strip-only (default)
+  // §19 strip-only (default)
   assert.equal(janyToFallback('çai'), 'cai');
   assert.equal(janyToFallback('şaar'), 'saar');
-  // §10 digraph style is opt-in
+  // §19 digraph style is opt-in
   assert.equal(janyToFallback('çai', 'digraph'), 'chai');
   assert.equal(janyToFallback('şaar', 'digraph'), 'shaar');
 });
@@ -460,7 +460,7 @@ test('sibilant disambiguation and contrast cases', () => {
   // Disambiguation: исхак → ishak (с+х), ишак → işak (ш)
   assert.equal(cyrToJany('исхак'), 'ishak');
   assert.equal(cyrToJany('ишак'), 'işak');
-  // Without restoreLoans: sh digraph causes ishak→ишак (documented merger §9.2)
+  // Without restoreLoans: sh digraph causes ishak→ишак (documented merger §18.2)
   assert.equal(janyToCyr('ishak'), 'ишак');
   assert.equal(janyToCyr('işak'), 'ишак');
   // With restoreLoans: prefix list restores Исхак
@@ -480,7 +480,7 @@ test('sibilant disambiguation and contrast cases', () => {
 });
 
 test('reverse conversion of absorbed Russian signs', () => {
-  // Without restoreLoans: core gives lossy output — ь/ъ signs cannot be recovered (§9.2)
+  // Without restoreLoans: core gives lossy output — ь/ъ signs cannot be recovered (§18.2)
   assert.equal(janyToCyr('obíekt'), 'обект');
   assert.equal(janyToCyr('subíekt'), 'субект');
   assert.equal(janyToCyr('síezd'), 'сезд');
@@ -492,7 +492,7 @@ test('reverse conversion of absorbed Russian signs', () => {
   assert.equal(janyToCyr('albom'), 'албом');
   assert.equal(janyToCyr('film'), 'филм');
 
-  // With restoreLoans: loan dictionary restores correct Cyrillic spellings (§9.2)
+  // With restoreLoans: loan dictionary restores correct Cyrillic spellings (§18.2)
   assert.equal(janyToCyr('obíekt', { restoreLoans: true }), 'объект');
   assert.equal(janyToCyr('subíekt', { restoreLoans: true }), 'субъект');
   assert.equal(janyToCyr('síezd', { restoreLoans: true }), 'съезд');
@@ -510,12 +510,12 @@ test('reverse conversion of absorbed Russian signs', () => {
 });
 
 
-test('§11.1 marked glides reverse exactly like canonical í', () => {
+test('§7 marked glides reverse exactly like the Jany-Latyn í', () => {
   const words = ['бийик', 'кийим', 'кийет', 'тийиштүү', 'айтса', 'окуя', 'аюу', 'коён', 'Бий', 'АЙ'];
   for (const cyr of words) {
-    const canonical = janyToCyr(cyrToJany(cyr));
+    const janyLatyn = janyToCyr(cyrToJany(cyr));
     for (const g of ['breve-i', 'tilde-i'] as const) {
-      assert.equal(janyToCyr(cyrToJany(cyr, { glideGrapheme: g })), canonical, `${g}: ${cyr}`);
+      assert.equal(janyToCyr(cyrToJany(cyr, { glideGrapheme: g })), janyLatyn, `${g}: ${cyr}`);
     }
   }
 });

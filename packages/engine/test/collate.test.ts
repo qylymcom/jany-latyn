@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 /**
- * compare() against the checked-in expected orderings (whitepaper §9.5). The ICU
+ * compare() against the checked-in expected orderings (whitepaper §17.4). The ICU
  * rules cannot be run here (Intl.Collator takes no tailoring), so the fixture is
  * the pinned truth for both: change the rules, change the fixture.
  */
@@ -35,7 +35,7 @@ for (const { name, options, lists } of fixture.configurations) {
 test('compare(): the dotless reversal is configuration-dependent', () => {
   assert.ok(compare('kir', 'kyz') < 0);
   assert.ok(compare('kız', 'kir', { yGrapheme: 'dotless-i' }) < 0);
-  assert.ok(compare('kız', 'kir') > 0); // canonical: ı is not a letter here and sorts as an unknown one
+  assert.ok(compare('kız', 'kir') > 0); // Jany-Latyn: ı is not a letter here and sorts as an unknown one
 });
 
 test('compare(): equal strings compare 0; the result is antisymmetric', () => {

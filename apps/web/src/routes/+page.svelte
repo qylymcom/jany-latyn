@@ -47,7 +47,7 @@
   };
 
   // Named variants double as presets (top switcher) and as comparison rows.
-  // `card` / `voteName` keep the analytics identifiers used before the redesign.
+  // `card` and `voteName` are the analytics identifiers; the vote modal also shows `voteName`.
   interface Variant {
     id: string;
     card: string;
@@ -60,8 +60,8 @@
     {
       id: "cta",
       card: "compCTA",
-      voteName: "CTA Standard",
-      // The CTA writes the velar nasal ñ; without it this preset is not the CTA row of whitepaper §9.5.
+      voteName: "CTA-aligned",
+      // The CTA writes the velar nasal ñ; without it this preset is not the CTA-aligned setting of whitepaper §6.
       opts: { ...DEFAULTS, yGrapheme: "dotless-i", glideGrapheme: "y", uvularK: "q", uvularG: "ğ", affricate: "c", velarNasal: "tilde-n" },
     },
     {
@@ -148,7 +148,7 @@
   const display = $derived(cyrToJany(cased(input), opts));
   const fallbackDisplay = $derived(janyToFallback(display, fallbackStyle));
 
-  // List view (§9.6): each non-empty line is one entry. The two columns are
+  // List view (whitepaper §17.4): each non-empty line is one entry. The two columns are
   // sorted independently — the source by the Kyrgyz Cyrillic alphabet, the
   // result by the active configuration's order — so the rows fall out of
   // alignment exactly where the two orders disagree.
@@ -292,13 +292,11 @@
     ];
   });
 
-  // A `y` that would write both ы and й is blocked (§4.4); the testbed
-  // resolvers handle the remaining couplings (§11.1).
+  // The `y` glide is offered only while ы is written ı, since a `y` that wrote
+  // both ы and й would collide (whitepaper §10). Switching ы back to `y` stays
+  // available: the resolver returns a `y` glide to `í` (whitepaper §7).
   function isDisabled(key: OptKey, value: string): boolean {
-    return (
-      (key === "yGrapheme" && value === "y" && opts.glideGrapheme === "y") ||
-      (key === "glideGrapheme" && value === "y" && opts.yGrapheme === "y")
-    );
+    return key === "glideGrapheme" && value === "y" && opts.yGrapheme === "y";
   }
 
   function setOption(key: OptKey, value: string) {

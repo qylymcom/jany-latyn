@@ -30,7 +30,7 @@
   }
 
   // The whitepaper's reading font, offered in the header so it stays reachable
-  // anywhere in a long document. Fonts missing the canonical glyphs grey out.
+  // anywhere in a long document. Fonts missing the Jany-Latyn glyphs grey out.
   const onWhitepaper = $derived(isActive('/whitepaper/'));
   const fontItems = $derived(
     FONTS.map((f) => ({

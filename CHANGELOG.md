@@ -1,13 +1,13 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 # Changelog
 
-Versions are numbered and changes are logged (whitepaper §11.4). Each entry
+Versions are numbered and changes are logged (whitepaper §24). Each entry
 records what a reader of the previous version would find different, so that a
 citation of one version can be checked against another.
 
 Release versions are calendar-based (`YYYY.N`). They are not the version of the
 orthography itself, which is stated in the whitepaper header and changes only
-when a canonical mapping does. The releases so far leave the canonical
+when a Jany-Latyn mapping does. The releases so far leave the
 orthography at version 1.
 
 ## 2026.3 — 2026-09-21

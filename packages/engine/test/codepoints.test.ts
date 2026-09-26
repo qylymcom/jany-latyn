@@ -5,7 +5,7 @@
  * so a lookalike substitution (Latin ő U+0151 for Cyrillic ө U+04E9, Latin ü
  * U+00FC for Kyrgyz ү U+04AF) fails here even though it is invisible in review.
  * That is exactly the bug class the first round found in the hybrid map and in
- * CANON_VOWELS.
+ * the reverse converter's vowel set.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -25,13 +25,13 @@ const cps = (s: string) => [...s].map((c) => c.codePointAt(0)!);
 const hex = (n: number) => 'U+' + n.toString(16).toUpperCase().padStart(4, '0');
 
 // SPEC §9 inventory — the only non-ASCII codepoints allowed to appear in
-// canonical Latin output and the letter tables.
-const CANONICAL_LATIN = new Set<number>([
+// Latin output and the letter tables.
+const LATIN_INVENTORY = new Set<number>([
   0x00d6, 0x00f6, // Ö ö
   0x00dc, 0x00fc, // Ü ü
   0x00cd, 0x00ed, // Í í
-  0x012c, 0x012d, // Ĭ ĭ (breve glide alternative, §11.1)
-  0x0128, 0x0129, // Ĩ ĩ (tilde glide alternative, §11.1)
+  0x012c, 0x012d, // Ĭ ĭ (breve glide alternative, §7)
+  0x0128, 0x0129, // Ĩ ĩ (tilde glide alternative, §7)
   0x014a, 0x014b, // Ŋ ŋ
   0x00d1, 0x00f1, // Ñ ñ (velar-nasal alternative)
   0x00c7, 0x00e7, // Ç ç
@@ -69,11 +69,11 @@ test('§9 LETTER_MAP special letters use the exact expected codepoints', () => {
   assert.ok(!lm.has(U(0x0171)), 'Latin ű U+0171 must not be a LETTER_MAP key');
 });
 
-test('§9 every non-ASCII char in LETTER_MAP values is in the canonical inventory', () => {
+test('§9 every non-ASCII char in LETTER_MAP values is in the inventory', () => {
   for (const [, value] of LETTER_MAP) {
     for (const c of cps(value)) {
       assert.ok(
-        c < 0x80 || CANONICAL_LATIN.has(c),
+        c < 0x80 || LATIN_INVENTORY.has(c),
         `unexpected codepoint ${hex(c)} in LETTER_MAP value ${JSON.stringify(value)}`,
       );
     }
@@ -99,13 +99,13 @@ test('§9 FALLBACK includes dotless ı/İ and only inventory source chars', () =
   assert.equal(fb.get(U(0x0130)), 'I');
   for (const [from] of FALLBACK) {
     const c = from.codePointAt(0)!;
-    const ok = c < 0x80 || CANONICAL_LATIN.has(c) ||
+    const ok = c < 0x80 || LATIN_INVENTORY.has(c) ||
       [CYR_OE, CYR_OE_CAP, KAZ_U, KAZ_U_CAP, MACRON_U, MACRON_U_CAP].includes(c);
     assert.ok(ok, `FALLBACK source char ${hex(c)} not in inventory`);
   }
 });
 
-test('§4.1/§4.2 hybrid and display vowel maps emit the exact codepoints', () => {
+test('§12.1/§12.2 hybrid and display vowel maps emit the exact codepoints', () => {
   // hybrid: Cyrillic ө (U+04E9) + Latin ü (U+00FC)
   assert.equal(cyrToJany('көл', { vowels: 'hybrid' }).codePointAt(1), CYR_OE);
   assert.equal(cyrToJany('күз', { vowels: 'hybrid' }).codePointAt(1), 0x00fc);
@@ -128,7 +128,7 @@ test('§9 display-variant maps emit the exact u-glyph codepoints', () => {
   assert.equal(janyToMacronU('Ü').codePointAt(0), MACRON_U_CAP);
 });
 
-test('§9.4 five formal letters decompose under NFD; ŋ and ı do not', () => {
+test('Appendix B five formal letters decompose under NFD; ŋ and ı do not', () => {
   // The whitepaper rests the folding argument on this split: accent-stripping
   // handles the decomposable letters for free, and ŋ has to be handled explicitly.
   for (const ch of ['ç', 'ş', 'ö', 'ü', 'í', 'ä', 'ñ', 'ğ']) {
@@ -143,7 +143,7 @@ test('§9.4 five formal letters decompose under NFD; ŋ and ı do not', () => {
   assert.equal(foldKey('ı'), 'i');
 });
 
-test('§11.1 marked glides emit exact codepoints and reverse/fold like í', () => {
+test('§7 marked glides emit exact codepoints and reverse/fold like í', () => {
   const BREVE = 0x012d, BREVE_CAP = 0x012c, TILDE = 0x0129, TILDE_CAP = 0x0128;
   assert.deepEqual(cps(cyrToJany('ай', { glideGrapheme: 'breve-i' })), [0x61, BREVE]);
   assert.deepEqual(cps(cyrToJany('ай', { glideGrapheme: 'tilde-i' })), [0x61, TILDE]);
