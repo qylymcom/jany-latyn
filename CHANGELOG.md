@@ -7,8 +7,112 @@ citation of one version can be checked against another.
 
 Release versions are calendar-based (`YYYY.N`). They are not the version of the
 orthography itself, which is stated in the whitepaper header and changes only
-when a Jany-Latyn mapping does. The releases so far leave the
-orthography at version 1.
+when a Jany-Latyn mapping does. The releases so far leave the orthography at
+version 1.
+
+## 2026.4 — 2026-09-25
+
+### Document
+
+- **The whitepaper is reorganized into four parts, and every section is
+  renumbered.** Part I (§1–§7) states the proposal in brief: the problem,
+  the alphabet at a glance, the design principles, the letters that shape
+  the rest, what the orthography gives and costs, how it compares, and the
+  testbed. Part II (§8–§20) argues each letter, Part III (§21–§22) gives
+  the context, and Part IV (§23–§25) the open questions and governance.
+  The `e` system, folding, the collation tailoring, and the engine move to
+  Appendices A–D. No mapping, rule, or collation order changes. A citation
+  of 2026.3 should be re-checked against this map:
+
+  | 2026.3 | 2026.4 |
+  | :--- | :--- |
+  | §1 | §1; its opening paragraph now opens Part III |
+  | §2.1, §2.2, §2.3 | §1.1, About this document, §5.2 |
+  | §3 | §3 |
+  | §4 (vowel table), §4.1, §4.2 | §15, §12.1, §12.2 |
+  | §4.3, §4.4 | §15.1, §10 |
+  | §5 (consonant table) | §2 |
+  | §5.1, §5.2, §5.3, §5.4 | §11, §13, §14, §16 |
+  | §6, §7 | §8, §9 |
+  | §8.1–§8.5 | §21.1–§21.5; the `j`/`c` argument of §8.2 is in §11 |
+  | §9, §9.1, §9.2 | §18, §18.1, §18.2 |
+  | §9.3, §9.4 | Appendix A, Appendix B |
+  | §9.5 | §17.1–§17.3; the CTA letter count and "The same words in each" are in §21.2 |
+  | §9.6 | §17.4, and Appendix C for the ICU rules |
+  | §10 | §19 |
+  | §11.1, §11.2, §11.3, §11.4 | §7, §20, Appendix D, §24 |
+  | §12.1–§12.5 | §22.1–§22.5; the "26 of 31" accounting is in §21.2 |
+  | §12.6, §12.7 | §1.2, §22.6 |
+  | §13.1–§13.6 | §23.1–§23.6 |
+  | §14 | §25 |
+
+- **The terminology changes with it.** "Jany-Latyn" names the proposed
+  alphabet and replaces "canonical" in the whitepaper, SPEC.md, and the
+  testbed. The two registers are the full form and the plain form,
+  formerly the formal and casual registers. Every other configuration is a
+  comparison setting, and three recur by name: q+ğ, q+ğ+ı, which writes
+  the glide `y`, and CTA-aligned (q+ğ+ı+c+ñ). "CTA" alone means only the
+  34-letter Baku alphabet.
+- §2 opens with the 28-letter alphabet and a chart of the twenty-two
+  Cyrillic letters that need comment, each with its plain form and an
+  example. §6 defines the comparison settings and writes *аңкыгый жигит*
+  in each. §17.3 gives the alphabets in case pairs and drops the row for
+  `q` without `ğ`.
+- A pass states each argument once, in the section that owns it. §20
+  argues `x` as weak a case as `w`, since [h] and [x] vary by speaker and
+  region rather than telling words apart, and names `ä` the strongest of
+  the three. The letter accounting against the CTA moves to §21.2 and
+  states the total: 26 of its letters, plus `ŋ` and `í`, make 28. §22.5 is
+  reorganized and softened, and §23.2 is rewritten around what can be
+  tested now.
+- §7 describes the new coupling (see Testbed) and lists the х toggle, and
+  §24 describes the hosted testbed's consent-gated analytics.
+- SPEC.md follows the new terms and section numbers. §1 is retitled
+  "Mapping", `ñ` moves to the comparison settings in the §9 inventory, and
+  the §7 footnotes describe the new coupling.
+
+### Testbed
+
+- **Selecting `ı` for `ы` now also switches the glide to `y`,** so one
+  click gives the q+ğ+ı setting (*aŋqığıy*) rather than *aŋqığıí*, and
+  switching back to `y` restores `k`, `g`, and `í`. The couplings remain
+  seeds: `ı` with `k`, `q` without `ğ`, and `ı` with the `í` glide can
+  still be set afterwards. The `y` glide is still offered only while `ы` is
+  `ı`, and `ы` can now be switched back to `y` while the glide is `y`,
+  which the testbed used to block.
+- The CTA preset is renamed CTA-aligned, translated in each interface
+  language, and its description now includes `ñ` for `ң`. The vote dialog and the
+  analytics record it as `CTA-aligned`, formerly `CTA Standard`.
+- An h / x row for х, with a note on the [h]/[x] variation. The vote
+  dialog and the analytics record the choice.
+- The alphabet page opens with the 28 letters, capital over lowercase over
+  the broad IPA value, with [q], [ʁ], and [h] under `k`, `g`, and `h`.
+  Example words carry glosses in the interface language.
+- Simplified Chinese joins the interface languages.
+- The About page gains a Privacy section. On the hosted site only, a
+  consent banner asks before any analytics are captured, and declining
+  stores nothing on the device.
+- The Kyrgyz address to the 81st UN General Assembly is added as a sample
+  text.
+- A tab opened before a deploy now reloads instead of stalling on missing
+  script chunks.
+
+### Engine
+
+- `velarFricative: 'h' | 'x'` writes every х as `x` in `'x'` mode, for
+  readers who take the velar value to be the better one, and `x` then
+  sorts right after `h`. `'h'` is the default. It is a one-letter mapping
+  from Cyrillic, not the §20 compose-mode split.
+- `resolveYGraphemeChange` seeds the `y` glide along with `q` and `ğ`, and
+  `resolveGlideGraphemeChange` returns the state unchanged when asked for
+  the `y` glide while `ы` is `y`, where it used to force `ı`.
+- The whitepaper conformance checker reads the reorganized document: the
+  new setting labels, the plain-form rows, the §2 chart, the §6 settings
+  table, and the Jany-Latyn column of the romanization tables. It now runs
+  208 checks.
+- No conversion behavior changes for existing options: with
+  `velarFricative` at its default, `cyrToJany`, `janyToCyr`,
+  `janyToFallback`, and `foldKey` give the same output as in 2026.3.
 
 ## 2026.3 — 2026-09-21
 

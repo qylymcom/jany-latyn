@@ -1,7 +1,7 @@
 {
   "name": "jany-latyn-web",
   "private": true,
-  "version": "2026.3.0",
+  "version": "2026.4.0",
   "license": "PolyForm-Noncommercial-1.0.0",
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
     "vite": "^6.0.0"
   },
   "dependencies": {
-    "jany-latyn": "2026.3.0",
+    "jany-latyn": "2026.4.0",
     "marked": "^18.0.13",
     "posthog-js": "^1.430.3"
   }
