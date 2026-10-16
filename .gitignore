@@ -24,3 +24,6 @@ build/
 .claude/
 .codegraph/
 .superpowers/
+
+# External datasets fetched by scripts (never commit; packages/engine/scripts/fetch-ud-kyrgyz.sh)
+data/
