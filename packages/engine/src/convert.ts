@@ -29,6 +29,9 @@ export interface JanyCyrOptions {
   // The configuration the Latin text was written in. 'dotless-i' selects the
   // Turkish case pairs (I ↔ ı, İ ↔ i), so KIRGIZ reads as КЫРГЫЗ (SPEC §2.1).
   yGrapheme?: JanyOptions['yGrapheme'];
+  // With yGrapheme 'dotless-i', a 'y' glide (CTA) makes every y the glide й, so
+  // obyekt reads as обект, not обыект. Other values change nothing.
+  glideGrapheme?: JanyOptions['glideGrapheme'];
 }
 
 const CYR_WORD = /[\p{Script=Cyrillic}]+/gu;
@@ -446,7 +449,12 @@ function revertWord(word: string, restoreLoans: boolean, offset = 0): Segment[] 
 export function janyToCyr(text: string, options?: JanyCyrOptions): string {
   const restoreLoans = options?.restoreLoans ?? false;
   const mode = caseModeFor(options);
+  // CTA's y glide reads exactly like the Jany-Latyn í glide (same length, so the
+  // case pattern of the source word still lines up with the segments).
+  const glideY = mode === 'turkic' && options?.glideGrapheme === 'y';
   const normalized = text.normalize('NFC').replace(MARKED_GLIDE, (g) => MARKED_GLIDE_TO_ACUTE[g]);
-  return mapLines(normalized, (line, upperLine) => line.replace(JANY_WORD, (word) =>
-    applyCase(word, revertWord(lowerStr(word, mode), restoreLoans), upperLine, mode)), mode);
+  return mapLines(normalized, (line, upperLine) => line.replace(JANY_WORD, (word) => {
+    const lower = lowerStr(word, mode);
+    return applyCase(word, revertWord(glideY ? lower.replace(/y/g, 'í') : lower, restoreLoans), upperLine, mode);
+  }), mode);
 }
