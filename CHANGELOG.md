@@ -10,6 +10,28 @@ orthography itself, which is stated in the whitepaper header and changes only
 when a Jany-Latyn mapping does. The releases so far leave the orthography at
 version 1.
 
+## Unreleased
+
+### Runes (Jany-Enesai)
+
+- **A proposal and a specification.** `docs/jany-enesai/JANY-ENESAI.md`
+  (draft 0.3) proposes Jany-Enesai, 28 Old Turkic runes, one per
+  Jany-Latyn letter, with comparison settings: k+g and full harmony (the
+  community chart), Eski-Enesai and an Orkhon inscription look, per-letter
+  attested forms for р, с, ш, and toggles for у and ж.
+  `docs/jany-enesai/RUNES-SPEC.md` states the rules. No Jany-Latyn mapping
+  changes.
+- **Engine: `jany-latyn/runes`.** Conversion to runes in every setting and
+  back to Cyrillic where the setting is reversible (with the loan-restoration
+  list), an inscription reader with scholarly, CTA, Jany-Latyn and Cyrillic
+  notations, a detector for old and modern spelling, rune sorting and search
+  keys, and per-letter explanations. CLI: `--to runes`, `--rune-preset`,
+  `--rune-opt`, `--from runes`, `--to read`, `--to detect`.
+- **Corpus.** `corpus/` holds the 22 Enisei Kyrgyz inscriptions of
+  *A Database of Turkic Runiform Inscriptions* (Uppsala University) in
+  Unicode, checked against the database, under that database's license,
+  CC BY-NC-SA 4.0. `npm run test:corpus` checks the engine against it.
+
 ## 2026.4 — 2026-09-25
 
 ### Document

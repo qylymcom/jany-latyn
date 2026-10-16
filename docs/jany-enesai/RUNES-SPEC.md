@@ -77,7 +77,9 @@ Forward conversion MUST run in two stages: Cyrillic to the canonical Jany-Latyn 
 
 ### 4.2 Jany-Enesai
 
-The 28 runes of proposal §2, one per Jany-Latyn letter, with compose-mode `ä` written 𐰂. Words are maximal runs of Jany-Latyn letters; everything else passes through unchanged (proposal §23).
+The 28 runes of proposal §2, one per Jany-Latyn letter, with compose-mode `ä` written 𐰂.
+
+A *word* is a maximal run of letters, of any script. From Cyrillic, only Cyrillic words are converted. From Jany-Latyn, a word is converted only when every letter in it is a Jany-Latyn letter. Every other word (*Windows*, *Ἀθῆναι*, text already in runes) and everything that is not a letter pass through unchanged. This refines proposal §23.2, which counted any run of Jany-Latyn letters as a word, so that *Windows* would have come out as W, runes, w, and a rune.
 
 ### 4.3 The comparison settings
 
@@ -127,7 +129,7 @@ Three pairs of the chart are two forms of one Unicode letter used as two letters
 
 ## 5. Converting back to Cyrillic
 
-As proposal §13 and §26: each rune of a reversible scheme maps to one Jany-Latyn letter, and the result goes through the engine's Jany-Latyn → Cyrillic conversion, with the loan-restoration list when the lossless setting is on. The schemes and settings marked one-way in the proposal are not reversed. The testbed MUST also refuse reverse conversion when the detector classes the input as old spelling (§9.4), and offer the inscription reader instead.
+As proposal §13 and §26: each rune of a reversible scheme maps to one Jany-Latyn letter, and the result goes through the engine's Jany-Latyn → Cyrillic conversion, with the loan-restoration list when the lossless setting is on. The schemes and settings marked one-way in the proposal are not reversed. Exactly, a combination of options is reversible unless it uses the epigraphic register, historical vowels, the etymological ж, nativized loan consonants, or the Yenisei forms with ш merged or under full harmony. The last case is not in the proposal: in the Yenisei forms, 𐰝 writes both х and к beside ө and ү. The engine's `isReversible` states this rule, and its tests check it against every combination of options. The testbed MUST also refuse reverse conversion when the detector classes the input as old spelling (§9.4), and offer the inscription reader instead.
 
 ## 6. Eski-Enesai: the attested-majority scheme
 
@@ -213,7 +215,7 @@ The reader's output can be shown in four notations. All of them write sign value
 
 Two rules apply to the CTA, Jany-Latyn and Cyrillic targets:
 
-- **𐰃** is written as the back vowel (ı, y, ы) when the nearest consonant sign in the same word, looking left first and then right, is of the back series or is `q`. Otherwise it is written as the front vowel (i, i, и). This uses only what the signs encode.
+- **𐰃** is written as the back vowel (ı, y, ы) when the nearest sign in the same word that marks a series, looking left first and then right, is of the back series. Signs of the back series include `q`, `ıq`, `oq`, `ot`, and `op`. Signs that mark no series (`m`, `p`, `z`, `č`, `ñ`, `š`, the vowels) are skipped, so `𐰢𐰃𐰣` reads *мын*, not *мин*. With no such sign in the word, 𐰃 is written as the front vowel (i, i, и). This uses only what the signs encode.
 - **𐰆 and 𐰇** are written as the first member of their pair (o, ö; о, ө), because the script does not distinguish the pair and no sign-level rule can.
 
 ### 7.4 Published readings
@@ -264,7 +266,7 @@ Where a carver turned a line and wrote a stretch left to right, every letter in 
 
 ### 8.3 Folding
 
-`runeFoldKey` maps every form to its letter before comparison. For example, 𐰁 → 𐰀, 𐰒 → 𐰑, 𐰔 → 𐰕, 𐰚 → 𐰛, and the vowel-bound signs to their consonant plus vowel. The result is then compared under the engine's `foldKey` rules. A search for a word MUST find it whatever its forms, variants, or series. Folding MUST NOT merge letters that Jany-Enesai keeps distinct, such as 𐰃 and 𐰄.
+`runeFoldKey` maps every form to its letter before comparison. For example, 𐰁 → 𐰀, 𐰒 → 𐰑, 𐰔 → 𐰕, 𐰚 → 𐰛, and the vowel-bound signs to their consonant, since plene spelling writes the vowel separately. The result is then compared under the engine's `foldKey` rules. A search for a word in a reversible setting MUST find it whatever its forms, variants, or series. Text in the inscription looks cannot be searched this way, since its vowels are dropped. Folding MUST NOT merge letters that Jany-Enesai keeps distinct, such as 𐰃 and 𐰄.
 
 ## 9. Telling old spelling from modern
 
@@ -307,7 +309,7 @@ The detector classes every stone of the corpus as `old`, both with the dividers 
 
 ## 10. Sorting and search
 
-Sorting follows proposal §12: Kyrgyz Cyrillic order through a rank table. All forms of a letter, and variants (§8.1), sort with the letter at the primary level. They differ at a secondary level: series (back first), then form (chart, Orkhon, Yenisei, in that order).
+Sorting follows proposal §12: Kyrgyz Cyrillic order through a rank table. All forms of a letter, and variants (§8.1), sort with the letter at the primary level. They differ at a secondary level, series (back first), and then by code point, which makes the order total.
 
 Search compares fold keys (§8.3). A Latin or Cyrillic query against rune text uses the query's Jany-Latyn letters. Since every reversible scheme maps one letter to one rune, no extra rule is needed.
 
@@ -319,10 +321,10 @@ An implementation conforms when all of these hold:
 2. Every reversible scheme round-trips Jany-Latyn → runes → Jany-Latyn exactly over the treebank.
 3. The inscription reader reproduces the corpus's reader line on all 99 lines.
 4. The detector classes all 21 stones `old` and the plene examples `modern`.
-5. Eski-Enesai's forms equal Appendix A as regenerated by `corpus/scripts/attested.py` from the corpus version the implementation ships with.
+5. Eski-Enesai writes only the attested-majority forms of Appendix A, as regenerated by `corpus/scripts/attested.py` from the corpus version the implementation ships with, and over a body of modern text it writes every one of them that a modern word can call for (all but 𐱈).
 6. No existing Jany-Latyn output changes.
 
-Checks 3–5 run against the corpus, which is licensed CC BY-NC-SA. They therefore live outside the MIT engine package (`corpus/test/`), as `test/boundary.test.ts` requires.
+Checks 3–5 run against the corpus, which is licensed CC BY-NC-SA. They therefore live outside the MIT engine package, in `corpus/scripts/conformance.test.mjs` (`npm run test:corpus`), which reads the corpus at run time and copies nothing from it.
 
 ## 12. Revisions to the proposal
 

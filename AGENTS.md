@@ -59,6 +59,10 @@ jany-latyn/
 │   │   ├── collate.ts         # SPEC §6: compare(a, b, options), a rank table per configuration (jany-latyn/collate)
 │   │   ├── loanRestore.ts     # Opt-in loanword restoration for reverse conversion
 │   │   ├── testbedPresets.ts  # Whitepaper §7 testbed-only option couplings (ı→q+ğ+y glide, q→ğ) and the ĩ+ñ warning
+│   │   ├── runes/             # Jany-Enesai, Kyrgyz in Old Turkic runes (jany-latyn/runes; docs/jany-enesai/RUNES-SPEC.md):
+│   │   │                      # inventory (runes by Unicode name), options + presets with status, forward (via
+│   │   │                      # canonical cyrToJany), reverse + isReversible, reader (inscriptions → sign values),
+│   │   │                      # detect (old vs modern spelling), collate + runeFoldKey, explain (inspector)
 │   │   └── cli.ts             # CLI executable (node packages/engine/dist/src/cli.js)
 │   ├── keymaps/
 │   │   ├── jany-latyn.keylayout # macOS XML keyboard layout (full ANSI coverage)
@@ -67,7 +71,7 @@ jany-latyn/
 │   ├── scripts/
 │   │   ├── make-chart.ts      # Generates charts/alphabet.svg from LETTER_MAP
 │   │   └── check-whitepaper.ts # Conformance checker; reads ../../docs/WHITEPAPER.md
-│   └── test/                  # Node test runner suites + fixtures/ (anthem, lullaby, Manas)
+│   └── test/                  # Node test runner suites + fixtures/ (anthem, lullaby, Manas, runes.golden.json)
 ├── apps/web/              # PolyForm NC. Svelte 5 + SvelteKit static testbed
 │   └── src/
 │       ├── hooks.client.ts    # Analytics: off unless PUBLIC_POSTHOG_KEY and _HOST are set
@@ -78,9 +82,15 @@ jany-latyn/
 │       │   ├── fonts.ts       # Font stack test suites
 │       │   └── fontcheck.ts   # Canvas glyph coverage probing
 │       └── routes/            # Playground (+page), alphabet/, about/, whitepaper/
+├── corpus/                # CC BY-NC-SA 4.0 (adapted from the Uppsala runiform database); scripts/ is MIT
+│   ├── YENISEI-KYRGYZ-CORPUS.md # The 22 Enisei Kyrgyz inscriptions in Unicode, generated and checked by scripts/
+│   ├── shapes.json        # Per-occurrence glyph placements read from the database's drawings
+│   ├── raw/               # Git-ignored downloads (scripts/fetch.sh); never commit
+│   └── scripts/           # fetch, encode, reader, detect, attested (Python); conformance.test.mjs (npm run test:corpus)
 └── docs/                  # CC BY 4.0
     ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker
     ├── SPEC.md            # Formal linguistic orthography specification
+    ├── jany-enesai/       # Jany-Enesai proposal (JANY-ENESAI.md), RUNES-SPEC.md; ORHON-ENESAI*.md superseded
     ├── keyboard.md        # Keyboard layout setup instructions
     └── README.{ky,ky-jany,ru,tr}.md  # Translated guides
 ```
@@ -142,5 +152,6 @@ npm run build:web
 
 ### Licensing Boundaries
 - Every new source file starts with an SPDX header: `// SPDX-License-Identifier: MIT` under `packages/engine/`, `PolyForm-Noncommercial-1.0.0` under `apps/web/` (use `<!-- … -->` in `.svelte`/`.html`).
+- Nothing from `corpus/` (CC BY-NC-SA) may be copied into the engine or its tests; checks against the corpus belong in `corpus/scripts/`.
 - Engine code must not import from `apps/` or `docs/`; `test/boundary.test.ts` fails the suite if it does. Reading `docs/WHITEPAPER.md` from the conformance checker is a file read, not an import, and is intentional.
 - Analytics stay off unless `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_HOST` are set at build time. Never hard-code either, and guard every `posthog.capture` with `posthog.__loaded`.

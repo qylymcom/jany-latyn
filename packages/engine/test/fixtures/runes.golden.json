@@ -1,0 +1,419 @@
+{
+ "_source": "docs/jany-enesai/JANY-ENESAI.md draft 0.3: Appendix B (worked examples, separator 'space') and the §4 passage. Do not edit to match the engine; a difference is a finding to report.",
+ "cases": [
+  {
+   "cyrillic": "кыргыз",
+   "janyLatyn": "kyrgyz",
+   "runes": {
+    "jany-enesai": "𐰴𐰃𐰺𐰍𐰃𐰕",
+    "kg": "𐰴𐰃𐰺𐰍𐰃𐰕",
+    "full": "𐰶𐰃𐰺𐰍𐰃𐰕",
+    "eski-enesai": "𐰴𐰃𐰻𐰎𐰕",
+    "orkhon": "𐰶𐰃𐰺𐰍𐰔"
+   }
+  },
+  {
+   "cyrillic": "Байыркы кыргыз алфавити",
+   "janyLatyn": "Baíyrky kyrgyz alfaviti",
+   "runes": {
+    "jany-enesai": "𐰉𐰀𐰖𐰃𐰺𐰴𐰃 𐰴𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱄𐰄",
+    "kg": "𐰉𐰀𐰖𐰃𐰺𐰴𐰃 𐰴𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱄𐰄",
+    "full": "𐰉𐰀𐰖𐰃𐰺𐰶𐰃 𐰶𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱅𐰄",
+    "eski-enesai": "𐰉𐰖𐰻𐰴𐰃 𐰴𐰃𐰻𐰎𐰕 𐰞𐰯𐰌𐱅𐰃",
+    "orkhon": "𐰉𐰖𐰺𐰶𐰃 𐰶𐰃𐰺𐰍𐰔 𐰞𐰯𐰋𐱅𐰃"
+   }
+  },
+  {
+   "cyrillic": "Манас",
+   "janyLatyn": "Manas",
+   "runes": {
+    "jany-enesai": "𐰢𐰀𐰣𐰀𐰽",
+    "kg": "𐰢𐰀𐰣𐰀𐰽",
+    "full": "𐰢𐰀𐰣𐰀𐰽",
+    "eski-enesai": "𐰢𐰣𐱂",
+    "orkhon": "𐰢𐰣𐰽"
+   }
+  },
+  {
+   "cyrillic": "кол",
+   "janyLatyn": "kol",
+   "runes": {
+    "jany-enesai": "𐰴𐰆𐰞",
+    "kg": "𐰴𐰆𐰞",
+    "full": "𐰸𐰆𐰞",
+    "eski-enesai": "𐰹𐰆𐰞",
+    "orkhon": "𐰸𐰆𐰞"
+   }
+  },
+  {
+   "cyrillic": "кул",
+   "janyLatyn": "kul",
+   "runes": {
+    "jany-enesai": "𐰴𐱈𐰞",
+    "kg": "𐰴𐱈𐰞",
+    "full": "𐰸𐱈𐰞",
+    "eski-enesai": "𐰹𐰆𐰞",
+    "orkhon": "𐰸𐰆𐰞"
+   }
+  },
+  {
+   "cyrillic": "тоо",
+   "janyLatyn": "too",
+   "runes": {
+    "jany-enesai": "𐱄𐰆𐰆",
+    "kg": "𐱄𐰆𐰆",
+    "full": "𐱇𐰆𐰆",
+    "eski-enesai": "𐱄𐰆",
+    "orkhon": "𐱇𐰆"
+   }
+  },
+  {
+   "cyrillic": "туу",
+   "janyLatyn": "tuu",
+   "runes": {
+    "jany-enesai": "𐱄𐱈𐱈",
+    "kg": "𐱄𐱈𐱈",
+    "full": "𐱇𐱈𐱈",
+    "eski-enesai": "𐱄𐰆",
+    "orkhon": "𐱇𐰆"
+   }
+  },
+  {
+   "cyrillic": "көл",
+   "janyLatyn": "köl",
+   "runes": {
+    "jany-enesai": "𐰴𐰇𐰞",
+    "kg": "𐰚𐰇𐰞",
+    "full": "𐰜𐰇𐰠",
+    "eski-enesai": "𐰝𐰇𐰠",
+    "orkhon": "𐰜𐰇𐰠"
+   }
+  },
+  {
+   "cyrillic": "күл",
+   "janyLatyn": "kül",
+   "runes": {
+    "jany-enesai": "𐰴𐰈𐰞",
+    "kg": "𐰚𐰈𐰞",
+    "full": "𐰜𐰈𐰠",
+    "eski-enesai": "𐰝𐰇𐰠",
+    "orkhon": "𐰜𐰇𐰠"
+   }
+  },
+  {
+   "cyrillic": "той",
+   "janyLatyn": "toí",
+   "runes": {
+    "jany-enesai": "𐱄𐰆𐰖",
+    "kg": "𐱄𐰆𐰖",
+    "full": "𐱇𐰆𐰖",
+    "eski-enesai": "𐱄𐰆𐰖",
+    "orkhon": "𐱇𐰆𐰖"
+   }
+  },
+  {
+   "cyrillic": "бийик",
+   "janyLatyn": "biíik",
+   "runes": {
+    "jany-enesai": "𐰉𐰄𐰖𐰄𐰴",
+    "kg": "𐰉𐰄𐰖𐰄𐰚",
+    "full": "𐰋𐰄𐰘𐰄𐰚",
+    "eski-enesai": "𐰌𐰃𐰘𐰛",
+    "orkhon": "𐰋𐰃𐰘𐰚"
+   }
+  },
+  {
+   "cyrillic": "Теңир",
+   "janyLatyn": "Teŋir",
+   "runes": {
+    "jany-enesai": "𐱄𐰅𐰭𐰄𐰺",
+    "kg": "𐱄𐰅𐰭𐰄𐰺",
+    "full": "𐱅𐰅𐰭𐰄𐰼",
+    "eski-enesai": "𐱅𐰭𐰼",
+    "orkhon": "𐱅𐰭𐰼"
+   }
+  },
+  {
+   "cyrillic": "чай",
+   "janyLatyn": "çaí",
+   "runes": {
+    "jany-enesai": "𐰲𐰀𐰖",
+    "kg": "𐰲𐰀𐰖",
+    "full": "𐰲𐰀𐰖",
+    "eski-enesai": "𐰲𐰖",
+    "orkhon": "𐰲𐰖"
+   }
+  },
+  {
+   "cyrillic": "китеп",
+   "janyLatyn": "kitep",
+   "runes": {
+    "jany-enesai": "𐰴𐰄𐱄𐰅𐰯",
+    "kg": "𐰚𐰄𐱄𐰅𐰯",
+    "full": "𐰚𐰄𐱅𐰅𐰯",
+    "eski-enesai": "𐰛𐰃𐱅𐰯",
+    "orkhon": "𐰚𐰃𐱅𐰯"
+   }
+  },
+  {
+   "cyrillic": "күндөр",
+   "janyLatyn": "kündör",
+   "runes": {
+    "jany-enesai": "𐰴𐰈𐰣𐰑𐰇𐰺",
+    "kg": "𐰚𐰈𐰣𐰑𐰇𐰺",
+    "full": "𐰜𐰈𐰤𐰓𐰇𐰼",
+    "eski-enesai": "𐰝𐰇𐰦𐰼",
+    "orkhon": "𐰜𐰇𐰦𐰼"
+   }
+  },
+  {
+   "cyrillic": "колдор",
+   "janyLatyn": "koldor",
+   "runes": {
+    "jany-enesai": "𐰴𐰆𐰞𐰑𐰆𐰺",
+    "kg": "𐰴𐰆𐰞𐰑𐰆𐰺",
+    "full": "𐰸𐰆𐰞𐰑𐰆𐰺",
+    "eski-enesai": "𐰹𐰆𐰞𐰑𐰻",
+    "orkhon": "𐰸𐰆𐰡𐰺"
+   }
+  },
+  {
+   "cyrillic": "кулдар",
+   "janyLatyn": "kuldar",
+   "runes": {
+    "jany-enesai": "𐰴𐱈𐰞𐰑𐰀𐰺",
+    "kg": "𐰴𐱈𐰞𐰑𐰀𐰺",
+    "full": "𐰸𐱈𐰞𐰑𐰀𐰺",
+    "eski-enesai": "𐰹𐰆𐰞𐰑𐰻",
+    "orkhon": "𐰸𐰆𐰡𐰺"
+   }
+  },
+  {
+   "cyrillic": "космос",
+   "janyLatyn": "kosmos",
+   "runes": {
+    "jany-enesai": "𐰴𐰆𐰽𐰢𐰆𐰽",
+    "kg": "𐰴𐰆𐰽𐰢𐰆𐰽",
+    "full": "𐰸𐰆𐰽𐰢𐰆𐰽",
+    "eski-enesai": "𐰹𐰆𐱂𐰢𐱂",
+    "orkhon": "𐰸𐰆𐰽𐰢𐰽"
+   }
+  },
+  {
+   "cyrillic": "компьютер",
+   "janyLatyn": "kompíuter",
+   "runes": {
+    "jany-enesai": "𐰴𐰆𐰢𐰯𐰖𐱈𐱄𐰅𐰺",
+    "kg": "𐰴𐰆𐰢𐰯𐰖𐱈𐱄𐰅𐰺",
+    "full": "𐰸𐰆𐰢𐰯𐰖𐱈𐱅𐰅𐰼",
+    "eski-enesai": "𐰹𐰆𐰢𐰯𐰖𐱅𐰼",
+    "orkhon": "𐰸𐰆𐰢𐰯𐰖𐱅𐰼"
+   }
+  },
+  {
+   "cyrillic": "темиржол",
+   "janyLatyn": "temirjol",
+   "runes": {
+    "jany-enesai": "𐱄𐰅𐰢𐰄𐰺𐰳𐰆𐰞",
+    "kg": "𐱄𐰅𐰢𐰄𐰺𐰳𐰆𐰞",
+    "full": "𐱅𐰅𐰢𐰄𐰼𐰳𐰆𐰞",
+    "eski-enesai": "𐱅𐰢𐰼𐰖𐰞",
+    "orkhon": "𐱅𐰢𐰼𐰖𐰞"
+   }
+  },
+  {
+   "cyrillic": "Бишкек",
+   "janyLatyn": "Bişkek",
+   "runes": {
+    "jany-enesai": "𐰉𐰄𐱁𐰴𐰅𐰴",
+    "kg": "𐰉𐰄𐱁𐰚𐰅𐰚",
+    "full": "𐰋𐰄𐱁𐰚𐰅𐰚",
+    "eski-enesai": "𐰌𐰃𐱀𐰛𐰛",
+    "orkhon": "𐰋𐰃𐱁𐰚𐰚"
+   }
+  },
+  {
+   "cyrillic": "Ысык-Көл",
+   "janyLatyn": "Ysyk-Köl",
+   "runes": {
+    "jany-enesai": "𐰃𐰽𐰃𐰴-𐰴𐰇𐰞",
+    "kg": "𐰃𐰽𐰃𐰴-𐰚𐰇𐰞",
+    "full": "𐰃𐰽𐰃𐰶-𐰜𐰇𐰠",
+    "eski-enesai": "𐰃𐱂𐰴-𐰝𐰇𐰠",
+    "orkhon": "𐰃𐰽𐰶-𐰜𐰇𐰠"
+   }
+  },
+  {
+   "cyrillic": "Каракол",
+   "janyLatyn": "Karakol",
+   "runes": {
+    "jany-enesai": "𐰴𐰀𐰺𐰀𐰴𐰆𐰞",
+    "kg": "𐰴𐰀𐰺𐰀𐰴𐰆𐰞",
+    "full": "𐰴𐰀𐰺𐰀𐰸𐰆𐰞",
+    "eski-enesai": "𐰴𐰻𐰹𐰞",
+    "orkhon": "𐰴𐰺𐰸𐰞"
+   }
+  },
+  {
+   "cyrillic": "Каракөл",
+   "janyLatyn": "Karaköl",
+   "runes": {
+    "jany-enesai": "𐰴𐰀𐰺𐰀𐰴𐰇𐰞",
+    "kg": "𐰴𐰀𐰺𐰀𐰚𐰇𐰞",
+    "full": "𐰴𐰀𐰺𐰀𐰜𐰇𐰠",
+    "eski-enesai": "𐰴𐰻𐰝𐰠",
+    "orkhon": "𐰴𐰺𐰜𐰠"
+   }
+  },
+  {
+   "cyrillic": "алтын",
+   "janyLatyn": "altyn",
+   "runes": {
+    "jany-enesai": "𐰀𐰞𐱄𐰃𐰣",
+    "kg": "𐰀𐰞𐱄𐰃𐰣",
+    "full": "𐰀𐰞𐱄𐰃𐰣",
+    "eski-enesai": "𐰞𐱄𐰣",
+    "orkhon": "𐰡𐰣"
+   }
+  },
+  {
+   "cyrillic": "Жалал-Абад",
+   "janyLatyn": "Jalal-Abad",
+   "runes": {
+    "jany-enesai": "𐰳𐰀𐰞𐰀𐰞-𐰀𐰉𐰀𐰑",
+    "kg": "𐰳𐰀𐰞𐰀𐰞-𐰀𐰉𐰀𐰑",
+    "full": "𐰳𐰀𐰞𐰀𐰞-𐰀𐰉𐰀𐰑",
+    "eski-enesai": "𐰖𐰞𐰞-𐰉𐰑",
+    "orkhon": "𐰖𐰞𐰞-𐰉𐰑"
+   }
+  },
+  {
+   "cyrillic": "сактоо",
+   "janyLatyn": "saktoo",
+   "runes": {
+    "jany-enesai": "𐰽𐰀𐰴𐱄𐰆𐰆",
+    "kg": "𐰽𐰀𐰴𐱄𐰆𐰆",
+    "full": "𐰽𐰀𐰴𐱇𐰆𐰆",
+    "eski-enesai": "𐱂𐰴𐱄𐰆",
+    "orkhon": "𐰽𐰴𐱇𐰆"
+   }
+  },
+  {
+   "cyrillic": "болуу",
+   "janyLatyn": "boluu",
+   "runes": {
+    "jany-enesai": "𐰉𐰆𐰞𐱈𐱈",
+    "kg": "𐰉𐰆𐰞𐱈𐱈",
+    "full": "𐰉𐰆𐰞𐱈𐱈",
+    "eski-enesai": "𐰉𐰆𐰞𐰆",
+    "orkhon": "𐰉𐰆𐰞𐰆"
+   }
+  },
+  {
+   "cyrillic": "Европа",
+   "janyLatyn": "Íevropa",
+   "runes": {
+    "jany-enesai": "𐰖𐰅𐰊𐰺𐰆𐰯𐰀",
+    "kg": "𐰖𐰅𐰊𐰺𐰆𐰯𐰀",
+    "full": "𐰘𐰅𐰊𐰺𐰆𐰯𐰀",
+    "eski-enesai": "𐰘𐰌𐰻𐰯𐰀",
+    "orkhon": "𐰘𐰋𐰺𐰯𐰀"
+   }
+  },
+  {
+   "cyrillic": "объект",
+   "janyLatyn": "obíekt",
+   "runes": {
+    "jany-enesai": "𐰆𐰉𐰖𐰅𐰴𐱄",
+    "kg": "𐰆𐰉𐰖𐰅𐰚𐱄",
+    "full": "𐰆𐰉𐰘𐰅𐰚𐱅",
+    "eski-enesai": "𐰆𐰉𐰘𐰛𐱅",
+    "orkhon": "𐰆𐰉𐰘𐰚𐱅"
+   }
+  },
+  {
+   "cyrillic": "семья",
+   "janyLatyn": "semía",
+   "runes": {
+    "jany-enesai": "𐰽𐰅𐰢𐰖𐰀",
+    "kg": "𐰽𐰅𐰢𐰖𐰀",
+    "full": "𐰾𐰅𐰢𐰖𐰀",
+    "eski-enesai": "𐰾𐰢𐰖𐰀",
+    "orkhon": "𐰾𐰢𐰖𐰀"
+   }
+  },
+  {
+   "cyrillic": "цирк",
+   "janyLatyn": "tsirk",
+   "runes": {
+    "jany-enesai": "𐱄𐰽𐰄𐰺𐰴",
+    "kg": "𐱄𐰽𐰄𐰺𐰚",
+    "full": "𐱅𐰾𐰄𐰼𐰚",
+    "eski-enesai": "𐱅𐰾𐰃𐰼𐰛",
+    "orkhon": "𐱅𐰾𐰃𐰼𐰚"
+   }
+  },
+  {
+   "cyrillic": "борщ",
+   "janyLatyn": "borş",
+   "runes": {
+    "jany-enesai": "𐰉𐰆𐰺𐱁",
+    "kg": "𐰉𐰆𐰺𐱁",
+    "full": "𐰉𐰆𐰺𐱁",
+    "eski-enesai": "𐰉𐰆𐰻𐱀",
+    "orkhon": "𐰉𐰆𐰺𐱁"
+   }
+  },
+  {
+   "cyrillic": "фабрика",
+   "janyLatyn": "fabrika",
+   "runes": {
+    "jany-enesai": "𐰟𐰀𐰉𐰺𐰄𐰴𐰀",
+    "kg": "𐰟𐰀𐰉𐰺𐰄𐰴𐰀",
+    "full": "𐰟𐰀𐰉𐰼𐰄𐰴𐰀",
+    "eski-enesai": "𐰯𐰉𐰼𐰴𐰀",
+    "orkhon": "𐰯𐰉𐰼𐰴𐰀"
+   }
+  },
+  {
+   "cyrillic": "рахмат",
+   "janyLatyn": "rahmat",
+   "runes": {
+    "jany-enesai": "𐰺𐰀𐰝𐰢𐰀𐱄",
+    "kg": "𐰺𐰀𐰝𐰢𐰀𐱄",
+    "full": "𐰺𐰀𐰝𐰢𐰀𐱄",
+    "eski-enesai": "𐰻𐰴𐰢𐱄",
+    "orkhon": "𐰺𐰴𐰢𐱃"
+   }
+  },
+  {
+   "cyrillic": "вагон",
+   "janyLatyn": "vagon",
+   "runes": {
+    "jany-enesai": "𐰊𐰀𐰍𐰆𐰣",
+    "kg": "𐰊𐰀𐰍𐰆𐰣",
+    "full": "𐰊𐰀𐰍𐰆𐰣",
+    "eski-enesai": "𐰉𐰎𐰣",
+    "orkhon": "𐰉𐰍𐰣"
+   }
+  },
+  {
+   "cyrillic": "аңкыгый жигит",
+   "janyLatyn": "aŋkygyí jigit",
+   "runes": {
+    "jany-enesai": "𐰀𐰭𐰴𐰃𐰍𐰃𐰖 𐰳𐰄𐰍𐰄𐱄",
+    "kg": "𐰀𐰭𐰴𐰃𐰍𐰃𐰖 𐰳𐰄𐰏𐰄𐱄",
+    "full": "𐰀𐰭𐰶𐰃𐰍𐰃𐰖 𐰙𐰄𐰏𐰄𐱅",
+    "eski-enesai": "𐰬𐰴𐰎𐰖 𐰘𐰃𐰏𐱅",
+    "orkhon": "𐰭𐰶𐰍𐰖 𐰘𐰃𐰏𐱅"
+   }
+  }
+ ],
+ "passage": {
+  "cyrillic": "Жаңы жылдын биринчи күнү тоого чыгып, бийик чокудан шаарды көрдүк. Үйгө кайтканда чай ичип, эс алдык.",
+  "janyLatyn": "Jaŋy jyldyn birinçi künü toogo çygyp, biíik çokudan şaardy kördük. Üígö kaítkanda çaí içip, es aldyk.",
+  "runes": {
+   "jany-enesai": "𐰳𐰀𐰭𐰃 𐰳𐰃𐰞𐰑𐰃𐰣 𐰉𐰄𐰺𐰄𐰣𐰲𐰄 𐰴𐰈𐰣𐰈 𐱄𐰆𐰆𐰍𐰆 𐰲𐰃𐰍𐰃𐰯, 𐰉𐰄𐰖𐰄𐰴 𐰲𐰆𐰴𐱈𐰑𐰀𐰣 𐱁𐰀𐰀𐰺𐰑𐰃 𐰴𐰇𐰺𐰑𐰈𐰴. 𐰈𐰖𐰍𐰇 𐰴𐰀𐰖𐱄𐰴𐰀𐰣𐰑𐰀 𐰲𐰀𐰖 𐰄𐰲𐰄𐰯, 𐰅𐰽 𐰀𐰞𐰑𐰃𐰴."
+  }
+ }
+}

@@ -22,6 +22,7 @@
   "scripts": {
     "build": "npm --workspace packages/engine run build",
     "test": "npm --workspace packages/engine test",
+    "test:corpus": "npm run build && node --test corpus/scripts/",
     "chart": "npm --workspace packages/engine run chart",
     "check-whitepaper": "npm --workspace packages/engine run check-whitepaper",
     "dev": "npm --workspace apps/web run dev",
