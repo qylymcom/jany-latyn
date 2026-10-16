@@ -40,6 +40,21 @@ version 1.
   returns four questions about the reverse conversion and the loan list to
   Jany-Latyn (§27.7). `WHITEPAPER.md` §7 and Appendix D point to it.
 
+### Testbed (qylym)
+
+- **Any-to-any playground.** One input and one output, with source and target
+  pickers (Cyrillic, Latin, ASCII, runes, and a sign-by-sign reading for the
+  stones' spelling), a swap button, presets with their status, customize
+  panels for Latin and runes, a comparison strip, and a rune inspector.
+- **Site sections.** Playground · Latin (Alphabet, Whitepaper) · Runic
+  (Alphabet, Proposal, Corpus) · About. `/alphabet/` and `/whitepaper/`
+  forward to `/latin/alphabet/` and `/latin/whitepaper/`, keeping anchors.
+  The Jany-Enesai proposal is published as a draft.
+- **Engine.** `jany-latyn/scripts` (`detectScript`, `LATIN_PRESETS`,
+  `convertText`, `explainConversion`); `janyToCyr` reads CTA's `y` glide as й
+  with `{ yGrapheme: 'dotless-i', glideGrapheme: 'y' }`.
+- New interface strings are in English until translated.
+
 ## 2026.4 — 2026-09-25
 
 ### Document

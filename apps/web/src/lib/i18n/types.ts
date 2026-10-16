@@ -151,12 +151,121 @@ export interface ConsentTranslations {
   learnMore: string;
 }
 
+export interface SiteTranslations {
+  latin: string;
+  runic: string;
+  latinAlphabet: string;
+  latinWhitepaper: string;
+  runicAlphabet: string;
+  runicProposal: string;
+  runicCorpus: string;
+  subtitle: string;
+  draftBanner: string;
+  comingSoon: string;
+  comingSoonSource: string;
+  moved: string;
+}
+
+export interface ScriptsTranslations {
+  source: string;
+  target: string;
+  auto: string;
+  autoDetected: string;
+  guessing: string;
+  swap: string;
+  swapOneWay: string;
+  cyrillic: string;
+  latin: string;
+  ascii: string;
+  runes: string;
+  reading: string;
+  oldSpelling: string;
+  notReadable: string;
+  restoreLoans: string;
+  restoreLoansHint: string;
+  statusProposed: string;
+  statusReference: string;
+  statusComparison: string;
+  statusExperimental: string;
+  showJanyLatyn: string;
+  copyForLtr: string;
+  readingNotation: string;
+  readingScholarly: string;
+  readingCta: string;
+  readingJanyLatyn: string;
+  readingCyrillic: string;
+  comparisonTitle: string;
+  comparisonHint: string;
+  inspectorTitle: string;
+  inspectorHint: string;
+  inspectorLetter: string;
+  inspectorRune: string;
+  inspectorName: string;
+  inspectorWhy: string;
+  governedBy: string;
+  seriesBack: string;
+  seriesFront: string;
+  noVowel: string;
+  dropped: string;
+  ligature: string;
+  close: string;
+}
+
+export interface RunicTranslations {
+  harmonyLabel: string;
+  harmonyNone: string;
+  harmonyKg: string;
+  harmonyFull: string;
+  registerLabel: string;
+  registerPlene: string;
+  registerEpigraphic: string;
+  vowelsLabel: string;
+  vowelsDistinct: string;
+  vowelsHistorical: string;
+  uLabel: string;
+  uBash: string;
+  uDotted: string;
+  uOldHungarian: string;
+  zheLabel: string;
+  zheChart: string;
+  zheFront: string;
+  zheEtymological: string;
+  loanLabel: string;
+  loanChart: string;
+  loanNativized: string;
+  formsLabel: string;
+  formsChart: string;
+  formsOrkhon: string;
+  formsYenisei: string;
+  rLabel: string;
+  sLabel: string;
+  shLabel: string;
+  letterChart: string;
+  letterAttested: string;
+  yeniseiShLabel: string;
+  yeniseiShApart: string;
+  yeniseiShMerged: string;
+  separatorLabel: string;
+  separatorSpace: string;
+  separatorTwoDot: string;
+  oneWay: string;
+  hardToRead: string;
+  reversible: string;
+  notReversible: string;
+}
+
 export interface Translations {
   nav: NavTranslations;
   playground: PlaygroundTranslations;
   alphabet: AlphabetTranslations;
   about: AboutTranslations;
   consent: ConsentTranslations;
+  site: SiteTranslations;
+  scripts: ScriptsTranslations;
+  runic: RunicTranslations;
 }
+
+/** A locale may leave any string out; it then shows the English one. */
+export type DeepPartial<T> = { [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K] };
 
 export type BaseLocale = 'ky' | 'ru' | 'en' | 'tr' | 'zh';

@@ -1,26 +1,31 @@
 // SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+// Renders a repository Markdown document for a prerendered page: heading anchors,
+// a table of contents of the h2/h3 headings, styled tables, blockquotes and images.
 import { existsSync } from 'node:fs';
-import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { marked, type Tokens } from 'marked';
-import type { PageServerLoad } from './$types';
 
-export const prerender = true;
+export interface TocItem {
+  level: number;
+  text: string;
+  id: string;
+}
 
-function findWhitepaper(): string {
-  const searchStarts = [process.cwd(), fileURLToPath(new URL('.', import.meta.url))];
-  for (const start of searchStarts) {
+/** Finds a file by its path from the repository root, searching upward from the working directory and from this module. */
+export function findRepoFile(relPath: string): string {
+  const starts = [process.cwd(), fileURLToPath(new URL('.', import.meta.url))];
+  for (const start of starts) {
     let curr = start;
-    for (let i = 0; i < 6; i++) {
-      const candidate = join(curr, 'docs', 'WHITEPAPER.md');
+    for (let i = 0; i < 8; i++) {
+      const candidate = join(curr, relPath);
       if (existsSync(candidate)) return candidate;
       const parent = resolve(curr, '..');
       if (parent === curr) break;
       curr = parent;
     }
   }
-  throw new Error('docs/WHITEPAPER.md not found in workspace hierarchy');
+  throw new Error(`${relPath} not found in workspace hierarchy`);
 }
 
 function slugify(text: string): string {
@@ -31,27 +36,17 @@ function slugify(text: string): string {
     .replace(/\s/g, '-');
 }
 
-export interface TocItem {
-  level: number;
-  text: string;
-  id: string;
-}
+const attr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-export const load: PageServerLoad = async () => {
-  const filePath = findWhitepaper();
-  const markdown = await readFile(filePath, 'utf-8');
-
+/** imageBase: where relative image links are served from, e.g. '/runic/proposal/images/'. */
+export async function renderMarkdown(markdown: string, opts: { imageBase?: string } = {}): Promise<{ html: string; toc: TocItem[] }> {
   const toc: TocItem[] = [];
   const renderer = new marked.Renderer();
 
   renderer.heading = ({ text, depth }: { text: string; depth: number }) => {
     const plainText = text.replace(/<[^>]*>/g, '');
     const id = slugify(plainText);
-
-    if (depth === 2 || depth === 3) {
-      toc.push({ level: depth, text: plainText, id });
-    }
-
+    if (depth === 2 || depth === 3) toc.push({ level: depth, text: plainText, id });
     return `<h${depth} id="${id}" class="scroll-mt-24 font-bold ${
       depth === 1
         ? 'text-2xl sm:text-3xl md:text-4xl mt-6 mb-4 text-base-content border-b border-base-300 pb-3'
@@ -74,10 +69,11 @@ export const load: PageServerLoad = async () => {
     return `<blockquote class="border-l-4 border-primary/60 bg-primary/5 pl-4 pr-3 py-2.5 my-4 italic rounded-r-lg text-base-content/90">${body}</blockquote>`;
   };
 
-  const html = await marked.parse(markdown, { renderer });
-
-  return {
-    html,
-    toc
+  renderer.image = ({ href, title, text }: Tokens.Image) => {
+    const src = opts.imageBase && !/^([a-z][a-z0-9+.-]*:|\/)/i.test(href) ? opts.imageBase + href : href;
+    return `<img src="${attr(src)}" alt="${attr(text)}"${title ? ` title="${attr(title)}"` : ''} class="my-4 max-w-full rounded-lg border border-base-300" loading="lazy" />`;
   };
-};
+
+  const html = await marked.parse(markdown, { renderer });
+  return { html, toc };
+}

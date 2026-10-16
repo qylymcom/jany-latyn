@@ -63,6 +63,7 @@ jany-latyn/
 │   │   │                      # inventory (runes by Unicode name), options + presets with status, forward (via
 │   │   │                      # canonical cyrToJany), reverse + isReversible, reader (inscriptions → sign values),
 │   │   │                      # detect (old vs modern spelling), collate + runeFoldKey, explain (inspector)
+│   │   ├── scripts.ts         # jany-latyn/scripts: detectScript, LATIN_PRESETS, convertText (any-to-any hub), explainConversion
 │   │   └── cli.ts             # CLI executable (node packages/engine/dist/src/cli.js)
 │   ├── keymaps/
 │   │   ├── jany-latyn.keylayout # macOS XML keyboard layout (full ANSI coverage)
@@ -85,7 +86,8 @@ jany-latyn/
 │       │   ├── sample-texts/  # Sample library (also read by the engine's samples test)
 │       │   ├── fonts.ts       # Font stack test suites
 │       │   └── fontcheck.ts   # Canvas glyph coverage probing
-│       └── routes/            # Playground (+page), alphabet/, about/, whitepaper/
+│       ├── lib/playground/    # Playground state (state.svelte.ts) and its components
+│       └── routes/            # Playground (+page), latin/{alphabet,whitepaper}, runic/{alphabet,proposal,corpus}, about/; /alphabet and /whitepaper forward
 ├── corpus/                # CC BY-NC-SA 4.0 (adapted from the Uppsala runiform database); scripts/ is MIT
 │   ├── YENISEI-KYRGYZ-CORPUS.md # The 22 Enisei Kyrgyz inscriptions in Unicode, generated and checked by scripts/
 │   ├── shapes.json        # Per-occurrence glyph placements read from the database's drawings

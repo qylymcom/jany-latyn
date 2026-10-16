@@ -17,7 +17,28 @@ function deepConvert(obj: any): any {
   return obj;
 }
 
-const KY_JANY_DICTIONARY: Translations = deepConvert(TRANSLATIONS.ky);
+// A locale may leave strings out (new strings are English-only until translated);
+// each one is merged over English, so every lookup finds a string.
+function mergeTranslations<T>(base: T, over: unknown): T {
+  if (typeof base !== 'object' || base === null || typeof over !== 'object' || over === null) {
+    return (over ?? base) as T;
+  }
+  const out: Record<string, unknown> = { ...(base as Record<string, unknown>) };
+  for (const k of Object.keys(over as object)) {
+    out[k] = mergeTranslations((base as Record<string, unknown>)[k], (over as Record<string, unknown>)[k]);
+  }
+  return out as T;
+}
+
+const MERGED: Record<BaseLocale, Translations> = {
+  en: TRANSLATIONS.en,
+  ky: mergeTranslations(TRANSLATIONS.en, TRANSLATIONS.ky),
+  ru: mergeTranslations(TRANSLATIONS.en, TRANSLATIONS.ru),
+  tr: mergeTranslations(TRANSLATIONS.en, TRANSLATIONS.tr),
+  zh: mergeTranslations(TRANSLATIONS.en, TRANSLATIONS.zh),
+};
+
+const KY_JANY_DICTIONARY: Translations = mergeTranslations(TRANSLATIONS.en, deepConvert(TRANSLATIONS.ky));
 KY_JANY_DICTIONARY.about.whatIsThisContent =
   'Jany-Latyn — kirillitsadan çygaryluuçu kyrgyz tilinin latyn jazuusu. Anyn determindüü konverteri jana ar bir talaştuu tandoo özünçö parametr bolgon synoo çöírösü bar. Negizgi dal kelüülör: ж→j, ч→ç, ш→ş, х→h, ң→ŋ, ө→ö, ү→ü, ы→y, й→í; sozulma ündüülör koş jazylat (даамдуу → daamduu), orusça ъ/ь belgileri siŋirilet, oşonduktan ar bir söz tamgalardan gana turat.';
 KY_JANY_DICTIONARY.about.usagePlayground =
@@ -119,7 +140,7 @@ export const i18n = {
     if (currentLocale === 'ky-jany') {
       return KY_JANY_DICTIONARY;
     }
-    return TRANSLATIONS[currentLocale as BaseLocale] ?? TRANSLATIONS.ky;
+    return MERGED[currentLocale as BaseLocale] ?? MERGED.ky;
   },
   setLocale(val: Locale) {
     this.locale = val;

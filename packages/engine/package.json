@@ -49,6 +49,11 @@
       "source": "./src/runes/index.ts",
       "types": "./dist/src/runes/index.d.ts",
       "default": "./dist/src/runes/index.js"
+    },
+    "./scripts": {
+      "source": "./src/scripts.ts",
+      "types": "./dist/src/scripts.d.ts",
+      "default": "./dist/src/scripts.js"
     }
   },
   "scripts": {
