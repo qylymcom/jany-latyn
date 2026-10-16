@@ -591,44 +591,44 @@ Each item states the claim, the test that would settle it, and the result that w
 
 All 73 characters in the block: the chart row that uses each one, if any, with the value the chart gives it; its role in Jany-Enesai and the comparison settings; the settings that emit it, on the treebank for the draft 0.2 settings and by rule for Eski and Att (J-E Jany-Enesai, k+g, Full, Orkh the inscription look in Orkhon forms, Eski Eski-Enesai, Att Attested letters); and its key on the layout of §26. 𐰂 is emitted only for compose-mode `ä`. The 15 characters no setting emits are on the keyboard, so that the testbed can type any Old Turkic text, not only Kyrgyz.
 
-| Code point | Rune | Unicode name | Chart row: value | In Jany-Enesaí and the settings | Emitted by | Key |
+| Code point | Rune | Unicode name | Chart row: value | In Jany-Enesai and the settings | Emitted by | Key |
 | :--- | :---: | :--- | :--- | :--- | :--- | :--- |
-| U+10C00 | 𐰀 | ORKHON A | 1: а | Jany-Enesaí: а | J-E, k+g, Full, Orkh, Eski, Att | а, а Shift |
+| U+10C00 | 𐰀 | ORKHON A | 1: а | Jany-Enesai: а | J-E, k+g, Full, Orkh, Eski, Att | а, а Shift |
 | U+10C01 | 𐰁 | YENISEI A | 41: а (second form) | not used | — | а AltGr |
 | U+10C02 | 𐰂 | YENISEI AE | 2: (ä, not in Cyrillic) | compose-mode ä only | — | е Shift |
-| U+10C03 | 𐰃 | ORKHON I | 44: ы | Jany-Enesaí: ы | J-E, k+g, Full, Orkh, Eski, Att | ы |
-| U+10C04 | 𐰄 | YENISEI I | 16: и | Jany-Enesaí: и | J-E, k+g, Full, Att | и |
-| U+10C05 | 𐰅 | YENISEI E | 11: э / е | Jany-Enesaí: е, э | J-E, k+g, Full, Eski, Att | е, э, э Shift |
-| U+10C06 | 𐰆 | ORKHON O | 30: о, у | Jany-Enesaí: о | J-E, k+g, Full, Orkh, Eski, Att | о |
-| U+10C07 | 𐰇 | ORKHON OE | 31: ө | Jany-Enesaí: ө | J-E, k+g, Full, Orkh, Eski, Att | ө |
-| U+10C08 | 𐰈 | YENISEI OE | 42: ү | Jany-Enesaí: ү | J-E, k+g, Full, Att | ү, ү Shift |
-| U+10C09 | 𐰉 | ORKHON AB | 3: б (back) | Jany-Enesaí: б | J-E, k+g, Full, Orkh, Eski, Att | б |
-| U+10C0A | 𐰊 | YENISEI AB | 43: в | Jany-Enesaí: в | J-E, k+g, Full, Att | в, в Shift |
+| U+10C03 | 𐰃 | ORKHON I | 44: ы | Jany-Enesai: ы | J-E, k+g, Full, Orkh, Eski, Att | ы |
+| U+10C04 | 𐰄 | YENISEI I | 16: и | Jany-Enesai: и | J-E, k+g, Full, Att | и |
+| U+10C05 | 𐰅 | YENISEI E | 11: э / е | Jany-Enesai: е, э | J-E, k+g, Full, Eski, Att | е, э, э Shift |
+| U+10C06 | 𐰆 | ORKHON O | 30: о, у | Jany-Enesai: о | J-E, k+g, Full, Orkh, Eski, Att | о |
+| U+10C07 | 𐰇 | ORKHON OE | 31: ө | Jany-Enesai: ө | J-E, k+g, Full, Orkh, Eski, Att | ө |
+| U+10C08 | 𐰈 | YENISEI OE | 42: ү | Jany-Enesai: ү | J-E, k+g, Full, Att | ү, ү Shift |
+| U+10C09 | 𐰉 | ORKHON AB | 3: б (back) | Jany-Enesai: б | J-E, k+g, Full, Orkh, Eski, Att | б |
+| U+10C0A | 𐰊 | YENISEI AB | 43: в | Jany-Enesai: в | J-E, k+g, Full, Att | в, в Shift |
 | U+10C0B | 𐰋 | ORKHON AEB | 4: б (front) | front form (harmony settings) | Full, Orkh | б Shift |
 | U+10C0C | 𐰌 | YENISEI AEB | — | Eski-Enesai: front б | Eski | б AltGr |
-| U+10C0D | 𐰍 | ORKHON AG | 13: г (back) | Jany-Enesaí: г | J-E, k+g, Full, Orkh, Att | г |
+| U+10C0D | 𐰍 | ORKHON AG | 13: г (back) | Jany-Enesai: г | J-E, k+g, Full, Orkh, Att | г |
 | U+10C0E | 𐰎 | YENISEI AG | — | Eski-Enesai: back г | Eski | г AltGr |
 | U+10C0F | 𐰏 | ORKHON AEG | 14: г (front) | front form (harmony settings) | k+g, Full, Orkh, Eski | г Shift |
 | U+10C10 | 𐰐 | YENISEI AEG | — | not used | — | г AltGr+Shift |
-| U+10C11 | 𐰑 | ORKHON AD | 9: д (back) | Jany-Enesaí: д | J-E, k+g, Full, Orkh, Eski, Att | д |
+| U+10C11 | 𐰑 | ORKHON AD | 9: д (back) | Jany-Enesai: д | J-E, k+g, Full, Orkh, Eski, Att | д |
 | U+10C12 | 𐰒 | YENISEI AD | — | not used | — | д AltGr |
 | U+10C13 | 𐰓 | ORKHON AED | 10: д (front) | front form (full harmony) | Full, Orkh, Eski | д Shift |
 | U+10C14 | 𐰔 | ORKHON EZ | — | not used | Orkh | з AltGr |
-| U+10C15 | 𐰕 | YENISEI EZ | 45: з | Jany-Enesaí: з; Eski-Enesai: з | J-E, k+g, Full, Eski, Att | з, з Shift |
-| U+10C16 | 𐰖 | ORKHON AY | 17: й (back) | Jany-Enesaí: й | J-E, k+g, Full, Orkh, Eski, Att | й |
+| U+10C15 | 𐰕 | YENISEI EZ | 45: з | Jany-Enesai: з; Eski-Enesai: з | J-E, k+g, Full, Eski, Att | з, з Shift |
+| U+10C16 | 𐰖 | ORKHON AY | 17: й (back) | Jany-Enesai: й | J-E, k+g, Full, Orkh, Eski, Att | й |
 | U+10C17 | 𐰗 | YENISEI AY | — | not used | — | й AltGr |
 | U+10C18 | 𐰘 | ORKHON AEY | 18: й (front) | front form (full harmony) | Full, Orkh, Eski | й Shift |
 | U+10C19 | 𐰙 | YENISEI AEY | 6: ж (front) | front form (full harmony); ж in every syllable under the ж toggle | Full | ж Shift |
 | U+10C1A | 𐰚 | ORKHON AEK | 20: к (front, by э/и) | front form (harmony settings) | k+g, Full, Orkh | к Shift |
 | U+10C1B | 𐰛 | YENISEI AEK | — | Eski-Enesai: front к | Eski | к AltGr+Shift |
 | U+10C1C | 𐰜 | ORKHON OEK | 22: к (front, by ө/ү) | vowel-bound (full harmony) | Full, Orkh | ө Shift |
-| U+10C1D | 𐰝 | YENISEI OEK | 15: х | Jany-Enesaí: х; Eski-Enesai: к by ө/ү | J-E, k+g, Full, Eski, Att | х, х Shift |
-| U+10C1E | 𐰞 | ORKHON AL | 24: л (back) | Jany-Enesaí: л | J-E, k+g, Full, Orkh, Eski, Att | л |
-| U+10C1F | 𐰟 | YENISEI AL | 12: ф | Jany-Enesaí: ф | J-E, k+g, Full, Att | ф, ф Shift |
+| U+10C1D | 𐰝 | YENISEI OEK | 15: х | Jany-Enesai: х; Eski-Enesai: к by ө/ү | J-E, k+g, Full, Eski, Att | х, х Shift |
+| U+10C1E | 𐰞 | ORKHON AL | 24: л (back) | Jany-Enesai: л | J-E, k+g, Full, Orkh, Eski, Att | л |
+| U+10C1F | 𐰟 | YENISEI AL | 12: ф | Jany-Enesai: ф | J-E, k+g, Full, Att | ф, ф Shift |
 | U+10C20 | 𐰠 | ORKHON AEL | 25: л (front) | front form (full harmony) | Full, Orkh, Eski | л Shift |
 | U+10C21 | 𐰡 | ORKHON ELT | 46: лт | ligature (inscription look) | Orkh | л AltGr |
-| U+10C22 | 𐰢 | ORKHON EM | 26: м | Jany-Enesaí: м | J-E, k+g, Full, Orkh, Eski, Att | м, м Shift |
-| U+10C23 | 𐰣 | ORKHON AN | 27: н (back) | Jany-Enesaí: н | J-E, k+g, Full, Orkh, Eski, Att | н |
+| U+10C22 | 𐰢 | ORKHON EM | 26: м | Jany-Enesai: м | J-E, k+g, Full, Orkh, Eski, Att | м, м Shift |
+| U+10C23 | 𐰣 | ORKHON AN | 27: н (back) | Jany-Enesai: н | J-E, k+g, Full, Orkh, Eski, Att | н |
 | U+10C24 | 𐰤 | ORKHON AEN | 28: н (front) | front form (full harmony) | Full, Orkh | н Shift |
 | U+10C25 | 𐰥 | YENISEI AEN | — | Eski-Enesai: front н | Eski | ь AltGr |
 | U+10C26 | 𐰦 | ORKHON ENT | — | ligature нт, нд (inscription looks) | Orkh, Eski | н AltGr+Shift |
@@ -638,40 +638,40 @@ All 73 characters in the block: the chart row that uses each one, if any, with t
 | U+10C2A | 𐰪 | ORKHON ENY | 49: (ң, second form) | not used | — | ъ AltGr |
 | U+10C2B | 𐰫 | YENISEI ENY | — | not used | — | ъ AltGr+Shift |
 | U+10C2C | 𐰬 | YENISEI ANG | — | Eski-Enesai: back ң | Eski | ң AltGr |
-| U+10C2D | 𐰭 | ORKHON ENG | 29: ң | Jany-Enesaí: ң | J-E, k+g, Full, Orkh, Eski, Att | ң, ң Shift |
+| U+10C2D | 𐰭 | ORKHON ENG | 29: ң | Jany-Enesai: ң | J-E, k+g, Full, Orkh, Eski, Att | ң, ң Shift |
 | U+10C2E | 𐰮 | YENISEI AENG | — | not used | — | ң AltGr+Shift |
-| U+10C2F | 𐰯 | ORKHON EP | 32: п | Jany-Enesaí: п | J-E, k+g, Full, Orkh, Eski, Att | п, п Shift |
+| U+10C2F | 𐰯 | ORKHON EP | 32: п | Jany-Enesai: п | J-E, k+g, Full, Orkh, Eski, Att | п, п Shift |
 | U+10C30 | 𐰰 | ORKHON OP | — | not used | — | п AltGr |
 | U+10C31 | 𐰱 | ORKHON IC | 8: чи / ич | vowel-bound (full harmony) | Full, Orkh, Eski | ч Shift, и Shift |
-| U+10C32 | 𐰲 | ORKHON EC | 7: ч | Jany-Enesaí: ч | J-E, k+g, Full, Orkh, Eski, Att | ч |
-| U+10C33 | 𐰳 | YENISEI EC | 5: ж (back) | Jany-Enesaí: ж | J-E, k+g, Full, Att | ж |
-| U+10C34 | 𐰴 | ORKHON AQ | 19: к (back, by а) | Jany-Enesaí: к | J-E, k+g, Full, Orkh, Eski, Att | к |
+| U+10C32 | 𐰲 | ORKHON EC | 7: ч | Jany-Enesai: ч | J-E, k+g, Full, Orkh, Eski, Att | ч |
+| U+10C33 | 𐰳 | YENISEI EC | 5: ж (back) | Jany-Enesai: ж | J-E, k+g, Full, Att | ж |
+| U+10C34 | 𐰴 | ORKHON AQ | 19: к (back, by а) | Jany-Enesai: к | J-E, k+g, Full, Orkh, Eski, Att | к |
 | U+10C35 | 𐰵 | YENISEI AQ | — | not used | — | к AltGr |
 | U+10C36 | 𐰶 | ORKHON IQ | 23: к (back, by ы) | vowel-bound (full harmony) | Full, Orkh | ы Shift |
 | U+10C37 | 𐰷 | YENISEI IQ | — | not used | — | ы AltGr |
 | U+10C38 | 𐰸 | ORKHON OQ | 21: к (back, by о/у) | vowel-bound (full harmony) | Full, Orkh | о Shift |
 | U+10C39 | 𐰹 | YENISEI OQ | — | Eski-Enesai: к by о/у | Eski | о AltGr |
-| U+10C3A | 𐰺 | ORKHON AR | 33: р (back) | Jany-Enesaí: р | J-E, k+g, Full, Orkh | р |
+| U+10C3A | 𐰺 | ORKHON AR | 33: р (back) | Jany-Enesai: р | J-E, k+g, Full, Orkh | р |
 | U+10C3B | 𐰻 | YENISEI AR | — | Attested letters: р; Eski-Enesai: back р | Eski, Att | р AltGr |
 | U+10C3C | 𐰼 | ORKHON AER | 34: р (front) | front form (full harmony) | Full, Orkh, Eski | р Shift |
-| U+10C3D | 𐰽 | ORKHON AS | 35: с (back) | Jany-Enesaí: с | J-E, k+g, Full, Orkh | с |
+| U+10C3D | 𐰽 | ORKHON AS | 35: с (back) | Jany-Enesai: с | J-E, k+g, Full, Orkh | с |
 | U+10C3E | 𐰾 | ORKHON AES | 36: с (front) | front form (full harmony); Attested letters: с; Eski-Enesai: front с | Full, Orkh, Eski, Att | с Shift |
 | U+10C3F | 𐰿 | ORKHON ASH | — | not used | — | ш AltGr |
 | U+10C40 | 𐱀 | YENISEI ASH | — | Attested letters and Eski-Enesai: ш | Eski, Att | ш AltGr+Shift |
-| U+10C41 | 𐱁 | ORKHON ESH | 37: ш | Jany-Enesaí: ш | J-E, k+g, Full, Orkh | ш, ш Shift |
+| U+10C41 | 𐱁 | ORKHON ESH | 37: ш | Jany-Enesai: ш | J-E, k+g, Full, Orkh | ш, ш Shift |
 | U+10C42 | 𐱂 | YENISEI ESH | — | Eski-Enesai: back с | Eski | щ AltGr |
 | U+10C43 | 𐱃 | ORKHON AT | — | not used | Orkh | т AltGr |
-| U+10C44 | 𐱄 | YENISEI AT | 38: т (back) | Jany-Enesaí: т | J-E, k+g, Full, Eski, Att | т |
+| U+10C44 | 𐱄 | YENISEI AT | 38: т (back) | Jany-Enesai: т | J-E, k+g, Full, Eski, Att | т |
 | U+10C45 | 𐱅 | ORKHON AET | 39: т (front) | front form (full harmony) | Full, Orkh, Eski | т Shift |
 | U+10C46 | 𐱆 | YENISEI AET | — | not used | — | т AltGr+Shift |
 | U+10C47 | 𐱇 | ORKHON OT | 40: т (back, by о/у) | vowel-bound (full harmony) | Full, Orkh | у Shift |
-| U+10C48 | 𐱈 | ORKHON BASH | 50: (рт) | Jany-Enesaí: у | J-E, k+g, Full, Att | у |
+| U+10C48 | 𐱈 | ORKHON BASH | 50: (рт) | Jany-Enesai: у | J-E, k+g, Full, Att | у |
 
 ## Appendix B. Worked Examples in Each Setting
 
-The rune columns read right to left. Where a cell holds more than one word, the first word is the rightmost.
+The rune columns read right to left. Where a cell holds more than one word, the first word is the rightmost. Every setting is printed with a space between words; in the testbed, the two inscription looks put the two-dot divider ⁚ there instead (§11).
 
-| Cyrillic | Jany-Latyn | Jany-Enesaí | k+g harmony | Full harmony | Eski-Enesai | Inscription look (Orkhon forms) |
+| Cyrillic | Jany-Latyn | Jany-Enesai | k+g harmony | Full harmony | Eski-Enesai | Inscription look (Orkhon forms) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | кыргыз | kyrgyz | 𐰴𐰃𐰺𐰍𐰃𐰕 | 𐰴𐰃𐰺𐰍𐰃𐰕 | 𐰶𐰃𐰺𐰍𐰃𐰕 | 𐰴𐰃𐰻𐰎𐰕 | 𐰶𐰃𐰺𐰍𐰔 |
 | Байыркы кыргыз алфавити | Baíyrky kyrgyz alfaviti | 𐰉𐰀𐰖𐰃𐰺𐰴𐰃 𐰴𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱄𐰄 | 𐰉𐰀𐰖𐰃𐰺𐰴𐰃 𐰴𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱄𐰄 | 𐰉𐰀𐰖𐰃𐰺𐰶𐰃 𐰶𐰃𐰺𐰍𐰃𐰕 𐰀𐰞𐰟𐰀𐰊𐰄𐱅𐰄 | 𐰉𐰖𐰻𐰴𐰃 𐰴𐰃𐰻𐰎𐰕 𐰞𐰯𐰌𐱅𐰃 | 𐰉𐰖𐰺𐰶𐰃 𐰶𐰃𐰺𐰍𐰔 𐰞𐰯𐰋𐱅𐰃 |
