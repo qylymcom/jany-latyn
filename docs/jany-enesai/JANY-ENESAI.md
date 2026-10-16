@@ -28,6 +28,7 @@ The 28 runes and every setting are unchanged. This is the first draft checked ag
 - **Every treebank figure is recomputed** by `npm run rune-metrics` (§5.3). Most are unchanged. The round trip to Cyrillic is 96.3%, not 96.4%: the engine's reverse conversion has two rules the prototype's stand-in lacked, and they add two classes of loss to §13.1, both Jany-Latyn's (§27.7). In §6, л falls in back-vowel syllables 68% of the time, not 69%. Of the 134 tokens lost to the iotated-`е` rule, 112 are surnames and 11 loans, not 113 and 10: *индеецтер* is tagged as a proper noun but is the loan *индеец*.
 - **The loan-restoration list is measured** (§13.2): it restores 6 word forms of the treebank and spoils 4.
 - **Eski-Enesai's shared spellings are counted** (§17).
+- **A new specimen** (§4) shows the passage in all six presets, generated from the engine. It replaces `orhon-enesai-specimen.png`, which showed the draft 0.2 settings and is kept for the superseded drafts.
 - **Four questions go back to Jany-Latyn** (§27.7).
 - **Appendices A and B** spell the name Jany-Enesai, as the rest of the document does.
 
@@ -184,7 +185,9 @@ Because the second stage is a letter-for-letter substitution, the runes and Jany
 >
 > 𐰳𐰀𐰭𐰃 𐰳𐰃𐰞𐰑𐰃𐰣 𐰉𐰄𐰺𐰄𐰣𐰲𐰄 𐰴𐰈𐰣𐰈 𐱄𐰆𐰆𐰍𐰆 𐰲𐰃𐰍𐰃𐰯, 𐰉𐰄𐰖𐰄𐰴 𐰲𐰆𐰴𐱈𐰑𐰀𐰣 𐱁𐰀𐰀𐰺𐰑𐰃 𐰴𐰇𐰺𐰑𐰈𐰴. 𐰈𐰖𐰍𐰇 𐰴𐰀𐰖𐱄𐰴𐰀𐰣𐰑𐰀 𐰲𐰀𐰖 𐰄𐰲𐰄𐰯, 𐰅𐰽 𐰀𐰞𐰑𐰃𐰴.
 
-Whether the runic line displays correctly depends on the reader's fonts and on how the page handles right-to-left text (§26). `orhon-enesai-specimen.png` shows the same passage rendered with the intended font and direction, in Jany-Enesai and in each comparison setting.
+Whether the runic line displays correctly depends on the reader's fonts and on how the page handles right-to-left text (§26). The specimen below shows the same passage in the bundled font and the right direction, in Jany-Enesai and in each preset of the testbed. `packages/engine/scripts/make-specimen.ts` regenerates it.
+
+![The passage of §4 in each preset, set in Noto Sans Old Turkic](jany-enesai-specimen.png)
 
 ## 5. The Sources
 
