@@ -10,3 +10,22 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
+/* Noto Sans Old Turkic (SIL OFL 1.1, static/fonts/OFL.txt). It covers only the
+   runes, so the unicode-range keeps it out of every other character, and ⁚ ⸱
+   come from the fonts after it in --font-runes. */
+@font-face {
+  font-family: "Noto Sans Old Turkic";
+  src: url("/fonts/NotoSansOldTurkic-Regular.ttf") format("truetype");
+  font-display: swap;
+  unicode-range: U+10C00-10C4F;
+}
+
+:root {
+  --font-runes: "Noto Sans Old Turkic", "Segoe UI Historic", system-ui, sans-serif;
+}
+
+.runes {
+  font-family: var(--font-runes);
+  unicode-bidi: isolate;
+}

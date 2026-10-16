@@ -7,6 +7,7 @@ summary, and the LICENSE file in each directory for the governing text.
   corpus/            CC BY-NC-SA 4.0, adapted from the Uppsala runiform
                      database                         (corpus/LICENSE)
   corpus/scripts/    MIT License                      (corpus/scripts/LICENSE)
+  apps/web/static/fonts/  Noto Sans Old Turkic, SIL OFL 1.1 (apps/web/static/fonts/OFL.txt)
 
 The project name and logo are not licensed by any of the above. See
 TRADEMARK.md.

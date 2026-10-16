@@ -20,6 +20,10 @@ build a different one from it. That is the point of publishing it.
 The project name and logo are not licensed by any of the above. See
 `TRADEMARK.md`.
 
+**Bundled font.** `apps/web/static/fonts/` holds Noto Sans Old Turkic, © The Noto
+Project Authors, under the SIL Open Font License 1.1 (`apps/web/static/fonts/OFL.txt`).
+It is used unmodified to display runes in the testbed.
+
 ## What this means in practice
 
 **A linguist, educator, or journalist** may quote the whitepaper with
