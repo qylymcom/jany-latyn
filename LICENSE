@@ -1,9 +1,12 @@
-This repository is licensed in three parts. See LICENSING.md for a plain
+This repository is licensed in four parts. See LICENSING.md for a plain
 summary, and the LICENSE file in each directory for the governing text.
 
   packages/engine/   MIT License                      (packages/engine/LICENSE)
   apps/web/          PolyForm Noncommercial 1.0.0     (apps/web/LICENSE)
   docs/              Creative Commons Attribution 4.0 (docs/LICENSE)
+  corpus/            CC BY-NC-SA 4.0, adapted from the Uppsala runiform
+                     database                         (corpus/LICENSE)
+  corpus/scripts/    MIT License                      (corpus/scripts/LICENSE)
 
 The project name and logo are not licensed by any of the above. See
 TRADEMARK.md.

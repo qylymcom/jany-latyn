@@ -1,6 +1,6 @@
 # Licensing
 
-This repository is one project under three different grants. Each directory
+This repository is one project under four different grants. Each directory
 carries its own `LICENSE`, and the grant that applies to a file is the one in
 the nearest enclosing directory.
 
@@ -9,6 +9,8 @@ the nearest enclosing directory.
 | Conversion engine and CLI | `packages/engine/` | MIT | Do what you like, including commercially. Keep the copyright notice. The specification and whitepaper are not part of this grant; they live in `docs/`. |
 | Testbed web application | `apps/web/` | PolyForm Noncommercial 1.0.0 | Any noncommercial use, including running it in a classroom and modifying it. No commercial use or commercial hosting. |
 | Whitepaper and specification | `docs/` | CC BY 4.0 | Share and adapt, with attribution. |
+| Yenisei Kyrgyz inscription corpus | `corpus/` | CC BY-NC-SA 4.0 | Adapted from *A Database of Turkic Runiform Inscriptions* (Uppsala University), whose license it inherits: share and adapt for noncommercial purposes, with attribution, under the same license. |
+| Corpus scripts | `corpus/scripts/` | MIT | The scripts that fetch, encode, and check the corpus. They contain no database material. |
 
 The orthography itself — the letters, the mappings, and the rules — is not
 owned by anyone and is not covered by any of these grants. Ideas are not

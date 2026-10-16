@@ -1,0 +1,26 @@
+The Yenisei Kyrgyz corpus in this directory (YENISEI-KYRGYZ-CORPUS.md and
+shapes.json) is adapted from A Database of Turkic Runiform Inscriptions,
+Uppsala University, Department of Linguistics and Philology (project manager
+László Károly), https://www.runiform.lingfil.uu.se/, which is licensed under
+the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License (CC BY-NC-SA 4.0). As an adaptation, the corpus carries the same
+license.
+
+The transliterations, readings, translations, comments, catalogue data and
+glyph drawings belong to the database and its contributors. The Unicode
+encoding, the glyph placements, and the notes are
+Copyright (c) 2026 Emil Madraimov, and are licensed on the same terms.
+
+You may share and adapt this material for noncommercial purposes, provided
+you give appropriate credit, link to the license, indicate whether changes
+were made, and distribute your contributions under the same license.
+
+Full text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Summary:   https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The scripts in scripts/ contain no database material and are licensed
+separately under the MIT License (scripts/LICENSE). The downloaded pages in
+raw/ are not part of the repository; scripts/fetch.sh regenerates them.
+
+The project name and logo are not licensed by this grant. See TRADEMARK.md at
+the repository root.

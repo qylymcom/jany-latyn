@@ -1,0 +1,1179 @@
+{
+  "_about": "Per-occurrence shapes for signs whose stone glyph list offers two forms. Key: L<line>:<database symbol>#<nth in line>. glyph: the database glyph id the drawing shows. evidence: drawings consulted (file names on the database). confidence: clear (drawings agree, shape unmistakable), probable (one clear drawing, others damaged or silent), disputed (drawings disagree; the glyph given is the majority or the clearest). direction: 'ltr' when the carver wrote that stretch left to right; the glyph is then the shape as drawn, and the encoder takes its mirror partner. Mirrored glyphs (D04, N04, N05, Y03, S05, Z04, L03, NJ04) encode as the letter they mirror.",
+  "Baryk_I": {
+    "L2:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198359e",
+        "Bazylkhan2005326"
+      ],
+      "confidence": "clear"
+    },
+    "L3:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "BatmanovKunaa1963a27",
+        "Bazylkhan2005326"
+      ],
+      "confidence": "probable",
+      "note": "Radloff's drawing is damaged here; Vasil'ev omits the sign."
+    },
+    "L3:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "BatmanovKunaa1963a27",
+        "Radlov1893LXXVI",
+        "Bazylkhan2005326"
+      ],
+      "confidence": "clear"
+    }
+  },
+  "Baryk_III": {
+    "L1:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L2:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "probable",
+      "note": "Both drawings show only the stem and the top flag to the right; the database marks the sign partly legible."
+    },
+    "L3:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L3:A#2": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#2": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005328",
+        "Vasil'ev198360a"
+      ],
+      "confidence": "probable",
+      "note": "Clear on Bazylkhan; Vasil'ev draws an open angle."
+    },
+    "L4:A#4": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#5": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360a",
+        "Bazylkhan2005328"
+      ],
+      "confidence": "clear"
+    }
+  },
+  "Kara_Sug": {
+    "L3:z#1": {
+      "glyph": "Z03",
+      "evidence": [
+        "Radloff1896LXXVd",
+        "БатмановКунаа1963a24b"
+      ],
+      "confidence": "probable",
+      "note": "A crossing form on Radloff; Batmanov and Kunaa show one stroke only."
+    },
+    "L1:z#1": {
+      "glyph": null,
+      "evidence": [
+        "Radloff1896LXXVd",
+        "БатмановКунаа1963a24b",
+        "Васильев198360c"
+      ],
+      "confidence": "unplaced",
+      "note": "No drawing on the database shows this sign legibly."
+    },
+    "L4:z#1": {
+      "glyph": null,
+      "evidence": [
+        "Radloff1896LXXVd",
+        "БатмановКунаа1963a24b",
+        "Васильев198360c"
+      ],
+      "confidence": "unplaced",
+      "note": "Partly legible on the stone; no drawing shows its shape."
+    }
+  },
+  "Uibat_I": {
+    "L1:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198365c",
+        "Radloff1896XCIIa"
+      ],
+      "confidence": "probable",
+      "note": "Both drawings show the stem with the bottom foot to the left only."
+    },
+    "L1:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198365c",
+        "Radloff1896XCIIa"
+      ],
+      "confidence": "probable",
+      "note": "Both drawings show the stem with the top flag to the right only."
+    },
+    "L2:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198365c"
+      ],
+      "confidence": "probable"
+    },
+    "L3:n#1": {
+      "glyph": "N04",
+      "evidence": [
+        "Vasil'ev198365c",
+        "Radloff1896XCIIb"
+      ],
+      "confidence": "clear"
+    },
+    "L3:n#2": {
+      "glyph": "N04",
+      "evidence": [
+        "Vasil'ev198365c",
+        "Radloff1896XCIIb"
+      ],
+      "confidence": "clear"
+    },
+    "L3:n#3": {
+      "glyph": "N04",
+      "evidence": [
+        "Vasil'ev198365c"
+      ],
+      "confidence": "probable"
+    },
+    "L4:n#1": {
+      "glyph": "N04",
+      "evidence": [
+        "Vasil'ev198365d",
+        "Radloff1896XCIIc"
+      ],
+      "confidence": "clear"
+    },
+    "L4:n#2": {
+      "glyph": "N04",
+      "evidence": [
+        "Radloff1896XCIIc"
+      ],
+      "confidence": "probable",
+      "note": "Vasil'ev's drawing does not show this word as the database reads it."
+    },
+    "L4:n#3": {
+      "glyph": null,
+      "evidence": [
+        "Radloff1896XCIIc",
+        "Vasil'ev198365d"
+      ],
+      "confidence": "unplaced",
+      "note": "Partly legible; Radloff draws the shape of R, which the page's comment allows."
+    },
+    "L4:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Radloff1896XCIIc",
+        "Vasil'ev198365d"
+      ],
+      "confidence": "probable"
+    },
+    "L4:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198365d"
+      ],
+      "confidence": "probable"
+    },
+    "L4:A#3": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198365d"
+      ],
+      "confidence": "probable"
+    },
+    "L4:A#4": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198365d"
+      ],
+      "confidence": "probable"
+    }
+  },
+  "_criteria": {
+    "n (N02 vs N04)": "N02 𐰤 is drawn with right-angled steps (two vertical stems joined by a horizontal); N04 𐰥 is a zigzag with a diagonal middle stroke.",
+    "A (A00 vs A03)": "A00 𐰀 has its top flag to the right and its bottom foot to the left (ʃ-like); A03 𐰁 is the mirror image, top flag left and foot right (Z-like). A drawing that shows only one of the two strokes still decides the shape.",
+    "D (D01 vs D04)": "D01 𐰑 is a double zigzag pointing right (>>); D04 points left (<<).",
+    "z (Z00 vs Z03)": "Z00 𐰔 is rectangular, stepped stems; Z03 𐰕 is two crossing curves.",
+    "wK (K03 vs K06)": "K03 𐰹 is an arrow pointing up; K06 𐰸 points down."
+  },
+  "Uibat_II": {
+    "L2:n#1": {
+      "glyph": "N02",
+      "evidence": [
+        "Васильев198365f",
+        "Radloff1896LXXX1a"
+      ],
+      "confidence": "clear"
+    },
+    "L2:n#2": {
+      "glyph": "N02",
+      "evidence": [
+        "Васильев198365f"
+      ],
+      "confidence": "probable"
+    },
+    "L2:n#3": {
+      "glyph": "N02",
+      "evidence": [
+        "Васильев198365f",
+        "Radloff1896LXXX1a"
+      ],
+      "confidence": "clear"
+    },
+    "L2:n#4": {
+      "glyph": "N04",
+      "evidence": [
+        "Васильев198365f",
+        "Radloff1896LXXX1a"
+      ],
+      "confidence": "probable",
+      "note": "A clear zigzag on Vasil'ev; at the edge of Radloff's photograph."
+    },
+    "L4:n#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198365f",
+        "Radloff1896LXXX1a"
+      ],
+      "confidence": "unplaced",
+      "note": "Partly legible; both drawings show only a top bar and a stroke."
+    },
+    "L4:n#2": {
+      "glyph": "N02",
+      "evidence": [
+        "Васильев198365f",
+        "Radloff1896LXXX1a"
+      ],
+      "confidence": "clear"
+    }
+  },
+  "Uibat_VI": {
+    "L2:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Аманжолов2003145",
+        "Васильев198376c"
+      ],
+      "confidence": "clear"
+    },
+    "L2:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Аманжолов2003145",
+        "Васильев198376c"
+      ],
+      "confidence": "clear"
+    },
+    "L3:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Аманжолов2003145",
+        "Васильев198376c"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Аманжолов2003145",
+        "Васильев198376c"
+      ],
+      "confidence": "clear"
+    },
+    "L5:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198376c",
+        "Аманжолов2003145"
+      ],
+      "confidence": "probable",
+      "note": "Clear on Vasil'ev; Amanzholov dots the end of this line as damaged."
+    },
+    "L6:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Аманжолов2003145",
+        "Васильев198376c"
+      ],
+      "confidence": "probable",
+      "note": "Clear on Amanzholov; hatched as damaged on Vasil'ev."
+    }
+  },
+  "Uibat_III": {
+    "L1:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "clear",
+      "note": "Vasil'ev row 2 (KRA : BWDWN)."
+    },
+    "L2:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "clear",
+      "note": "Vasil'ev row 3 (BWDNIŋA)."
+    },
+    "L3:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "clear",
+      "note": "Vasil'ev row 4 (IlIŋA)."
+    },
+    "L4:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "clear",
+      "note": "Vasil'ev row 5 (bIlgA)."
+    },
+    "L5:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "lRA: the word could not be located with certainty on the drawings."
+    },
+    "L5:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "probable",
+      "note": "Line-final; stem with the bottom foot to the left."
+    },
+    "L6:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "probable",
+      "note": "Stem with the bottom foot to the left."
+    },
+    "L6:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "probable",
+      "note": "Line-final; stem with the bottom foot to the left."
+    },
+    "L9:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Васильев198366b"
+      ],
+      "confidence": "probable",
+      "note": "Stem with the bottom foot to the left."
+    },
+    "L7:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L10:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L10:A#2": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L11:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L11:A#2": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L11:A#3": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#2": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#3": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#4": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#5": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#6": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L13:A#7": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L14:A#1": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L14:A#2": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L14:A#3": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L14:A#4": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    },
+    "L14:A#5": {
+      "glyph": null,
+      "evidence": [
+        "Васильев198366b",
+        "Radloff1896XCIII1",
+        "Radloff1896XCIV1"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawings set these lines in a different order and with heavy damage; the sign could not be matched to its occurrence with confidence."
+    }
+  },
+  "Begre": {
+    "L2:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L2:D#1": {
+      "glyph": "D04",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L2:D#2": {
+      "glyph": "D04",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L2:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L2:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "note": "Drawn with the top flag to the right only."
+    },
+    "L2:A#4": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#1": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L1:D#1": {
+      "glyph": "D01",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "note": "Partly hidden by the š above it on Amanzholov."
+    },
+    "L1:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#3": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "note": "From KWnǰYmA on, the line turns and runs left to right on both drawings, and every letter in it is mirrored; the glyph given is the shape as drawn.",
+      "direction": "ltr"
+    },
+    "L1:A#4": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:D#2": {
+      "glyph": "D01",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:D#3": {
+      "glyph": "D01",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:A#5": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:A#6": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:A#7": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:A#8": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "note": "Drawn as a stem with the top flag to the left only.",
+      "direction": "ltr"
+    },
+    "L1:D#4": {
+      "glyph": "D01",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L1:A#9": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L3:D#1": {
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "unplaced",
+      "note": "The drawing shows the zigzags only in part; direction not certain."
+    },
+    "L3:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L3:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L3:D#2": {
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "unplaced",
+      "note": "Direction not certain on the drawing."
+    },
+    "L3:A#3": {
+      "glyph": "A03",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L3:A#4": {
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "unplaced",
+      "note": "From rrdmmẄčn on, the line turns and runs left to right; this sign is crowded by the line above."
+    },
+    "L3:A#5": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "direction": "ltr",
+      "note": "Left-to-right stretch (from rrdmmẄčn on); shape as drawn."
+    },
+    "L3:A#6": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L3:D#3": {
+      "glyph": "D01",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "direction": "ltr"
+    },
+    "L4:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear"
+    },
+    "L4:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Amanzholov2003119",
+        "Vasil'ev198361"
+      ],
+      "confidence": "clear",
+      "note": "The stone has ⟨R⟩ for ⟨Ẅ⟩ in this word, as the page's comment says."
+    },
+    "L4:S23": {
+      "glyph": "R01",
+      "evidence": [
+        "page comment"
+      ],
+      "confidence": "corrected",
+      "note": "The page prints ⟨Ẅ⟩; its comment says the stone has ⟨R⟩."
+    },
+    "L5:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L5:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L5:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L5:A#6": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L5:A#7": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L6:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L6:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L6:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L6:A#4": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L7:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L7:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L7:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L8:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L8:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L8:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L9:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L9:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L9:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L9:A#4": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable"
+    },
+    "L5:A#4": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "note": "Drawn Z-shaped, in a line otherwise written right to left."
+    },
+    "L5:A#5": {
+      "glyph": "A03",
+      "evidence": [
+        "Vasil'ev198361"
+      ],
+      "confidence": "probable",
+      "note": "Drawn Z-shaped, in a line otherwise written right to left."
+    }
+  },
+  "_pending": {
+    "Begre": "Line 6's last ⟨A⟩, line 7's last ⟨A⟩ and the 8 of line 10 (right face) could not be matched to their occurrences. Lines 5–9 are read from Vasil'ev's drawing, one row per line; Amanzholov's is too crowded to confirm them sign by sign.",
+    "Elegest_I": "Lines 2–4 and 6–12: the remaining ⟨A⟩ and ⟨z⟩ could not be matched to their occurrences with confidence. Vasil'ev's drawing, the only one set out line by line, draws ⟨A⟩ as 𐰀 almost everywhere, but on line 1 it disagrees with Bazylkhan's tracing, so it is not used alone.",
+    "Uibat_III": "Lines 7, 10, 11, 13 and 14: see the per-occurrence notes."
+  },
+  "Elegest_I": {
+    "L1:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#2": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#4": {
+      "glyph": "A00",
+      "evidence": [
+        "Vasil'ev198360",
+        "Aalto199135",
+        "Bazylkhan2005329"
+      ],
+      "confidence": "disputed",
+      "note": "Vasil'ev and Aalto draw 𐰀; Bazylkhan draws the Z-shaped 𐰁."
+    },
+    "L1:A#5": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329"
+      ],
+      "confidence": "probable"
+    },
+    "L1:A#6": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:A#7": {
+      "glyph": "A00",
+      "evidence": [
+        "Aalto199135"
+      ],
+      "confidence": "probable",
+      "note": "Bazylkhan and Vasil'ev leave no sign here; Aalto draws 𐰀."
+    },
+    "L1:A#8": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:z#1": {
+      "glyph": "Z00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360",
+        "Aalto199135"
+      ],
+      "confidence": "clear"
+    },
+    "L1:z#2": {
+      "glyph": "Z00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L1:z#3": {
+      "glyph": "Z00",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L3:A#1": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329"
+      ],
+      "confidence": "probable"
+    },
+    "L3:A#3": {
+      "glyph": "A00",
+      "evidence": [
+        "Bazylkhan2005329"
+      ],
+      "confidence": "probable"
+    },
+    "L5:z#1": {
+      "glyph": "Z03",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L5:z#2": {
+      "glyph": "Z03",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear"
+    },
+    "L6:wK#1": {
+      "glyph": "K06",
+      "evidence": [
+        "Bazylkhan2005329"
+      ],
+      "confidence": "probable",
+      "note": "Drawn as an arrow pointing down."
+    },
+    "L8:wK#1": {
+      "glyph": "K03",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear",
+      "note": "Drawn as an arrow pointing up."
+    },
+    "L11:wK#1": {
+      "glyph": "K03",
+      "evidence": [
+        "Bazylkhan2005329",
+        "Vasil'ev198360"
+      ],
+      "confidence": "clear",
+      "note": "Drawn as an arrow pointing up."
+    }
+  }
+}
