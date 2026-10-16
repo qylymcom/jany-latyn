@@ -30,6 +30,7 @@ The 28 runes and every setting are unchanged. This is the first draft checked ag
 - **Eski-Enesai's shared spellings are counted** (§17).
 - **A new specimen** (§4) shows the passage in all six presets, generated from the engine. It replaces `orhon-enesai-specimen.png`, which showed the draft 0.2 settings and is kept for the superseded drafts.
 - **Four questions go back to Jany-Latyn** (§27.7).
+- **§26 says which input methods exist** and which are still designs.
 - **Appendices A and B** spell the name Jany-Enesai, as the rest of the document does.
 
 ### Changes from draft 0.2
@@ -529,7 +530,7 @@ The inscription look is a stylization modelled on the tendency the encoding prop
 - **Fonts.** System support is uneven, so the testbed ships Noto Sans Old Turkic (SIL OFL 1.1) [[F1]](#refF1) as a web font. It covers the 73 runes, space, no-break space, and the zero-width joiner, so punctuation comes from the text font next in the stack. Windows ships an Old Turkic face [[W1]](#refW1); Apple and Android coverage has not been checked.
 - **Harmony drawn by a font.** A font could draw the harmony settings itself from reference text, with contextual alternates. An experimental fork built for draft 0.2 rendered every treebank word identically to the prototype's harmony output in Chromium; it has not been rebuilt against the engine. The testbed writes the harmony settings into the text instead, so that they display in any Old Turkic font.
 
-**Input.** The playground offers live conversion, in which the reader types Cyrillic on any keyboard and the runes appear as they type, and direct entry with an on-screen keyboard and layouts for macOS and Linux. The layout puts the 28 runes on the base layer, each under its Cyrillic letter in the Kyrgyz standard layout (`xkeyboard-config`, `symbols/kg`) [[K1]](#refK1), so typing Jany-Enesai needs no modifier at all. Runes have no case, so Shift is free. It carries the front forms of the paired consonants, and on vowel keys the vowel-bound sign the chart pairs with that vowel, for anyone typing the harmony settings directly. AltGr carries the ligatures and the remaining Orkhon and Yenisei variants, so every one of the 73 characters can be typed. The keys of the absorbed letters write nothing of their own. The full table is in the implementation brief.
+**Input.** The playground offers live conversion, in which the reader types Cyrillic on any keyboard and the runes appear as they type. Direct entry, with an on-screen keyboard and layouts for macOS and Linux, is designed but not yet built. The layout puts the 28 runes on the base layer, each under its Cyrillic letter in the Kyrgyz standard layout (`xkeyboard-config`, `symbols/kg`) [[K1]](#refK1), so typing Jany-Enesai needs no modifier at all. Runes have no case, so Shift is free. It carries the front forms of the paired consonants, and on vowel keys the vowel-bound sign the chart pairs with that vowel, for anyone typing the harmony settings directly. AltGr carries the ligatures and the remaining Orkhon and Yenisei variants, so every one of the 73 characters can be typed. The keys of the absorbed letters write nothing of their own. The full table will be generated from one source, as the Jany-Latyn layouts are; the method is in `ORHON-ENESAI-AGENT-BRIEF.md` §6, whose table is for draft 0.1.
 
 ---
 

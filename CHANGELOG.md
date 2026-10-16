@@ -31,6 +31,14 @@ version 1.
   *A Database of Turkic Runiform Inscriptions* (Uppsala University) in
   Unicode, checked against the database, under that database's license,
   CC BY-NC-SA 4.0. `npm run test:corpus` checks the engine against it.
+- **The proposal is checked against the engine.** `npm run check-jany-enesai`
+  (part of `npm test`) regenerates every rune spelling in `JANY-ENESAI.md`,
+  and `npm run rune-metrics -- --check` recomputes its treebank figures from
+  UD Kyrgyz-KTMU r2.18, which `packages/engine/scripts/fetch-ud-kyrgyz.sh`
+  clones into a git-ignored `data/`. The proposal is now draft 0.4: its
+  figures are the engine's, its specimen shows all six presets, and it
+  returns four questions about the reverse conversion and the loan list to
+  Jany-Latyn (§27.7). `WHITEPAPER.md` §7 and Appendix D point to it.
 
 ## 2026.4 — 2026-09-25
 
