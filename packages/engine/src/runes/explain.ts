@@ -39,12 +39,21 @@ export interface WordExplanation {
 const name = (ch: string) =>
   runeName(ch) ?? (ch === DOT_ABOVE ? 'COMBINING DOT ABOVE' : ch === OLD_HUNGARIAN_U ? 'OLD HUNGARIAN SMALL LETTER U' : ch);
 
-/** Explains each Cyrillic word of the text, as cyrillicToRunes converts it. */
-export function explainRunes(text: string, options?: Partial<RuneOptions>): WordExplanation[] {
+/**
+ * Explains each word of the text as the rune stage converts it. From Cyrillic
+ * (cyrillicToRunes), only Cyrillic words; from canonical Jany-Latyn
+ * (janyLatynToRunes), only words made entirely of Jany-Latyn letters.
+ */
+export function explainRunes(
+  text: string,
+  options?: Partial<RuneOptions>,
+  source: 'cyrillic' | 'jany-latyn' = 'cyrillic',
+): WordExplanation[] {
   const o: RuneOptions = { ...DEFAULT_RUNE_OPTIONS, ...options };
   const out: WordExplanation[] = [];
-  for (const source of text.normalize('NFC').match(/\p{Script=Cyrillic}+/gu) ?? []) {
-    const janyLatyn = lowerStr(cyrToJany(source));
+  const words = source === 'cyrillic' ? /\p{Script=Cyrillic}+/gu : /\p{L}+/gu;
+  for (const word of text.normalize('NFC').match(words) ?? []) {
+    const janyLatyn = lowerStr(source === 'cyrillic' ? cyrToJany(word) : word);
     if (!isJanyWord(janyLatyn)) continue;
     const cells = wordCells(janyLatyn, o);
     const letters = cells.map((c, i): LetterExplanation => {
@@ -60,7 +69,7 @@ export function explainRunes(text: string, options?: Partial<RuneOptions>): Word
         ligature: !!c.ligature || merged,
       };
     });
-    out.push({ source, janyLatyn, runes: letters.map((l) => l.rune).join(''), letters });
+    out.push({ source: word, janyLatyn, runes: letters.map((l) => l.rune).join(''), letters });
   }
   return out;
 }
