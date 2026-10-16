@@ -2,6 +2,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/state';
+  import { afterNavigate } from '$app/navigation';
   import { env } from '$env/dynamic/public';
   import '../app.css';
   import { i18n, LOCALES } from '$lib/i18n/index.svelte';
@@ -14,13 +15,29 @@
   import { fontCovers, getProbeForVowelMode } from '$lib/fontcheck';
   import posthog from 'posthog-js';
 
-  const SITE_NAME = env.PUBLIC_SITE_NAME ?? 'jany-latyn';
+  const SITE_NAME = env.PUBLIC_SITE_NAME ?? 'qylym';
   let { children } = $props();
 
-  const links = $derived([
+  type NavLink = { href: string; label: string };
+  type NavSection = NavLink | { label: string; items: NavLink[] };
+
+  const sections = $derived<NavSection[]>([
     { href: '/', label: i18n.t.nav.playground },
-    { href: '/alphabet/', label: i18n.t.nav.alphabet },
-    { href: '/whitepaper/', label: i18n.t.nav.whitepaper },
+    {
+      label: i18n.t.site.latin,
+      items: [
+        { href: '/latin/alphabet/', label: i18n.t.site.latinAlphabet },
+        { href: '/latin/whitepaper/', label: i18n.t.site.latinWhitepaper },
+      ],
+    },
+    {
+      label: i18n.t.site.runic,
+      items: [
+        { href: '/runic/alphabet/', label: i18n.t.site.runicAlphabet },
+        { href: '/runic/proposal/', label: i18n.t.site.runicProposal },
+        { href: '/runic/corpus/', label: i18n.t.site.runicCorpus },
+      ],
+    },
     { href: '/about/', label: i18n.t.nav.about },
   ]);
 
@@ -29,9 +46,14 @@
     return href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
   }
 
+  // The desktop dropdowns are <details>; close them when a link inside is followed.
+  afterNavigate(() => {
+    document.querySelectorAll('header details[open]').forEach((d) => d.removeAttribute('open'));
+  });
+
   // The whitepaper's reading font, offered in the header so it stays reachable
   // anywhere in a long document. Fonts missing the Jany-Latyn glyphs grey out.
-  const onWhitepaper = $derived(isActive('/whitepaper/'));
+  const onWhitepaper = $derived(isActive('/latin/whitepaper/') || isActive('/runic/proposal/'));
   const fontItems = $derived(
     FONTS.map((f) => ({
       value: f.stack,
@@ -82,19 +104,43 @@
         <Icon name="menu" size={18} />
       </button>
       <ul class="menu dropdown-content z-40 mt-2 w-52 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
-        {#each links as l}
-          <li><a href={l.href} class:menu-active={isActive(l.href)}>{l.label}</a></li>
+        {#each sections as s}
+          {#if 'items' in s}
+            <li>
+              <span class="menu-title">{s.label}</span>
+              <ul>
+                {#each s.items as l}
+                  <li><a href={l.href} class:menu-active={isActive(l.href)}>{l.label}</a></li>
+                {/each}
+              </ul>
+            </li>
+          {:else}
+            <li><a href={s.href} class:menu-active={isActive(s.href)}>{s.label}</a></li>
+          {/if}
         {/each}
       </ul>
     </div>
     <a class="px-2 text-lg font-semibold tracking-tight" href="/">{SITE_NAME}</a>
-    <span class="hidden truncate text-sm text-base-content/60 xl:inline">{i18n.t.nav.scriptSubtitle}</span>
+    <span class="hidden truncate text-sm text-base-content/60 xl:inline">{i18n.t.site.subtitle}</span>
   </div>
 
   <nav class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal menu-sm gap-1">
-      {#each links as l}
-        <li><a href={l.href} class:menu-active={isActive(l.href)}>{l.label}</a></li>
+      {#each sections as s}
+        {#if 'items' in s}
+          <li>
+            <details>
+              <summary class:menu-active={s.items.some((l) => isActive(l.href))}>{s.label}</summary>
+              <ul class="z-40 w-56 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
+                {#each s.items as l}
+                  <li><a href={l.href} class:menu-active={isActive(l.href)}>{l.label}</a></li>
+                {/each}
+              </ul>
+            </details>
+          </li>
+        {:else}
+          <li><a href={s.href} class:menu-active={isActive(s.href)}>{s.label}</a></li>
+        {/if}
       {/each}
     </ul>
   </nav>

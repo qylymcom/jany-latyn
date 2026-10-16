@@ -265,6 +265,8 @@ The toggles are not a menu of equally valid house styles. Each one exists so tha
 
 The project is run as a proposal that invites falsification rather than adoption: every contested choice is implemented, all source is public, the hosted testbed records which configurations readers choose so that the distribution can be published beside the arguments, and a reproducible case where the engine corrupts native Kyrgyz counts for more than agreement (§24).
 
+The testbed also writes Kyrgyz in the Old Turkic script. Jany-Enesai, a companion proposal (`docs/jany-enesai/JANY-ENESAI.md`), gives each Jany-Latyn letter one rune, so every rune spelling is computed from the Jany-Latyn one, and its comparison settings sit beside the Latin ones.
+
 ---
 
 ## About the Author
@@ -1038,6 +1040,7 @@ The conversion engine is pure TypeScript with no runtime dependencies, and runs 
 | Conversion engine | `packages/engine/src/convert.ts` |
 | Testbed option couplings | `packages/engine/src/testbedPresets.ts` |
 | Alphabet order and comparison | `packages/engine/src/collate.ts` |
+| Runes (Jany-Enesai) and the inscription reader | `packages/engine/src/runes/` |
 | macOS keyboard layout | `packages/engine/keymaps/jany-latyn.keylayout` |
 | Linux XKB layout | `packages/engine/keymaps/jany.xkb` |
 | Command-line converter | `node packages/engine/dist/src/cli.js` |

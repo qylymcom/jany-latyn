@@ -58,9 +58,11 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "rm -rf dist && tsc && node --test dist/test/ && node dist/scripts/check-whitepaper.js",
+    "test": "rm -rf dist && tsc && node --test dist/test/ && node dist/scripts/check-whitepaper.js && node dist/scripts/check-jany-enesai.js",
     "chart": "tsc && node dist/scripts/make-chart.js",
-    "check-whitepaper": "tsc && node dist/scripts/check-whitepaper.js"
+    "check-whitepaper": "tsc && node dist/scripts/check-whitepaper.js",
+    "check-jany-enesai": "tsc && node dist/scripts/check-jany-enesai.js",
+    "rune-metrics": "tsc && node dist/scripts/rune-metrics.js"
   },
   "devDependencies": {
     "@types/node": "^22.20.2",

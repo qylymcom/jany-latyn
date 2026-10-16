@@ -2,6 +2,7 @@
 <script lang="ts">
   import posthog from 'posthog-js';
   import type { JanyOptions } from 'jany-latyn/convert';
+  import type { RuneOptions } from 'jany-latyn/runes';
   import { i18n } from '$lib/i18n/index.svelte';
 
   let {
@@ -11,6 +12,8 @@
     targetCard,
     sampleLength = 0,
     alreadyVoted = false,
+    script = 'latin',
+    runeOptions,
     onClose,
     onVoteSubmitted
   }: {
@@ -20,6 +23,8 @@
     targetCard: string;
     sampleLength?: number;
     alreadyVoted?: boolean;
+    script?: 'latin' | 'runes';
+    runeOptions?: RuneOptions;
     onClose: () => void;
     onVoteSubmitted: (targetCard: string) => void;
   } = $props();
@@ -101,16 +106,21 @@
       posthog.capture('variant_voted', {
         preset: presetName,
         target_card: targetCard,
-        vowels: options.vowels ?? 'latin-umlaut',
-        y_grapheme: options.yGrapheme ?? 'y',
-        glide_grapheme: options.glideGrapheme ?? 'acute-i',
-        sibilants: options.sibilants ?? 'cedilla',
-        signs: options.signs ?? 'absorbed',
-        uvular_k: options.uvularK ?? 'k',
-        velar_nasal: options.velarNasal ?? 'eng',
-        uvular_g: options.uvularG ?? 'g',
-        affricate: options.affricate ?? 'j',
-        velar_fricative: options.velarFricative ?? 'h',
+        script,
+        ...(script === 'runes' && runeOptions
+          ? { rune_preset: presetName, rune_options: { ...runeOptions } }
+          : {
+              vowels: options.vowels ?? 'latin-umlaut',
+              y_grapheme: options.yGrapheme ?? 'y',
+              glide_grapheme: options.glideGrapheme ?? 'acute-i',
+              sibilants: options.sibilants ?? 'cedilla',
+              signs: options.signs ?? 'absorbed',
+              uvular_k: options.uvularK ?? 'k',
+              velar_nasal: options.velarNasal ?? 'eng',
+              uvular_g: options.uvularG ?? 'g',
+              affricate: options.affricate ?? 'j',
+              velar_fricative: options.velarFricative ?? 'h',
+            }),
         reason_id: selectedReason,
         custom_note: customNote.trim() || undefined,
         text_length: sampleLength
@@ -140,15 +150,19 @@
           {presetName.toUpperCase()}
         </div>
         <div class="font-mono font-medium text-primary flex flex-wrap gap-1.5">
-          <span class="badge badge-sm badge-neutral">{options.vowels ?? 'latin-umlaut'}</span>
-          <span class="badge badge-sm badge-neutral">{options.yGrapheme === 'dotless-i' ? 'ı' : 'y'}</span>
-          <span class="badge badge-sm badge-neutral">й→{({ y: 'y', i: 'i', 'breve-i': 'ĭ', 'tilde-i': 'ĩ' } as Record<string, string>)[options.glideGrapheme ?? ''] ?? 'í'}</span>
-          <span class="badge badge-sm badge-neutral">{options.sibilants === 'cedilla' ? 'ç/ş' : 'ch/sh'}</span>
-          <span class="badge badge-sm badge-neutral">{options.uvularK === 'q' ? 'k/q' : 'k'}</span>
-          {#if options.velarNasal === 'tilde-n'}<span class="badge badge-sm badge-neutral">ñ</span>{/if}
-          {#if options.uvularG === 'ğ'}<span class="badge badge-sm badge-neutral">g/ğ</span>{/if}
-          {#if options.affricate === 'c'}<span class="badge badge-sm badge-neutral">ж→c</span>{/if}
-          {#if options.velarFricative === 'x'}<span class="badge badge-sm badge-neutral">х→x</span>{/if}
+          {#if script === 'latin'}
+            <span class="badge badge-sm badge-neutral">{options.vowels ?? 'latin-umlaut'}</span>
+            <span class="badge badge-sm badge-neutral">{options.yGrapheme === 'dotless-i' ? 'ı' : 'y'}</span>
+            <span class="badge badge-sm badge-neutral">й→{({ y: 'y', i: 'i', 'breve-i': 'ĭ', 'tilde-i': 'ĩ' } as Record<string, string>)[options.glideGrapheme ?? ''] ?? 'í'}</span>
+            <span class="badge badge-sm badge-neutral">{options.sibilants === 'cedilla' ? 'ç/ş' : 'ch/sh'}</span>
+            <span class="badge badge-sm badge-neutral">{options.uvularK === 'q' ? 'k/q' : 'k'}</span>
+            {#if options.velarNasal === 'tilde-n'}<span class="badge badge-sm badge-neutral">ñ</span>{/if}
+            {#if options.uvularG === 'ğ'}<span class="badge badge-sm badge-neutral">g/ğ</span>{/if}
+            {#if options.affricate === 'c'}<span class="badge badge-sm badge-neutral">ж→c</span>{/if}
+            {#if options.velarFricative === 'x'}<span class="badge badge-sm badge-neutral">х→x</span>{/if}
+          {:else}
+            <span class="badge badge-sm badge-neutral">{presetName}</span>
+          {/if}
         </div>
       </div>
 

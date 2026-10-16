@@ -63,6 +63,7 @@ jany-latyn/
 │   │   │                      # inventory (runes by Unicode name), options + presets with status, forward (via
 │   │   │                      # canonical cyrToJany), reverse + isReversible, reader (inscriptions → sign values),
 │   │   │                      # detect (old vs modern spelling), collate + runeFoldKey, explain (inspector)
+│   │   ├── scripts.ts         # jany-latyn/scripts: detectScript, LATIN_PRESETS, convertText (any-to-any hub), explainConversion
 │   │   └── cli.ts             # CLI executable (node packages/engine/dist/src/cli.js)
 │   ├── keymaps/
 │   │   ├── jany-latyn.keylayout # macOS XML keyboard layout (full ANSI coverage)
@@ -70,7 +71,11 @@ jany-latyn/
 │   ├── charts/alphabet.svg    # Generated SVG alphabet chart
 │   ├── scripts/
 │   │   ├── make-chart.ts      # Generates charts/alphabet.svg from LETTER_MAP
-│   │   └── check-whitepaper.ts # Conformance checker; reads ../../docs/WHITEPAPER.md
+│   │   ├── check-whitepaper.ts # Conformance checker; reads ../../docs/WHITEPAPER.md
+│   │   ├── check-jany-enesai.ts # The same for docs/jany-enesai/JANY-ENESAI.md (part of npm test)
+│   │   ├── rune-metrics.ts    # The proposal's treebank figures (npm run rune-metrics -- --check); needs data/
+│   │   ├── treebank.ts        # Reads UD Kyrgyz-KTMU; fetch-ud-kyrgyz.sh clones r2.18 into data/
+│   │   └── make-specimen.ts   # HTML specimen of the proposal's §4 passage; headless Chrome renders the PNG
 │   └── test/                  # Node test runner suites + fixtures/ (anthem, lullaby, Manas, runes.golden.json)
 ├── apps/web/              # PolyForm NC. Svelte 5 + SvelteKit static testbed
 │   └── src/
@@ -81,12 +86,14 @@ jany-latyn/
 │       │   ├── sample-texts/  # Sample library (also read by the engine's samples test)
 │       │   ├── fonts.ts       # Font stack test suites
 │       │   └── fontcheck.ts   # Canvas glyph coverage probing
-│       └── routes/            # Playground (+page), alphabet/, about/, whitepaper/
+│       ├── lib/playground/    # Playground state (state.svelte.ts) and its components
+│       └── routes/            # Playground (+page), latin/{alphabet,whitepaper}, runic/{alphabet,proposal,corpus}, about/; /alphabet and /whitepaper forward
 ├── corpus/                # CC BY-NC-SA 4.0 (adapted from the Uppsala runiform database); scripts/ is MIT
 │   ├── YENISEI-KYRGYZ-CORPUS.md # The 22 Enisei Kyrgyz inscriptions in Unicode, generated and checked by scripts/
 │   ├── shapes.json        # Per-occurrence glyph placements read from the database's drawings
 │   ├── raw/               # Git-ignored downloads (scripts/fetch.sh); never commit
 │   └── scripts/           # fetch, encode, reader, detect, attested (Python); conformance.test.mjs (npm run test:corpus)
+├── data/                  # Git-ignored external datasets (UD Kyrgyz-KTMU, CC BY-SA 4.0); never commit
 └── docs/                  # CC BY 4.0
     ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker
     ├── SPEC.md            # Formal linguistic orthography specification
@@ -117,6 +124,10 @@ npm run check:web
 
 # 4. Build web static application (catches prerendering errors)
 npm run build:web
+
+# 5. When the treebank is present (packages/engine/scripts/fetch-ud-kyrgyz.sh):
+#    the Jany-Enesai proposal's figures
+npm run rune-metrics -- --check
 ```
 
 ---
@@ -155,3 +166,4 @@ npm run build:web
 - Nothing from `corpus/` (CC BY-NC-SA) may be copied into the engine or its tests; checks against the corpus belong in `corpus/scripts/`.
 - Engine code must not import from `apps/` or `docs/`; `test/boundary.test.ts` fails the suite if it does. Reading `docs/WHITEPAPER.md` from the conformance checker is a file read, not an import, and is intentional.
 - Analytics stay off unless `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_HOST` are set at build time. Never hard-code either, and guard every `posthog.capture` with `posthog.__loaded`.
+- The UD treebank (CC BY-SA 4.0) is read from `data/`, which git ignores. Never commit it, and never copy its text into a fixture or a test.

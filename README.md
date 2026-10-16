@@ -2,9 +2,9 @@
 
 [Kyrgyzça (Jany-Latyn)](docs/README.ky-jany.md) · [Кыргызча (Кириллица)](docs/README.ky.md) · [Русский](docs/README.ru.md) · English · [Türkçe](docs/README.tr.md)
 
-**Jany-Latyn** is a Latin orthography for Kyrgyz (Кыргызча) that can be derived from Cyrillic. It comes with
-a deterministic conversion engine and a web testbed in which every contested orthographic choice
-is a selectable option.
+**Jany-Latyn** is a Latin orthography for Kyrgyz (Кыргызча) that can be derived from Cyrillic. It comes with a deterministic conversion engine and **qylym**, a web lab for writing Kyrgyz in
+Latin and in runes: its playground converts between Cyrillic, any Latin variant, ASCII and
+Old Turkic runes, and every contested choice is a selectable option.
 
 The core mappings are **ж→j, ч→ç, ш→ş, х→h, ң→ŋ, ө→ö, ү→ü, ы→y, й→í**, plus doubled long vowels
 (тоок → took). Russian signs `ъ`/`ь` are absorbed, so every word is purely alphabetic.
@@ -44,6 +44,12 @@ From code:
 import { cyrToJany, janyToCyr, janyToFallback } from 'jany-latyn/convert';
 
 cyrToJany('Ак мөңгүлүү аска'); // 'Ak möŋgülüü aska'
+```
+
+```ts
+import { convertText } from 'jany-latyn/scripts';
+
+convertText({ text: 'Кыргыз', from: 'cyrillic', to: 'runes' }); // { ok: true, text: '𐰴𐰃𐰺𐰍𐰃𐰕' }
 ```
 
 ### Runes: Jany-Enesai

@@ -181,7 +181,7 @@ interface DetectedScript {
 }
 ```
 
-Dotless ı in Latin text means the CTA-aligned setting: ы is ı and the glide is y (the coupling of `testbedPresets.ts`). Otherwise the Latin is read as canonical, with í as the glide. `mixed` is returned when no script holds at least 80% of the letters. The playground then keeps the previous detection, or falls back to Cyrillic, and says it is guessing.
+Dotless ı in Latin text means the CTA-aligned setting: ы is ı and the glide is y (the coupling of `testbedPresets.ts`). Otherwise the Latin is read as canonical, with í as the glide. `mixed` is returned when no script holds at least 80% of the letters. The playground then reads the input as Cyrillic and says it is guessing.
 
 ### 4.2 `LATIN_PRESETS`
 
