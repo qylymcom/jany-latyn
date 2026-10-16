@@ -52,7 +52,7 @@ A *scheme* is a complete mapping from Jany-Latyn letters to runes, with the rule
 | Status | Meaning | Schemes |
 | :--- | :--- | :--- |
 | **proposed** | Put forward as the way to write modern Kyrgyz in runes | Jany-Enesai |
-| **reference** | Reproduces an existing source, for comparison | Chart (full harmony), Eski-Enesai (§6), Orkhon inscription look |
+| **reference** | Reproduces an existing source, for comparison | Chart (full harmony), Eski-Enesai (§6), Eski-Teŋir-Too (§6.4), Orkhon inscription look |
 | **comparison** | One deliberate step away from the proposed scheme, to test a single choice | k+g harmony, Attested letters (§4.4), Lossless |
 | **experimental** | A new design under trial, with no claim to precedent | none yet; the slot exists (§3.1) |
 
@@ -105,13 +105,14 @@ Each toggle is reversible, since it still maps one letter to one rune. The testb
 
 ### 4.5 The forms axis
 
-The epigraphic register and the harmony settings choose a letter's series; the *forms* axis chooses which Unicode form writes it. It has three values:
+The epigraphic register and the harmony settings choose a letter's series; the *forms* axis chooses which Unicode form writes it. It has four values:
 
 | Forms | Source | Default for |
 | :--- | :--- | :--- |
 | **chart** | The video chart (proposal §5) | Jany-Enesai, k+g, full harmony |
 | **Orkhon** | The Orkhon forms of Unicode's chart (proposal §17) | the Orkhon inscription look |
 | **Yenisei** | The attested majority of the Yenisei Kyrgyz stones (§6) | Eski-Enesai |
+| **Tian-Shan** | The attested majority of the transcribed Tian-Shan inscriptions, letter by letter; the Yenisei form for a letter none of them has yet (§6.4) | Eski-Teŋir-Too |
 
 The axis changes forms only, never letters. Two texts that differ only in forms MUST fold to the same key (§8.3).
 
@@ -177,6 +178,16 @@ The forms are not chosen by hand. They are computed from the corpus by `corpus/s
 ### 6.3 The one open choice
 
 The stones have two š signs. 𐱂 is on 12 stones and also writes *s* in back-vowel words. 𐱀 is on 11 stones and never writes *s*. A pure majority rule would write ш with 𐱂 and merge it with back с. This specification keeps them apart instead: ш is 𐱀 and back с is 𐱂, so every form is still attested and the two letters stay distinct. The merger is available as a toggle (§12, Q1).
+
+### 6.4 Eski-Teŋir-Too: the Tian-Shan forms
+
+Eski-Teŋir-Too ("Old Tian Shan", Kyrgyz Теңир-Тоо) is Eski-Enesai with the forms of the runiform inscriptions of the Tian Shan in Kyrgyzstan: the Talas valley, the Kochkor valley and the Issyk-Kul basin. Everything but the forms is as in §6.1.
+
+The forms come from the Tian-Shan inscription database, `corpus/tianshan/` (PolyForm Noncommercial; de-novo work, not adapted from another database). Its transcriptions record each sign's shape as a glyph of the database's sign table, read off published tracings and photographs. `corpus/scripts/tianshan/build.mjs` applies the rule of §6.1 to them, per letter and series, and writes the result to the engine as `packages/engine/src/runes/tianshanForms.ts`: one Unicode name per letter, or none where no transcribed inscription has the letter. A letter without a Tian-Shan form is written in its Yenisei form (§6.2). The sources describe the Tian-Shan inscriptions as close to the Yenisei ones in their signs, which makes the Yenisei forms the natural stand-in; the stand-in is not evidence of Tian-Shan usage.
+
+The testbed MUST show, beside this scheme, how many inscriptions its forms were counted from (`TIANSHAN_TRANSCRIBED`). While that number is 0, Eski-Teŋir-Too writes exactly what Eski-Enesai writes.
+
+The Tian-Shan forms are a value of the forms axis (§4.5), so they combine with every other setting. They are reversible under the same conditions as the Yenisei forms, and in addition only while every Tian-Shan form reads back as its own letter (§5).
 
 ## 7. Reading the inscriptions
 
@@ -327,6 +338,8 @@ An implementation conforms when all of these hold:
 Check 1 runs in `npm run check-jany-enesai`, part of the engine's tests, which regenerates every rune spelling the proposal prints. Check 2 runs in `npm run rune-metrics -- --check`, which needs the treebank (`packages/engine/scripts/fetch-ud-kyrgyz.sh`) and also fails if the proposal states one of its figures differently.
 
 Checks 3–5 run against the corpus, which is licensed CC BY-NC-SA. They therefore live outside the MIT engine package, in `corpus/scripts/conformance.test.mjs` (`npm run test:corpus`), which reads the corpus at run time and copies nothing from it.
+
+The Tian-Shan forms (§6.4) are checked the same way: `corpus/scripts/tianshan/tianshan.test.mjs`, also part of `npm run test:corpus`, fails if `tianshanForms.ts` is not what the Tian-Shan database generates, and the engine's own tests check that Eski-Teŋir-Too writes each letter in the form the table gives it, or in its Yenisei form.
 
 ## 12. Revisions to the proposal
 

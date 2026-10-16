@@ -22,7 +22,9 @@
   "scripts": {
     "build": "npm --workspace packages/engine run build",
     "test": "npm --workspace packages/engine test",
-    "test:corpus": "npm run build && node --test corpus/scripts/",
+    "test:corpus": "npm run build && node --test corpus/scripts/conformance.test.mjs corpus/scripts/tianshan/tianshan.test.mjs",
+    "build:tianshan": "npm run build && node corpus/scripts/tianshan/build.mjs",
+    "fetch:tianshan": "sh corpus/scripts/tianshan/fetch.sh",
     "chart": "npm --workspace packages/engine run chart",
     "check-whitepaper": "npm --workspace packages/engine run check-whitepaper",
     "check-jany-enesai": "npm --workspace packages/engine run check-jany-enesai",

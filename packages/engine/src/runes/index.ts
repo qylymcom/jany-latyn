@@ -3,7 +3,7 @@
  * Jany-Enesai and the Orhon-Enesai settings: Kyrgyz in the Old Turkic script
  * (docs/jany-enesai/JANY-ENESAI.md, RUNES-SPEC.md). Import as `jany-latyn/runes`.
  */
-export { cyrillicToRunes, janyLatynToRunes, governingVowelIndex, type Series } from './forward.js';
+export { cyrillicToRunes, janyLatynToRunes, governingVowelIndex, letterForm, type Series } from './forward.js';
 export { runesToJanyLatyn, runesToCyrillic, isReversible, runeLetters } from './reverse.js';
 export { readInscription, signValue, type ReaderTarget } from './reader.js';
 export { detectSpelling, spellingFeatures, type SpellingFeatures } from './detect.js';
@@ -14,3 +14,4 @@ export {
   type RuneOptions, type RunePreset, type RuneStatus,
 } from './options.js';
 export { RUNE_NAMES, rune, runeName, TWO_DOT, type RuneName } from './inventory.js';
+export { TIANSHAN_FORMS, TIANSHAN_TRANSCRIBED, type TianShanFormKey } from './tianshanForms.js';

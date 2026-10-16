@@ -8,6 +8,7 @@ import { cyrToJany } from '../convert.js';
 import { lowerStr } from '../casing.js';
 import { DEFAULT_RUNE_OPTIONS, type RuneOptions } from './options.js';
 import { rune, TWO_DOT, DOT_ABOVE, OLD_HUNGARIAN_U, type RuneName } from './inventory.js';
+import { TIANSHAN_FORMS, type TianShanFormKey } from './tianshanForms.js';
 
 const VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'y', 'ö', 'ü', 'ä']);
 const BACK_VOWELS = new Set(['a', 'o', 'u', 'y']);
@@ -32,18 +33,38 @@ const CHART: Pairs = {
   ş: ['ORKHON ESH', 'ORKHON ESH'], z: ['YENISEI EZ', 'YENISEI EZ'], f: ['YENISEI AL', 'YENISEI AL'],
   h: ['YENISEI OEK', 'YENISEI OEK'], v: ['YENISEI AB', 'YENISEI AB'],
 };
+// The attested majority of the Yenisei Kyrgyz stones (RUNES-SPEC §6.2).
+const YENISEI: Pairs = {
+  ...CHART,
+  b: ['ORKHON AB', 'YENISEI AEB'], g: ['YENISEI AG', 'ORKHON AEG'], n: ['ORKHON AN', 'YENISEI AEN'],
+  r: ['YENISEI AR', 'ORKHON AER'], s: ['YENISEI ESH', 'ORKHON AES'], ŋ: ['YENISEI ANG', 'ORKHON ENG'],
+  ş: ['YENISEI ASH', 'YENISEI ASH'],
+};
+
+/** A letter's Tian-Shan form: the stones' attested majority, or its Yenisei form until a transcribed stone has it (RUNES-SPEC §6.4). */
+const tianshan = (key: TianShanFormKey, yenisei: RuneName): RuneName => TIANSHAN_FORMS[key] ?? yenisei;
+const tianshanPair = (l: 'b' | 'g' | 'd' | 'í' | 'l' | 'n' | 'ŋ' | 'r' | 's'): readonly [RuneName, RuneName] =>
+  [tianshan(`${l}/back`, YENISEI[l][0]), tianshan(`${l}/front`, YENISEI[l][1])];
+const tianshanOne = (l: 'z' | 'm' | 'p' | 'ş'): readonly [RuneName, RuneName] =>
+  [tianshan(l, YENISEI[l][0]), tianshan(l, YENISEI[l][0])];
+
 const PAIRS: Record<Forms, Pairs> = {
   chart: CHART,
   // The Orkhon monuments' forms differ from the chart's in back т (consonantRune) and in з.
   orkhon: { ...CHART, z: ['ORKHON EZ', 'ORKHON EZ'] },
-  // The attested majority of the Yenisei Kyrgyz stones (RUNES-SPEC §6.2).
-  yenisei: {
-    ...CHART,
-    b: ['ORKHON AB', 'YENISEI AEB'], g: ['YENISEI AG', 'ORKHON AEG'], n: ['ORKHON AN', 'YENISEI AEN'],
-    r: ['YENISEI AR', 'ORKHON AER'], s: ['YENISEI ESH', 'ORKHON AES'], ŋ: ['YENISEI ANG', 'ORKHON ENG'],
-    ş: ['YENISEI ASH', 'YENISEI ASH'],
+  yenisei: YENISEI,
+  tianshan: {
+    ...YENISEI,
+    b: tianshanPair('b'), g: tianshanPair('g'), d: tianshanPair('d'), í: tianshanPair('í'), l: tianshanPair('l'),
+    n: tianshanPair('n'), ŋ: tianshanPair('ŋ'), r: tianshanPair('r'), s: tianshanPair('s'),
+    z: tianshanOne('z'), m: tianshanOne('m'), p: tianshanOne('p'), ş: tianshanOne('ş'),
   },
 };
+
+/** The rune for a letter that has a Tian-Shan form, under any forms setting. */
+function formRune(o: RuneOptions, key: TianShanFormKey, name: RuneName): string {
+  return rune(o.forms === 'tianshan' ? tianshan(key, name) : name);
+}
 
 function seriesOf(vowel: string | null): Series {
   return vowel === null || BACK_VOWELS.has(vowel) ? 'back' : 'front';
@@ -66,12 +87,12 @@ export function governingVowelIndex(letters: readonly string[], k: number): numb
 function vowelRune(v: string, o: RuneOptions): string {
   if (o.vowels === 'historical') {
     switch (v) {
-      case 'a': case 'ä': return rune('ORKHON A');
+      case 'a': case 'ä': return formRune(o, 'a', 'ORKHON A');
       // The Orkhon monuments have no e sign and write it with a; the Yenisei stones write 𐰅.
-      case 'e': return rune(o.forms === 'orkhon' ? 'ORKHON A' : 'YENISEI E');
-      case 'y': case 'i': return rune('ORKHON I');
-      case 'o': case 'u': return rune('ORKHON O');
-      case 'ö': case 'ü': return rune('ORKHON OE');
+      case 'e': return o.forms === 'orkhon' ? rune('ORKHON A') : formRune(o, 'e', 'YENISEI E');
+      case 'y': case 'i': return formRune(o, 'i', 'ORKHON I');
+      case 'o': case 'u': return formRune(o, 'o', 'ORKHON O');
+      case 'ö': case 'ü': return formRune(o, 'ö', 'ORKHON OE');
     }
   }
   switch (v) {
@@ -117,25 +138,26 @@ function consonantForm(c: string, g: string | null, o: RuneOptions, s: Series): 
   if (c === 'j' && o.zhe === 'front') return rune('YENISEI AEY');
 
   const full = o.harmony === 'full';
-  const yenisei = o.forms === 'yenisei';
+  // The Tian-Shan forms start from the Yenisei ones, letter by letter.
+  const yenisei = o.forms === 'yenisei' || o.forms === 'tianshan';
 
   if (c === 'k') {
     if (s === 'back') {
-      if (full && g !== null && ROUNDED_BACK.has(g)) return rune(yenisei ? 'YENISEI OQ' : 'ORKHON OQ');
+      if (full && g !== null && ROUNDED_BACK.has(g)) return formRune(o, 'oq', yenisei ? 'YENISEI OQ' : 'ORKHON OQ');
       // The stones write к by ы with plain 𐰴 (RUNES-SPEC §6.2).
       if (full && g === 'y' && !yenisei) return rune('ORKHON IQ');
-      return rune('ORKHON AQ');
+      return formRune(o, 'k/back', 'ORKHON AQ');
     }
-    if (full && g !== null && ROUNDED_FRONT.has(g)) return rune(yenisei ? 'YENISEI OEK' : 'ORKHON OEK');
-    return rune(yenisei ? 'YENISEI AEK' : 'ORKHON AEK');
+    if (full && g !== null && ROUNDED_FRONT.has(g)) return formRune(o, 'ök', yenisei ? 'YENISEI OEK' : 'ORKHON OEK');
+    return formRune(o, 'k/front', yenisei ? 'YENISEI AEK' : 'ORKHON AEK');
   }
   if (c === 't') {
-    if (s === 'front') return rune('ORKHON AET');
+    if (s === 'front') return formRune(o, 't/front', 'ORKHON AET');
     // 𐱇 is not attested on the stones; the Yenisei forms write plain 𐱄.
     if (full && g !== null && ROUNDED_BACK.has(g) && !yenisei) return rune('ORKHON OT');
-    return rune(o.forms === 'orkhon' ? 'ORKHON AT' : 'YENISEI AT');
+    return formRune(o, 't/back', o.forms === 'orkhon' ? 'ORKHON AT' : 'YENISEI AT');
   }
-  if (c === 'ç') return rune(full && g === 'i' ? 'ORKHON IC' : 'ORKHON EC');
+  if (c === 'ç') return full && g === 'i' ? formRune(o, 'iç', 'ORKHON IC') : formRune(o, 'ç', 'ORKHON EC');
 
   const pair = PAIRS[o.forms][c];
   if (!pair) throw new Error(`no rune for consonant: ${c}`);
@@ -146,7 +168,8 @@ function consonantForm(c: string, g: string | null, o: RuneOptions, s: Series): 
   }
   if (c === 'ş') {
     if (o.sh === 'attested') return rune('YENISEI ASH');
-    if (yenisei && o.yeniseiSh === 'merged') return rune('YENISEI ESH');
+    // Merged: ш is written as back с is (𐱂 on the Yenisei stones).
+    if (yenisei && o.yeniseiSh === 'merged') return rune(PAIRS[o.forms].s[0]);
   }
   return rune(s === 'back' ? pair[0] : pair[1]);
 }
@@ -182,10 +205,13 @@ function applyEpigraphic(cells: Cell[], o: RuneOptions): void {
     if (end === last) continue;  // word-final vowels are written
     if (LOW_VOWELS.has(ch) || nucleus > 0) cells[k].drop = true;
   }
-  // нт and нд are 𐰦 in every inscription look (RUNES-SPEC §12, R2). No stone ligates лт.
-  const ELT = o.forms === 'yenisei' ? null : rune('ORKHON ELT');
-  const ENT = rune('ORKHON ENT');
-  const ENC = rune(o.forms === 'chart' ? 'YENISEI ENC' : 'ORKHON ENC');
+  // нт and нд are 𐰦 in every inscription look (RUNES-SPEC §12, R2). No Yenisei stone
+  // ligates лт; the Tian-Shan forms ligate it once a transcribed stone does.
+  const ELT = o.forms === 'yenisei' ? null
+    : o.forms === 'tianshan' ? (TIANSHAN_FORMS.lt && rune(TIANSHAN_FORMS.lt))
+    : rune('ORKHON ELT');
+  const ENT = formRune(o, 'nt', 'ORKHON ENT');
+  const ENC = o.forms === 'chart' ? rune('YENISEI ENC') : formRune(o, 'nç', 'ORKHON ENC');
   for (let k = 0; k + 1 < cells.length; k++) {
     const a = cells[k].letter, b = cells[k + 1].letter;
     let lig: string | null = null;
@@ -248,4 +274,34 @@ export function cyrillicToRunes(text: string, options?: Partial<RuneOptions>): s
     return isJanyWord(jl) ? convertWord(jl, o) : w;
   });
   return finish(out, o);
+}
+
+// A word for each Tian-Shan form key whose runes show the form: the first rune, or
+// the second for ŋ, which ends its word. Ligatures need the epigraphic register.
+const FULL: Partial<RuneOptions> = { harmony: 'full' };
+const HISTORICAL: Partial<RuneOptions> = { vowels: 'historical' };
+const EPIGRAPHIC: Partial<RuneOptions> = { register: 'epigraphic', harmony: 'full' };
+const FORM_PROBES: Readonly<Record<TianShanFormKey, readonly [string, Partial<RuneOptions>]>> = {
+  a: ['a', HISTORICAL], e: ['e', HISTORICAL], i: ['i', HISTORICAL], o: ['o', HISTORICAL], ö: ['ö', HISTORICAL],
+  'b/back': ['ba', FULL], 'b/front': ['be', FULL], 'g/back': ['ga', FULL], 'g/front': ['ge', FULL],
+  'd/back': ['da', FULL], 'd/front': ['de', FULL], z: ['za', FULL], 'í/back': ['ía', FULL], 'í/front': ['íe', FULL],
+  'k/back': ['ka', FULL], 'k/front': ['ke', FULL], oq: ['ko', FULL], ök: ['kö', FULL],
+  'l/back': ['la', FULL], 'l/front': ['le', FULL], lt: ['alta', EPIGRAPHIC], m: ['ma', FULL],
+  'n/back': ['na', FULL], 'n/front': ['ne', FULL], nt: ['anta', EPIGRAPHIC], nç: ['ança', EPIGRAPHIC],
+  'ŋ/back': ['aŋ', FULL], 'ŋ/front': ['eŋ', FULL], p: ['pa', FULL], 'r/back': ['ra', FULL], 'r/front': ['re', FULL],
+  's/back': ['sa', FULL], 's/front': ['se', FULL], ş: ['şa', FULL], 't/back': ['ta', FULL], 't/front': ['te', FULL],
+  ç: ['ça', FULL], iç: ['çi', FULL],
+};
+
+/**
+ * The rune a forms setting writes for one letter of the Tian-Shan forms table (the
+ * vowels as historical vowels, the consonants under full harmony, the ligatures in
+ * the epigraphic register), for tables that compare the forms. null for a ligature
+ * the setting does not write.
+ */
+export function letterForm(key: TianShanFormKey, forms: RuneOptions['forms']): string | null {
+  const [word, o] = FORM_PROBES[key];
+  const runes = [...janyLatynToRunes(word, { ...o, forms })];
+  if (key === 'lt' || key === 'nt' || key === 'nç') return runes.length === 2 ? runes[0] : null;
+  return key.startsWith('ŋ') ? runes[1] : runes[0];
 }

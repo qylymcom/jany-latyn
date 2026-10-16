@@ -1,0 +1,880 @@
+{
+ "_note": "The sign system of the database. A grapheme is a letter of the script as a reader identifies it: its sign value (as RUNES-SPEC.md Appendix B and the engine's reader give it), its Turkological transliteration symbol, the phonemes it writes and, for the forms table of the engine's Eski-Teŋir-Too preset, the engine letter it stands for (engineKey). A glyph is one shape of a grapheme: each Unicode Old Turkic character is a glyph, and a shape Unicode does not encode (a turned or simplified form seen on a stone) is added as a glyph with unicode null, 'nearest' naming the character it is written with, and a description. Transcriptions cite glyph ids (b1.2) or, when the shape cannot be told, grapheme ids (b1).",
+ "graphemes": [
+  {
+   "id": "a",
+   "value": "a",
+   "symbol": "A",
+   "kind": "vowel",
+   "phonemes": [
+    "a",
+    "ä"
+   ],
+   "engineKey": "a",
+   "glyphs": [
+    {
+     "id": "a.1",
+     "unicode": "ORKHON A"
+    },
+    {
+     "id": "a.2",
+     "unicode": "YENISEI A"
+    }
+   ]
+  },
+  {
+   "id": "ae",
+   "value": "ä",
+   "symbol": "ä",
+   "kind": "vowel",
+   "phonemes": [
+    "ä"
+   ],
+   "glyphs": [
+    {
+     "id": "ae.1",
+     "unicode": "YENISEI AE"
+    }
+   ]
+  },
+  {
+   "id": "i",
+   "value": "i",
+   "symbol": "I",
+   "kind": "vowel",
+   "phonemes": [
+    "ı",
+    "i"
+   ],
+   "engineKey": "i",
+   "glyphs": [
+    {
+     "id": "i.1",
+     "unicode": "ORKHON I"
+    },
+    {
+     "id": "i.2",
+     "unicode": "YENISEI I"
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "value": "e",
+   "symbol": "e",
+   "kind": "vowel",
+   "phonemes": [
+    "e"
+   ],
+   "engineKey": "e",
+   "glyphs": [
+    {
+     "id": "e.1",
+     "unicode": "YENISEI E"
+    }
+   ]
+  },
+  {
+   "id": "o",
+   "value": "o",
+   "symbol": "W",
+   "kind": "vowel",
+   "phonemes": [
+    "o",
+    "u"
+   ],
+   "engineKey": "o",
+   "glyphs": [
+    {
+     "id": "o.1",
+     "unicode": "ORKHON O"
+    }
+   ]
+  },
+  {
+   "id": "oe",
+   "value": "ö",
+   "symbol": "Ẅ",
+   "kind": "vowel",
+   "phonemes": [
+    "ö",
+    "ü"
+   ],
+   "engineKey": "ö",
+   "glyphs": [
+    {
+     "id": "oe.1",
+     "unicode": "ORKHON OE"
+    },
+    {
+     "id": "oe.2",
+     "unicode": "YENISEI OE"
+    }
+   ]
+  },
+  {
+   "id": "b1",
+   "value": "b¹",
+   "symbol": "B",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "b"
+   ],
+   "engineKey": "b/back",
+   "glyphs": [
+    {
+     "id": "b1.1",
+     "unicode": "ORKHON AB"
+    },
+    {
+     "id": "b1.2",
+     "unicode": "YENISEI AB"
+    }
+   ]
+  },
+  {
+   "id": "b2",
+   "value": "b²",
+   "symbol": "b",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "b"
+   ],
+   "engineKey": "b/front",
+   "glyphs": [
+    {
+     "id": "b2.1",
+     "unicode": "ORKHON AEB"
+    },
+    {
+     "id": "b2.2",
+     "unicode": "YENISEI AEB"
+    }
+   ]
+  },
+  {
+   "id": "g1",
+   "value": "g¹",
+   "symbol": "G",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "ɣ"
+   ],
+   "engineKey": "g/back",
+   "glyphs": [
+    {
+     "id": "g1.1",
+     "unicode": "ORKHON AG"
+    },
+    {
+     "id": "g1.2",
+     "unicode": "YENISEI AG"
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "value": "g²",
+   "symbol": "g",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "g"
+   ],
+   "engineKey": "g/front",
+   "glyphs": [
+    {
+     "id": "g2.1",
+     "unicode": "ORKHON AEG"
+    },
+    {
+     "id": "g2.2",
+     "unicode": "YENISEI AEG"
+    }
+   ]
+  },
+  {
+   "id": "d1",
+   "value": "d¹",
+   "symbol": "D",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "d"
+   ],
+   "engineKey": "d/back",
+   "glyphs": [
+    {
+     "id": "d1.1",
+     "unicode": "ORKHON AD"
+    },
+    {
+     "id": "d1.2",
+     "unicode": "YENISEI AD"
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "value": "d²",
+   "symbol": "d",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "d"
+   ],
+   "engineKey": "d/front",
+   "glyphs": [
+    {
+     "id": "d2.1",
+     "unicode": "ORKHON AED"
+    }
+   ]
+  },
+  {
+   "id": "z",
+   "value": "z",
+   "symbol": "z",
+   "kind": "consonant",
+   "phonemes": [
+    "z"
+   ],
+   "engineKey": "z",
+   "glyphs": [
+    {
+     "id": "z.1",
+     "unicode": "ORKHON EZ"
+    },
+    {
+     "id": "z.2",
+     "unicode": "YENISEI EZ"
+    }
+   ]
+  },
+  {
+   "id": "y1",
+   "value": "y¹",
+   "symbol": "Y",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "y"
+   ],
+   "engineKey": "í/back",
+   "glyphs": [
+    {
+     "id": "y1.1",
+     "unicode": "ORKHON AY"
+    },
+    {
+     "id": "y1.2",
+     "unicode": "YENISEI AY"
+    }
+   ]
+  },
+  {
+   "id": "y2",
+   "value": "y²",
+   "symbol": "y",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "y"
+   ],
+   "engineKey": "í/front",
+   "glyphs": [
+    {
+     "id": "y2.1",
+     "unicode": "ORKHON AEY"
+    },
+    {
+     "id": "y2.2",
+     "unicode": "YENISEI AEY"
+    }
+   ]
+  },
+  {
+   "id": "k2",
+   "value": "k²",
+   "symbol": "k",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "k"
+   ],
+   "engineKey": "k/front",
+   "glyphs": [
+    {
+     "id": "k2.1",
+     "unicode": "ORKHON AEK"
+    },
+    {
+     "id": "k2.2",
+     "unicode": "YENISEI AEK"
+    }
+   ]
+  },
+  {
+   "id": "oek",
+   "value": "ök",
+   "symbol": "ẅk",
+   "kind": "syllabic",
+   "series": "front",
+   "phonemes": [
+    "ö",
+    "ü",
+    "k"
+   ],
+   "engineKey": "ök",
+   "glyphs": [
+    {
+     "id": "oek.1",
+     "unicode": "ORKHON OEK"
+    },
+    {
+     "id": "oek.2",
+     "unicode": "YENISEI OEK"
+    }
+   ]
+  },
+  {
+   "id": "l1",
+   "value": "l¹",
+   "symbol": "L",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "l"
+   ],
+   "engineKey": "l/back",
+   "glyphs": [
+    {
+     "id": "l1.1",
+     "unicode": "ORKHON AL"
+    },
+    {
+     "id": "l1.2",
+     "unicode": "YENISEI AL"
+    }
+   ]
+  },
+  {
+   "id": "l2",
+   "value": "l²",
+   "symbol": "l",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "l"
+   ],
+   "engineKey": "l/front",
+   "glyphs": [
+    {
+     "id": "l2.1",
+     "unicode": "ORKHON AEL"
+    }
+   ]
+  },
+  {
+   "id": "lt",
+   "value": "lt",
+   "symbol": "lt",
+   "kind": "ligature",
+   "phonemes": [
+    "l",
+    "t"
+   ],
+   "engineKey": "lt",
+   "glyphs": [
+    {
+     "id": "lt.1",
+     "unicode": "ORKHON ELT"
+    }
+   ]
+  },
+  {
+   "id": "m",
+   "value": "m",
+   "symbol": "m",
+   "kind": "consonant",
+   "phonemes": [
+    "m"
+   ],
+   "engineKey": "m",
+   "glyphs": [
+    {
+     "id": "m.1",
+     "unicode": "ORKHON EM"
+    }
+   ]
+  },
+  {
+   "id": "n1",
+   "value": "n¹",
+   "symbol": "N",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "n"
+   ],
+   "engineKey": "n/back",
+   "glyphs": [
+    {
+     "id": "n1.1",
+     "unicode": "ORKHON AN"
+    }
+   ]
+  },
+  {
+   "id": "n2",
+   "value": "n²",
+   "symbol": "n",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "n"
+   ],
+   "engineKey": "n/front",
+   "glyphs": [
+    {
+     "id": "n2.1",
+     "unicode": "ORKHON AEN"
+    },
+    {
+     "id": "n2.2",
+     "unicode": "YENISEI AEN"
+    }
+   ]
+  },
+  {
+   "id": "nt",
+   "value": "nt",
+   "symbol": "nd",
+   "kind": "ligature",
+   "phonemes": [
+    "n",
+    "t",
+    "d"
+   ],
+   "engineKey": "nt",
+   "glyphs": [
+    {
+     "id": "nt.1",
+     "unicode": "ORKHON ENT"
+    },
+    {
+     "id": "nt.2",
+     "unicode": "YENISEI ENT"
+    }
+   ]
+  },
+  {
+   "id": "nc",
+   "value": "nč",
+   "symbol": "nǰ",
+   "kind": "ligature",
+   "phonemes": [
+    "n",
+    "č"
+   ],
+   "engineKey": "nç",
+   "glyphs": [
+    {
+     "id": "nc.1",
+     "unicode": "ORKHON ENC"
+    },
+    {
+     "id": "nc.2",
+     "unicode": "YENISEI ENC"
+    }
+   ]
+  },
+  {
+   "id": "ny",
+   "value": "ny",
+   "symbol": "ny",
+   "kind": "consonant",
+   "phonemes": [
+    "ń"
+   ],
+   "glyphs": [
+    {
+     "id": "ny.1",
+     "unicode": "ORKHON ENY"
+    },
+    {
+     "id": "ny.2",
+     "unicode": "YENISEI ENY"
+    }
+   ]
+  },
+  {
+   "id": "ng1",
+   "value": "ñ",
+   "symbol": "Ŋ",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "ñ"
+   ],
+   "engineKey": "ŋ/back",
+   "glyphs": [
+    {
+     "id": "ng1.1",
+     "unicode": "YENISEI ANG"
+    }
+   ]
+  },
+  {
+   "id": "ng2",
+   "value": "ñ",
+   "symbol": "ŋ",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "ñ"
+   ],
+   "engineKey": "ŋ/front",
+   "glyphs": [
+    {
+     "id": "ng2.1",
+     "unicode": "ORKHON ENG"
+    },
+    {
+     "id": "ng2.2",
+     "unicode": "YENISEI AENG"
+    }
+   ]
+  },
+  {
+   "id": "p",
+   "value": "p",
+   "symbol": "p",
+   "kind": "consonant",
+   "phonemes": [
+    "p"
+   ],
+   "engineKey": "p",
+   "glyphs": [
+    {
+     "id": "p.1",
+     "unicode": "ORKHON EP"
+    }
+   ]
+  },
+  {
+   "id": "op",
+   "value": "op",
+   "symbol": "wp",
+   "kind": "syllabic",
+   "series": "back",
+   "phonemes": [
+    "o",
+    "u",
+    "p"
+   ],
+   "glyphs": [
+    {
+     "id": "op.1",
+     "unicode": "ORKHON OP"
+    }
+   ]
+  },
+  {
+   "id": "ic",
+   "value": "ič",
+   "symbol": "ič",
+   "kind": "syllabic",
+   "phonemes": [
+    "ı",
+    "i",
+    "č"
+   ],
+   "engineKey": "iç",
+   "glyphs": [
+    {
+     "id": "ic.1",
+     "unicode": "ORKHON IC"
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "value": "č",
+   "symbol": "č",
+   "kind": "consonant",
+   "phonemes": [
+    "č"
+   ],
+   "engineKey": "ç",
+   "glyphs": [
+    {
+     "id": "c.1",
+     "unicode": "ORKHON EC"
+    },
+    {
+     "id": "c.2",
+     "unicode": "YENISEI EC"
+    }
+   ]
+  },
+  {
+   "id": "q",
+   "value": "q",
+   "symbol": "K",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "q"
+   ],
+   "engineKey": "k/back",
+   "glyphs": [
+    {
+     "id": "q.1",
+     "unicode": "ORKHON AQ"
+    },
+    {
+     "id": "q.2",
+     "unicode": "YENISEI AQ"
+    }
+   ]
+  },
+  {
+   "id": "iq",
+   "value": "ıq",
+   "symbol": "ïK",
+   "kind": "syllabic",
+   "series": "back",
+   "phonemes": [
+    "ı",
+    "q"
+   ],
+   "glyphs": [
+    {
+     "id": "iq.1",
+     "unicode": "ORKHON IQ"
+    },
+    {
+     "id": "iq.2",
+     "unicode": "YENISEI IQ"
+    }
+   ]
+  },
+  {
+   "id": "oq",
+   "value": "oq",
+   "symbol": "wK",
+   "kind": "syllabic",
+   "series": "back",
+   "phonemes": [
+    "o",
+    "u",
+    "q"
+   ],
+   "engineKey": "oq",
+   "glyphs": [
+    {
+     "id": "oq.1",
+     "unicode": "ORKHON OQ"
+    },
+    {
+     "id": "oq.2",
+     "unicode": "YENISEI OQ"
+    }
+   ]
+  },
+  {
+   "id": "r1",
+   "value": "r¹",
+   "symbol": "R",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "r"
+   ],
+   "engineKey": "r/back",
+   "glyphs": [
+    {
+     "id": "r1.1",
+     "unicode": "ORKHON AR"
+    },
+    {
+     "id": "r1.2",
+     "unicode": "YENISEI AR"
+    }
+   ]
+  },
+  {
+   "id": "r2",
+   "value": "r²",
+   "symbol": "r",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "r"
+   ],
+   "engineKey": "r/front",
+   "glyphs": [
+    {
+     "id": "r2.1",
+     "unicode": "ORKHON AER"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "value": "s¹",
+   "symbol": "S",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "s"
+   ],
+   "engineKey": "s/back",
+   "glyphs": [
+    {
+     "id": "s1.1",
+     "unicode": "ORKHON AS"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "value": "s²",
+   "symbol": "s",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "s"
+   ],
+   "engineKey": "s/front",
+   "glyphs": [
+    {
+     "id": "s2.1",
+     "unicode": "ORKHON AES"
+    }
+   ]
+  },
+  {
+   "id": "ash",
+   "value": "aš",
+   "symbol": "aš",
+   "kind": "syllabic",
+   "series": "back",
+   "phonemes": [
+    "a",
+    "š"
+   ],
+   "glyphs": [
+    {
+     "id": "ash.1",
+     "unicode": "ORKHON ASH"
+    }
+   ]
+  },
+  {
+   "id": "sh",
+   "value": "š",
+   "symbol": "š",
+   "kind": "consonant",
+   "phonemes": [
+    "š"
+   ],
+   "engineKey": "ş",
+   "glyphs": [
+    {
+     "id": "sh.1",
+     "unicode": "YENISEI ASH"
+    },
+    {
+     "id": "sh.2",
+     "unicode": "ORKHON ESH"
+    },
+    {
+     "id": "sh.3",
+     "unicode": "YENISEI ESH"
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "value": "t¹",
+   "symbol": "T",
+   "kind": "consonant",
+   "series": "back",
+   "phonemes": [
+    "t"
+   ],
+   "engineKey": "t/back",
+   "glyphs": [
+    {
+     "id": "t1.1",
+     "unicode": "ORKHON AT"
+    },
+    {
+     "id": "t1.2",
+     "unicode": "YENISEI AT"
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "value": "t²",
+   "symbol": "t",
+   "kind": "consonant",
+   "series": "front",
+   "phonemes": [
+    "t"
+   ],
+   "engineKey": "t/front",
+   "glyphs": [
+    {
+     "id": "t2.1",
+     "unicode": "ORKHON AET"
+    },
+    {
+     "id": "t2.2",
+     "unicode": "YENISEI AET"
+    }
+   ]
+  },
+  {
+   "id": "ot",
+   "value": "ot",
+   "symbol": "wT",
+   "kind": "syllabic",
+   "series": "back",
+   "phonemes": [
+    "o",
+    "u",
+    "t"
+   ],
+   "glyphs": [
+    {
+     "id": "ot.1",
+     "unicode": "ORKHON OT"
+    }
+   ]
+  },
+  {
+   "id": "bash",
+   "value": "baš",
+   "symbol": "bš",
+   "kind": "syllabic",
+   "phonemes": [
+    "b",
+    "a",
+    "š"
+   ],
+   "glyphs": [
+    {
+     "id": "bash.1",
+     "unicode": "ORKHON BASH"
+    }
+   ]
+  }
+ ]
+}

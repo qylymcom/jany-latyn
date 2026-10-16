@@ -1,0 +1,128 @@
+{
+  "_note": "Regions (groups of inscriptions) and find sites. Coordinates are WGS 84 decimal degrees with an uncertainty radius in kilometres; they place the nearest settlement a source names, never the stone itself. A site with null coordinates is drawn only as part of its region's area. 'sources' are ids in sources.json.",
+  "regions": [
+    {
+      "id": "talas",
+      "name": { "en": "Talas valley", "ru": "Таласская долина", "ky": "Талас өрөөнү" },
+      "admin": "Talas Region",
+      "area": { "lat": 42.5222, "lon": 72.2419, "radiusKm": 45, "basis": "Talas town, with the valley around it" },
+      "sources": ["geo-talas", "ruwiki-talas"],
+      "summary": "River boulders with epitaphs, most of them from Ayrtam-Ay near Talas town, and rock inscriptions in the gorges of the Talas Ala-Too (Kuru-Bakayir, Kenkol). Studied since 1896."
+    },
+    {
+      "id": "kochkor",
+      "name": { "en": "Kochkor valley", "ru": "Кочкорская долина", "ky": "Кочкор өрөөнү" },
+      "admin": "Naryn Region",
+      "area": { "lat": 42.2158, "lon": 75.7556, "radiusKm": 30, "basis": "Kochkor village, with the valley around it" },
+      "sources": ["geo-kochkor", "archeo-vesti-8"],
+      "summary": "Rock and boulder inscriptions found from 1998 by K. Tabaldiev and his colleagues, in the south-east of the valley (Kök-Say, Böyrök-Bulak)."
+    },
+    {
+      "id": "issyk-kul",
+      "name": { "en": "Issyk-Kul basin", "ru": "Иссык-Кульская котловина", "ky": "Ысык-Көл ойдуңу" },
+      "admin": "Issyk-Kul Region",
+      "area": null,
+      "sources": ["alimov-tabaldiev-belek-2010"],
+      "summary": "The Chiyin-Tash rock inscriptions south of Ak-Ölön, near the western shore of the lake, and a stone statue from Taldy-Suu."
+    },
+    {
+      "id": "toktogul",
+      "name": { "en": "Toktogul district", "ru": "Токтогульский район", "ky": "Токтогул району" },
+      "admin": "Jalal-Abad Region",
+      "area": null,
+      "sources": ["abdiev-tabaldiev-2020"],
+      "summary": "A rune-like inscription on the rim of a khum found in Sargata village."
+    }
+  ],
+  "sites": [
+    {
+      "id": "ayrtam-ay",
+      "region": "talas",
+      "name": { "en": "Ayrtam-Ay (Kyrk-Kazyk)", "ru": "Айыртам-Ой (Кырк-Казык)" },
+      "coords": { "lat": 42.5222, "lon": 72.2419, "radiusKm": 10 },
+      "basis": "Talas I was found 8 versts (about 8.5 km) from Talas town; plotted at the town.",
+      "sources": ["ruwiki-talas", "eurasica-talas", "geo-talas"],
+      "summary": "A locality in the foothills of the Talas Ala-Too near Talas, with a kurgan cemetery partly destroyed when the 10th-century Karakhanid fort Keskentöbö was built. Twelve inscribed boulders and two stone statues are reported from it."
+    },
+    {
+      "id": "talas-outskirts",
+      "region": "talas",
+      "name": { "en": "Talas town, outskirts", "ru": "окраины г. Талас" },
+      "coords": { "lat": 42.5222, "lon": 72.2419, "radiusKm": 3 },
+      "basis": "Talas town (GEOnet).",
+      "sources": ["openkg-talas-4", "openkg-talas-stones", "geo-talas"],
+      "summary": "Where two stones are reported: the fourth Talas stone, on the southern outskirts, and a stone found by V. D. Serdyukov on a dairy farm on the western outskirts."
+    },
+    {
+      "id": "tort-kul",
+      "region": "talas",
+      "name": { "en": "Tort-Kul, near Jon-Aryk", "ru": "Торт-Куль, у с. Джон-Арык" },
+      "coords": null,
+      "sources": ["ruwiki-talas"]
+    },
+    {
+      "id": "kuru-bakayir",
+      "region": "talas",
+      "name": { "en": "Kuru-Bakayir gorge", "ru": "ущелье Куру-Бакайыр" },
+      "coords": null,
+      "sources": ["jumagulov-kojomberdiev-1983"],
+      "summary": "The gorge of the Kuru-Bakayir, a tributary of the Suuluu-Bakayir, in the Talas Ala-Too in the west of the Talas valley; petroglyphs, runic and Sogdian inscriptions."
+    },
+    {
+      "id": "kenkol",
+      "region": "talas",
+      "name": { "en": "Kenkol valley", "ru": "долина Кенкол" },
+      "coords": null,
+      "sources": ["tomsk-2020-kenkol", "tabaldiev-2020-kenkol"],
+      "summary": "The valley of the Kenkol, a tributary of the Talas, in the upper Talas valley; rock inscriptions, petroglyphs and tamgas."
+    },
+    {
+      "id": "achiktash",
+      "region": "talas",
+      "name": { "en": "Achiktash", "ru": "Ачикташ" },
+      "coords": null,
+      "sources": ["ruwiki-talas"]
+    },
+    {
+      "id": "kok-say",
+      "region": "kochkor",
+      "name": { "en": "Kök-Say", "ru": "Кок-Сай", "ky": "Көк-Сай" },
+      "coords": null,
+      "sources": ["archeo-vesti-8", "alimov-kochkor-pdf"],
+      "summary": "Boulders in the south-eastern part of the Kochkor valley; the source names the mountain chain at whose foot they lie as Ukok."
+    },
+    {
+      "id": "boyrok-bulak",
+      "region": "kochkor",
+      "name": { "en": "Böyrök-Bulak (Tik-Bulak)", "ru": "Бойрок-Булак (Тик-Булак)", "ky": "Бөйрөк-Булак" },
+      "coords": null,
+      "sources": ["archeo-vesti-8"],
+      "summary": "East of Kök-Say, in the Kök-Say area."
+    },
+    {
+      "id": "chiyin-tash",
+      "region": "issyk-kul",
+      "name": { "en": "Chiyin-Tash gorge, Ak-Ölön", "ru": "ущелье Чийин-Таш, с. Ак-Олён", "ky": "Чийин-Таш" },
+      "coords": { "lat": 42.34, "lon": 76.16, "radiusKm": 6 },
+      "basis": "Ak-Ölön village (Akulen), 42°20′24″N 76°09′36″E; the gorge is south of the village.",
+      "sources": ["geo-akulen", "ural-altaic-2025", "alimov-tabaldiev-belek-2010"],
+      "summary": "A gorge south of Ak-Ölön in Ton district, near the western shore of Issyk-Kul, on the way to Kök-Say. Locals call the spot the 'pictorial stone' for its many petroglyphs."
+    },
+    {
+      "id": "taldy-suu",
+      "region": "issyk-kul",
+      "name": { "en": "Taldy-Suu", "ru": "Талды-Суу" },
+      "coords": null,
+      "sources": ["hudiakov-2017"]
+    },
+    {
+      "id": "sargata",
+      "region": "toktogul",
+      "name": { "en": "Sargata village", "ru": "с. Саргата", "ky": "Саргата" },
+      "coords": { "lat": 41.73, "lon": 73.2, "radiusKm": 3 },
+      "basis": "Sargata village, 41°43′48″N 73°12′E.",
+      "sources": ["geo-sargata", "abdiev-tabaldiev-2020"],
+      "summary": "A village of Toktogul district; the khum was found on the ruins of a medieval fortress."
+    }
+  ]
+}

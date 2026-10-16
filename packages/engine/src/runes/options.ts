@@ -20,13 +20,15 @@ export interface RuneOptions {
   zhe: 'chart' | 'front' | 'etymological';
   /** ф х в: the chart's 𐰟 𐰝 𐰊, or nativized as п, к, б. */
   loanConsonants: 'chart' | 'nativized';
-  /** Which Unicode form writes each letter (RUNES-SPEC §4.5). */
-  forms: 'chart' | 'orkhon' | 'yenisei';
+  /** Which Unicode form writes each letter (RUNES-SPEC §4.5). tianshan: the
+   * Tian-Shan stones' attested majority (tianshanForms.ts), the Yenisei form
+   * for a letter no transcribed Tian-Shan inscription has yet. */
+  forms: 'chart' | 'orkhon' | 'yenisei' | 'tianshan';
   /** р, с, ш: the chart's form, or the form the Yenisei Kyrgyz stones use (RUNES-SPEC §4.4). */
   r: 'chart' | 'attested';
   s: 'chart' | 'attested';
   sh: 'chart' | 'attested';
-  /** Yenisei forms: ш with 𐱀, apart from back с 𐱂, or merged with it as most stones write (RUNES-SPEC §6.3). */
+  /** Yenisei and Tian-Shan forms: ш apart from back с, or merged with it as most Yenisei stones write (RUNES-SPEC §6.3). */
   yeniseiSh: 'apart' | 'merged';
   /** Between words: ordinary spaces, or U+205A ⁚ in place of each run of spaces between two rune words. */
   separator: 'space' | 'two-dot';
@@ -36,7 +38,7 @@ export interface RuneOptions {
 export const RUNE_OPTION_VALUES: { readonly [K in keyof RuneOptions]: readonly RuneOptions[K][] } = Object.freeze({
   harmony: ['none', 'kg', 'full'], register: ['plene', 'epigraphic'], vowels: ['distinct', 'historical'],
   u: ['bash', 'dotted-o', 'old-hungarian'], zhe: ['chart', 'front', 'etymological'],
-  loanConsonants: ['chart', 'nativized'], forms: ['chart', 'orkhon', 'yenisei'],
+  loanConsonants: ['chart', 'nativized'], forms: ['chart', 'orkhon', 'yenisei', 'tianshan'],
   r: ['chart', 'attested'], s: ['chart', 'attested'], sh: ['chart', 'attested'],
   yeniseiSh: ['apart', 'merged'], separator: ['space', 'two-dot'],
 });
@@ -62,7 +64,7 @@ export interface RunePreset {
 const preset = (id: string, name: string, status: RuneStatus, reversible: boolean, o: Partial<RuneOptions>): RunePreset =>
   ({ id, name, status, reversible, options: Object.freeze({ ...DEFAULT_RUNE_OPTIONS, ...o }) });
 
-// The two inscription looks share everything but their forms (JANY-ENESAI.md §17).
+// The inscription looks share everything but their forms (JANY-ENESAI.md §17, RUNES-SPEC §6.4).
 const INSCRIPTION: Partial<RuneOptions> = {
   harmony: 'full', register: 'epigraphic', vowels: 'historical', zhe: 'etymological',
   loanConsonants: 'nativized', separator: 'two-dot',
@@ -75,6 +77,7 @@ export const RUNE_PRESETS: readonly RunePreset[] = Object.freeze([
   preset('attested', 'Attested letters', 'comparison', true, { r: 'attested', s: 'attested', sh: 'attested' }),
   preset('eski-enesai', 'Eski-Enesai', 'reference', false, { ...INSCRIPTION, forms: 'yenisei' }),
   preset('orkhon', 'Inscription look (Orkhon forms)', 'reference', false, { ...INSCRIPTION, forms: 'orkhon' }),
+  preset('eski-tenir-too', 'Eski-Teŋir-Too', 'reference', false, { ...INSCRIPTION, forms: 'tianshan' }),
 ]);
 
 /** The options a preset seeds. Throws on an unknown id. */

@@ -1,0 +1,33 @@
+{
+  "_note": "The phonemes the graphemes write, in Turkological notation with an IPA value. Which graphemes write each phoneme is in signs.json; the modern Kyrgyz letter is the one the engine's inscription reader gives for those graphemes, not a historical derivation.",
+  "phonemes": [
+    { "id": "a", "ipa": "ɑ", "kind": "vowel", "series": "back", "features": "low, unrounded" },
+    { "id": "ä", "ipa": "æ", "kind": "vowel", "series": "front", "features": "low, unrounded" },
+    { "id": "e", "ipa": "e", "kind": "vowel", "series": "front", "features": "mid, unrounded" },
+    { "id": "ı", "ipa": "ɯ", "kind": "vowel", "series": "back", "features": "high, unrounded" },
+    { "id": "i", "ipa": "i", "kind": "vowel", "series": "front", "features": "high, unrounded" },
+    { "id": "o", "ipa": "o", "kind": "vowel", "series": "back", "features": "mid, rounded" },
+    { "id": "u", "ipa": "u", "kind": "vowel", "series": "back", "features": "high, rounded" },
+    { "id": "ö", "ipa": "ø", "kind": "vowel", "series": "front", "features": "mid, rounded" },
+    { "id": "ü", "ipa": "y", "kind": "vowel", "series": "front", "features": "high, rounded" },
+    { "id": "b", "ipa": "b", "kind": "consonant", "features": "labial stop" },
+    { "id": "p", "ipa": "p", "kind": "consonant", "features": "labial stop" },
+    { "id": "m", "ipa": "m", "kind": "consonant", "features": "labial nasal" },
+    { "id": "d", "ipa": "d", "kind": "consonant", "features": "dental stop" },
+    { "id": "t", "ipa": "t", "kind": "consonant", "features": "dental stop" },
+    { "id": "n", "ipa": "n", "kind": "consonant", "features": "dental nasal" },
+    { "id": "l", "ipa": "l", "kind": "consonant", "features": "lateral" },
+    { "id": "r", "ipa": "r", "kind": "consonant", "features": "trill" },
+    { "id": "s", "ipa": "s", "kind": "consonant", "features": "sibilant" },
+    { "id": "z", "ipa": "z", "kind": "consonant", "features": "sibilant" },
+    { "id": "š", "ipa": "ʃ", "kind": "consonant", "features": "postalveolar sibilant" },
+    { "id": "č", "ipa": "tʃ", "kind": "consonant", "features": "postalveolar affricate" },
+    { "id": "y", "ipa": "j", "kind": "consonant", "features": "palatal glide" },
+    { "id": "ń", "ipa": "ɲ", "kind": "consonant", "features": "palatal nasal" },
+    { "id": "k", "ipa": "k", "kind": "consonant", "series": "front", "features": "velar stop" },
+    { "id": "g", "ipa": "ɡ", "kind": "consonant", "series": "front", "features": "velar stop" },
+    { "id": "q", "ipa": "q", "kind": "consonant", "series": "back", "features": "uvular stop" },
+    { "id": "ɣ", "ipa": "ʁ", "kind": "consonant", "series": "back", "features": "uvular fricative" },
+    { "id": "ñ", "ipa": "ŋ", "kind": "consonant", "features": "velar nasal" }
+  ]
+}

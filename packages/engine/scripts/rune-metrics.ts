@@ -137,8 +137,9 @@ export function computeMetrics(tb: Treebank): RuneMetrics {
   const postVocalic = new RegExp(`[${VOWELS}]е`);
   const eLost = words.filter((w) => postVocalic.test(w) && back2cyr(w, false) !== w);
 
+  // The presets of the proposal's Appendix A; Eski-Teŋir-Too (RUNES-SPEC §6.4) is not one of them.
   const emitted: Record<string, string> = {};
-  for (const p of RUNE_PRESETS) {
+  for (const p of RUNE_PRESETS.filter((x) => PROPOSAL_PRESETS.has(x.id))) {
     const runes = new Set([...cyrillicToRunes(words.join(' '), p.options)].filter((c) => /\p{Script=Old_Turkic}/u.test(c)));
     emitted[p.id] = [...runes].sort((a, b) => a.codePointAt(0)! - b.codePointAt(0)!).join('');
   }
@@ -232,6 +233,7 @@ export function claims(m: RuneMetrics): { section: string; claim: string; holds:
 const APPENDIX_A_LABELS: Readonly<Record<string, string>> = {
   'J-E': 'jany-enesai', 'k+g': 'kg', Full: 'full', Orkh: 'orkhon', Eski: 'eski-enesai', Att: 'attested',
 };
+const PROPOSAL_PRESETS = new Set(Object.values(APPENDIX_A_LABELS));
 
 /** The runes Appendix A's "Emitted by" column gives each preset, sorted by code point. */
 export function appendixAEmitted(doc: string): Record<string, string> {

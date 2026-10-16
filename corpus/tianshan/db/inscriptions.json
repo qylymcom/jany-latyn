@@ -1,0 +1,359 @@
+{
+  "_note": "One record per inscription. Everything said about an inscription is a claim: a field, a value, and the sources (ids in sources.json) it rests on. Two claims on one field that disagree are both kept. A claim's evidence is meta.defaultEvidence unless it says otherwise: 'summary' means the statement is as a web-search summary of the cited page gave it on 2026-10-16, not yet checked against the page or the publication. possiblySame lists records that may describe the same inscription.",
+  "meta": {
+    "defaultEvidence": "summary",
+    "fields": ["found", "finder", "findspot", "object", "material", "size", "lines", "signs", "script", "content", "date", "affiliation", "kept", "study", "identity"]
+  },
+  "inscriptions": [
+    {
+      "id": "talas-1",
+      "label": "Talas I",
+      "names": { "en": "Talas I", "ru": "Первый таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1896", "sources": ["eurasica-talas", "ruwiki-talas"] },
+        { "field": "finder", "value": "V. A. Kallaur, district chief of Aulie-Ata, helped by Gastev, a local teacher", "sources": ["eurasica-talas", "ruwiki-talas"] },
+        { "field": "findspot", "value": "Ayrtam-Ay (Kyrk-Kazyk), 8 versts from today's Talas", "sources": ["eurasica-talas"] },
+        { "field": "size", "value": "135 × 90 × 45 cm", "sources": ["eurasica-talas"] },
+        { "field": "lines", "value": "4", "sources": ["eurasica-talas"] },
+        { "field": "content", "value": "Epitaph. Malov's translation gives the name Udun and the younger brothers Kara-Bars and Ogul-Bars.", "sources": ["eurasica-talas", "malov-1959"] },
+        { "field": "kept", "value": "State Hermitage, St Petersburg", "sources": ["eurasica-talas"] },
+        { "field": "kept", "value": "Whereabouts unknown", "sources": ["eurasica-talas"], "note": "A second summary of the same page group; the two cannot both hold. Check the page." }
+      ]
+    },
+    {
+      "id": "talas-2",
+      "label": "Talas II",
+      "names": { "en": "Talas II", "ru": "Второй таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "5 May 1898", "sources": ["ruwiki-talas"] },
+        { "field": "finder", "value": "V. A. Kallaur", "sources": ["ruwiki-talas"] },
+        { "field": "findspot", "value": "About 500 paces west of the first stone", "sources": ["ruwiki-talas"] },
+        { "field": "signs", "value": "140–150; the longest Talas inscription", "sources": ["ruwiki-talas"] },
+        { "field": "study", "value": "Letters re-identified from a new rubbing and a direct examination of the stone, correcting earlier readings", "sources": ["alimov-2017"] }
+      ]
+    },
+    {
+      "id": "talas-3",
+      "label": "Talas III",
+      "names": { "en": "Talas III", "ru": "Третий таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1898", "sources": ["ruwiki-talas", "openkg-talas-4"] },
+        { "field": "finder", "value": "One of the five boulders found by V. A. Kallaur and by the Finno-Ugrian Society's expedition under J. R. Heikel; which found this one is not recorded here", "sources": ["ruwiki-talas", "openkg-talas-4"] }
+      ]
+    },
+    {
+      "id": "talas-4",
+      "label": "Talas IV",
+      "names": { "en": "Talas IV", "ru": "Четвертый таласский памятник" },
+      "region": "talas",
+      "site": "talas-outskirts",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1898", "sources": ["openkg-talas-4"] },
+        { "field": "finder", "value": "V. A. Kallaur, in Ayyrtash-Oy, Aulie-Ata district", "sources": ["openkg-talas-4"] },
+        { "field": "findspot", "value": "Ended up on the southern outskirts of Talas; locals say it lay by a shed for a long time and was later built into the shed's foundation", "sources": ["openkg-talas-4"] }
+      ]
+    },
+    {
+      "id": "talas-5",
+      "label": "Talas V",
+      "names": { "en": "Talas V", "ru": "Пятый таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1898", "sources": ["ruwiki-talas", "openkg-talas-4"] },
+        { "field": "finder", "value": "One of the five boulders found by V. A. Kallaur and by J. R. Heikel's expedition", "sources": ["ruwiki-talas", "openkg-talas-4"] }
+      ]
+    },
+    {
+      "id": "talas-6",
+      "label": "Talas VI",
+      "names": { "en": "Talas VI", "ru": "Шестой таласский памятник" },
+      "region": "talas",
+      "site": null,
+      "object": "unknown",
+      "claims": [
+        { "field": "identity", "value": "A boulder found in 1961 by P. N. Kozhemyako", "sources": ["ruwiki-talas"] },
+        { "field": "identity", "value": "The Terek-Say inscription, published by S. Sydykov", "sources": ["vasilyev-1976"] },
+        { "field": "content", "value": "The Terek-Say rock inscriptions matter for the history of Turkic–Sogdian contact in Semirechye", "sources": ["klyashtorny-2005"] }
+      ]
+    },
+    {
+      "id": "talas-8",
+      "label": "Talas VIII",
+      "names": { "en": "Talas VIII", "ru": "Восьмой таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1961", "sources": ["ruwiki-talas"] },
+        { "field": "finder", "value": "P. N. Kozhemyako", "sources": ["ruwiki-talas"] },
+        { "field": "material", "value": "Grey granite", "sources": ["ruwiki-talas"] },
+        { "field": "lines", "value": "4", "sources": ["ruwiki-talas"] }
+      ]
+    },
+    {
+      "id": "talas-12",
+      "label": "Talas XII",
+      "names": { "en": "Talas XII", "ru": "Двенадцатый таласский памятник" },
+      "region": "talas",
+      "site": "ayrtam-ay",
+      "object": "boulder",
+      "claims": [
+        { "field": "found", "value": "1962", "sources": ["openkg-talas-stones"] },
+        { "field": "finder", "value": "D. F. Vinnik, archaeologist", "sources": ["openkg-talas-stones"] },
+        { "field": "findspot", "value": "The same part of the Talas valley as the earlier finds", "sources": ["openkg-talas-stones"] }
+      ]
+    },
+    {
+      "id": "talas-13",
+      "label": "Talas XIII",
+      "names": { "en": "Talas XIII", "ru": "Тринадцатый таласский памятник" },
+      "region": "talas",
+      "site": "tort-kul",
+      "object": "unknown",
+      "claims": [
+        { "field": "found", "value": "1977", "sources": ["ruwiki-talas"] },
+        { "field": "finder", "value": "The epigraphic group of the Academy of Sciences of the Kirghiz SSR", "sources": ["ruwiki-talas"] },
+        { "field": "findspot", "value": "Tort-Kul, near Jon-Aryk village", "sources": ["ruwiki-talas"] }
+      ]
+    },
+    {
+      "id": "talas-serdyukov",
+      "label": "Talas (Serdyukov's find)",
+      "names": { "en": "Talas stone found by V. D. Serdyukov", "ru": "Камень, найденный В. Д. Сердюковым" },
+      "region": "talas",
+      "site": "talas-outskirts",
+      "object": "boulder",
+      "claims": [
+        { "field": "finder", "value": "V. D. Serdyukov, a teacher", "sources": ["openkg-talas-stones"] },
+        { "field": "findspot", "value": "The dairy farm of the Lenin collective farm, on the western outskirts of Talas", "sources": ["openkg-talas-stones"] },
+        { "field": "identity", "value": "Its number in the Talas series is not recorded here", "sources": ["openkg-talas-stones"] }
+      ]
+    },
+    {
+      "id": "kuru-bakayir-1",
+      "label": "Kuru-Bakayir I",
+      "names": { "en": "Kuru-Bakayir I", "ru": "Куру-Бакайыр I" },
+      "region": "talas",
+      "site": "kuru-bakayir",
+      "object": "rock",
+      "claims": [
+        { "field": "found", "value": "Found by the geologist L. Popov; surveyed in 1981 by I. K. Kojomberdiev and Ch. Jumagulov", "sources": ["jumagulov-kojomberdiev-1983"] },
+        { "field": "content", "value": "One of two runic inscriptions in the gorge, which also has petroglyphs and a Sogdian inscription; one of the two is a single line 14 cm long", "sources": ["jumagulov-kojomberdiev-1983", "klyashtorny-transoxiana"] },
+        { "field": "study", "value": "Published by Jumagulov and Kojomberdiev, and by Jumagulov and Klyashtorny (1983)", "sources": ["jumagulov-kojomberdiev-1983", "jumagulov-klyashtorny-1983"] }
+      ]
+    },
+    {
+      "id": "kuru-bakayir-2",
+      "label": "Kuru-Bakayir II",
+      "names": { "en": "Kuru-Bakayir II", "ru": "Куру-Бакайыр II" },
+      "region": "talas",
+      "site": "kuru-bakayir",
+      "object": "rock",
+      "claims": [
+        { "field": "found", "value": "Found by the geologist L. Popov; surveyed in 1981 by I. K. Kojomberdiev and Ch. Jumagulov", "sources": ["jumagulov-kojomberdiev-1983"] },
+        { "field": "content", "value": "A short text with a personal name, taken to record a prayer made at the spot, like other rock inscriptions with a name", "sources": ["jumagulov-kojomberdiev-1983"] }
+      ]
+    },
+    {
+      "id": "achiktash",
+      "label": "Achiktash",
+      "names": { "en": "Achiktash stick", "ru": "Ачикташская палочка" },
+      "region": "talas",
+      "site": "achiktash",
+      "object": "stick",
+      "claims": [
+        { "field": "found", "value": "1932, at Achiktash along the Talas river", "sources": ["ruwiki-talas"], "note": "Not confirmed by a second search; see leads.json." },
+        { "field": "material", "value": "Wood; four-sided", "sources": ["ruwiki-talas"], "note": "Not confirmed by a second search; see leads.json." },
+        { "field": "signs", "value": "21 distinct rune forms, about fifteen of them matching signs of the Don and Kuban runic alphabets; closer to the Kuban alphabet", "sources": ["kyzlasov-kroraina"] },
+        { "field": "date", "value": "The latest written monument of the Talas group, about the 12th–13th century", "sources": ["bekzhan-2016"] },
+        { "field": "study", "value": "Readings disagree, often sharply", "sources": ["bekzhan-2016"] }
+      ]
+    },
+    {
+      "id": "chon-chachykey-1",
+      "label": "Chon-Chachykey I",
+      "names": { "en": "Chon-Chachykey I", "ru": "Чон-Чачыкей I" },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["kenkol-2016", "kenkol-2019"],
+      "claims": [
+        { "field": "script", "value": "Old Turkic runic", "sources": ["tomsk-2020-kenkol"] },
+        { "field": "content", "value": "Published with the petroglyphs and Turkic-period tamgas of the Kenkol valley", "sources": ["tomsk-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "chon-chachykey-2",
+      "label": "Chon-Chachykey II",
+      "names": { "en": "Chon-Chachykey II", "ru": "Чон-Чачыкей II" },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["kenkol-2016", "kenkol-2019"],
+      "claims": [
+        { "field": "script", "value": "Old Turkic runic", "sources": ["tomsk-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "chon-chachykey-3",
+      "label": "Chon-Chachykey III",
+      "names": { "en": "Chon-Chachykey III", "ru": "Чон-Чачыкей III" },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["kenkol-2016", "kenkol-2019"],
+      "claims": [
+        { "field": "script", "value": "Old Turkic runic", "sources": ["tomsk-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "kichi-chachoy-1",
+      "label": "Kichi-Chachoy I",
+      "names": { "en": "Kichi-Chachoy I", "ru": "Кичи-Чачой I" },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["kenkol-2016", "kenkol-2019"],
+      "claims": [
+        { "field": "script", "value": "Old Turkic runic", "sources": ["tomsk-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "kenkol-2016",
+      "label": "Kenkol (2016 find)",
+      "names": { "en": "Kenkol inscription found in 2016", "ru": "Кенкольская надпись 2016 г." },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["chon-chachykey-1", "chon-chachykey-2", "chon-chachykey-3", "kichi-chachoy-1"],
+      "claims": [
+        { "field": "found", "value": "2016", "sources": ["tabaldiev-2020-kenkol"] },
+        { "field": "script", "value": "Rune-like (руноподобная)", "sources": ["tabaldiev-2020-kenkol"] },
+        { "field": "content", "value": "One of the two Kenkol finds is a visitor's inscription with rare information, among it on the organisation of Old Turkic tribes; which one is not recorded here", "sources": ["tabaldiev-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "kenkol-2019",
+      "label": "Kenkol (2019 find)",
+      "names": { "en": "Kenkol inscription found in 2019", "ru": "Кенкольская надпись 2019 г." },
+      "region": "talas",
+      "site": "kenkol",
+      "object": "rock",
+      "possiblySame": ["chon-chachykey-1", "chon-chachykey-2", "chon-chachykey-3", "kichi-chachoy-1"],
+      "claims": [
+        { "field": "found", "value": "2019", "sources": ["tabaldiev-2020-kenkol"] },
+        { "field": "script", "value": "Rune-like (руноподобная)", "sources": ["tabaldiev-2020-kenkol"] }
+      ]
+    },
+    {
+      "id": "kok-say-turgesh",
+      "label": "Kök-Say (Türgesh inscription)",
+      "names": { "en": "Kök-Say Türgesh inscription", "ru": "Кок-Сайская тюргешская надпись", "ky": "Көк-Сай" },
+      "region": "kochkor",
+      "site": "kok-say",
+      "object": "boulder",
+      "claims": [
+        { "field": "finder", "value": "K. Tabaldiev and his team", "sources": ["alimov-kochkor-pdf"] },
+        { "field": "size", "value": "The text is about 1 m long, on the north side of a large stone; signs up to 15 cm high", "sources": ["alimov-kochkor-pdf"] },
+        { "field": "size", "value": "A stone about 4 m long and 2 m high at Kök-Say carries a runic inscription", "sources": ["kutbilim-kochkor"], "note": "May be the same stone." },
+        { "field": "signs", "value": "9, one of them half effaced", "sources": ["alimov-kochkor-pdf"] },
+        { "field": "affiliation", "value": "Türgesh", "sources": ["alimov-kochkor-pdf", "alimov-turgesh"] },
+        { "field": "date", "value": "First half of the 8th century, as for the Kochkor inscriptions as a group", "sources": ["alimov-turgesh"] }
+      ]
+    },
+    {
+      "id": "boyrok-bulak-aba",
+      "label": "Böyrök-Bulak (Aba)",
+      "names": { "en": "Böyrök-Bulak inscription naming Aba", "ru": "Бойрок-Булакская надпись (Аба)", "ky": "Бөйрөк-Булак" },
+      "region": "kochkor",
+      "site": "boyrok-bulak",
+      "object": "rock",
+      "claims": [
+        { "field": "content", "value": "Runes with a drawing; the reading is about a man named Aba", "sources": ["archeo-vesti-8"] },
+        { "field": "found", "value": "Reported with the Kochkor finds of 1998 and 2000, so before the 2005 find of Böyrök-Bulak 2", "sources": ["archeo-vesti-8"] }
+      ]
+    },
+    {
+      "id": "boyrok-bulak-2",
+      "label": "Böyrök-Bulak 2 (Kochkor 21)",
+      "names": { "en": "Böyrök-Bulak 2", "ru": "Бойрок-Булак 2", "ky": "Бөйрөк-Булак 2", "tr": "Koçkor-21 (Böyrök-Bulak 2)" },
+      "region": "kochkor",
+      "site": "boyrok-bulak",
+      "object": "unknown",
+      "claims": [
+        { "field": "found", "value": "2005", "sources": ["alimov-kochkor-pdf"], "note": "From a Turkish study of the Kochkor inscriptions that a search summary did not name exactly." },
+        { "field": "finder", "value": "K. Tabaldiev", "sources": ["alimov-kochkor-pdf"] },
+        { "field": "findspot", "value": "Böyrök-Bulak (Tik-Bulak), in the Kök-Say area", "sources": ["alimov-kochkor-pdf"] },
+        { "field": "identity", "value": "Numbered Koçkor-21", "sources": ["alimov-kochkor-pdf"] }
+      ]
+    },
+    {
+      "id": "chiyin-tash-1",
+      "label": "Chiyin-Tash I",
+      "names": { "en": "Chiyin-Tash rock inscription", "ru": "Чийин-Ташская надпись", "ky": "Чийин-Таш", "tr": "Çiyin-Taş yazıtı" },
+      "region": "issyk-kul",
+      "site": "chiyin-tash",
+      "object": "rock",
+      "claims": [
+        { "field": "found", "value": "2009", "sources": ["alimov-tabaldiev-belek-2010"] },
+        { "field": "found", "value": "2008 (two inscriptions found in the gorge)", "sources": ["ural-altaic-2025"] },
+        { "field": "finder", "value": "K. Tabaldiev and K. Belek", "sources": ["ural-altaic-2025"] },
+        { "field": "signs", "value": "32", "sources": ["alimov-tabaldiev-belek-2010"] },
+        { "field": "script", "value": "Signs closer to the Yenisei inscriptions than to the nearby Talas and Kochkor ones", "sources": ["alimov-tabaldiev-belek-2010"] },
+        { "field": "date", "value": "Earlier than any other Tian-Shan inscription, on its palaeography", "sources": ["alimov-tabaldiev-belek-2010"] },
+        { "field": "study", "value": "Given as the 35th early-medieval Turkic inscription found in the Tian Shan region; read in several ways since", "sources": ["alimov-tabaldiev-belek-2010", "ural-altaic-2025"] }
+      ]
+    },
+    {
+      "id": "chiyin-tash-2",
+      "label": "Chiyin-Tash II",
+      "names": { "en": "Second Chiyin-Tash inscription", "ru": "Вторая Чийин-Ташская надпись", "ky": "Чийин-Таш" },
+      "region": "issyk-kul",
+      "site": "chiyin-tash",
+      "object": "rock",
+      "claims": [
+        { "field": "found", "value": "2008, with the first", "sources": ["ural-altaic-2025"] },
+        { "field": "script", "value": "Not recorded here. A study of a Turkic-Islamic inscription at Chiyin-Tash exists", "sources": ["manas-chiyintash"] }
+      ]
+    },
+    {
+      "id": "taldy-suu-balbal",
+      "label": "Taldy-Suu balbal",
+      "names": { "en": "Taldy-Suu balbal", "ru": "Балбал из Талды-Суу" },
+      "region": "issyk-kul",
+      "site": "taldy-suu",
+      "object": "statue",
+      "claims": [
+        { "field": "found", "value": "2019", "sources": ["abdiev-tabaldiev-2020"] },
+        { "field": "finder", "value": "O. Soltobaev, archaeologist; read by T. Abdiev", "sources": ["abdiev-tabaldiev-2020"] },
+        { "field": "findspot", "value": "On the neck of a Turkic-period stone statue (balbal) from Taldy-Suu, Issyk-Kul region", "sources": ["abdiev-tabaldiev-2020", "hudiakov-2017"] }
+      ]
+    },
+    {
+      "id": "sargata-khum",
+      "label": "Sargata khum",
+      "names": { "en": "Sargata khum", "ru": "Хум из Саргаты", "ky": "Саргата" },
+      "region": "toktogul",
+      "site": "sargata",
+      "object": "vessel",
+      "claims": [
+        { "field": "found", "value": "2018", "sources": ["abdiev-tabaldiev-2020", "evrazstep-dialog"] },
+        { "field": "findspot", "value": "On the rim of a khum (a large storage jar) found on the ruins of a medieval fortress in Sargata village", "sources": ["abdiev-tabaldiev-2020"] },
+        { "field": "script", "value": "Rune-like; one sign has prototypes in the runic monuments of Tuva and the Altai", "sources": ["abdiev-tabaldiev-2020"] },
+        { "field": "content", "value": "Taken to name the way the khum was made, like the marks potters put on their wares; it shows settled people also used the runes", "sources": ["evrazstep-dialog"] }
+      ]
+    }
+  ]
+}

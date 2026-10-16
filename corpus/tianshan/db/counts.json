@@ -1,0 +1,16 @@
+{
+  "_note": "How many inscriptions each source reports, and what it counts. The sources count differently (rock inscriptions only, a valley only, up to a year), so the figures are not expected to agree.",
+  "counts": [
+    { "source": "alimov-2014", "via": "evrazstep-dialog", "upTo": 2008, "total": 45, "regions": { "talas": 18, "issyk-kul": 3, "kochkor": 24 }, "scope": "Runic monuments found in Kyrgyzstan from 1896 to 2008; the south of the country is not counted." },
+    { "source": "useev-tees", "total": 51, "scope": "The Tian-Shan (Kyrgyzstan) inscriptions with recent finds, the Chiyin-Tash inscriptions among them." },
+    { "source": "useev-2019", "total": 51, "scope": "Kyrgyzstan's runiform inscriptions, listed with their locations and main features (as a citing article describes the chapter)." },
+    { "source": "turkic-academy-catalogue", "upTo": 2026, "total": 59, "scope": "Turkic runic monuments recorded in Kyrgyzstan (689 across Eurasia), as a news report gives the catalogue's figures." },
+    { "source": "kyzlasov-2005", "total": "15–16", "regions": { "talas": "5–6" }, "scope": "Runic inscriptions cut on rocks and boulders of mountain slopes only: five or six in the mountains around the Talas valley, the rest in the south of the Kochkor valley." },
+    { "source": "alimov-turgesh", "upTo": 2002, "regions": { "kochkor": 18 }, "scope": "New inscriptions on rocks found in the Kochkor region in 1998–2002." },
+    { "source": "archeo-vesti-8", "regions": { "kochkor": "8 monuments, 9 texts" }, "scope": "The Kochkor finds of 1998 and 2000, at the time of writing." },
+    { "source": "tabaldiev-2020-kenkol", "regions": { "talas": 19 }, "scope": "Old Turkic epigraphic monuments of the (upper) Talas valley, over more than 120 years of study." },
+    { "source": "ruwiki-talas", "regions": { "talas": "12 boulders and 2 statues" }, "scope": "Inscribed boulders and stone statues from Ayrtam-Ay alone." },
+    { "source": "ehistory-talas", "regions": { "talas": 10 }, "scope": "Talas monuments kept in museums in Bishkek, Taraz, Almaty and St Petersburg." },
+    { "source": "alimov-tabaldiev-belek-2010", "total": 35, "scope": "Chiyin-Tash is given as the 35th early-medieval Turkic inscription found in the Tian Shan region." }
+  ]
+}

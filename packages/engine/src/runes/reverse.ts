@@ -7,6 +7,7 @@
 import { janyToCyr } from '../convert.js';
 import { DEFAULT_RUNE_OPTIONS, type RuneOptions } from './options.js';
 import { rune, DOT_ABOVE, OLD_HUNGARIAN_U, TWO_DOT, type RuneName } from './inventory.js';
+import { TIANSHAN_FORMS, type TianShanFormKey } from './tianshanForms.js';
 
 const LETTER: ReadonlyArray<readonly [string, readonly RuneName[]]> = [
   ['a', ['ORKHON A']], ['ä', ['YENISEI AE']], ['e', ['YENISEI E']],
@@ -44,17 +45,38 @@ export function runeLetters(r: string): string | undefined {
   return FOLD.get(r);
 }
 
+// The letter each Tian-Shan form writes in a plene setting. The vowel and ligature
+// forms are left out: only the one-way settings (historical vowels, the epigraphic
+// register) use them.
+const TIANSHAN_LETTER: Partial<Record<TianShanFormKey, string>> = {
+  'b/back': 'b', 'b/front': 'b', 'g/back': 'g', 'g/front': 'g', 'd/back': 'd', 'd/front': 'd',
+  'í/back': 'í', 'í/front': 'í', 'l/back': 'l', 'l/front': 'l', 'n/back': 'n', 'n/front': 'n',
+  'ŋ/back': 'ŋ', 'ŋ/front': 'ŋ', 'r/back': 'r', 'r/front': 'r', 's/back': 's', 's/front': 's',
+  z: 'z', m: 'm', p: 'p', ş: 'ş', 'k/back': 'k', 'k/front': 'k', oq: 'k', ök: 'k',
+  't/back': 't', 't/front': 't', ç: 'ç', iç: 'ç',
+};
+// Whether every attested Tian-Shan form reads back as its own letter; a form shared
+// by two letters (ш and back с both 𐱂, say) makes the Tian-Shan forms one-way.
+const TIANSHAN_READS_BACK = (Object.entries(TIANSHAN_LETTER) as [TianShanFormKey, string][])
+  .every(([key, letter]) => TIANSHAN_FORMS[key] === null || TO_LETTER.get(rune(TIANSHAN_FORMS[key]!)) === letter);
+
 /**
  * Whether conversion back to Jany-Latyn is exact under these options. One-way:
  * the epigraphic register, historical vowels, the etymological ж, nativized
- * loan consonants, and the merged ш of the Yenisei forms. Also one-way: the
- * Yenisei forms under full harmony, where 𐰝 writes both х and к beside ө, ү.
+ * loan consonants, and the merged ш of the Yenisei and Tian-Shan forms. Also
+ * one-way: the Yenisei forms under full harmony, where 𐰝 writes both х and к
+ * beside ө, ү, and the Tian-Shan forms when they do the same, or when one of
+ * their forms reads back as another letter.
  */
 export function isReversible(options?: Partial<RuneOptions>): boolean {
   const o: RuneOptions = { ...DEFAULT_RUNE_OPTIONS, ...options };
   if (o.register !== 'plene' || o.vowels !== 'distinct') return false;
   if (o.zhe === 'etymological' || o.loanConsonants !== 'chart') return false;
   if (o.forms === 'yenisei' && (o.yeniseiSh === 'merged' || o.harmony === 'full')) return false;
+  if (o.forms === 'tianshan') {
+    if (o.yeniseiSh === 'merged' || !TIANSHAN_READS_BACK) return false;
+    if (o.harmony === 'full' && (TIANSHAN_FORMS['ök'] ?? 'YENISEI OEK') === 'YENISEI OEK') return false;
+  }
   return true;
 }
 
