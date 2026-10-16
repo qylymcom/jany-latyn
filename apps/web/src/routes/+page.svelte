@@ -15,6 +15,7 @@
   import { Playground } from '$lib/playground/state.svelte';
   import ScriptPickers from '$lib/playground/ScriptPickers.svelte';
   import PresetBar from '$lib/playground/PresetBar.svelte';
+  import { runePresetName } from '$lib/runes';
   import LatinOptions from '$lib/playground/LatinOptions.svelte';
   import RuneOptionsPanel from '$lib/playground/RuneOptions.svelte';
   import InputPane from '$lib/playground/InputPane.svelte';
@@ -78,7 +79,7 @@
   }
 
   const latinItems = $derived(LATIN_PRESETS.map((p) => ({ id: p.id, name: latinName(p.id), status: p.status })));
-  const runeItems = RUNE_PRESETS.map((p) => ({ id: p.id, name: p.name, status: p.status }));
+  const runeItems = $derived(RUNE_PRESETS.map((p) => ({ id: p.id, name: runePresetName(p, i18n.t.runic.tianshanBasis), status: p.status })));
 
   function applyLatin(id: string) {
     const p = LATIN_PRESETS.find((x) => x.id === id);

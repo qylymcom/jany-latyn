@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 -->
 <script lang="ts">
   import { i18n } from '$lib/i18n/index.svelte';
-  import { RUNE_FONT } from '$lib/runes';
+  import { RUNE_FONT, runePresetName } from '$lib/runes';
   import Icon from '$lib/components/Icon.svelte';
   import type { Comparison } from './state.svelte';
 
@@ -50,7 +50,7 @@
       {@const open = expanded[e.id]}
       <li class="flex flex-col rounded-box border border-base-300 bg-base-100 p-3 sm:p-4">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-medium">{e.name}</span>
+          <span class="text-sm font-medium">{runes ? runePresetName(e, i18n.t.runic.tianshanBasis) : e.name}</span>
           <span class="badge badge-xs badge-ghost">{e.status}</span>
           <div class="ml-auto flex items-center gap-0.5">
             <button type="button" class="btn btn-ghost btn-xs btn-square {voted(e.id) ? 'text-error' : ''}" disabled={voted(e.id)} onclick={() => onVote(e.id)} title={voted(e.id) ? i18n.t.playground.votedBadge : i18n.t.playground.voteButton} aria-label={i18n.t.playground.voteButton}>

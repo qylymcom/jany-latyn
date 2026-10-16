@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 -->
 <script lang="ts">
-  import { isReversible, type RuneOptions } from 'jany-latyn/runes';
+  import { isReversible, janyLatynToRunes, type RuneOptions } from 'jany-latyn/runes';
   import { i18n } from '$lib/i18n/index.svelte';
   import { RUNE_FONT } from '$lib/runes';
   import Icon from '$lib/components/Icon.svelte';
@@ -46,6 +46,8 @@
         { value: 'chart', glyph: '𐱄 𐰕', desc: t.formsChart },
         { value: 'orkhon', glyph: '𐱃 𐰔', desc: t.formsOrkhon },
         { value: 'yenisei', glyph: '𐰻 𐰎', desc: t.formsYenisei },
+        // The Tian-Shan forms follow the database (RUNES-SPEC §6.4), so the sample is computed.
+        { value: 'tianshan', glyph: janyLatynToRunes('r g', { forms: 'tianshan' }), desc: t.formsTianshan },
       ] },
       { key: 'r', label: t.rLabel, choices: [
         { value: 'chart', glyph: '𐰺', desc: t.letterChart },
@@ -68,8 +70,8 @@
         { value: 'two-dot', glyph: '⁚', desc: t.separatorTwoDot },
       ] },
     ];
-    // The Yenisei ш choice only matters with the Yenisei forms.
-    return all.filter((r) => r.key !== 'yeniseiSh' || opts.forms === 'yenisei');
+    // The Yenisei ш choice only matters with the Yenisei and Tian-Shan forms.
+    return all.filter((r) => r.key !== 'yeniseiSh' || opts.forms === 'yenisei' || opts.forms === 'tianshan');
   });
 
   const reversible = $derived(isReversible(opts));

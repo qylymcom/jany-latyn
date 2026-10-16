@@ -159,6 +159,7 @@ export interface SiteTranslations {
   runicAlphabet: string;
   runicProposal: string;
   runicCorpus: string;
+  runicTianshan: string;
   subtitle: string;
   draftBanner: string;
   comingSoon: string;
@@ -237,6 +238,9 @@ export interface RunicTranslations {
   formsChart: string;
   formsOrkhon: string;
   formsYenisei: string;
+  formsTianshan: string;
+  /** Beside Eski-Teŋir-Too: how many inscriptions its forms come from (RUNES-SPEC §6.4). */
+  tianshanBasis: string;
   rLabel: string;
   sLabel: string;
   shLabel: string;
@@ -254,6 +258,110 @@ export interface RunicTranslations {
   notReversible: string;
 }
 
+/** A count's two English forms; {n} is the number. */
+export interface Plural {
+  one: string;
+  other: string;
+}
+
+export interface TianshanTranslations {
+  title: string;
+  subtitle: string;
+  status: string;
+  tabs: Record<'overview' | 'inscriptions' | 'map' | 'signs' | 'phonemes' | 'sources' | 'about', string>;
+  statInscriptions: string;
+  statSites: Plural;
+  statRegions: string;
+  statSources: string;
+  statOpen: string;
+  statTranscribed: string;
+  statLinesSigns: string;
+  regionsTitle: string;
+  regionRecords: Plural;
+  countsTitle: string;
+  countsHint: string;
+  countsSource: string;
+  countsUpTo: string;
+  countsTotal: string;
+  countsByRegion: string;
+  countsScope: string;
+  formsTitle: string;
+  formsText: string;
+  tryIt: string;
+  filterRegion: string;
+  filterObject: string;
+  filterAll: string;
+  search: string;
+  shown: string;
+  colInscription: string;
+  colRegion: string;
+  colSite: string;
+  colObject: string;
+  colFound: string;
+  colClaims: string;
+  colTranscription: string;
+  notYet: string;
+  linesCount: Plural;
+  objects: Record<'boulder' | 'rock' | 'stick' | 'vessel' | 'statue' | 'unknown', string>;
+  fields: Record<string, string>;
+  site: string;
+  siteUnknown: string;
+  placedByRegion: string;
+  region: string;
+  object: string;
+  possiblySame: string;
+  maybeDuplicate: string;
+  claimsTitle: string;
+  claimsHint: string;
+  conflict: string;
+  evidence: Record<'summary' | 'record' | 'page' | 'publication' | 'tracing', string>;
+  transcriptionTitle: string;
+  noTranscription: string;
+  noPublications: string;
+  readFrom: string;
+  signsLabel: string;
+  readerLabel: string;
+  previous: string;
+  next: string;
+  allInscriptions: string;
+  mapHint: string;
+  unplacedTitle: string;
+  legendSite: string;
+  legendRegion: string;
+  mapCredit: string;
+  signsHint: string;
+  colGrapheme: string;
+  colValue: string;
+  colSymbol: string;
+  colKind: string;
+  colPhonemes: string;
+  colGlyphs: string;
+  colAttested: string;
+  colTianshan: string;
+  colYenisei: string;
+  kinds: Record<'vowel' | 'consonant' | 'syllabic' | 'ligature', string>;
+  back: string;
+  front: string;
+  yeniseiStandIn: string;
+  phonemesHint: string;
+  colPhoneme: string;
+  colIpa: string;
+  colFeatures: string;
+  colWrittenBy: string;
+  colModern: string;
+  modernHint: string;
+  sourcesHint: string;
+  access: Record<'open' | 'abstract' | 'print' | 'web', string>;
+  consulted: string;
+  download: string;
+  about: string;
+  citedBy: string;
+  sourceGroups: Record<'publications' | 'web' | 'places' | 'brief', string>;
+  leadsTitle: string;
+  leadsHint: string;
+  leadStatus: Record<'unconfirmed' | 'conflicts' | 'supported', string>;
+}
+
 export interface Translations {
   nav: NavTranslations;
   playground: PlaygroundTranslations;
@@ -263,6 +371,7 @@ export interface Translations {
   site: SiteTranslations;
   scripts: ScriptsTranslations;
   runic: RunicTranslations;
+  tianshan: TianshanTranslations;
 }
 
 /** A locale may leave any string out; it then shows the English one. */

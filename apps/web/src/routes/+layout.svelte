@@ -36,6 +36,7 @@
         { href: '/runic/alphabet/', label: i18n.t.site.runicAlphabet },
         { href: '/runic/proposal/', label: i18n.t.site.runicProposal },
         { href: '/runic/corpus/', label: i18n.t.site.runicCorpus },
+        { href: '/runic/tianshan/', label: i18n.t.site.runicTianshan },
       ],
     },
     { href: '/about/', label: i18n.t.nav.about },

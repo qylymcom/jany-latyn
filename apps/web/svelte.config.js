@@ -7,6 +7,9 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({ fallback: '404.html' }),
+    // The Tian-Shan inscription database and its MIT module (corpus/scripts/tianshan/db.mjs),
+    // read at build time by the prerendered /runic/tianshan/ pages.
+    alias: { $corpus: '../../corpus' },
     paths: { relative: false },
     // A deploy replaces every hashed chunk, so a tab opened before it can no
     // longer load the old ones. Polling lets the client notice the new version
