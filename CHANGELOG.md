@@ -32,6 +32,21 @@ version 1.
   Unicode, checked against the database, under that database's license,
   CC BY-NC-SA 4.0. `npm run test:corpus` checks the engine against it.
 
+### Testbed (qylym)
+
+- **Any-to-any playground.** One input and one output, with source and target
+  pickers (Cyrillic, Latin, ASCII, runes, and a sign-by-sign reading for the
+  stones' spelling), a swap button, presets with their status, customize
+  panels for Latin and runes, a comparison strip, and a rune inspector.
+- **Site sections.** Playground · Latin (Alphabet, Whitepaper) · Runic
+  (Alphabet, Proposal, Corpus) · About. `/alphabet/` and `/whitepaper/`
+  forward to `/latin/alphabet/` and `/latin/whitepaper/`, keeping anchors.
+  The Jany-Enesai proposal is published as a draft.
+- **Engine.** `jany-latyn/scripts` (`detectScript`, `LATIN_PRESETS`,
+  `convertText`, `explainConversion`); `janyToCyr` reads CTA's `y` glide as й
+  with `{ yGrapheme: 'dotless-i', glideGrapheme: 'y' }`.
+- New interface strings are in English until translated.
+
 ## 2026.4 — 2026-09-25
 
 ### Document
