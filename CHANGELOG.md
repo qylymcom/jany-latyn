@@ -55,6 +55,39 @@ version 1.
   with `{ yGrapheme: 'dotless-i', glideGrapheme: 'y' }`.
 - New interface strings are in English until translated.
 
+### Tian-Shan inscriptions
+
+- **A database of its own.** `corpus/tianshan/` starts a database of the
+  runiform inscriptions of the Tian Shan in Kyrgyzstan (Talas, Kochkor,
+  Issyk-Kul), which the Uppsala database does not cover: 26 inscriptions,
+  each statement about them with its sources and conflicting statements kept
+  side by side; 11 find sites and 4 regions with coordinates and their
+  uncertainty; 49 sources with their access; the counts the sources report;
+  the leads still to verify; and the sign system (45 graphemes, every Unicode
+  Old Turkic character as a glyph, 28 phonemes). It is de-novo work under the
+  PolyForm Noncommercial License, like the testbed. No inscription is
+  transcribed yet: the publications could not be fetched where the database
+  was started, and its statements rest on search summaries until checked.
+- **Pipeline.** `npm run fetch:tianshan` downloads the open-access PDFs into a
+  git-ignored `raw/` and extracts their images; transcriptions are written
+  sign by sign from the tracings (`corpus/tianshan/transcriptions/README.md`);
+  `npm run build:tianshan` checks the database and regenerates
+  `TIANSHAN-CORPUS.md` and the engine's forms table; `npm run test:corpus`
+  fails if either is stale.
+- **Engine: Eski-Teŋir-Too.** A fourth value of the forms axis, `tianshan`,
+  and a preset that is Eski-Enesai with it (RUNES-SPEC §6.4): each letter in
+  the form the transcribed Tian-Shan inscriptions use most, its Yenisei form
+  until one of them has it. With nothing transcribed it writes exactly what
+  Eski-Enesai writes. `letterForm` gives the form a setting writes for a
+  letter.
+- **Testbed.** Runic → Tian-Shan inscriptions (`/runic/tianshan/`): overview,
+  inscription list and pages, a map, signs, phonemes, sources and leads. The
+  playground offers the Tian-Shan forms and the Eski-Teŋir-Too preset, with
+  the number of inscriptions its forms come from.
+- **Tests run on Node 22.** `npm test` and `npm run test:corpus` name their
+  test files instead of a directory, which Node 22's test runner no longer
+  searches.
+
 ## 2026.4 — 2026-09-25
 
 ### Document

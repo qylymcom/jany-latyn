@@ -22,6 +22,7 @@ The full argument for these choices, and the places where it could be wrong, is 
 | [`apps/web/`](apps/web) | Testbed web application (SvelteKit) | PolyForm Noncommercial 1.0.0 |
 | [`docs/`](docs) | Whitepaper, specification, keyboard guide, translated READMEs; the Jany-Enesai proposal and runes specification in [`docs/jany-enesai/`](docs/jany-enesai) | CC BY 4.0 |
 | [`corpus/`](corpus) | The Yenisei Kyrgyz inscriptions in Unicode, adapted from the Uppsala runiform database | CC BY-NC-SA 4.0 (scripts: MIT) |
+| [`corpus/tianshan/`](corpus/tianshan) | The Tian-Shan inscription database: catalogue, sites, sources, signs and transcriptions of the runiform inscriptions of Kyrgyzstan (de-novo) | PolyForm Noncommercial 1.0.0 (scripts: MIT) |
 
 ## Install and use the engine
 
@@ -92,7 +93,7 @@ classroom copy sends no events anywhere.
 ```sh
 npm test             # engine suite, codepoint inventory, package boundary, and whitepaper conformance checker
 npm run check:web    # Svelte and TypeScript diagnostics for the web app
-npm run test:corpus  # the rune engine against the Yenisei Kyrgyz corpus (corpus/scripts/)
+npm run test:corpus  # the rune engine against the Yenisei Kyrgyz corpus, and the Tian-Shan database (corpus/scripts/)
 ```
 
 The conformance checker verifies the transliteration examples in `docs/WHITEPAPER.md` against the
@@ -100,9 +101,10 @@ engine, so the whitepaper and the engine are versioned together.
 
 ## License: licensed in four parts
 
-This repository has no single license. The engine is **MIT**, the web testbed is **PolyForm
-Noncommercial 1.0.0**, the documents are **CC BY 4.0**, and the inscription corpus is **CC BY-NC-SA
-4.0**, the license of the database it is adapted from (its scripts are MIT). Each directory carries its own `LICENSE`.
+This repository has no single license. The engine is **MIT**, the web testbed and the Tian-Shan
+inscription database are **PolyForm Noncommercial 1.0.0**, the documents are **CC BY 4.0**, and the
+Yenisei Kyrgyz inscription corpus is **CC BY-NC-SA 4.0**, the license of the database it is adapted
+from (the corpus scripts are MIT). Each directory carries its own `LICENSE`.
 See **[LICENSING.md](LICENSING.md)** for what this means in practice. The project name and logo are
 covered by [TRADEMARK.md](TRADEMARK.md), and how to contribute is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
