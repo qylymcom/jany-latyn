@@ -31,6 +31,8 @@
   let copied = $state(false);
 
   const runeInput = $derived(pg.from === 'runes');
+  // The pane is headed by the script the input is read as.
+  const title = $derived(i18n.t.scripts[pg.from]);
   const wordCount = $derived(pg.input.trim() ? pg.input.trim().split(/\s+/).length : 0);
 
   const sampleGroups = $derived.by(() => {
@@ -95,7 +97,7 @@
   class="order-1 flex flex-col overflow-hidden rounded-box border bg-base-100 transition-colors {isDragging ? 'border-primary ring-2 ring-primary/30' : 'border-base-300'}"
 >
   <header class="flex min-h-12 flex-wrap items-center gap-2 border-b border-base-300 px-3 py-1.5">
-    <h2 class="shrink-0 text-sm font-medium">{i18n.t.playground.inputTitle}</h2>
+    <h2 class="shrink-0 text-sm font-medium">{title}</h2>
     <div class="join shrink-0" role="group" aria-label={i18n.t.playground.viewModeList}>
       {#each [['text', i18n.t.playground.viewModeText], ['list', i18n.t.playground.viewModeList]] as [value, label]}
         <button
@@ -155,7 +157,7 @@
     class="h-56 w-full resize-none bg-transparent p-4 text-lg leading-relaxed outline-none placeholder:text-base-content/40 sm:h-72 lg:h-96"
     style:font-family={runeInput ? RUNE_FONT : font}
     placeholder={i18n.t.playground.placeholder}
-    aria-label={i18n.t.playground.inputTitle}
+    aria-label={title}
     ondragover={(e) => { e.preventDefault(); isDragging = true; }}
     ondragleave={() => (isDragging = false)}
     ondrop={(e) => {

@@ -23,7 +23,7 @@
     copied: string | null;
     voted: (id: string) => boolean;
     onUse: (id: string) => void;
-    onCopy: (id: string, text: string) => void;
+    onCopy: (id: string) => void;
     onVote: (id: string) => void;
   } = $props();
 
@@ -56,7 +56,7 @@
             <button type="button" class="btn btn-ghost btn-xs btn-square {voted(e.id) ? 'text-error' : ''}" disabled={voted(e.id)} onclick={() => onVote(e.id)} title={voted(e.id) ? i18n.t.playground.votedBadge : i18n.t.playground.voteButton} aria-label={i18n.t.playground.voteButton}>
               <Icon name="heart" size={14} filled={voted(e.id)} />
             </button>
-            <button type="button" class="btn btn-ghost btn-xs btn-square" onclick={() => onCopy(e.id, e.text)} title={i18n.t.playground.copy} aria-label={i18n.t.playground.copy}>
+            <button type="button" class="btn btn-ghost btn-xs btn-square" onclick={() => onCopy(e.id)} title={i18n.t.playground.copy} aria-label={i18n.t.playground.copy}>
               <Icon name={copied === e.id ? 'check' : 'copy'} size={14} />
             </button>
             <button type="button" class="btn btn-outline btn-xs ml-1" onclick={() => onUse(e.id)}>{i18n.t.playground.useVariant}</button>
@@ -68,7 +68,7 @@
           lang={runes ? 'ky-Orkh' : undefined}
           style:font-family={runes ? RUNE_FONT : font}
         >
-          {#each diffTokens(e.text) as tok}{#if tok.diff}<mark class="rounded-sm bg-warning/30 text-inherit">{tok.t}</mark>{:else}{tok.t}{/if}{/each}
+          {#each diffTokens(e.text) as tok}{#if tok.diff}<mark class="rounded-sm bg-warning/30 text-inherit">{tok.t}</mark>{:else}{tok.t}{/if}{/each}{#if e.truncated} …{/if}
         </p>
         {#if isLong(e.text)}
           <button type="button" class="link link-hover mt-1 self-start text-xs text-base-content/60" onclick={() => (expanded[e.id] = !open)}>

@@ -49,7 +49,7 @@
 
 <section class="order-3 flex flex-col overflow-hidden rounded-box border border-base-300 bg-base-100 lg:order-2">
   <header class="flex min-h-12 flex-wrap items-center gap-2 border-b border-base-300 px-3 py-1.5">
-    <h2 class="shrink-0 text-sm font-medium">{i18n.t.playground.outputTitle}</h2>
+    <h2 class="shrink-0 text-sm font-medium">{i18n.t.scripts[pg.to]}</h2>
     <div class="ml-auto flex items-center gap-1">
       {#if pg.to === 'latin'}
         <button

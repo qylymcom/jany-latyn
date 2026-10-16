@@ -315,13 +315,13 @@
   {#if pg.comparisons.length}
     <ComparisonStrip
       entries={pg.comparisons}
-      base={pg.output}
+      base={pg.previewOutput}
       runes={pg.to === 'runes'}
       {font}
       {copied}
       voted={comparisonVoted}
       onUse={(id) => (pg.to === 'runes' ? applyRunes(id) : applyLatin(id))}
-      onCopy={copy}
+      onCopy={(id) => copy(id, pg.comparisonText(id))}
       onVote={voteForComparison}
     />
   {/if}

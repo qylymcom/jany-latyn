@@ -18,9 +18,13 @@ import {
 } from 'jany-latyn/runes';
 
 export type SourceChoice = 'auto' | SourceScript;
-export interface Comparison { id: string; name: string; status: SchemeStatus; text: string }
+/** A preset of the target script, converted over the input's preview (`text`); `truncated` when the preview is shorter than the input. */
+export interface Comparison { id: string; name: string; status: SchemeStatus; text: string; truncated: boolean }
 
 const STORAGE_KEY = 'qylym_playground';
+// The comparison strip converts at most this much of the input, so a long paste
+// does not cost one full conversion per preset on every keystroke.
+const PREVIEW_CHARS = 2000;
 const TARGETS: readonly TargetScript[] = ['cyrillic', 'latin', 'ascii', 'runes', 'reading'];
 const READERS: readonly ReaderTarget[] = ['scholarly', 'cta', 'jany-latyn', 'cyrillic'];
 
@@ -105,20 +109,46 @@ export class Playground {
     this.to === 'runes' && this.showJanyLatyn ? textOf(this.convert('latin', { latin: { ...DEFAULT_LATIN_OPTIONS } })) : '',
   );
 
-  /** The target script's other presets (§3.5). */
+  /**
+   * The start of the input that the comparison strip converts: whole words, up to
+   * PREVIEW_CHARS. Conversion goes word by word, so the preview converts exactly as
+   * the same words do in the whole input.
+   */
+  readonly preview = $derived.by(() => {
+    if (this.input.length <= PREVIEW_CHARS) return this.input;
+    const cut = this.input.slice(0, PREVIEW_CHARS + 1).search(/\s\S*$/);
+    return cut > 0 ? this.input.slice(0, cut) : this.input;
+  });
+
+  /** The current output over the preview, which the comparison strip marks differences against. */
+  readonly previewOutput = $derived(
+    this.preview === this.input ? this.output : this.caps(textOf(this.convert(this.to, { text: this.preview }))),
+  );
+
+  private presetText(id: string, text: string): string {
+    if (this.to === 'runes') {
+      const p = RUNE_PRESETS.find((x) => x.id === id);
+      return p ? textOf(this.convert('runes', { runes: { ...p.options }, text })) : '';
+    }
+    const p = LATIN_PRESETS.find((x) => x.id === id);
+    return p ? this.caps(textOf(this.convert('latin', { latin: { ...p.options }, text }))) : '';
+  }
+
+  /** The whole input in one of the target script's presets, for copying from the strip. */
+  comparisonText(id: string): string {
+    return this.presetText(id, this.input);
+  }
+
+  /** The target script's other presets (§3.5), over the preview. */
   readonly comparisons = $derived.by<Comparison[]>(() => {
     if (!this.input.trim()) return [];
-    if (this.to === 'latin') {
-      return LATIN_PRESETS.filter((p) => p !== this.latinPreset).map((p) => ({
-        id: p.id, name: p.name, status: p.status, text: this.caps(textOf(this.convert('latin', { latin: { ...p.options } }))),
-      }));
-    }
-    if (this.to === 'runes') {
-      return RUNE_PRESETS.filter((p) => p !== this.runePreset).map((p) => ({
-        id: p.id, name: p.name, status: p.status, text: textOf(this.convert('runes', { runes: { ...p.options } })),
-      }));
-    }
-    return [];
+    const presets = this.to === 'latin'
+      ? LATIN_PRESETS.filter((p) => p !== this.latinPreset)
+      : this.to === 'runes'
+        ? RUNE_PRESETS.filter((p) => p !== this.runePreset)
+        : [];
+    const truncated = this.preview !== this.input;
+    return presets.map((p) => ({ id: p.id, name: p.name, status: p.status, text: this.presetText(p.id, this.preview), truncated }));
   });
 
   /** One explanation per rune word of the output, for the inspector (§3.6). */
