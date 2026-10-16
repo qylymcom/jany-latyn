@@ -25,6 +25,7 @@
     "test:corpus": "npm run build && node --test corpus/scripts/",
     "chart": "npm --workspace packages/engine run chart",
     "check-whitepaper": "npm --workspace packages/engine run check-whitepaper",
+    "rune-metrics": "npm --workspace packages/engine run rune-metrics --",
     "dev": "npm --workspace apps/web run dev",
     "check:web": "npm --workspace apps/web run check",
     "build:web": "npm --workspace apps/web run build"
