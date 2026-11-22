@@ -19,7 +19,8 @@ version 1.
   the same CC BY 4.0 grant. It traces how the Kyrgyz name, first fixed on
   the upper Yenisei, came to the Tian Shan, and tests that account against
   language, material culture and belief, and genomes. It does not touch the
-  orthography, and the whitepaper is unchanged.
+  orthography, and the whitepaper is unchanged. It is cited by the
+  project's concept DOI and archived with the next release.
 
 ### Testbed
 

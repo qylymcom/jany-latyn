@@ -6,7 +6,7 @@
 **Author:** Emil Madraimov · salam@qylym.com
 **Date:** November 2026
 **License:** This book is licensed CC BY 4.0. See `LICENSING.md` in the repository.
-**Cite as:** Emil Madraimov (2026). *The Making of the Kyrgyz: Name, Language, Genes and History*, first edition. https://www.qylym.com/papers/making-of-the-kyrgyz/
+**Cite as:** Emil Madraimov (2026). *The Making of the Kyrgyz: Name, Language, Genes and History*, first edition. Archived with Jany-Latyn: https://doi.org/10.5281/zenodo.22844476
 
 ---
 
