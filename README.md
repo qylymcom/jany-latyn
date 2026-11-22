@@ -13,6 +13,9 @@ The core mappings are **ж→j, ч→ç, ш→ş, х→h, ң→ŋ, ө→ö, ү�
 
 The full argument for these choices, and the places where it could be wrong, is in the whitepaper:
 **[docs/WHITEPAPER.md](docs/WHITEPAPER.md)**. The mapping rules are in [docs/SPEC.md](docs/SPEC.md).
+The book *The Making of the Kyrgyz: Name, Language, Genes and History*, on how the Kyrgyz name,
+language, and people came together, is in [docs/MAKING-OF-THE-KYRGYZ.md](docs/MAKING-OF-THE-KYRGYZ.md).
+The testbed publishes both under `/papers/`.
 
 ## Repository layout
 
@@ -20,7 +23,7 @@ The full argument for these choices, and the places where it could be wrong, is 
 | :--- | :--- | :--- |
 | [`packages/engine/`](packages/engine) | Converter, CLI, keyboard layouts, tests, conformance checker | MIT |
 | [`apps/web/`](apps/web) | Testbed web application (SvelteKit) | PolyForm Noncommercial 1.0.0 |
-| [`docs/`](docs) | Whitepaper, specification, keyboard guide, translated READMEs | CC BY 4.0 |
+| [`docs/`](docs) | Whitepaper, book, specification, keyboard guide, translated READMEs | CC BY 4.0 |
 
 ## Install and use the engine
 

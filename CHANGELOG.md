@@ -10,6 +10,32 @@ orthography itself, which is stated in the whitepaper header and changes only
 when a Jany-Latyn mapping does. The releases so far leave the orthography at
 version 1.
 
+## Unreleased
+
+### Document
+
+- **A book joins the whitepaper:** *The Making of the Kyrgyz: Name,
+  Language, Genes and History*, in `docs/MAKING-OF-THE-KYRGYZ.md` under
+  the same CC BY 4.0 grant. It traces how the Kyrgyz name, first fixed on
+  the upper Yenisei, came to the Tian Shan, and tests that account against
+  language, material culture and belief, and genomes. It does not touch the
+  orthography, and the whitepaper is unchanged. It is cited by the
+  project's concept DOI and archived with the next release.
+
+### Testbed
+
+- **The whitepaper section becomes Papers.** `/papers/` lists both
+  documents; the whitepaper is at `/papers/jany-latyn/` and the book at
+  `/papers/making-of-the-kyrgyz/`. The old `/whitepaper/` address
+  redirects, keeping any `#section` in the link, so section anchors are
+  unchanged.
+- The book's bracketed citations link to its numbered references.
+- Headings and the contents list render inline formatting (`code`,
+  *italics*) instead of showing the markdown, and the front matter under
+  each title is set one field per line.
+- The reading-font analytics event records its location as `papers`,
+  formerly `whitepaper`.
+
 ## 2026.4 — 2026-09-25
 
 ### Document

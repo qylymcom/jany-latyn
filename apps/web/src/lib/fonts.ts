@@ -38,5 +38,5 @@ export const FONTS: readonly FontEntry[] = [
 
 export const DEFAULT_FONT = FONTS[0].stack;
 
-// Long-form reading (the whitepaper) starts on a serif; Georgia covers the Jany-Latyn glyphs.
+// Long-form reading (the papers) starts on a serif; Georgia covers the Jany-Latyn glyphs.
 export const SERIF_FONT = FONTS.find((f) => f.label === 'Georgia')?.stack ?? DEFAULT_FONT;

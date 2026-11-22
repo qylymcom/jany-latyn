@@ -6,7 +6,7 @@ export interface NavTranslations {
   scriptSubtitle: string;
   playground: string;
   alphabet: string;
-  whitepaper: string;
+  papers: string;
   about: string;
   menu: string;
   themeToggle: string;

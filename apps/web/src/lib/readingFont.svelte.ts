@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
-// The whitepaper's reading font. The selector sits in the sticky header (+layout.svelte)
+// The papers' reading font (/papers/). The selector sits in the sticky header (+layout.svelte)
 // so it stays reachable anywhere in a long document, while the text it styles lives in
 // the page — so the choice is module state rather than a component's, and it is
 // remembered between visits the way the locale is.
