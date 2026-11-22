@@ -8,16 +8,17 @@
 
   let { data }: { data: PageData } = $props();
 
-  const LABELS: Record<Locale, { toc: string; top: string }> = {
-    'ky-jany': { toc: 'Mazmunu', top: 'Başyna' },
-    ky: { toc: 'Мазмуну', top: 'Башына' },
-    ru: { toc: 'Содержание', top: 'Наверх' },
-    en: { toc: 'Table of Contents', top: 'Back to top' },
-    tr: { toc: 'İçindekiler', top: 'Başa dön' },
-    zh: { toc: '目录', top: '返回顶部' }
+  const LABELS: Record<Locale, { toc: string; top: string; all: string }> = {
+    'ky-jany': { toc: 'Mazmunu', top: 'Başyna', all: 'Bardyk makalalar' },
+    ky: { toc: 'Мазмуну', top: 'Башына', all: 'Бардык макалалар' },
+    ru: { toc: 'Содержание', top: 'Наверх', all: 'Все статьи' },
+    en: { toc: 'Table of Contents', top: 'Back to top', all: 'All papers' },
+    tr: { toc: 'İçindekiler', top: 'Başa dön', all: 'Tüm makaleler' },
+    zh: { toc: '目录', top: '返回顶部', all: '全部论文' }
   };
   const tocTitle = $derived(LABELS[i18n.locale].toc);
   const topTitle = $derived(LABELS[i18n.locale].top);
+  const allTitle = $derived(LABELS[i18n.locale].all);
 
   // The sidebar is desktop-only and the accordion sits at the top of the page, so on a
   // phone the contents are unreachable once you are reading. These float alongside.
@@ -40,11 +41,16 @@
 />
 
 <svelte:head>
-  <title>{i18n.t.nav.whitepaper.toUpperCase()} — {i18n.t.nav.siteTitle}</title>
-  <meta name="description" content="Jany-Latyn: A Latin Orthography and Comparative Testbed for the Kyrgyz Language. A design proposal, reference implementation, and open testbed." />
+  <title>{data.meta.title} — {i18n.t.nav.siteTitle}</title>
+  <meta name="description" content={data.meta.description} />
 </svelte:head>
 
 <div class="space-y-6">
+  <a href="/papers/" class="inline-flex items-center gap-1 text-sm text-base-content/70 hover:text-primary print:hidden">
+    <span aria-hidden="true">←</span>
+    <span>{allTitle}</span>
+  </a>
+
   <!-- Mobile Table of Contents Accordion -->
   <div class="collapse collapse-arrow bg-base-200 border border-base-content/10 lg:hidden">
     <input type="checkbox" />
@@ -83,7 +89,7 @@
       </nav>
     </aside>
 
-    <!-- Main Whitepaper Article -->
+    <!-- The paper -->
     <article
       class="flex-1 min-w-0 bg-base-100 p-6 sm:p-8 md:p-10 rounded-2xl border border-base-200 shadow-sm leading-relaxed text-base-content/90 prose-content"
       style:font-family={readingFont.stack}
@@ -205,5 +211,39 @@
   :global(.prose-content pre code) {
     background-color: transparent;
     padding: 0;
+  }
+  /* The front matter under the title: one field per row. */
+  :global(.prose-content .paper-fields) {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 1rem;
+    row-gap: 0.35rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.925em;
+  }
+  @media (max-width: 40rem) {
+    :global(.prose-content .paper-fields) {
+      grid-template-columns: 1fr;
+    }
+    :global(.prose-content .paper-fields dd) {
+      margin-bottom: 0.4rem;
+    }
+  }
+  :global(.prose-content .citation) {
+    color: var(--color-primary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  :global(.prose-content .citation:hover) {
+    text-decoration: underline;
+  }
+  /* The reference a citation link has just jumped to. */
+  :global(.prose-content li:target) {
+    background-color: color-mix(in oklab, var(--color-primary) 12%, transparent);
+    border-radius: 0.25rem;
+  }
+  :global(.prose-content .math) {
+    white-space: nowrap;
   }
 </style>

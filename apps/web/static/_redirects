@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+# Cloudflare static-asset redirects. The whitepaper moved under /papers/.
+/whitepaper   /papers/jany-latyn/  301
+/whitepaper/  /papers/jany-latyn/  301

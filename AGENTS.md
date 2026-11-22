@@ -75,11 +75,14 @@ jany-latyn/
 │       │   ├── i18n/          # Reactive internationalization (types, translations, index.svelte.ts)
 │       │   ├── components/    # VirtualKeyboard (Alt layer follows active options), VoteModal, Icon
 │       │   ├── sample-texts/  # Sample library (also read by the engine's samples test)
+│       │   ├── server/papers.ts # Reads and renders the docs/ papers for /papers/ (prerendered)
 │       │   ├── fonts.ts       # Font stack test suites
 │       │   └── fontcheck.ts   # Canvas glyph coverage probing
-│       └── routes/            # Playground (+page), alphabet/, about/, whitepaper/
+│       └── routes/            # Playground (+page), alphabet/, about/, papers/ (index and [slug]),
+│                              # whitepaper/ (redirects to /papers/jany-latyn/; see static/_redirects)
 └── docs/                  # CC BY 4.0
-    ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker
+    ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker (/papers/jany-latyn/)
+    ├── MAKING-OF-THE-KYRGYZ.md # The book on Kyrgyz origins (/papers/making-of-the-kyrgyz/)
     ├── SPEC.md            # Formal linguistic orthography specification
     ├── keyboard.md        # Keyboard layout setup instructions
     └── README.{ky,ky-jany,ru,tr}.md  # Translated guides

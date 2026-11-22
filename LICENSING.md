@@ -8,7 +8,7 @@ the nearest enclosing directory.
 | :--- | :--- | :--- | :--- |
 | Conversion engine and CLI | `packages/engine/` | MIT | Do what you like, including commercially. Keep the copyright notice. The specification and whitepaper are not part of this grant; they live in `docs/`. |
 | Testbed web application | `apps/web/` | PolyForm Noncommercial 1.0.0 | Any noncommercial use, including running it in a classroom and modifying it. No commercial use or commercial hosting. |
-| Whitepaper and specification | `docs/` | CC BY 4.0 | Share and adapt, with attribution. |
+| Whitepaper, book, and specification | `docs/` | CC BY 4.0 | Share and adapt, with attribution. |
 
 The orthography itself — the letters, the mappings, and the rules — is not
 owned by anyone and is not covered by any of these grants. Ideas are not

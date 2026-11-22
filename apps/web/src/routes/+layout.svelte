@@ -20,7 +20,7 @@
   const links = $derived([
     { href: '/', label: i18n.t.nav.playground },
     { href: '/alphabet/', label: i18n.t.nav.alphabet },
-    { href: '/whitepaper/', label: i18n.t.nav.whitepaper },
+    { href: '/papers/', label: i18n.t.nav.papers },
     { href: '/about/', label: i18n.t.nav.about },
   ]);
 
@@ -29,9 +29,9 @@
     return href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
   }
 
-  // The whitepaper's reading font, offered in the header so it stays reachable
+  // The papers' reading font, offered in the header so it stays reachable
   // anywhere in a long document. Fonts missing the Jany-Latyn glyphs grey out.
-  const onWhitepaper = $derived(isActive('/whitepaper/'));
+  const onPapers = $derived(isActive('/papers/'));
   const fontItems = $derived(
     FONTS.map((f) => ({
       value: f.stack,
@@ -46,7 +46,7 @@
     readingFont.stack = stack;
     const selected = FONTS.find((f) => f.stack === stack);
     if (selected && posthog.__loaded) {
-      posthog.capture('font_selected', { location: 'whitepaper', font_label: selected.label });
+      posthog.capture('font_selected', { location: 'papers', font_label: selected.label });
     }
   }
 
@@ -100,7 +100,7 @@
   </nav>
 
   <div class="navbar-end gap-0.5 sm:gap-1">
-    {#if onWhitepaper}
+    {#if onPapers}
       <HeaderPicker
         items={fontItems}
         value={readingFont.stack}
