@@ -10,7 +10,7 @@ orthography itself, which is stated in the whitepaper header and changes only
 when a Jany-Latyn mapping does. The releases so far leave the orthography at
 version 1.
 
-## Unreleased
+## 2026.5 — 2026-11-22
 
 ### Document
 
@@ -19,8 +19,9 @@ version 1.
   the same CC BY 4.0 grant. It traces how the Kyrgyz name, first fixed on
   the upper Yenisei, came to the Tian Shan, and tests that account against
   language, material culture and belief, and genomes. It does not touch the
-  orthography, and the whitepaper is unchanged. It is cited by the
-  project's concept DOI and archived with the next release.
+  orthography, and the whitepaper's text is unchanged apart from its
+  version line. The book cites the project's concept DOI and is in the
+  Zenodo archive from this release on.
 
 ### Testbed
 
@@ -35,6 +36,11 @@ version 1.
   each title is set one field per line.
 - The reading-font analytics event records its location as `papers`,
   formerly `whitepaper`.
+
+### Engine
+
+- No changes. `cyrToJany`, `janyToCyr`, `janyToFallback`, and `foldKey`
+  give the same output as in 2026.4.
 
 ## 2026.4 — 2026-09-25
 
