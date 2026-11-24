@@ -7,13 +7,13 @@
 
   let { data }: { data: PageData } = $props();
 
-  const LABELS: Record<Locale, { read: string; abstract: string }> = {
-    'ky-jany': { read: 'Okuu', abstract: 'Annotatsiía' },
-    ky: { read: 'Окуу', abstract: 'Аннотация' },
-    ru: { read: 'Читать', abstract: 'Аннотация' },
-    en: { read: 'Read', abstract: 'Abstract' },
-    tr: { read: 'Oku', abstract: 'Özet' },
-    zh: { read: '阅读', abstract: '摘要' }
+  const LABELS: Record<Locale, { read: string; abstract: string; language: string }> = {
+    'ky-jany': { read: 'Okuu', abstract: 'Annotatsiía', language: 'Til' },
+    ky: { read: 'Окуу', abstract: 'Аннотация', language: 'Тил' },
+    ru: { read: 'Читать', abstract: 'Аннотация', language: 'Язык' },
+    en: { read: 'Read', abstract: 'Abstract', language: 'Language' },
+    tr: { read: 'Oku', abstract: 'Özet', language: 'Dil' },
+    zh: { read: '阅读', abstract: '摘要', language: '语言' }
   };
   const labels = $derived(LABELS[i18n.locale]);
   const heading = $derived(i18n.t.nav.papers.charAt(0).toUpperCase() + i18n.t.nav.papers.slice(1));
@@ -44,8 +44,16 @@
           </p>
         </details>
       {/if}
-      <div class="mt-5">
+      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
         <a href="/papers/{paper.slug}/" class="btn btn-primary btn-sm">{labels.read}</a>
+        {#if paper.editions.length > 1}
+          <nav class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm" aria-label={labels.language}>
+            <span class="text-base-content/60">{labels.language}:</span>
+            {#each paper.editions as edition (edition.href)}
+              <a href={edition.href} lang={edition.htmlLang} hreflang={edition.htmlLang} class="hover:text-primary">{edition.name}</a>
+            {/each}
+          </nav>
+        {/if}
       </div>
     </article>
   {/each}
