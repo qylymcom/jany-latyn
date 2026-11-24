@@ -73,16 +73,17 @@ jany-latyn/
 │       ├── hooks.client.ts    # Analytics: off unless PUBLIC_POSTHOG_KEY and _HOST are set
 │       ├── lib/
 │       │   ├── i18n/          # Reactive internationalization (types, translations, index.svelte.ts)
-│       │   ├── components/    # VirtualKeyboard (Alt layer follows active options), VoteModal, Icon
+│       │   ├── components/    # VirtualKeyboard (Alt layer follows active options), VoteModal, Icon, PaperView (a paper's reading view)
 │       │   ├── sample-texts/  # Sample library (also read by the engine's samples test)
-│       │   ├── server/papers.ts # Reads and renders the docs/ papers for /papers/ (prerendered)
+│       │   ├── server/papers.ts # Reads and renders the docs/ papers and their translations for /papers/ (prerendered)
 │       │   ├── fonts.ts       # Font stack test suites
 │       │   └── fontcheck.ts   # Canvas glyph coverage probing
-│       └── routes/            # Playground (+page), alphabet/, about/, papers/ (index and [slug]),
+│       └── routes/            # Playground (+page), alphabet/, about/, papers/ (index, [slug], translations at [slug]/[lang]),
 │                              # whitepaper/ (redirects to /papers/jany-latyn/; see static/_redirects)
 └── docs/                  # CC BY 4.0
     ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker (/papers/jany-latyn/)
     ├── MAKING-OF-THE-KYRGYZ.md # The book on Kyrgyz origins (/papers/making-of-the-kyrgyz/)
+    ├── MAKING-OF-THE-KYRGYZ.{ru,tr,zh}.md # AI-assisted translations; the English is authoritative (/papers/making-of-the-kyrgyz/<lang>/)
     ├── SPEC.md            # Formal linguistic orthography specification
     ├── keyboard.md        # Keyboard layout setup instructions
     └── README.{ky,ky-jany,ru,tr}.md  # Translated guides

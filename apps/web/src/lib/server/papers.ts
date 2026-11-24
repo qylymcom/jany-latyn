@@ -7,21 +7,114 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Marked, Renderer, type Tokens, type TokenizerAndRendererExtension } from 'marked';
 
+// One language edition of a paper: the headings and front-matter labels it writes
+// in its own language, so the metadata and the reference anchors can be found.
+interface Edition {
+  // The URL segment of a translation, under /papers/<slug>/.
+  lang: string;
+  // For the lang attribute of the rendered text.
+  htmlLang: string;
+  // The language's own name, for the edition switcher.
+  name: string;
+  file: string;
+  abstract: string;
+  references: string;
+  author: string;
+  date: string;
+}
+
 interface PaperSource {
   slug: string;
   file: string;
   // Bare `[12]` in the text cites the 12th item of the numbered list under
   // "## References". The whitepaper writes its citations as links instead.
   numberedReferences?: boolean;
+  // AI-assisted translations; the English original stays authoritative.
+  translations?: readonly Edition[];
 }
 
-// Listed in the order the papers index shows them.
+const ENGLISH = {
+  lang: 'en',
+  htmlLang: 'en',
+  name: 'English',
+  abstract: 'Abstract',
+  references: 'References',
+  author: 'Author',
+  date: 'Date'
+} as const;
+
+// Listed in the order the papers index shows them; translations in switcher order.
 const PAPERS: readonly PaperSource[] = [
   { slug: 'jany-latyn', file: 'WHITEPAPER.md' },
-  { slug: 'making-of-the-kyrgyz', file: 'MAKING-OF-THE-KYRGYZ.md', numberedReferences: true }
+  {
+    slug: 'making-of-the-kyrgyz',
+    file: 'MAKING-OF-THE-KYRGYZ.md',
+    numberedReferences: true,
+    translations: [
+      {
+        lang: 'ru',
+        htmlLang: 'ru',
+        name: 'Русский',
+        file: 'MAKING-OF-THE-KYRGYZ.ru.md',
+        abstract: 'Аннотация',
+        references: 'Список литературы',
+        author: 'Автор',
+        date: 'Дата'
+      },
+      {
+        lang: 'tr',
+        htmlLang: 'tr',
+        name: 'Türkçe',
+        file: 'MAKING-OF-THE-KYRGYZ.tr.md',
+        abstract: 'Özet',
+        references: 'Kaynakça',
+        author: 'Yazar',
+        date: 'Tarih'
+      },
+      {
+        lang: 'zh',
+        htmlLang: 'zh-Hans',
+        name: '中文',
+        file: 'MAKING-OF-THE-KYRGYZ.zh.md',
+        abstract: '摘要',
+        references: '参考文献',
+        author: '作者',
+        date: '日期'
+      }
+    ]
+  }
 ];
 
 export const PAPER_SLUGS: readonly string[] = PAPERS.map((p) => p.slug);
+
+// Every translated page, for prerendering /papers/<slug>/<lang>/.
+export const PAPER_TRANSLATIONS: readonly { slug: string; lang: string }[] = PAPERS.flatMap((p) =>
+  (p.translations ?? []).map((t) => ({ slug: p.slug, lang: t.lang }))
+);
+
+function editionsOf(source: PaperSource): Edition[] {
+  return [{ ...ENGLISH, file: source.file }, ...(source.translations ?? [])];
+}
+
+function hrefOf(source: PaperSource, edition: Edition): string {
+  return edition.lang === ENGLISH.lang ? `/papers/${source.slug}/` : `/papers/${source.slug}/${edition.lang}/`;
+}
+
+export interface EditionLink {
+  name: string;
+  htmlLang: string;
+  href: string;
+  current: boolean;
+}
+
+function editionLinks(source: PaperSource, current: Edition | undefined): EditionLink[] {
+  return editionsOf(source).map((e) => ({
+    name: e.name,
+    htmlLang: e.htmlLang,
+    href: hrefOf(source, e),
+    current: e.lang === current?.lang
+  }));
+}
 
 export interface TocItem {
   level: number;
@@ -40,12 +133,16 @@ export interface PaperMeta {
   abstract: string;
   // Plain text, for <meta name="description">.
   description: string;
+  // The original and its translations; a single entry when there are none.
+  editions: EditionLink[];
 }
 
 export interface Paper {
   meta: PaperMeta;
   html: string;
   toc: TocItem[];
+  // The lang attribute of this edition's text.
+  lang: string;
 }
 
 function findDoc(file: string): string {
@@ -125,7 +222,9 @@ const numberedCitation: TokenizerAndRendererExtension = {
   tokenizer(src) {
     // Inside link text the citation would nest one <a> in another.
     if (this.lexer.state.inLink) return undefined;
-    const match = /^\[(\d{1,3})\](?![(:[])/.exec(src);
+    // Not "[1](url)" or "[1][ref]" (links), and not an issue number before page numbers
+    // ("74[6]: 761–789"); "[122]: surviving…" in prose is a citation.
+    const match = /^\[(\d{1,3})\](?![([])(?!:\s*\d)/.exec(src);
     if (match) return { type: 'numberedCitation', raw: match[0], n: Number(match[1]) };
     return undefined;
   },
@@ -144,7 +243,7 @@ const HEADING_CLASS: Readonly<Record<number, string>> = {
 // Lines such as "**Version:** 2026.4" directly under the title.
 const FIELD_LINE = /^\*\*([^*]+?):\*\*\s*(.*)$/;
 
-function createMarked(source: PaperSource): { marked: Marked; toc: TocItem[] } {
+function createMarked(source: PaperSource, edition: Edition): { marked: Marked; toc: TocItem[] } {
   const toc: TocItem[] = [];
   const marked = new Marked({
     extensions: source.numberedReferences ? [inlineMath, numberedCitation] : [inlineMath]
@@ -193,7 +292,7 @@ function createMarked(source: PaperSource): { marked: Marked; toc: TocItem[] } {
   if (source.numberedReferences) {
     renderer.list = function (token: Tokens.List) {
       const html = Renderer.prototype.list.call(this, token);
-      if (!token.ordered || section !== 'References') return html;
+      if (!token.ordered || section !== edition.references) return html;
       let n = token.start === '' ? 1 : token.start;
       return html.replace(/<li>/g, () => `<li id="ref${n++}" class="scroll-mt-24">`);
     };
@@ -207,7 +306,11 @@ function sourceFor(slug: string): PaperSource | undefined {
   return PAPERS.find((p) => p.slug === slug);
 }
 
-function readMeta(source: PaperSource, markdown: string, marked: Marked): PaperMeta {
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function readMeta(source: PaperSource, edition: Edition, markdown: string, marked: Marked): PaperMeta {
   const lines = markdown.split('\n');
   const titleAt = lines.findIndex((l) => l.startsWith('# '));
   const title = lines[titleAt].slice(2).trim();
@@ -225,7 +328,8 @@ function readMeta(source: PaperSource, markdown: string, marked: Marked): PaperM
     })
   );
 
-  const abstractAt = lines.findIndex((l) => /^##\s+Abstract\s*$/.test(l));
+  const abstractHeading = new RegExp(`^##\\s+${escapeRegExp(edition.abstract)}\\s*$`);
+  const abstractAt = lines.findIndex((l) => abstractHeading.test(l));
   const abstractLines: string[] = [];
   if (abstractAt >= 0) {
     for (const line of lines.slice(abstractAt + 1)) {
@@ -240,28 +344,36 @@ function readMeta(source: PaperSource, markdown: string, marked: Marked): PaperM
     slug: source.slug,
     title,
     subtitle,
-    author: (fields.get('author') ?? '').split(' · ')[0],
-    date: fields.get('date') ?? '',
+    author: (fields.get(edition.author.toLowerCase()) ?? '').split(' · ')[0],
+    date: fields.get(edition.date.toLowerCase()) ?? '',
     abstract: marked.parseInline(abstractLines.join(' ')) as string,
-    description: `${title}. ${htmlToText(subtitle)}`
+    description: `${title}. ${htmlToText(subtitle)}`,
+    editions: editionLinks(source, edition)
   };
 }
 
-async function readSource(source: PaperSource): Promise<string> {
-  return readFile(findDoc(source.file), 'utf-8');
+async function readSource(edition: Edition): Promise<string> {
+  return readFile(findDoc(edition.file), 'utf-8');
 }
 
-export async function loadPaper(slug: string): Promise<Paper | undefined> {
+// The original when lang is omitted, or one of its translations.
+export async function loadPaper(slug: string, lang?: string): Promise<Paper | undefined> {
   const source = sourceFor(slug);
   if (!source) return undefined;
-  const markdown = await readSource(source);
-  const { marked, toc } = createMarked(source);
+  const edition = editionsOf(source).find((e) => (lang === undefined ? e.lang === ENGLISH.lang : e.lang === lang));
+  if (!edition || (lang !== undefined && lang === ENGLISH.lang)) return undefined;
+  const markdown = await readSource(edition);
+  const { marked, toc } = createMarked(source, edition);
   const html = (await marked.parse(markdown)) as string;
-  return { meta: readMeta(source, markdown, marked), html, toc };
+  return { meta: readMeta(source, edition, markdown, marked), html, toc, lang: edition.htmlLang };
 }
 
+// The index lists each paper once, in the original.
 export async function loadPaperIndex(): Promise<PaperMeta[]> {
   return Promise.all(
-    PAPERS.map(async (source) => readMeta(source, await readSource(source), createMarked(source).marked))
+    PAPERS.map(async (source) => {
+      const original = editionsOf(source)[0];
+      return readMeta(source, original, await readSource(original), createMarked(source, original).marked);
+    })
   );
 }
