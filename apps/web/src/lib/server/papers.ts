@@ -45,12 +45,57 @@ const ENGLISH = {
 
 // Listed in the order the papers index shows them; translations in switcher order.
 const PAPERS: readonly PaperSource[] = [
-  { slug: 'jany-latyn', file: 'WHITEPAPER.md' },
+  {
+    slug: 'jany-latyn',
+    file: 'WHITEPAPER.md',
+    translations: [
+      {
+        lang: 'ky',
+        htmlLang: 'ky',
+        name: 'Кыргызча',
+        file: 'WHITEPAPER.ky.md',
+        abstract: 'Аннотация',
+        references: 'Колдонулган адабияттар',
+        author: 'Автор',
+        date: 'Дата'
+      },
+      {
+        lang: 'ky-jany',
+        htmlLang: 'ky-Latn',
+        name: 'Kyrgyzça',
+        file: 'WHITEPAPER.ky-jany.md',
+        abstract: 'Annotatsiía',
+        references: 'Koldonulgan adabiíattar',
+        author: 'Avtor',
+        date: 'Data'
+      }
+    ]
+  },
   {
     slug: 'making-of-the-kyrgyz',
     file: 'MAKING-OF-THE-KYRGYZ.md',
     numberedReferences: true,
     translations: [
+      {
+        lang: 'ky',
+        htmlLang: 'ky',
+        name: 'Кыргызча',
+        file: 'MAKING-OF-THE-KYRGYZ.ky.md',
+        abstract: 'Аннотация',
+        references: 'Колдонулган адабияттар',
+        author: 'Автор',
+        date: 'Дата'
+      },
+      {
+        lang: 'ky-jany',
+        htmlLang: 'ky-Latn',
+        name: 'Kyrgyzça',
+        file: 'MAKING-OF-THE-KYRGYZ.ky-jany.md',
+        abstract: 'Annotatsiía',
+        references: 'Koldonulgan adabiíattar',
+        author: 'Avtor',
+        date: 'Data'
+      },
       {
         lang: 'ru',
         htmlLang: 'ru',
@@ -101,6 +146,8 @@ function hrefOf(source: PaperSource, edition: Edition): string {
 }
 
 export interface EditionLink {
+  // The edition's language code, matched against the interface language.
+  lang: string;
   name: string;
   htmlLang: string;
   href: string;
@@ -109,6 +156,7 @@ export interface EditionLink {
 
 function editionLinks(source: PaperSource, current: Edition | undefined): EditionLink[] {
   return editionsOf(source).map((e) => ({
+    lang: e.lang,
     name: e.name,
     htmlLang: e.htmlLang,
     href: hrefOf(source, e),

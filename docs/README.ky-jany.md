@@ -116,7 +116,7 @@ Brauzerde `http://localhost:5173` daregine kirip, jazuunu synap körsöŋüz bol
 - **Varianttardy kotoruu:** jany-latyn, CTA ülgüsündö, digraftar jana aralaş ө bir basuu menen, je ar bir tamgany özüŋüz tandaŋyz (`ĭ`/`ĩ` jana `ñ` varianttary menen koşo). Salyştyruu tizmesi ar bir variant özgörtkön sözdördü belgileít.
 - **Virtualdyk klaviatura:** Alt katmary jana tez kirgizüü katary tandalgan parametrlerge ylaíyktaşat, oşonduktan uçurdagy varianttyn ar bir tamgasyn terüügö bolot ([docs/keyboard.md](keyboard.md)).
 - **Jaryk jana karaŋgy temalar:** Demeíki boíunça tutumdun jöndöösünö ylaíyk; kotorguç meníuda.
-- **Aripterdi tekşerüü:** Tutumduk jana zamanbap veb-aripterdin koldoosun baíkaŋyz.
+- **Şriftterdi tekşerüü:** Tutumduk jana zamanbap veb-şriftterdin koldoosun baíkaŋyz.
 - **Köp tildüü interfeís:** Kyrgyzça (Jany-Latyn), Kyrgyzça (Kirillitsa), Orusça, Anglisçe jana Türkçö tandoo mümkünçülügü.
 
 ---

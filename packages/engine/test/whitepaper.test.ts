@@ -104,6 +104,80 @@ test('§18.2 restoreLoans restores ъ/ь and post-vocalic е loanwords', () => {
   assert.equal(janyToCyr('film', opts), 'фильм');
 });
 
+test('§18.1 post-vocalic i reads as й; §18.2 restores loan и after a vowel and loan ь', () => {
+  const opts = { restoreLoans: true };
+  // The plain form and the i glide write й as i, so the core reads i after a vowel as й (§18.1).
+  assert.equal(janyToCyr('bai'), 'бай');
+  assert.equal(janyToCyr('tooi'), 'тоой');
+  assert.equal(janyToCyr('ukrain'), 'украйн');
+  assert.equal(janyToCyr('arhaizm'), 'архайзм');
+  // Every entry restores exactly the word it was taken from, with its suffixes.
+  for (const word of ['украин', 'Украина', 'архаизм', 'интуитивдүү', 'биоинформатика', 'альтернатива', 'альтернативдүү',
+    'Альтернативалар', 'тильда', 'тильдага', 'тильдалуу', 'компьютер', 'компьютерде', 'постальвеолярдык',
+    'модель', 'стиль', 'январь', 'седиль']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+  // Kyrgyz spelling drops the final ь before a suffix, so suffixed forms come from the core unchanged.
+  for (const word of ['модели', 'моделдерде', 'стилдик', 'стилиндеги', 'январынан', 'седилдер', 'седилдүү']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+  // Native words that share the opening letters are untouched.
+  for (const word of ['тилди', 'тилдин', 'бай', 'тоой', 'үй']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+});
+
+test('§18.2 the book\'s entries: place names, states and vocabulary come back with their suffixes', () => {
+  const opts = { restoreLoans: true };
+  for (const word of ['Тянь', 'Шань', 'Сибирь', 'Юань', 'Цин', 'Цинге', 'депортацияланган', 'миграциясын', 'конфедерациясынын',
+    'федерациясын', 'диссертация', 'процесс', 'процесстин', 'реконструкцияларына', 'конструкцияларынын', 'провинциясындагы',
+    'медициналык', 'концепциялар', 'компиляциядагы', 'цивилизациясын', 'энциклопедист', 'классификациялайт', 'селекция',
+    'популяциялык', 'рецензияланган', 'конференциянын', 'цитаталар', 'циклдин', 'сценарийди', 'императрица', 'царь',
+    'фольклордук', 'дельтасына', 'афанасьевдик', 'Тобольск', 'Харьков', 'селькуптар', 'бельтир', 'культун', 'съезддерде',
+    'кереит', 'ламаисттик', 'архаикалык', 'лагерь', 'профиль']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+  // Хань is left out on purpose: its Latin form han is also native хан.
+  assert.equal(janyToCyr('han', opts), 'хан');
+});
+
+test('§18.2 restoreLoans restores loan ц stems and keeps their suffixes', () => {
+  const opts = { restoreLoans: true };
+  // Without the list the core reads ts as т+с (§18.1).
+  assert.equal(janyToCyr('kirillitsa'), 'кириллитса');
+  assert.equal(janyToCyr('kirillitsasy', opts), 'кириллицасы');
+  assert.equal(janyToCyr('Kirillitsadan', opts), 'Кириллицадан');
+  assert.equal(janyToCyr('konfiguratsiíalar', opts), 'конфигурациялар');
+  assert.equal(janyToCyr('pozitsiíada', opts), 'позицияда');
+  assert.equal(janyToCyr('transliteratsiíalanat', opts), 'транслитерацияланат');
+  assert.equal(janyToCyr('printsip', opts), 'принцип');
+  assert.equal(janyToCyr('printsibi', opts), 'принциби');
+  assert.equal(janyToCyr('tablitsasynan', opts), 'таблицасынан');
+  assert.equal(janyToCyr('sotsiolingvistikalyk', opts), 'социолингвистикалык');
+  // Every entry restores exactly the word it was taken from.
+  for (const word of ['абзацтарда', 'лицензиясында', 'прецедент', 'инициалдык', 'стационардык', 'цифрасы',
+    'циркумфлекс', 'француз', 'функционалдык', 'аннотациясы', 'артикуляция', 'ассимиляция', 'документациянын',
+    'интуицияга', 'коммерциялык', 'операциясы', 'оппозиция', 'палатализацияны', 'реакциясы', 'редакциялык',
+    'романизациясы', 'спецификациядагы', 'тенденциялар', 'токенизацияланышы', 'транскрипциялоого', 'матрицасында']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+  // Native т+с is untouched: the entries are loan stems only.
+  for (const word of ['кетсе', 'айтса', 'өтсө', 'тосту', 'катсыз']) {
+    assert.equal(janyToCyr(cyrToJany(word), opts), word);
+  }
+});
+
+test('§18.2 restoreLoans drops a restored final ь before any suffix, as Kyrgyz spells it', () => {
+  const opts = { restoreLoans: true };
+  assert.equal(janyToCyr('apreli', opts), 'апрели');
+  assert.equal(janyToCyr('aprelinde', opts), 'апрелинде');
+  assert.equal(janyToCyr('iíulunda', opts), 'июлунда');
+  // and before a consonant suffix, as Kyrgyz text writes it (июлда, апрелге)
+  assert.equal(janyToCyr('iíulda', opts), 'июлда');
+  assert.equal(janyToCyr('aprelge', opts), 'апрелге');
+  assert.equal(janyToCyr('aprel', opts), 'апрель');
+});
+
 // ---------------------------------------------------------------------------
 // Appendix A  е/э/ee/íe system — four-rule algorithm
 // ---------------------------------------------------------------------------
