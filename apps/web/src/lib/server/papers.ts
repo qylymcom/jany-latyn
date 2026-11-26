@@ -416,12 +416,41 @@ export async function loadPaper(slug: string, lang?: string): Promise<Paper | un
   return { meta: readMeta(source, edition, markdown, marked), html, toc, lang: edition.htmlLang };
 }
 
-// The index lists each paper once, in the original.
-export async function loadPaperIndex(): Promise<PaperMeta[]> {
+// What a paper's card on the index shows, in one edition's own words.
+export interface EditionCard {
+  // The lang attribute of the card's text.
+  htmlLang: string;
+  title: string;
+  // Inline HTML.
+  subtitle: string;
+  author: string;
+  date: string;
+  // Inline HTML.
+  abstract: string;
+}
+
+export interface PaperIndexEntry extends PaperMeta {
+  // Every edition's card, by edition language; the original's is under its own.
+  cards: Record<string, EditionCard>;
+}
+
+// The index lists each paper once, with the meta of the original and a card for each edition,
+// so the page can show the edition that goes with the interface language.
+export async function loadPaperIndex(): Promise<PaperIndexEntry[]> {
   return Promise.all(
     PAPERS.map(async (source) => {
-      const original = editionsOf(source)[0];
-      return readMeta(source, original, await readSource(original), createMarked(source, original).marked);
+      const metas = await Promise.all(
+        editionsOf(source).map(async (edition) => {
+          const meta = readMeta(source, edition, await readSource(edition), createMarked(source, edition).marked);
+          return [edition, meta] as const;
+        })
+      );
+      const cards: Record<string, EditionCard> = {};
+      for (const [edition, meta] of metas) {
+        const { title, subtitle, author, date, abstract } = meta;
+        cards[edition.lang] = { htmlLang: edition.htmlLang, title, subtitle, author, date, abstract };
+      }
+      return { ...metas[0][1], cards };
     })
   );
 }
