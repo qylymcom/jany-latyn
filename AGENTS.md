@@ -83,7 +83,7 @@ jany-latyn/
 └── docs/                  # CC BY 4.0
     ├── WHITEPAPER.md      # The proposal; versioned together with the conformance checker (/papers/jany-latyn/)
     ├── MAKING-OF-THE-KYRGYZ.md # The book on Kyrgyz origins (/papers/making-of-the-kyrgyz/)
-    ├── WHITEPAPER.ky.md, MAKING-OF-THE-KYRGYZ.{ky,ru,tr,zh}.md # AI-assisted translations; the English is authoritative (/papers/<slug>/<lang>/)
+    ├── WHITEPAPER.{ky,ru,tr,zh}.md, MAKING-OF-THE-KYRGYZ.{ky,ru,tr,zh}.md # AI-assisted translations; the English is authoritative (/papers/<slug>/<lang>/)
     ├── *.ky-jany.md       # Kyrgyzça editions: the Kyrgyz edition converted by cyrToJany; regenerate whenever the .ky.md changes
     ├── SPEC.md            # Formal linguistic orthography specification
     ├── keyboard.md        # Keyboard layout setup instructions

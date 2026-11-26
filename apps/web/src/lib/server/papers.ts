@@ -68,6 +68,36 @@ const PAPERS: readonly PaperSource[] = [
         references: 'Koldonulgan adabiíattar',
         author: 'Avtor',
         date: 'Data'
+      },
+      {
+        lang: 'ru',
+        htmlLang: 'ru',
+        name: 'Русский',
+        file: 'WHITEPAPER.ru.md',
+        abstract: 'Аннотация',
+        references: 'Список литературы',
+        author: 'Автор',
+        date: 'Дата'
+      },
+      {
+        lang: 'tr',
+        htmlLang: 'tr',
+        name: 'Türkçe',
+        file: 'WHITEPAPER.tr.md',
+        abstract: 'Özet',
+        references: 'Kaynakça',
+        author: 'Yazar',
+        date: 'Tarih'
+      },
+      {
+        lang: 'zh',
+        htmlLang: 'zh-Hans',
+        name: '中文',
+        file: 'WHITEPAPER.zh.md',
+        abstract: '摘要',
+        references: '参考文献',
+        author: '作者',
+        date: '日期'
       }
     ]
   },
