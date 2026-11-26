@@ -327,7 +327,9 @@ function revertWord(word: string, restoreLoans: boolean, offset = 0): Segment[] 
     if (LOAN_EXACT[word]) return [[offset, LOAN_EXACT[word]]];
     for (const [prefix, cyr, len] of LOAN_PREFIXES) {
       if (word.startsWith(prefix)) {
-        return [[offset, cyr], ...revertWord(word.slice(len), restoreLoans, offset + len)];
+        // Kyrgyz drops a loan's final ь before any suffix: апрель, апрели, апрелге, июлда.
+        const head = cyr.endsWith('ь') && word.length > len ? cyr.slice(0, -1) : cyr;
+        return [[offset, head], ...revertWord(word.slice(len), restoreLoans, offset + len)];
       }
     }
   }

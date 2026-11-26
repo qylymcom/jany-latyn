@@ -234,7 +234,7 @@ In this paper "Jany-Latyn" always means the proposed alphabet. Every other confi
 | q+ğ+ı | also `ı` for `ы`, and `y` for the glide `й` | aŋqığıy jigit | Yes |
 | CTA-aligned (q+ğ+ı+c+ñ) | also `c` for native `ж`, and `ñ` for `ң` | añqığıy cigit | Yes |
 
-The last column is the argument of §3 in one line: each step away from Jany-Latyn adds a split, and a split is written correctly only with a word list. *Жигит* is front-harmonic, so its `г` stays `g` even where `ğ` is written, and its `и` stays `i` beside the `ı` of the q+ğ+ı row. Real words and a running passage in each setting are in §21.2, and the alphabets side by side in §17.3.
+The last column is the argument of §3 in one line: every setting beyond Jany-Latyn contains a split, and a split is written correctly only with a word list. *Жигит* is front-harmonic, so its `г` stays `g` even where `ğ` is written, and its `и` stays `i` beside the `ı` of the q+ğ+ı row. Real words and a running passage in each setting are in §21.2, and the alphabets side by side in §17.3.
 
 ---
 
@@ -300,7 +300,7 @@ Three considerations keep Jany-Latyn on unified `k` and `g`:
 
 The strongest counter-argument runs the other way. Because loans keep velar [k] in back-vowel words, [k] and [q] arguably now contrast in modern spoken Kyrgyz (*kosmos* against *koş*), which is the classic profile of an allophone becoming a phoneme. If that analysis is right, a future standard written by people rather than derived by machine should adopt `q`. Place names sharpen it: *Каракол* and *Каракөл* are different towns, one letter apart as `Karakol` and `Karaköl` and two apart as `Qaraqol` and `Qaraköl`. Jany-Latyn's position is narrower than "q is wrong": it is that `q` cannot be derived from Cyrillic without a lexicon, and this system is defined by derivability.
 
-The harmony rule is also only as good as the vowels it reads. Cyrillic writes one `а` for both the back vowel and its fronted variant, so `q` mode cannot tell *äka* from *aqa*; the extended letter `ä` supplies what the rule is missing (§20).
+The harmony rule is also only as good as the vowels it reads. Cyrillic writes one `а` for both the back vowel and its fronted variant, so `q` mode cannot tell *äkä* from *aqa*; the extended letter `ä` supplies what the rule is missing (§20).
 
 The testbed's `q` toggle exists so that this can be checked rather than asserted. Run over contemporary news or social-media text, `q` mode puts the loanword distortions on screen within a paragraph.
 
@@ -330,7 +330,7 @@ The Jany-Latyn glide is **`í / Í`** in every position: *aí*, *toí*, *tyíyn*
 
 2. **The acute is chosen for its relationship to `й`, not for its meaning elsewhere.** `й` is `и` with a mark above it; `í` is `i` with a mark above it. A reader literate in Kyrgyz Cyrillic already treats that pair as related but distinct, and `i`/`í` carries the relationship across intact.
 
-3. **It preserves lexical roots.** Kyrgyz is agglutinative and stems must stay recognizable. *Кийим* (clothing) comes transparently from *кий-* (*kií-*, to wear); *тийиштүү* comes from *тий-* (*tií-*). Contracting these to `kiim` and `tiishtüü` truncates the verb stem and splits related forms arbitrarily: `biíi` (its dance) would keep the glide while `biíik` (tall) lost it.
+3. **It preserves lexical roots.** Kyrgyz is agglutinative and stems must stay recognizable. *Кийим* (clothing) comes transparently from *кий-* (*kií-*, to wear); *тийиштүү* comes from *тий-* (*tií-*). Contracting these to `kiim` and `tiiştüü` truncates the verb stem and splits related forms arbitrarily: `biíi` (its dance) would keep the glide while `biíik` (tall) lost it.
 
 4. **It makes the glide exceptionless.** Every Cyrillic `й` becomes `í` in every position, with no positional rules and no lookups.
 
@@ -459,7 +459,7 @@ The alternative was a macron over a single vowel, on the Latvian and Māori mode
 
 Kyrgyz long vowels, sometimes described as an archaism, are largely a secondary development from lost intervocalic consonants (*тоо* from an older form with a velar) rather than Proto-Turkic length of the kind Turkmen preserves [[26]](#ref26). Either way the contrast is live in modern Kyrgyz, which is all the orthography needs.
 
-The one irregularity that must be resolved explicitly is `е`. Kyrgyz Cyrillic never doubles it; long /eː/ is written `ээ` in every position (*ээги*, *керээз*, *кээде*, *жээк*), which Jany-Latyn renders as it looks: **`ee`** (*eegi*, *kereez*, *keede*, *jeek*). But `е` has a second job in Russian loans, where it represents [je] word-initially (*Европа*, *Енисей*) and after a vowel (*переезд*, *проект*). Jany-Latyn handles that with the glide letter it already has: loan [je] is **`íe`** (*Íevropa*, *pereíezd*, *proíekt*), native word-initial [e] stays **`e`** (*ene*, *el*), and post-consonantal [e] stays **`e`** (*kel*, *mektep*). Post-vocalic `е` in a loan that is not iotated in Kyrgyz speech, as in *поэт* and *аэропорт*, is written plain: *poet*, *aeroport*. Three graphemes (`e`, `ee`, and `íe`) cover every position. What they do on the way back to Cyrillic is specified in §18.1.
+The one irregularity that must be resolved explicitly is `е`. Kyrgyz Cyrillic never doubles it; long /eː/ is written `ээ` in every position (*ээги*, *керээз*, *кээде*, *жээк*), which Jany-Latyn renders as it looks: **`ee`** (*eegi*, *kereez*, *keede*, *jeek*). But `е` has a second job in Russian loans, where it represents [je] word-initially (*Европа*, *Енисей*) and after a vowel (*переезд*, *проект*). Jany-Latyn handles that with the glide letter it already has: loan [je] is **`íe`** (*Íevropa*, *pereíezd*, *proíekt*), native word-initial [e] stays **`e`** (*ene*, *el*), and post-consonantal [e] stays **`e`** (*kel*, *mektep*). Post-vocalic `э` in a loan that is not iotated in Kyrgyz speech, as in *поэт* and *аэропорт*, is written plain: *poet*, *aeroport*. Three graphemes (`e`, `ee`, and `íe`) cover every position. What they do on the way back to Cyrillic is specified in §18.1.
 
 ---
 
@@ -519,7 +519,7 @@ Alphabetical order has to be handed to software as a *tailoring*: a short list o
 | kene, keŋ, kep | kene, keŋ, kep | unchanged: `ŋ` after `n` in both |
 | kol, konok, köl, köp | kol, konok, köl, köp | unchanged: `ö` after `o` in both |
 | kul, kum, kül, küü | kul, kum, kül, küü | unchanged: `ü` after `u` in both |
-| kir, kyz | kız, kir | reversed: `ı` sorts *before* `i`, Turkish-style, so every word with the high unrounded vowel moves ahead of its dotted-`i` neighbors |
+| kir, kyz | kız, kir | reversed: `ı` sorts *before* `i`, Turkish-style, so every word with the high back unrounded vowel moves ahead of its dotted-`i` neighbors |
 
 Two of those rows hold a result that readers often find counterintuitive. Because `ö` and `ü` count as letters in their own right and not as accented forms of `o` and `u`, *every* word with the base vowel in that position sorts before *every* word with the modified one: *köl* follows *konok* rather than sitting beside *kol*. That is what the Cyrillic order already does with `о`/`ө` and `у`/`ү`, so a Kyrgyz reader finds it familiar and a search implementer often does not.
 
@@ -546,10 +546,11 @@ Which losses appear in the table is partly downstream of a question §23.6 leave
 | Latin | Reverses to | Why | What is lost |
 | :--- | :---: | :--- | :--- |
 | `ts` | **тс** | Native т+с is frequent and productive: *кетсе*, *айтса*, *өтсө* | loan `ц`: *tsirk → тсирк* |
-| post-vocalic `íe` | **йе** | Root integrity: *kií-* → *кийет*, *tií-* → *тийет* | loan post-vocalic `е`: *proíekt → пройект* |
+| post-vocalic `íe` | **йе** | Root integrity: *kií-* → *кийет*, *tií-* → *тийет* | loan post-vocalic `е`: *proíekt → пройект*; surnames in *-аев*, *-иев*: *Musaíev → Мусайев*; and *tiíeşelüü → тийешелүү*, which keeps the root *тий-* where the accepted spelling is *тиешелүү* |
 | word-initial `íe` | **е** | No native word begins with йе | — |
 | `ío` | **ё** | Kyrgyz already spells native йо as `ё`: *коён* | loan `йо`: *raíon → раён* |
 | `ía` | **я** | Native Kyrgyz has no bare `и`+`а` hiatus, so the sequence is unambiguous in any position | loan `ья`: *semía → семя* |
+| post-vocalic `i` | **й** | The full form writes й as `í`, but the plain form (§19) and the testbed's `i` glide write it as `i`, and native ай, ой, үй far outnumber loans with и after a vowel: *bai → бай*, *tooi → тоой* | loan `и` after a vowel: *ukrain → украйн*, *arhaizm → архайзм* |
 | `ş` | **ш** | 1:1 for native vocabulary | loan `щ`: *borş → борш* |
 | legacy `sh` | **ш** | Native ш is frequent; native с+х does not occur | the name *Ishak* in digraph mode |
 | post-vocalic `e` | **е** | Approximation; Kyrgyz has no native э in this position | loan `э`: *poet → поет* |
@@ -608,7 +609,7 @@ Three sound differences are heard in Kyrgyz speech that Kyrgyz Cyrillic does not
 
 None of the three is derivable from Cyrillic. Kyrgyz Cyrillic writes one `а`, one `х`, and one `в`, so the converter cannot produce `ä`, `x`, or `w` from source text without knowing which words are loans. They are therefore **compose-mode letters**: available when a person writes Latin directly, never emitted by automatic conversion. The reverse converter accepts them as input and folds each back to the base letter (`ä → а`, `x → х`, `w → в`), which is the §18.1 native-priority rule applied to a new case: the distinction survives in Latin and is lost on the way back, exactly as loan `ц` and `щ` are. Search folding unifies them the same way, so the lost distinction does not fragment an index.
 
-`ä` is the one that does phonological work. The other two refine the spelling of loanwords. `ä` marks harmony class, and harmony class is what the `q` rule reads: *äka*, *ükä*, and *källä* are front-harmonic and take velar [k], while *aqa* and *qalla* are back-harmonic and take uvular [q]. Without `ä` the rule cannot tell these apart; with it, the rule has the information it needs. The experiment follows directly: run southern text through `q` mode with and without `ä`, and measure whether the second configuration is more accurate.
+`ä` is the one that does phonological work. The other two refine the spelling of loanwords. `ä` marks harmony class, and harmony class is what the `q` rule reads: *äkä*, *ükä*, and *källä* are front-harmonic and take velar [k], while *aqa* and *qalla* are back-harmonic and take uvular [q]. Without `ä` the rule cannot tell these apart; with it, the rule has the information it needs. The experiment follows directly: run southern text through `q` mode without and with `ä`, and measure whether the second configuration is more accurate.
 
 `x` is as weak a case as `w`, and for a more basic reason: the difference it would write is not a contrast between words. Which fricative a speaker uses in *haram*, *halal*, or *Buhara* depends on who is speaking and where, not on the word, so no pair of Kyrgyz words is told apart by [h] against [x]. The loanwords that carry these sounds came from Arabic, Persian, Chagatai, and Russian by different routes, and Kyrgyz reshaped the source consonant as it took each one in. Sometimes it dropped it, as in *маала* (also *маале*) from *mahalla*. Sometimes it made it velar, as in *махабат* from *muhabbat*. Sometimes it hardened it into the stop `к`, as in *Ыктыяр* against *Ихтияр*, *Ыскак* against *Исхак*, and *Аскат* against *Асхат*. Most of these words and names are current in more than one form, and a spelling rule has no business choosing among them. It does not need to: where a fricative survives, Jany-Latyn's `h` writes it whichever way the speaker says it, as Cyrillic `х` has for eighty-six years, and where it became `к` or disappeared, there is nothing left to mark.
 
@@ -645,7 +646,7 @@ There is no generally accepted romanization of Kyrgyz; for geographic names the 
 
 (BGN/PCGN, ALA-LC, ISO 9, and CTA columns after [[8]](#ref8).)
 
-**BGN/PCGN** is the system with official standing in Kyrgyzstan, and Jany-Latyn agrees with it on the two letters that matter most for recognizability: `j` for `ж` and `ö`/`ü` for the front rounded vowels. It is a transcription for foreign readers rather than an orthography, and it shows: it writes both `й` and `ы` as `y`, so *тыйын* becomes *tyyyn*, and its digraphs `ch`, `sh`, `kh`, `ng` collide at morpheme boundaries. Its strength is that it needs no letters beyond `ö` and `ü`; its weakness is that it was never meant to be written by Kyrgyz speakers.
+**BGN/PCGN** is the system with official standing in Kyrgyzstan, and Jany-Latyn agrees with it on the letters that matter most for recognizability: `j` for `ж` and `ö`/`ü` for the front rounded vowels. It is a transcription for foreign readers rather than an orthography, and it shows: it writes both `й` and `ы` as `y`, so *тыйын* becomes *tyyyn*, and its digraphs `ch`, `sh`, `kh`, `ng` collide at morpheme boundaries. Its strength is that it needs no letters beyond `ö` and `ü`; its weakness is that it was never meant to be written by Kyrgyz speakers.
 
 **ALA-LC** is a library cataloging standard and optimizes for reversibility with combining marks (`n͡g`, `u̇`, `ĭ`). It is the only system that shares Jany-Latyn's instinct about the glide, writing `й` as `ĭ`, a mark on `i`. But its combining diacritics normalize inconsistently and cannot be typed on an ordinary keyboard.
 
@@ -822,7 +823,7 @@ Some of these are experiments the testbed is built to support; the rest is speci
 
 ### 23.3 Plain-form mergers
 
-**Claim:** the words the strip fallback merges (`baş` with `bas`, `çaí` with `cai`) are few enough in real text that its coherence and folding advantages outweigh them (§19).
+**Claim:** the words the strip fallback merges (`baş` with `bas`, `aş` with `as`) are few enough in real text that its coherence and folding advantages outweigh them (§19).
 
 **Test:** count the distinct word types merged by each ASCII fallback (`c/s` versus `ch/sh`) over a corpus, and report both numbers alongside the round-trip loss rate by word class.
 
@@ -977,7 +978,7 @@ SPEC.md states the same rules in its sections 2 (rule 4) and 4.3.
 The computational requirements an orthography proposal usually omits, and that anyone implementing this one meets in the first afternoon:
 
 - **Normalization.** The converter's output is **Normalization Form C (NFC)** [[16]](#ref16), the Unicode form that writes a letter and its mark as one codepoint wherever a combined one exists. `í`, `ö`, and `ü` all have such codepoints, and input that arrives split into letter plus mark should be normalized on the way in. `ŋ` has no decomposition at all, which matters for the next point.
-- **Search folding.** A single `foldKey()` maps either form to one index key: `ö→o`, `ü→u`, `í→i`, `ç→c`, `ş→s`, `ŋ→n`, then casefold, which is the Unicode operation behind case-insensitive matching. For five of the six full-form letters this is what standard accent-stripping already does, because `ç`, `ş`, `ö`, `ü`, and `í` split into a base letter plus a mark under Normalization Form D (NFD), the decomposed counterpart of NFC; `ä` folds to `a` the same way. `ŋ` is the exception among the full-form letters and must be handled explicitly, since no amount of Unicode normalization will fold it to `n`. So are `ñ→n` and `ı→i`, for the configurations that use them.
+- **Search folding.** A single `foldKey()` maps either form to one index key: `ö→o`, `ü→u`, `í→i`, `ç→c`, `ş→s`, `ŋ→n`, then casefold, which is the Unicode operation behind case-insensitive matching. For five of the six full-form letters this is what standard accent-stripping already does, because `ç`, `ş`, `ö`, `ü`, and `í` split into a base letter plus a mark under Normalization Form D (NFD), the decomposed counterpart of NFC; `ä` folds to `a` the same way. `ŋ` is the exception among the full-form letters and must be handled explicitly, since no amount of Unicode normalization will fold it to `n`. So is `ı→i`, for the configurations that use it; `ñ→n` needs no rule of its own, since `ñ` splits into `n` plus a tilde under NFD.
 - **Two folds are configuration-dependent.** When the compose-mode letters of §20 are enabled, `x→h` and `w→v` unify the distinctions that reverse conversion deliberately loses, so a search for *haram* matches *xaram* and *tav* matches *taw*. When they are not enabled, `x` and `w` are ordinary Latin letters in foreign names and must fold to themselves: *Linux*, *LAX*, and *X Factor* are not Kyrgyz words with a velar fricative, and folding them to *linuh* and *lah* would be wrong in an index that holds mixed-language content. The fold follows the configuration; it is not a property of the letters.
 - **The uvular letters fold unevenly.** `ğ` needs no rule of its own: it decomposes to `g` plus a breve under NFD and strips exactly as `ç` and `ş` do, so *bolğon* and *bolgon* land on one key. `q` is a base letter with nothing to strip, so it folds to itself, and *qyz* and *kyz* are two keys. An index holding text from both Jany-Latyn and the settings with `q` needs an explicit `q→k` rule to match them; whether that rule belongs in `foldKey` itself, at the cost of merging a distinction the configuration deliberately writes, is an open question.
 - **Form equivalence holds for the strip fallback.** With Jany-Latyn's ASCII mapping, the plain form *is* the folded form, so `çaí` and `cai` land on the same key. Under the transitional digraph fallback the plain form is `chai`, which folds to a different key unless the index also applies `ch→c` and `sh→s`. Any deployment that indexes digraph-style text needs that extra pair of rules; the strip fallback needs nothing.
