@@ -1,8 +1,11 @@
 <!-- SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 -->
 <script lang="ts">
   // The reading view of a paper, shared by the original and its translations.
+  import { untrack } from 'svelte';
+  import { goto } from '$app/navigation';
   import type { Paper } from '$lib/server/papers';
   import { i18n } from '$lib/i18n/index.svelte';
+  import { editionForLocale } from '$lib/paperEdition';
   import type { Locale } from '$lib/i18n/types.js';
   import { readingFont } from '$lib/readingFont.svelte';
   import Icon from '$lib/components/Icon.svelte';
@@ -21,6 +24,18 @@
   const topTitle = $derived(LABELS[i18n.locale].top);
   const allTitle = $derived(LABELS[i18n.locale].all);
   const languageTitle = $derived(LABELS[i18n.locale].language);
+
+  // Switching the interface language also switches the paper to its edition in that
+  // language (the original when there is none). Only a switch counts: arriving at an
+  // edition by a link keeps it, whatever the interface language.
+  let seenLocale = i18n.locale;
+  $effect(() => {
+    const locale = i18n.locale;
+    if (locale === seenLocale) return;
+    seenLocale = locale;
+    const target = editionForLocale(untrack(() => data.meta.editions), locale);
+    if (target && !target.current) goto(target.href);
+  });
 
   // The sidebar is desktop-only and the accordion sits at the top of the page, so on a
   // phone the contents are unreachable once you are reading. These float alongside.
